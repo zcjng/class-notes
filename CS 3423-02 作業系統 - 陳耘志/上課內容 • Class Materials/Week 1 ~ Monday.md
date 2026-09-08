@@ -58,7 +58,7 @@ day: Monday
 - **Broadcasting**: element-wise operations between arrays of different shapes are allowed when their trailing dimensions match or one of them is `1`:
   ```python
   a = np.arange(12).reshape(3, 4)   # (3, 4)
-  b = np.array([1, 2, 3, 4])        # (4,) broadcasts against each row
+  b = np.array([1, 2, 3, 4])        # (4,) broadcasts against each    row
   a + b
   ```
 - Indexing: slicing `arr[1:5]`, **fancy indexing** with arrays `arr[[0, 2]]`, and **boolean masks** `arr[arr > 3]`.

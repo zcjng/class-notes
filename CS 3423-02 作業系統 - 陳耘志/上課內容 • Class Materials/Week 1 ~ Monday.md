@@ -84,6 +84,7 @@ Pre-installed libraries, free GPU/TPU accelerators, generous cloud resources, an
 How do you install an extra Python package in a Colab cell?
 ??
 Prefix the command with `!` and run it in a cell, e.g. `!pip install pytest`.
+<!--SR:!2026-09-10,1,230-->
 
 What are the two main cell types in a Colab (Jupyter) notebook?
 ??
@@ -92,6 +93,7 @@ Code cells (runnable Python) and text/Markdown cells (notes, headings, explanati
 In Python, what exactly is a variable?
 ??
 A name (reference) bound to an object in memory — assigning it to another variable does not copy the object.
+<!--SR:!2026-09-10,1,230-->
 
 What does `id(obj)` return?
 ??
@@ -101,14 +103,17 @@ The identity (memory address) of the object, unique while the object is alive.
 How can you check an object's memory size in bytes?
 ??
 `sys.getsizeof(obj)`.
+<!--SR:!2026-09-10,1,230-->
 
 Which integers does CPython cache and share by default?
 ??
 -5 to 256 (small-integer caching), so all references to these values point to the same objects.
+<!--SR:!2026-09-10,1,230-->
 
 Why is a NumPy array more memory-efficient than a Python list?
 ??
 A list stores 8-byte pointers to separate boxed Python objects (~28 bytes each for ints); an ndarray stores homogeneous values contiguously in a single C array (e.g. 8 bytes per int64 element).
+<!--SR:!2026-09-10,1,230-->
 
 A Python list of 1,000,000 ints uses roughly how much memory?
 ??
@@ -122,6 +127,7 @@ Give three common ways to create a NumPy array.
 What is vectorization in NumPy?
 ??
 Performing element-wise operations on entire arrays at once through ufuncs (optimized C loops) instead of looping in Python — orders of magnitude faster.
+<!--SR:!2026-09-10,1,230-->
 
 What is broadcasting in NumPy?
 ??
@@ -130,6 +136,7 @@ The rule that lets element-wise operations work on arrays of different shapes: t
 What is the zero page?
 ??
 The first page of virtual memory (starting at address 0), which the OS keeps unmapped/inaccessible so null pointer accesses cannot silently corrupt memory.
+<!--SR:!2026-09-10,1,230-->
 
 What happens when a program dereferences a null pointer?
 ??

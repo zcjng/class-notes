@@ -1,0 +1,150 @@
+---
+title: 第一週 • 週一
+course: CS 3423-02 作業系統
+week: 1
+day: Monday
+---
+
+# 第一週 • 週一
+
+> Google Colab - Generous and Powerful tool for Python study and Machine Learning
+> Python memory usages, running np code examples
+> Zero page.
+
+## Google Colab
+
+- A **free, cloud-based Jupyter notebook environment** by Google — no local installation needed, everything runs in the browser.
+- Built on **Jupyter**: a notebook is a list of **cells** that run sequentially; variables persist across cells within the same session.
+- Two main cell types: **code cells** (runnable Python) and **text cells** (Markdown notes/headings).
+- Why it is great for Python study and ML:
+  - **Pre-installed libraries** (NumPy, pandas, matplotlib, scikit-learn, TensorFlow, PyTorch, etc.) — no `pip install` needed for common work.
+  - **Free hardware accelerators**: GPU / TPU runtimes accessible via *Runtime → Change runtime type*.
+  - Generous free resources (RAM in the tens of GB, ~100+ GB disk), so heavy experiments run without a powerful local machine.
+  - **Easy sharing & collaboration** (Drive + GitHub integration), and work is saved to Google Drive automatically.
+- Useful workflows:
+  - Mount Google Drive: `from google.colab import drive; drive.drive.mount('/content/drive')`
+  - Install extra packages with `!pip install <pkg>` directly in a cell.
+  - Download/upload files: `!wget <url>`, or the files sidebar.
+- The runtime is a **Linux VM** (Ubuntu), which is why shell commands with `!` work in cells.
+
+## Python Memory Usage
+
+- **Everything in Python is an object**, and variables are just **names (references) bound to objects** — assigning `b = a` does not copy the object.
+- `id(obj)` returns the object's **identity (memory address)**, unique while the object is alive — useful for checking shared/reused objects.
+- `sys.getsizeof(obj)` reports the object's size **in bytes** (list size excludes the size of the elements it references).
+- **Small-integer caching** in CPython: integers in `-5..256` are pre-created and shared, so `x = 5` and `y = 5` refer to the same object.
+- **Lists are pointer arrays**: a list stores 8-byte pointers to separately allocated Python objects (each `int` object is ~28 bytes). A Python list of 1,000,000 ints ≈ 8 MB (pointers) + ~28 MB (objects) ≈ 36 MB.
+- Memory is managed by **reference counting** plus a **garbage collector** (`gc` module) for cyclic references; objects are freed when their reference count hits zero.
+
+## NumPy Usage
+
+- `import numpy as np` — the foundation for numeric/scientific computing in Python.
+- **ndarray**: homogeneous, **contiguous C array** of values — this is the key to its speed and memory efficiency.
+- Memory comparison: a list of 1,000,000 ints ≈ **36 MB**; a `np.int64` array of the same size ≈ **8 MB**.
+- Creating arrays:
+  - `np.array([1, 2, 3])` — from an existing sequence
+  - `np.zeros(shape)`, `np.ones(shape)`, `np.empty(shape)` — filled arrays
+  - `np.arange(start, stop, step)` — like `range()`
+  - `np.linspace(a, b, n)` — n evenly spaced points between a and b
+  - `np.random.rand(...)`, `np.random.randint(...)` — random arrays
+- Array attributes: `arr.shape`, `arr.ndim`, `arr.dtype`, `arr.size`, `arr.nbytes`.
+- Reshaping: `arr.reshape(rows, cols)`, `arr.flatten()` / `arr.ravel()`.
+- **Vectorization**: use element-wise operations on whole arrays instead of Python loops — operations map to optimized C loops via **ufuncs**:
+  ```python
+  a = np.arange(1_000_000)
+  b = a * 2 + 1          # fast, no loop
+  ```
+  vs. the equivalent Python loop, which is orders of magnitude slower.
+- **Broadcasting**: element-wise operations between arrays of different shapes are allowed when their trailing dimensions match or one of them is `1`:
+  ```python
+  a = np.arange(12).reshape(3, 4)   # (3, 4)
+  b = np.array([1, 2, 3, 4])        # (4,) broadcasts against each    row
+  a + b
+  ```
+- Indexing: slicing `arr[1:5]`, **fancy indexing** with arrays `arr[[0, 2]]`, and **boolean masks** `arr[arr > 3]`.
+
+## Zero Page
+
+- The **zero page** is the first page of virtual memory, starting at address `0x0...0`.
+- The OS keeps it **unmapped / inaccessible** so that any read or write near address 0 — i.e. a **null pointer dereference** — triggers a **page fault** and a segmentation fault (`SIGSEGV`), crashing the program with a clear error instead of silently corrupting memory.
+- This is why operating systems map no user data at address 0; Linux's `mmap_min_addr` (default 65536) additionally prevents mapping the lowest addresses.
+- Example in C: `int *p = NULL; *p = 42;` → segfault. In Python you rarely see this directly (no raw pointers), but `None`-related attribute errors serve a similar defensive role.
+
+## Flashcards
+
+What is Google Colab?
+??
+A free, cloud-based Jupyter notebook environment by Google for running Python and machine learning code in the browser — no local setup required.
+<!--SR:!2026-09-10,1,230-->
+
+Why is Google Colab good for learning Python and ML?
+??
+Pre-installed libraries, free GPU/TPU accelerators, generous cloud resources, and easy sharing/saving to Google Drive.
+<!--SR:!2026-09-10,1,230-->
+
+How do you install an extra Python package in a Colab cell?
+??
+Prefix the command with `!` and run it in a cell, e.g. `!pip install pytest`.
+<!--SR:!2026-09-10,1,230-->
+
+What are the two main cell types in a Colab (Jupyter) notebook?
+??
+Code cells (runnable Python) and text/Markdown cells (notes, headings, explanations).
+<!--SR:!2026-09-10,1,230-->
+
+In Python, what exactly is a variable?
+??
+A name (reference) bound to an object in memory — assigning it to another variable does not copy the object.
+<!--SR:!2026-09-10,1,230-->
+
+What does `id(obj)` return?
+??
+The identity (memory address) of the object, unique while the object is alive.
+<!--SR:!2026-09-10,1,230-->
+
+How can you check an object's memory size in bytes?
+??
+`sys.getsizeof(obj)`.
+<!--SR:!2026-09-10,1,230-->
+
+Which integers does CPython cache and share by default?
+??
+-5 to 256 (small-integer caching), so all references to these values point to the same objects.
+<!--SR:!2026-09-10,1,230-->
+
+Why is a NumPy array more memory-efficient than a Python list?
+??
+A list stores 8-byte pointers to separate boxed Python objects (~28 bytes each for ints); an ndarray stores homogeneous values contiguously in a single C array (e.g. 8 bytes per int64 element).
+<!--SR:!2026-09-10,1,230-->
+
+A Python list of 1,000,000 ints uses roughly how much memory?
+??
+About 36 MB — ~8 MB of pointers plus ~28 MB of int objects. An equivalent int64 NumPy array uses ~8 MB.
+<!--SR:!2026-09-10,1,230-->
+
+Give three common ways to create a NumPy array.
+??
+`np.zeros(shape)`, `np.ones(shape)`, `np.arange()`, `np.linspace(a, b, n)`, `np.random.rand(...)`, or `np.array([...])`.
+<!--SR:!2026-09-10,1,230-->
+
+What is vectorization in NumPy?
+??
+Performing element-wise operations on entire arrays at once through ufuncs (optimized C loops) instead of looping in Python — orders of magnitude faster.
+<!--SR:!2026-09-10,1,230-->
+
+What is broadcasting in NumPy?
+??
+The rule that lets element-wise operations work on arrays of different shapes: trailing dimensions must match, or one of them must be 1 (it gets stretched to the other's size).
+<!--SR:!2026-09-10,1,230-->
+
+What is the zero page?
+??
+The first page of virtual memory (starting at address 0), which the OS keeps unmapped/inaccessible so null pointer accesses cannot silently corrupt memory.
+<!--SR:!2026-09-10,1,230-->
+
+What happens when a program dereferences a null pointer?
+??
+The MMU raises a page fault that the OS turns into a segmentation fault (SIGSEGV), terminating the program instead of corrupting memory.
+<!--SR:!2026-09-10,1,230-->
+
+#os

@@ -80,6 +80,7 @@ A free, cloud-based Jupyter notebook environment by Google for running Python an
 Why is Google Colab good for learning Python and ML?
 ??
 Pre-installed libraries, free GPU/TPU accelerators, generous cloud resources, and easy sharing/saving to Google Drive.
+<!--SR:!2026-09-10,1,230-->
 
 How do you install an extra Python package in a Colab cell?
 ??
@@ -89,6 +90,7 @@ Prefix the command with `!` and run it in a cell, e.g. `!pip install pytest`.
 What are the two main cell types in a Colab (Jupyter) notebook?
 ??
 Code cells (runnable Python) and text/Markdown cells (notes, headings, explanations).
+<!--SR:!2026-09-10,1,230-->
 
 In Python, what exactly is a variable?
 ??
@@ -118,6 +120,7 @@ A list stores 8-byte pointers to separate boxed Python objects (~28 bytes each f
 A Python list of 1,000,000 ints uses roughly how much memory?
 ??
 About 36 MB — ~8 MB of pointers plus ~28 MB of int objects. An equivalent int64 NumPy array uses ~8 MB.
+<!--SR:!2026-09-10,1,230-->
 
 Give three common ways to create a NumPy array.
 ??
@@ -132,6 +135,7 @@ Performing element-wise operations on entire arrays at once through ufuncs (opti
 What is broadcasting in NumPy?
 ??
 The rule that lets element-wise operations work on arrays of different shapes: trailing dimensions must match, or one of them must be 1 (it gets stretched to the other's size).
+<!--SR:!2026-09-10,1,230-->
 
 What is the zero page?
 ??
@@ -141,5 +145,6 @@ The first page of virtual memory (starting at address 0), which the OS keeps unm
 What happens when a program dereferences a null pointer?
 ??
 The MMU raises a page fault that the OS turns into a segmentation fault (SIGSEGV), terminating the program instead of corrupting memory.
+<!--SR:!2026-09-10,1,230-->
 
 #os

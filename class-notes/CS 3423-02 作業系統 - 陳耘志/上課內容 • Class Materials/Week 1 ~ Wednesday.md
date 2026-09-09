@@ -95,3 +95,66 @@ aliases:
 ### 2. SRAM (Static Random-Access Memory)
 * **Mechanics:** Data is controlled by a multi-transistor arrangement that switches states without losing charge. It does not require a refresh cycle as long as it has continuous power.
 * **Why it matters:** Eliminating the refresh wait time makes it optimal for high-speed processing, though its structural complexity restricts its capacity to smaller megabyte scales.
+
+# C Buffer Management: `exit()` vs `_exit()`
+
+## Core Concept
+This note explores how standard C library termination differs from operating system kernel-level termination when dealing with **user-level buffering**.
+
+![[IMG_20260909_095958 1.jpg]]
+
+---
+
+## 1. Code Comparison
+
+### test.c (Using `exit()`)
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    printf("Hey");
+    exit(1);
+}
+```
+* **Output:** `Hey`
+* **Mechanism:** High-level standard C library termination.
+
+### test2.c (Using `_exit()`)
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main(void) {
+    printf("Hey");
+    _exit(1);
+}
+```
+* **Output:** *Nothing is printed*
+* **Mechanism:** Low-level operating system kernel system call.
+
+---
+
+## 2. Why does `test2.c` print nothing?
+
+1. **Missing Newline (`\n`):** The string inside `printf("Hey")` lacks a newline character. By default, the C library holds standard output data in a **user-level memory buffer** instead of writing it directly to the terminal screen.
+2. **Immediate Kernel Termination:** `_exit()` completely bypasses standard library cleanup routines. It commands the OS kernel to kill the process instantly. 
+3. **No Buffer Flush:** Because the process terminates abruptly, the user-level buffer holding `"Hey"` is wiped from memory before it has a chance to be flushed (written) to the terminal window.
+
+---
+
+## 3. Key Differences
+
+| Feature | `exit()` | `_exit()` |
+| :--- | :--- | :--- |
+| **Layer** | Standard C Library | Operating System Kernel (System Call) |
+| **Buffer Flush** | **Yes**, automatically flushes open streams | **No**, discards user-level buffers |
+| **Typical Use** | Normal program termination | Terminating a child process after a `fork()` |
+
+---
+
+## 4. How to Fix `test2.c` (Force Output)
+To make `test2.c` display `"Hey"`, you must force the buffer to flush before `_exit()` cuts off the program:
+* **Option A:** Add a newline character: `printf("Hey\n");`
+* **Option B:** Explicitly flush standard output: `fflush(stdout);`
+

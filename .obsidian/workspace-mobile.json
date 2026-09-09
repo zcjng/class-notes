@@ -11,14 +11,10 @@
             "id": "c2e33fba4310d335",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Week 1 ~ Monday"
+              "title": "New tab"
             }
           }
         ]
@@ -165,8 +161,8 @@
         "state": {
           "type": "review-queue-list-view",
           "state": {},
-          "icon": "SpacedRepIcon",
-          "title": "Notes Review Queue"
+          "icon": "lucide-ghost",
+          "title": "review-queue-list-view"
         }
       }
     ],

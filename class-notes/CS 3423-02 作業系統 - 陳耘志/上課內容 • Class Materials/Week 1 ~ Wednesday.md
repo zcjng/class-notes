@@ -54,3 +54,7 @@ So, back to our Taiwanese saying: “what’s the OS in your mind?” What do yo
 3. ATMs and metro systems often must operate for 30+ years. Many of them run on very old, unsupported operating systems. What does this tell us about the real-world challenges of security and system administration?  
     
 4. If the OS is a “government,” what happens when different programs or users have conflicting needs? How can the OS be “fair” to everyone?
+
+
+## DRAM is important 
+

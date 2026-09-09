@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CS 3423-02 作業系統 - 陳耘志/第一週 • 週一.md",
+                "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "第一週 • 週一"
+              "title": "Week 1 ~ Monday"
             }
           }
         ]
@@ -88,7 +88,7 @@
             "searchQuery": ""
           },
           "icon": "lucide-archive",
-          "title": "所有屬性"
+          "title": "All properties"
         }
       },
       {
@@ -117,8 +117,8 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "README.md",
-            "collapseAll": false,
+            "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
+            "collapseAll": true,
             "extraContext": false,
             "sortOrder": "alphabetical",
             "showSearch": false,
@@ -127,7 +127,7 @@
             "unlinkedCollapsed": true
           },
           "icon": "links-coming-in",
-          "title": "反向連結"
+          "title": "Backlinks"
         }
       },
       {
@@ -136,12 +136,12 @@
         "state": {
           "type": "outgoing-link",
           "state": {
-            "file": "README.md",
+            "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           },
           "icon": "links-going-out",
-          "title": "對外連結"
+          "title": "Outgoing links"
         }
       },
       {
@@ -150,17 +150,27 @@
         "state": {
           "type": "outline",
           "state": {
-            "file": "README.md",
+            "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
             "followCursor": false,
             "showSearch": false,
             "searchQuery": ""
           },
           "icon": "lucide-list",
-          "title": "大綱"
+          "title": "Outline"
+        }
+      },
+      {
+        "id": "2c9a7ef46b7ebe5a",
+        "type": "leaf",
+        "state": {
+          "type": "review-queue-list-view",
+          "state": {},
+          "icon": "SpacedRepIcon",
+          "title": "Notes Review Queue"
         }
       }
     ],
-    "currentTab": 0
+    "currentTab": 2
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -170,12 +180,16 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-spaced-repetition:Review flashcards": false
     }
   },
   "active": "c2e33fba4310d335",
   "lastOpenFiles": [
+    "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
     "README.md",
+    "CS 3423-02 作業系統 - 陳耘志/第一週 • 週一.md",
+    "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials",
     "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/Essential University Physics_ Volume 1 (4th Edition) -- Richard Wolfson -- Always learning, Fourth edition, New York, 2020 -- Pearson Education -- 9780134988559 -- f3436ce64420c3ddf455201bcbec6df2 -- Anna’s Archive.pdf",
     "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/11510PHYS113307.pdf",
     "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md",
@@ -189,8 +203,6 @@
     "IEEM 2021-2 離散數學 - 岩間一雄/PDFs Images Miscellaneous",
     "IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
     "IEEM 2021-2 離散數學 - 岩間一雄",
-    "CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md",
-    "CS 3423-02 作業系統 - 陳耘志/PDFs Images Miscellaneous",
-    "CS 3423-02 作業系統 - 陳耘志/第一週 • 週一.md"
+    "CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md"
   ]
 }

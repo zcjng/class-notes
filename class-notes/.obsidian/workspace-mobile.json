@@ -1,0 +1,223 @@
+{
+  "main": {
+    "id": "fbf028e8b14ddfaa",
+    "type": "split",
+    "children": [
+      {
+        "id": "7e6158767d58bb28",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7d20e1c333177db0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "0-0 - Syllabus & Website"
+            }
+          },
+          {
+            "id": "bac5bd10dfcf1d71",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Week 1 ~ Monday"
+            }
+          },
+          {
+            "id": "2a5732445e9aca2e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Wednesday.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Week 1 ~ Wednesday"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d5e7d0731968a646",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "01efa790890bde34",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical",
+            "autoReveal": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-folder-closed",
+          "title": "Files"
+        }
+      },
+      {
+        "id": "ac1b7c02d420d88b",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          },
+          "icon": "lucide-search",
+          "title": "Search"
+        }
+      },
+      {
+        "id": "6f983d523fabf50e",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-tags",
+          "title": "Tags"
+        }
+      },
+      {
+        "id": "3feeb253462fe7af",
+        "type": "leaf",
+        "state": {
+          "type": "all-properties",
+          "state": {
+            "sortOrder": "frequency",
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-archive",
+          "title": "All properties"
+        }
+      },
+      {
+        "id": "9167f928e41ecb27",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-bookmark",
+          "title": "Bookmarks"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "9c3b5bf22363f9ce",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "5c30e004e0ba0955",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Wednesday.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-coming-in",
+          "title": "Backlinks"
+        }
+      },
+      {
+        "id": "e0e5172f9062a48b",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Wednesday.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-going-out",
+          "title": "Outgoing links"
+        }
+      },
+      {
+        "id": "60f9c81411613905",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Wednesday.md",
+            "followCursor": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-list",
+          "title": "Outline"
+        }
+      },
+      {
+        "id": "5662d2b70275a864",
+        "type": "leaf",
+        "state": {
+          "type": "review-queue-list-view",
+          "state": {},
+          "icon": "lucide-ghost",
+          "title": "review-queue-list-view"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-spaced-repetition:Review flashcards": false
+    }
+  },
+  "active": "2a5732445e9aca2e",
+  "lastOpenFiles": [
+    "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
+    "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Wednesday.md",
+    "CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md",
+    "README.md"
+  ]
+}

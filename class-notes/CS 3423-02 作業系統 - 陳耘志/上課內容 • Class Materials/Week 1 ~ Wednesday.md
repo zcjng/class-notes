@@ -56,3 +56,42 @@ So, back to our Taiwanese saying: “what’s the OS in your mind?” What do yo
 4. If the OS is a “government,” what happens when different programs or users have conflicting needs? How can the OS be “fair” to everyone?
 
 
+---
+tags:
+  - hardware
+  - computing
+  - reference
+aliases:
+  - Memory Comparison
+  - RAM vs Cache
+---
+
+# RAM Architecture: DRAM vs. SRAM
+
+## 📌 Executive Summary
+**DRAM** (Dynamic RAM) and **SRAM** (Static RAM) are two foundational types of volatile volatile semiconductor memory. Their design involves a structural trade-off between **density (capacity)** and **speed (performance)**.
+
+---
+
+## 📊 Core Comparison
+
+| Feature | DRAM (Dynamic RAM) | SRAM (Static RAM) |
+| :--- | :--- | :--- |
+| **Storage Element** | 1 Capacitor + 1 Transistor | Flip-flop circuit (4-6 Transistors) |
+| **Refresh Cycle** | **Required** (Capacitors leak charge) | **None** (Holds data statically) |
+| **Speed** | Slower (nanoseconds) | Extremely Fast (matches CPU clock) |
+| **Density / Size** | **High** (Compact cell design) | **Low** (Bulky multi-transistor design) |
+| **Cost** | Inexpensive per GB | Very Expensive per MB |
+| **Primary Placement**| Main System Memory (RAM) | CPU Internal Cache (L1, L2, L3) |
+
+---
+
+## 🔍 Technical Deep-Dive
+
+### 1. DRAM (Dynamic Random-Access Memory)
+* **Mechanics:** Data is stored as an electrical charge in a tiny capacitor. Because capacitors naturally lose energy, the memory controller must actively **refresh** the charge thousands of times per second.
+* **Why it matters:** The simple cell architecture allows manufacturers to fit gigabytes of storage onto physical RAM modules cheaply.
+
+### 2. SRAM (Static Random-Access Memory)
+* **Mechanics:** Data is controlled by a multi-transistor arrangement that switches states without losing charge. It does not require a refresh cycle as long as it has continuous power.
+* **Why it matters:** Eliminating the refresh wait time makes it optimal for high-speed processing, though its structural complexity restricts its capacity to smaller megabyte scales.

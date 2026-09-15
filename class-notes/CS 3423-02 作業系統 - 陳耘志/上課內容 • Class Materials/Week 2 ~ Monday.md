@@ -350,7 +350,172 @@ The program can simply run normally in the foreground, while `systemd` handles:
 So the traditional double-fork technique is mainly important for understanding **how Unix daemonization works**, while `systemd` is the modern way to manage system services.
 
 
+## Shell Background Jobs
 
+A command followed by `&` runs as a **background job**:
+
+```
+sleep 10 &
+```
+
+The shell roughly:
+
+```
+shell
+  │
+  └── fork()
+       ↓
+     child
+       ↓
+     exec("sleep")
+```
+
+For a foreground command, the shell waits:
+
+```
+waitpid(child, &status, 0);
+```
+
+For a background command, the shell **does not wait immediately**, so it can continue accepting commands and display the prompt.
+
+---
+
+### Child Termination → Zombie
+
+When the child finishes:
+
+```
+Child
+  │
+  └── exit()
+       ↓
+   terminates
+```
+
+The child is **dead**, but the kernel temporarily keeps a small process-table entry containing information such as its exit status.
+
+This is a **zombie**.
+
+```
+Running → exit() → Zombie → waitpid() → removed
+```
+
+> **Zombie = terminated child whose parent has not yet collected its exit status.**
+
+---
+
+### `waitpid()`
+
+```
+waitpid(pid, &status, 0);
+```
+
+- Waits for the specified child.
+- If the child is still running, the parent **blocks** until it changes state.
+- If the child has already terminated, its exit status is collected and the zombie is removed.
+
+---
+
+### `WNOHANG`
+
+```
+waitpid(pid, &status, WNOHANG);
+```
+
+`WNOHANG` means:
+
+> **Don't block if the child hasn't finished.**
+
+```
+Child finished?
+   │
+   ├── YES → collect status
+   │
+   └── NO  → return immediately
+```
+
+This is useful for shells because the shell **must remain responsive** instead of waiting for background jobs.
+
+---
+
+## `SIGCHLD`
+
+When a child terminates, the kernel can send **`SIGCHLD`** to its parent.
+
+```
+Child terminates
+      ↓
+Kernel
+      ↓
+SIGCHLD
+      ↓
+Parent
+```
+
+`SIGCHLD` is a **notification**, not the exit status itself.
+
+The parent can install a **signal handler** to respond to it:
+
+```
+SIGCHLD received
+      ↓
+Signal handler runs
+      ↓
+waitpid(..., WNOHANG)
+      ↓
+Collect child's status
+      ↓
+Zombie removed
+```
+
+> **Signal = notification**  
+> **Signal handler = code that responds to the notification**  
+> **`waitpid()` = collects the child's termination information and reaps it**
+
+---
+
+### Overall Picture
+
+```
+$ sleep 10 &
+       │
+       ↓
+     fork()
+       │
+       ├──────────────→ Shell continues
+       │
+       ↓
+     Child
+       │
+       ↓
+     exec()
+       │
+       ↓
+   runs in background
+       │
+       ↓
+     exit()
+       │
+       ↓
+    Zombie
+       │
+       ↓
+ Kernel sends SIGCHLD
+       │
+       ↓
+ Parent's signal handler
+       │
+       ↓
+ waitpid(..., WNOHANG)
+       │
+       ↓
+ Exit status collected
+       │
+       ↓
+ Zombie removed
+```
+
+**Key idea:** `&` makes the shell **not wait immediately**; `SIGCHLD` can notify the shell when the child finishes; `waitpid()` reaps the finished child; `WNOHANG` makes sure the shell doesn't block while checking.
 
 ---
 ### Flashcards

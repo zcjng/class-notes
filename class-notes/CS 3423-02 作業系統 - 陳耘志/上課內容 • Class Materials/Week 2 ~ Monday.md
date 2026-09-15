@@ -119,9 +119,10 @@ What does a `fork()` return value of `0` signify to the running program?
 ??  
 It acts as a flag telling that specific process container: "You are the child process." (The child's actual PID is positive, but `fork()` returns `0` inside its code execution path).
 
-What does `fork()` return to the Parent process, and why?  
-??  
+What does `fork()` return to the Parent process, and why?
+??
 It returns the actual, positive PID of the newly created child process (`> 0`) so the parent can track, manage, or wait for that specific child.
+<!--SR:!2026-09-19,4,270-->
 
 What does it mean when parent and child processes "execute different branches" of the same `if-else` statement?  
 ??  
@@ -143,17 +144,17 @@ Why must a command-line utility array passed to `execvp` always end with a `NULL
 ??  
 It acts as a mandatory terminating sentinel so the OS kernel knows precisely where the argument list ends in RAM, preventing memory corruption crashes.
 
-Why does a Shell need to use BOTH `fork()` and `execvp()` to run a command like `ls`?  
-??  
+Why does a Shell need to use BOTH `fork()` and `execvp()` to run a command like `ls`?
+??
 If the Shell called `execvp()` directly without forking, the `ls` code would overwrite the Shell itself, causing your terminal window to instantly close when `ls` finished.
+<!--SR:!2026-09-19,4,270-->
 
 What two things happen when a parent process executes the `waitpid()` function?  
 ??
-
 1. The parent blocks (freezes) execution until the target child process terminates.
 2. The parent collects the child's final exit status from the OS Kernel.
 
-What exact data does a child process pass to the OS Kernel upon calling `exit(42)`?  
+What exact data does a child process pass to the OS Kernel upon calling exit(42)`?  
 ??  
 It hands over its **Exit Status** (the integer `42`). The Kernel already knows the child's PID and pairs it with this exit code inside the system Process Table.
 

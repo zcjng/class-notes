@@ -517,6 +517,356 @@ $ sleep 10 &
 
 **Key idea:** `&` makes the shell **not wait immediately**; `SIGCHLD` can notify the shell when the child finishes; `waitpid()` reaps the finished child; `WNOHANG` makes sure the shell doesn't block while checking.
 
+## Environment Variables
+
+An **environment variable** is a named piece of information stored in a process's environment and inherited by its child processes.
+
+Examples:
+
+```
+HOME=/home/user
+USER=user
+PATH=/usr/local/bin:/usr/bin:/bin
+```
+
+View a variable:
+
+```
+echo $HOME
+echo $PATH
+```
+
+`export` makes a shell variable part of the environment inherited by child processes:
+
+```
+export NAME=John
+```
+
+```
+Shell
+  │
+  ├── NAME=John
+  │
+  └── fork() → Child
+                  ↓
+             inherits NAME=John
+```
+
+> A child inherits the parent's environment, but changes to the child's environment do not change the parent's environment.
+
+---
+
+## `PATH`
+
+`PATH` is a special **environment variable containing a list of directories where executable programs can be found**.
+
+```
+echo $PATH
+```
+
+Example:
+
+```
+/home/user/.local/bin:/usr/local/bin:/usr/bin:/bin
+```
+
+The `:` separates directories.
+
+When you type:
+
+```
+python
+```
+
+the shell/libc can search the directories in `PATH` from **left to right**:
+
+```
+/home/user/.local/bin/python   ❌
+/usr/local/bin/python          ❌
+/usr/bin/python                ✅
+```
+
+The first matching executable is used.
+
+### `which`
+
+```
+which python
+```
+
+might output:
+
+```
+/usr/bin/python
+```
+
+This shows which executable is found first through the `PATH` search.
+
+> **`PATH` = directories to search for executable commands.**
+
+`PATH` does **not** contain the executables themselves; it contains the **directories containing them**.
+
+---
+
+## Shell Built-in Commands
+
+A **shell built-in** is a command implemented directly inside the shell rather than being a separate executable.
+
+Some important built-ins:
+
+```
+cd
+export
+unset
+exit
+alias
+source / .
+```
+
+### Why do these need to be built into the shell?
+
+Because they need to modify the **current shell's state**.
+
+For example:
+
+```
+cd /tmp
+```
+
+If the shell did:
+
+```
+fork()
+  ↓
+Child
+  ↓
+cd /tmp
+```
+
+only the child's working directory would change:
+
+```
+Shell       → /home/user
+Child       → /tmp
+```
+
+The child eventually exits, so the shell would still be in `/home/user`.
+
+Therefore `cd` must execute inside the **current shell process**.
+
+The same idea applies to:
+
+```
+export → changes shell's environment
+unset  → changes shell's environment
+alias  → changes shell's aliases
+exit   → terminates the shell itself
+source → executes commands in the current shell
+```
+
+---
+
+## External Commands
+
+Commands that don't need to modify the current shell's state can normally be run as separate processes.
+
+Examples:
+
+```
+ls
+cat
+grep
+gcc
+python
+sleep
+```
+
+The shell roughly does:
+
+```
+Shell
+  │
+  ├── fork()
+  │
+  └── Child
+       │
+       └── exec(...)
+```
+
+For a foreground command, the shell then waits:
+
+```
+fork()
+  ↓
+Child → exec("ls")
+  ↓
+waitpid()
+  ↓
+Shell continues
+```
+
+For a background command:
+
+```
+sleep 10 &
+```
+
+the shell does **not immediately wait**, so it can continue accepting commands.
+
+---
+
+## `execvp()` and `PATH`
+
+`execvp()` is a **libc function**.
+
+For example:
+
+```
+execvp("python", argv);
+```
+
+The `p` means it performs a **`PATH` search**.
+
+Conceptually:
+
+```
+execvp("python")
+       │
+       ↓
+      libc
+       │
+       ├── /home/user/.local/bin/python  ❌
+       ├── /usr/local/bin/python         ❌
+       └── /usr/bin/python               ✅
+                                     
+       ↓
+execve("/usr/bin/python", ...)
+       ↓
+     Kernel
+       ↓
+actually executes /usr/bin/python
+```
+
+So `execvp()` is doing the **PATH searching in user space**.
+
+---
+
+## libc vs. Kernel
+
+### libc
+
+**libc (C standard library)** provides convenient functions that programs can call.
+
+For example:
+
+```
+execvp()
+printf()
+malloc()
+```
+
+Some libc functions eventually make **system calls** to the kernel.
+
+### Kernel
+
+The kernel is responsible for the actual OS-level operations.
+
+For executing a program, the kernel provides the `execve` **system call**.
+
+```
+Program
+   ↓
+libc: execvp()
+   ↓
+PATH search in user space
+   ↓
+libc: execve(...)
+   ↓
+system call
+   ↓
+Kernel
+   ↓
+execute program
+```
+
+The kernel **doesn't search `$PATH`**.
+
+It receives an actual pathname such as:
+
+```
+/usr/bin/python
+```
+
+and executes that file.
+
+> **`PATH` searching is user-space functionality provided by programs such as shells and libc's `execvp()`.**
+
+---
+
+## Big Picture
+
+```
+                    User types:
+                  python program.py
+                          │
+                          ↓
+                        Shell
+                          │
+                    Search PATH
+                          │
+                  Find /usr/bin/python
+                          │
+                        fork()
+                          │
+                          ↓
+                       Child
+                          │
+                     execvp() / execve()
+                          │
+                          ↓
+                        Kernel
+                          │
+                          ↓
+                   Python executes
+```
+
+### Exam Cheat Sheet
+
+```
+Environment variable
+→ Named information stored in a process's environment.
+
+export
+→ Makes a shell variable available in the environment inherited by children.
+
+PATH
+→ List of directories searched for executable programs.
+
+echo $PATH
+→ Displays the directories in PATH.
+
+which python
+→ Shows which Python executable is found first in PATH.
+
+Built-in command
+→ Runs inside the shell because it needs to modify the shell's own state.
+
+External command
+→ Usually shell: fork() → child: exec()
+
+execvp()
+→ libc function that searches PATH and then calls an exec system call.
+
+execve()
+→ Kernel system call that actually replaces the process with the new program.
+
+libc
+→ User-space C library; provides functions such as execvp().
+
+Kernel
+→ Performs the actual OS operation through system calls.
+```
+
 ---
 ### Flashcards
 

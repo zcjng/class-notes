@@ -830,42 +830,6 @@ and executes that file.
                    Python executes
 ```
 
-### Exam Cheat Sheet
-
-```
-Environment variable
-→ Named information stored in a process's environment.
-
-export
-→ Makes a shell variable available in the environment inherited by children.
-
-PATH
-→ List of directories searched for executable programs.
-
-echo $PATH
-→ Displays the directories in PATH.
-
-which python
-→ Shows which Python executable is found first in PATH.
-
-Built-in command
-→ Runs inside the shell because it needs to modify the shell's own state.
-
-External command
-→ Usually shell: fork() → child: exec()
-
-execvp()
-→ libc function that searches PATH and then calls an exec system call.
-
-execve()
-→ Kernel system call that actually replaces the process with the new program.
-
-libc
-→ User-space C library; provides functions such as execvp().
-
-Kernel
-→ Performs the actual OS operation through system calls.
-```
 
 ---
 ### Flashcards

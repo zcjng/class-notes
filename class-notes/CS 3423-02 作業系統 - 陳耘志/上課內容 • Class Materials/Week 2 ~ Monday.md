@@ -155,7 +155,7 @@ This allows the parent to retrieve the child's termination status using `wait()`
 
 Once the parent calls:
 
-```
+```c
 wait(NULL);
 ```
 
@@ -314,7 +314,7 @@ This prevents the final daemon from accidentally acquiring a controlling termina
 
 Simply doing:
 
-```
+```c
 fork();
 fork();
 ```
@@ -372,7 +372,7 @@ shell
 
 For a foreground command, the shell waits:
 
-```
+```c
 waitpid(child, &status, 0);
 ```
 
@@ -406,7 +406,7 @@ Running → exit() → Zombie → waitpid() → removed
 
 ### `waitpid()`
 
-```
+```c
 waitpid(pid, &status, 0);
 ```
 
@@ -418,7 +418,7 @@ waitpid(pid, &status, 0);
 
 ### `WNOHANG`
 
-```
+```c
 waitpid(pid, &status, WNOHANG);
 ```
 
@@ -721,7 +721,7 @@ the shell does **not immediately wait**, so it can continue accepting commands.
 
 For example:
 
-```
+```c
 execvp("python", argv);
 ```
 
@@ -831,6 +831,263 @@ and executes that file.
 ```
 
 
+## Fork Process Counting
+
+![[Pasted image 20260915175726.png]]
+
+### Key Rule
+
+After `fork()`, **both the parent and child continue executing from the next line**.
+
+Each `fork()` doubles the number of processes that reach the next statement.
+
+```text
+1st fork → 2 processes
+2nd fork → 4 processes
+3rd fork → 8 processes
+````
+
+Therefore:
+
+Total processes=2n\text{Total processes} = 2^n
+
+where `n` is the number of `fork()` calls executed by each process.
+
+> **Important:** If the question asks "how many processes are created," distinguish between:
+> 
+> - **Total processes:** includes the original process
+> - **New processes created:** total − 1
+
+---
+
+### Example
+
+```c
+char *letters = "ABC";
+
+for (int i = 0; i < 3; i++) {
+    printf("Process %d prints: %c\n", getpid(), letters[i]);
+    fork();
+}
+
+printf("Process %d finished!\n", getpid());
+```
+
+#### `i = 0`
+
+There is initially **1 process**.
+
+```c
+printf("A")
+    ↓
+fork()
+    ↓
+2 processes
+```
+
+`A` is printed **1 time**.
+
+#### `i = 1`
+
+Both processes continue the loop.
+
+```
+2 processes
+    ↓
+both print "B"
+    ↓
+both fork()
+    ↓
+4 processes
+```
+
+`B` is printed **2 times**.
+
+#### `i = 2`
+
+There are now 4 processes.
+
+```
+4 processes
+    ↓
+all print "C"
+    ↓
+all fork()
+    ↓
+8 processes
+```
+
+`C` is printed **4 times**.
+
+After the loop, all 8 processes execute:
+
+```c
+printf("Process %d finished!\n", getpid());
+```
+
+Therefore:
+
+```
+A           → 1 time
+B           → 2 times
+C           → 4 times
+finished!   → 8 times
+```
+
+### Answer
+
+- **Total processes:** 8
+- **New processes created:** 7
+- **`C` printed:** 4 times
+- **`finished!` printed:** 8 times
+
+---
+
+## `fork()` Return Value
+
+`fork()` returns different values to the parent and child:
+
+```
+Parent → returns child's PID (> 0)
+Child  → returns 0
+```
+
+This allows the processes to determine whether they are the parent or child.
+
+---
+
+## Example: Two `fork()` Calls and Conditions
+
+![[Pasted image 20260915175740.png]]
+
+```c
+pid_t pid1 = fork();
+pid_t pid2 = fork();
+
+if (pid1 != 0 && pid2 != 0) {
+    printf("Meow!\n");
+}
+
+if (pid2 != 0) {
+    printf("Ah!\n");
+}
+```
+
+### After the first `fork()`
+
+```
+        Original
+        /      \
+       /        \
+    Parent      Child
+   pid1 > 0    pid1 = 0
+```
+
+There are 2 processes.
+
+### After the second `fork()`
+
+**Both processes execute the second `fork()`**, so:
+
+```
+             Original
+            /        \
+           /          \
+          A            B
+        /   \        /   \
+       A     C      B     D
+```
+
+There are now **4 processes**.
+
+Their `pid1` and `pid2` values are:
+
+|Process|`pid1`|`pid2`|
+|---|---|---|
+|A|> 0|> 0|
+|B|0|> 0|
+|C|> 0|0|
+|D|0|0|
+
+### `"Meow!"`
+
+Condition:
+
+```
+pid1 != 0 && pid2 != 0
+```
+
+Both must be nonzero.
+
+Only process A satisfies this.
+
+Therefore:
+
+> **`Meow!` → 1 time**
+
+### `"Ah!"`
+
+Condition:
+
+```
+pid2 != 0
+```
+
+Processes A and B satisfy this.
+
+Therefore:
+
+> **`Ah!` → 2 times**
+
+### Final Answer
+
+```
+Meow! → 1 time
+Ah!   → 2 times
+```
+
+---
+
+## Quick Fork Rules
+
+### Number of processes
+
+```
+n fork() calls
+→ up to 2ⁿ total processes
+```
+
+### Number of new processes
+
+```
+2ⁿ - 1
+```
+
+### Printing before `fork()`
+
+```c
+printf("X");
+fork();
+```
+
+The `printf()` happens **before** the process is duplicated.
+
+So the number of prints is based on the number of processes **before** that `fork()`.
+
+### Printing after `fork()`
+
+```c
+fork();
+printf("X");
+```
+
+Both parent and child reach the `printf()`, so the number of prints is doubled.
+
+> **Always ask: "How many processes reach this line?"**  
+> That tells you how many times that line executes.
+
+
+
 ---
 ### Flashcards
 
@@ -901,15 +1158,286 @@ If zombie processes occupy virtually zero RAM, why are they considered dangerous
 ??  
 They hoard rows in the kernel's fixed-size **Process Table**. If a long-running app leaks thousands of zombies, it fills up the table and causes **PID Exhaustion**.
 
-What is the consequence of PID Exhaustion on an operating system?  
+What is the consequence of PID Exhaustion on an operating system? 
 ??  
 The OS hits its hard limit (`pid_max`) and cannot generate new PIDs; it will refuse to launch any new programs, open terminal commands, or handle new tabs, effectively freezing the system.
 
-What are two primary system limitations that will cause a `fork()` call to fail and return `-1`?  
+What are two primary system limitations that will cause a `fork()` call to fail and return `-1`? 
 ??
-
 1. The computer runs completely out of physical memory (RAM).
 2. The OS hits PID Exhaustion because the Process Table is entirely full.
+
+What does `fork()` do at the Operating System level?
+??
+It creates a new child process by cloning the calling parent process.
+
+How does `fork()` return differently to the parent and child?
+??
+The parent receives the child's PID (> 0), while the child receives 0.
+
+What does a `fork()` return value of `0` signify?
+??
+It means that the process receiving the return value is the child process.
+
+What does `fork()` return to the parent?
+??
+It returns the actual PID of the newly created child process (> 0).
+
+What happens if `fork()` fails?
+??
+It returns `-1`, typically because the OS cannot allocate the resources needed to create a new process.
+
+How does memory isolation behave between a parent and child after `fork()`?
+??
+The parent and child have separate memory spaces, so modifying a variable in one process does not modify the other.
+
+Why can parent and child execute different branches of the same `if-else` after `fork()`?
+??
+They execute the same code, but `fork()` returns different values in the parent and child, allowing the program to distinguish them.
+
+What does `exec()` do?
+??
+It replaces the current process's program image with another program.
+
+What happens to the original program after a successful `exec()`?
+??
+Its program code and execution state are replaced by the new program, so the original code below `exec()` does not execute.
+
+Why does `execvp()` not return if it succeeds?
+??
+Because the current process has been replaced by the new program.
+
+Why does a shell use both `fork()` and `execvp()` to run an external command?
+??
+The shell forks a child so that the child can be replaced by the new program without replacing the shell itself.
+
+What happens if the shell directly calls `execvp()` to run `ls`?
+??
+The shell itself would be replaced by `ls`, so the original shell would no longer be running.
+
+What does the `p` in `execvp()` mean?
+??
+It means `execvp()` performs a `PATH` search to find the executable.
+
+What does the `v` in `execvp()` mean?
+??
+It means the arguments are provided as a vector/array.
+
+What is `libc`?
+??
+libc is the C standard library that provides user-space functions such as `printf()`, `malloc()`, and `execvp()`.
+
+Does the kernel search `PATH` when executing a program?
+??
+No. `PATH` searching is performed in user space by programs such as the shell or libc's `execvp()`. The kernel receives an actual pathname.
+
+What is an environment variable?
+??
+A named piece of information stored in a process's environment that can be inherited by child processes.
+
+What does `export` do?
+??
+It makes a shell variable part of the environment inherited by child processes.
+
+What is `PATH`?
+??
+`PATH` is an environment variable containing a list of directories where executable programs can be found.
+
+What does `echo $PATH` show?
+??
+It shows the directories listed in the `PATH` environment variable, separated by `:`.
+
+How does the shell find `python` when the user types `python`?
+??
+It searches the directories in `PATH` from left to right until it finds an executable named `python`.
+
+What does `which python` do?
+??
+It shows which `python` executable is found first through the `PATH` search.
+
+Does `PATH` contain executable files?
+??
+No. `PATH` contains directories that contain executable files.
+
+What is the difference between `/usr/bin` and `~/.local/bin`?
+??
+`/usr/bin` is generally a system-wide directory containing programs available to users. `~/.local/bin` is a directory inside a user's home directory for programs installed for that user.
+
+What is a shell built-in command?
+??
+A command implemented directly inside the shell rather than being a separate executable.
+
+Why does `cd` need to be a shell built-in?
+??
+`cd` must change the current shell's working directory. If it ran in a child process, only the child's directory would change.
+
+What happens if `cd /tmp` were executed only in a child process?
+??
+The child would change to `/tmp`, but the parent shell would remain in its original directory after the child exits.
+
+What are important examples of shell built-in commands?
+??
+`cd`, `export`, `unset`, `exit`, `alias`, and `source`/`.`.
+
+Why does `exit` need to be a shell built-in?
+??
+It needs to terminate the current shell itself. If it ran in a child, only the child would terminate.
+
+Why is `source` or `.` a shell built-in?
+??
+It executes commands inside the current shell process, allowing those commands to modify the shell's state.
+
+What are examples of external commands?
+??
+`ls`, `cat`, `grep`, `gcc`, `python`, and `sleep`.
+
+How does a shell normally execute an external command?
+??
+The shell uses `fork()` to create a child, and the child uses `exec()` to replace itself with the external program.
+
+What is a foreground command?
+??
+A command for which the shell waits for the child process to finish before continuing.
+
+What is a background command?
+??
+A command followed by `&` that allows the shell to continue running without immediately waiting for the child.
+
+What does `&` do in a shell command?
+??
+It tells the shell to run the command as a background job, so the shell does not immediately wait for the child.
+
+What happens when a background child finishes?
+??
+The child terminates and can temporarily become a zombie until the parent reaps it.
+
+What is a zombie process?
+??
+A child process that has already terminated, but whose parent has not yet collected its exit status using `wait()` or `waitpid()`.
+
+Does a zombie process still execute?
+??
+No. It has already terminated. Only a small amount of information about it remains in the kernel's process table.
+
+What information does the kernel keep for a zombie?
+??
+Information such as the child's PID and exit status.
+
+Why does the kernel keep a terminated child's exit status?
+??
+So that the parent can retrieve the child's termination information using `wait()` or `waitpid()`.
+
+What happens when the parent calls `wait()` or `waitpid()` on a zombie?
+??
+The parent collects the child's exit status and the kernel removes the zombie's process-table entry.
+
+What is an orphan process?
+??
+A process whose parent has terminated while the process itself is still running.
+
+What happens to an orphan process?
+??
+It is reparented to PID 1, usually `systemd` on modern Linux systems.
+
+What is the difference between an orphan and a zombie?
+??
+An orphan is still running but its parent has died. A zombie has already terminated but its parent has not yet reaped it.
+
+What happens if the parent dies while its child is a zombie?
+??
+The zombie is reparented to PID 1, which can reap it and remove its process-table entry.
+
+What is a daemon process?
+??
+A process designed to run in the background and provide a service.
+
+What is the traditional Unix technique for creating a daemon?
+??
+The traditional technique commonly uses `fork()` → `setsid()` → `fork()`.
+
+Why is the first `fork()` used during traditional daemonization?
+??
+It allows the original parent to exit and the child to become independent of the original process hierarchy.
+
+What does `setsid()` do?
+??
+It creates a new session, separating the process from the old session and its controlling terminal.
+
+Why is the second `fork()` used during traditional daemonization?
+??
+It creates a child that is not a session leader, preventing the final daemon from accidentally acquiring a controlling terminal.
+
+Why isn't `fork(); fork();` alone enough to properly daemonize a process?
+??
+It can create a grandchild, but it does not properly detach the process from the original session and controlling terminal. `setsid()` performs the important session detachment.
+
+What does `waitpid(pid, &status, 0)` do?
+??
+It waits for the specified child. If the child is still running, the parent blocks until the child changes state, then collects its status.
+
+What does `WNOHANG` mean?
+??
+It tells `waitpid()` not to block if the child has not finished.
+
+What happens when `waitpid(pid, &status, WNOHANG)` finds that the child is still running?
+??
+It returns immediately instead of making the parent wait.
+
+Why is `WNOHANG` useful for shells?
+??
+It allows the shell to check whether a background child has finished without blocking the shell.
+
+What is `SIGCHLD`?
+??
+A signal that the kernel can send to a parent when one of its children changes state, commonly when the child terminates.
+
+Is `SIGCHLD` the child's exit status?
+??
+No. `SIGCHLD` is a notification. The parent uses `wait()` or `waitpid()` to collect the child's exit status.
+
+What is a signal handler?
+??
+Code registered by a process to respond when the process receives a particular signal.
+
+What can a parent do when it receives `SIGCHLD`?
+??
+It can run a signal handler that responds to the notification, commonly by calling `waitpid()` to reap terminated children.
+
+Does receiving `SIGCHLD` automatically call `waitpid()`?
+??
+No. `SIGCHLD` is only a notification. The program must choose how to respond, such as by calling `waitpid()`.
+
+What is the relationship between `SIGCHLD` and `waitpid()`?
+??
+`SIGCHLD` tells the parent that a child changed state, while `waitpid()` allows the parent to collect the child's termination information and reap it.
+
+How many total processes can result from `n` independent `fork()` calls if every process reaches every `fork()`?
+??
+Up to `2^n` total processes, including the original process.
+
+How many new processes are created by `n` independent `fork()` calls if every process reaches every `fork()`?
+??
+`2^n - 1` new processes, because the original process is included in the total.
+
+How do you determine how many times a line executes in a `fork()` counting problem?
+??
+Ask: "How many processes reach this line?" Every process that reaches the line executes it.
+
+What happens if `printf()` appears before a `fork()`?
+??
+That `printf()` executes before the process is duplicated, so that fork does not double the number of times that particular `printf()` executes.
+
+What happens if `printf()` appears after a `fork()`?
+??
+Both the parent and child continue from the next line, so both execute the `printf()`.
+
+If a loop has 3 `fork()` calls and every process reaches every call, how many total processes can exist?
+??
+`2^3 = 8` total processes.
+
+If a loop has 3 `fork()` calls and 8 total processes exist, how many new processes were created?
+??
+7 new processes, because the original process is included in the 8 total.
 
 
 

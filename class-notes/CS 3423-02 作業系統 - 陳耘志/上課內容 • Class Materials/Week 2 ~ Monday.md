@@ -99,7 +99,255 @@ The finite size of the kernel's **Process Table** links `fork()` failures direct
 * **The Crash Point:** Once the table hits its hard system limit (`pid_max`), the OS experiences **PID Exhaustion**. 
 * **The Outcome:** Any subsequent calls to `fork()` will instantly fail, returning **`-1`** and triggering errors like *“Resource temporarily unavailable”* or *“No more processes”*, because the OS literally has no empty seats left to accommodate a new child.
 
+## Daemon, Orphan, and Zombie Processes
 
+### Orphan Process
+
+An **orphan process** is a process whose **parent process has terminated while the child is still running**.
+
+```
+Parent
+   │
+   └── Child
+```
+
+If the parent dies:
+
+```
+Parent 💀
+
+Child
+```
+
+The child becomes an **orphan** and is **reparented to PID 1** (usually `systemd` on modern Linux).
+
+```
+systemd (PID 1)
+   │
+   └── Child
+```
+
+The child **continues running normally**. If it eventually terminates, PID 1 can reap it.
+
+> **Orphan = parent dies first, child is still alive.**
+
+---
+
+### Zombie Process
+
+A **zombie process** is a process that has **already terminated**, but its parent has **not yet called `wait()`/`waitpid()`** to collect its exit status.
+
+```
+Parent
+   │
+   └── Child 💀
+          ↑
+       Zombie
+```
+
+The child is no longer executing. However, the kernel keeps a small amount of information about it, such as:
+
+- PID
+- Exit status
+- Process accounting information
+
+This allows the parent to retrieve the child's termination status using `wait()`.
+
+Once the parent calls:
+
+```
+wait(NULL);
+```
+
+the zombie is removed from the process table.
+
+> **Zombie = child dies first, but parent hasn't reaped it yet.**
+
+### Why are zombies a problem?
+
+A zombie does **not** consume CPU and does not occupy the normal memory resources of a running process, but it still occupies a **process-table/PID entry**.
+
+If a buggy parent continually creates children without calling `wait()`:
+
+```
+Parent
+ ├── Zombie
+ ├── Zombie
+ ├── Zombie
+ ├── Zombie
+ ├── Zombie
+ └── ...
+```
+
+Eventually, the system can run out of available process/PID entries, preventing new processes from being created.
+
+---
+
+### What if the parent dies while the child is a zombie?
+
+Consider:
+
+```
+Parent
+   │
+   └── Zombie 💀
+```
+
+If the parent then terminates:
+
+```
+Parent 💀
+   │
+   └── Zombie 💀
+```
+
+The zombie is reparented to **PID 1**:
+
+```
+systemd (PID 1)
+   │
+   └── Zombie 💀
+```
+
+PID 1 can then **reap the zombie**, removing its process-table entry.
+
+So a forgotten zombie does not necessarily remain forever.
+
+---
+
+## Daemon vs. Orphan vs. Zombie
+
+These terms describe **different things**:
+
+|Type|Parent|Process itself|Meaning|
+|---|---|---|---|
+|**Orphan**|Has terminated|Still running|Child has lost its original parent|
+|**Zombie**|Still exists but hasn't reaped child|Already terminated|Exit information is waiting to be collected|
+|**Daemon**|Usually managed independently|Running in background|A process designed to provide a background service|
+
+An **orphan** and a **zombie** are process/lifecycle conditions, whereas a **daemon** describes the **purpose and behavior** of a process.
+
+### Easy way to remember
+
+```
+ORPHAN:
+Parent dies → Child lives
+                 ↓
+              PID 1 adopts
+
+
+ZOMBIE:
+Child dies → Parent hasn't wait()
+                 ↓
+             Dead entry remains
+
+
+DAEMON:
+Process designed to run
+in the background as a service
+```
+
+---
+
+## Traditional Daemon Creation — Double Fork
+
+The traditional Unix daemonization technique commonly uses:
+
+```
+fork()
+  ↓
+setsid()
+  ↓
+fork()
+```
+
+### Why the first `fork()`?
+
+The original parent exits, allowing the child to become independent of the original process hierarchy.
+
+### Why `setsid()`?
+
+`setsid()` creates a **new session**, separating the process from the old session and its controlling terminal.
+
+```
+Before:
+
+Terminal
+   │
+   └── Shell
+        │
+        └── Process
+             ↑
+        old session
+
+
+After setsid():
+
+Terminal ── Shell ── old session
+
+Process
+   ↑
+new session
+```
+
+### Why fork a second time?
+
+After `setsid()`, the process becomes a **session leader**.
+
+A session leader can potentially acquire a controlling terminal. The second `fork()` creates a child that is **not a session leader**.
+
+```
+fork()
+  ↓
+setsid()
+  ↓
+Become session leader
+  ↓
+fork() again
+  ↓
+Final daemon is NOT a session leader
+```
+
+This prevents the final daemon from accidentally acquiring a controlling terminal.
+
+### Important distinction
+
+Simply doing:
+
+```
+fork();
+fork();
+```
+
+can create a grandchild and eventually an orphan, but **it does not properly detach the process from the original terminal/session**.
+
+`setsid()` is what performs the important **session detachment**.
+
+---
+
+## Modern Linux: `systemd`
+
+On modern Linux systems, applications generally **do not need to implement traditional daemonization themselves**.
+
+Instead, `systemd` can manage the program as a service:
+
+```
+systemd
+   │
+   └── Your program
+```
+
+The program can simply run normally in the foreground, while `systemd` handles:
+
+- Starting it
+- Stopping it
+- Restarting it
+- Managing its lifetime
+- Running it in the background
+- Logging
+- Dependencies
+
+So the traditional double-fork technique is mainly important for understanding **how Unix daemonization works**, while `systemd` is the modern way to manage system services.
 
 
 
@@ -183,4 +431,8 @@ What are two primary system limitations that will cause a `fork()` call to fail 
 
 1. The computer runs completely out of physical memory (RAM).
 2. The OS hits PID Exhaustion because the Process Table is entirely full.
+
+
+
+
 #os 

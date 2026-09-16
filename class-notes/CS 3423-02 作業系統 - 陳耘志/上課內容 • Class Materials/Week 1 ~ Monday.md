@@ -77,76 +77,76 @@ tags:
 What is Google Colab?
 ??
 A free, cloud-based Jupyter notebook environment by Google for running Python and machine learning code in the browser — no local setup required.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-16,1,210-->
 
 Why is Google Colab good for learning Python and ML?
 ??
 Pre-installed libraries, free GPU/TPU accelerators, generous cloud resources, and easy sharing/saving to Google Drive.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-17,2,230-->
 
 How do you install an extra Python package in a Colab cell?
 ??
 Prefix the command with `!` and run it in a cell, e.g. `!pip install pytest`.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-18,3,250-->
 
 What are the two main cell types in a Colab (Jupyter) notebook?
 ??
 Code cells (runnable Python) and text/Markdown cells (notes, headings, explanations).
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-18,3,250-->
 
 In Python, what exactly is a variable?
 ??
 A name (reference) bound to an object in memory — assigning it to another variable does not copy the object.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-16,1,210-->
 
 What does `id(obj)` return?
 ??
 The identity (memory address) of the object, unique while the object is alive.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-16,1,210-->
 
 How can you check an object's memory size in bytes?
 ??
 `sys.getsizeof(obj)`.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-16,1,210-->
 
 Which integers does CPython cache and share by default?
 ??
 -5 to 256 (small-integer caching), so all references to these values point to the same objects.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-16,1,210-->
 
 Why is a NumPy array more memory-efficient than a Python list?
 ??
 A list stores 8-byte pointers to separate boxed Python objects (~28 bytes each for ints); an ndarray stores homogeneous values contiguously in a single C array (e.g. 8 bytes per int64 element).
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-16,1,210-->
 
 A Python list of 1,000,000 ints uses roughly how much memory?
 ??
 About 36 MB — ~8 MB of pointers plus ~28 MB of int objects. An equivalent int64 NumPy array uses ~8 MB.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-18,3,250-->
 
 Give three common ways to create a NumPy array.
 ??
 `np.zeros(shape)`, `np.ones(shape)`, `np.arange()`, `np.linspace(a, b, n)`, `np.random.rand(...)`, or `np.array([...])`.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-16,1,210-->
 
 What is vectorization in NumPy?
 ??
 Performing element-wise operations on entire arrays at once through ufuncs (optimized C loops) instead of looping in Python — orders of magnitude faster.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-16,1,210-->
 
 What is broadcasting in NumPy?
 ??
 The rule that lets element-wise operations work on arrays of different shapes: trailing dimensions must match, or one of them must be 1 (it gets stretched to the other's size).
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-16,1,210-->
 
 What is the zero page?
 ??
 The first page of virtual memory (starting at address 0), which the OS keeps unmapped/inaccessible so null pointer accesses cannot silently corrupt memory.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-18,3,250-->
 
 What happens when a program dereferences a null pointer?
 ??
 The MMU raises a page fault that the OS turns into a segmentation fault (SIGSEGV), terminating the program instead of corrupting memory.
-<!--SR:!2026-09-10,1,230-->
+<!--SR:!2026-09-16,1,210-->
 
 #os

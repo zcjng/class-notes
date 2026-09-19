@@ -1129,9 +1129,10 @@ What core transformation happens in RAM when a child process successfully execut
 ??  
 The OS completely wipes out the current program code and variables inside that container, replacing it entirely with the machine code of a new executable (like `ls`).
 
-Why does `execvp()` never return to execute any code lines written directly below it?  
-??  
+Why does `execvp()` never return to execute any code lines written directly below it?
+??
 Because a successful `execvp()` entirely overwrites and erases the original program's memory space, leaving no original code left to execute.
+<!--SR:!2026-09-18,3,250-->
 
 Why must a command-line utility array passed to `execvp` always end with a `NULL` pointer?  
 ??  
@@ -1142,10 +1143,11 @@ Why does a Shell need to use BOTH `fork()` and `execvp()` to run a command like 
 If the Shell called `execvp()` directly without forking, the `ls` code would overwrite the Shell itself, causing your terminal window to instantly close when `ls` finished.
 <!--SR:!2026-09-19,4,270-->
 
-What two things happen when a parent process executes the `waitpid()` function?  
+What two things happen when a parent process executes the `waitpid()` function?
 ??
 1. The parent blocks (freezes) execution until the target child process terminates.
 2. The parent collects the child's final exit status from the OS Kernel.
+<!--SR:!2026-09-15,0,230-->
 
 What exact data does a child process pass to the OS Kernel upon calling exit(42)`?  
 ??  
@@ -1215,6 +1217,7 @@ Its program code and execution state are replaced by the new program, so the ori
 Why does `execvp()` not return if it succeeds?
 ??
 Because the current process has been replaced by the new program.
+<!--SR:!2026-09-15,0,230-->
 
 Why does a shell use both `fork()` and `execvp()` to run an external command?
 ??
@@ -1235,6 +1238,7 @@ It means the arguments are provided as a vector/array.
 What is `libc`?
 ??
 libc is the C standard library that provides user-space functions such as `printf()`, `malloc()`, and `execvp()`.
+<!--SR:!2026-09-15,0,230-->
 
 Does the kernel search `PATH` when executing a program?
 ??
@@ -1251,10 +1255,12 @@ It makes a shell variable part of the environment inherited by child processes.
 What is `PATH`?
 ??
 `PATH` is an environment variable containing a list of directories where executable programs can be found.
+<!--SR:!2026-09-18,3,250-->
 
 What does `echo $PATH` show?
 ??
 It shows the directories listed in the `PATH` environment variable, separated by `:`.
+<!--SR:!2026-09-18,3,250-->
 
 How does the shell find `python` when the user types `python`?
 ??
@@ -1311,6 +1317,7 @@ A command for which the shell waits for the child process to finish before conti
 What is a background command?
 ??
 A command followed by `&` that allows the shell to continue running without immediately waiting for the child.
+<!--SR:!2026-09-18,3,250-->
 
 What does `&` do in a shell command?
 ??
@@ -1331,6 +1338,7 @@ No. It has already terminated. Only a small amount of information about it remai
 What information does the kernel keep for a zombie?
 ??
 Information such as the child's PID and exit status.
+<!--SR:!2026-09-15,0,230-->
 
 Why does the kernel keep a terminated child's exit status?
 ??
@@ -1339,6 +1347,7 @@ So that the parent can retrieve the child's termination information using `wait(
 What happens when the parent calls `wait()` or `waitpid()` on a zombie?
 ??
 The parent collects the child's exit status and the kernel removes the zombie's process-table entry.
+<!--SR:!2026-09-18,3,250-->
 
 What is an orphan process?
 ??
@@ -1367,6 +1376,7 @@ The traditional technique commonly uses `fork()` → `setsid()` → `fork()`.
 Why is the first `fork()` used during traditional daemonization?
 ??
 It allows the original parent to exit and the child to become independent of the original process hierarchy.
+<!--SR:!2026-09-15,0,230-->
 
 What does `setsid()` do?
 ??
@@ -1379,10 +1389,12 @@ It creates a child that is not a session leader, preventing the final daemon fro
 Why isn't `fork(); fork();` alone enough to properly daemonize a process?
 ??
 It can create a grandchild, but it does not properly detach the process from the original session and controlling terminal. `setsid()` performs the important session detachment.
+<!--SR:!2026-09-15,0,230-->
 
 What does `waitpid(pid, &status, 0)` do?
 ??
 It waits for the specified child. If the child is still running, the parent blocks until the child changes state, then collects its status.
+<!--SR:!2026-09-18,3,250-->
 
 What does `WNOHANG` mean?
 ??
@@ -1423,6 +1435,7 @@ What is the relationship between `SIGCHLD` and `waitpid()`?
 How many total processes can result from `n` independent `fork()` calls if every process reaches every `fork()`?
 ??
 Up to `2^n` total processes, including the original process.
+<!--SR:!2026-09-15,0,230-->
 
 How many new processes are created by `n` independent `fork()` calls if every process reaches every `fork()`?
 ??
@@ -1435,10 +1448,12 @@ Ask: "How many processes reach this line?" Every process that reaches the line e
 What happens if `printf()` appears before a `fork()`?
 ??
 That `printf()` executes before the process is duplicated, so that fork does not double the number of times that particular `printf()` executes.
+<!--SR:!2026-09-18,3,250-->
 
 What happens if `printf()` appears after a `fork()`?
 ??
 Both the parent and child continue from the next line, so both execute the `printf()`.
+<!--SR:!2026-09-15,0,230-->
 
 If a loop has 3 `fork()` calls and every process reaches every call, how many total processes can exist?
 ??
@@ -1447,6 +1462,7 @@ If a loop has 3 `fork()` calls and every process reaches every call, how many to
 If a loop has 3 `fork()` calls and 8 total processes exist, how many new processes were created?
 ??
 7 new processes, because the original process is included in the 8 total.
+<!--SR:!2026-09-15,0,230-->
 
 
 

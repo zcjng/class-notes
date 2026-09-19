@@ -3,7 +3,7 @@
     "flashcardTags": [
       "#os",
       "#discrete",
-      "#physicd"
+      "#physics"
     ],
     "flashcardTagsToIgnore": [],
     "convertFoldersToDecks": false,
@@ -82,7 +82,7 @@
     "preferredDateFormatForNoteReviewQueue": "MMM DD YYYY",
     "preferredLocale": "-"
   },
-  "buryDate": "2026-09-15",
+  "buryDate": "2026-09-19",
   "buryList": [],
   "historyDeck": null,
   "scheduleData": {

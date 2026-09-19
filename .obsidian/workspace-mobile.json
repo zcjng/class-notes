@@ -25,12 +25,40 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 2 ~ Monday.md",
+                "file": "class-notes/README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Week 2 ~ Monday"
+              "title": "README"
+            }
+          },
+          {
+            "id": "af5cf4379195acf5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "class-notes/Self Study/NETWORKING • HTTP, TCP, UDP.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "NETWORKING • HTTP, TCP, UDP"
+            }
+          },
+          {
+            "id": "a722c94673e57143",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "class-notes/Self Study/NETWORKING • HTTP, TCP, UDP.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "NETWORKING • HTTP, TCP, UDP"
             }
           },
           {
@@ -62,7 +90,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -115,7 +143,7 @@
             "searchQuery": ""
           },
           "icon": "lucide-tags",
-          "title": "標籤"
+          "title": "Tags"
         }
       },
       {
@@ -158,7 +186,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
+            "file": "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 2 ~ Monday.md",
             "collapseAll": true,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -177,7 +205,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
-            "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
+            "file": "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 2 ~ Monday.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           },
@@ -191,7 +219,7 @@
         "state": {
           "type": "outline",
           "state": {
-            "file": "Connectives.md",
+            "file": "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 2 ~ Monday.md",
             "followCursor": false,
             "showSearch": false,
             "searchQuery": ""
@@ -225,8 +253,19 @@
       "obsidian-spaced-repetition:Review flashcards": false
     }
   },
-  "active": "c7c173dc1a9fc8e9",
+  "active": "2c9a7ef46b7ebe5a",
   "lastOpenFiles": [
+    "class-notes/Self Study/NETWORKING • HTTP, TCP, UDP.md",
+    "class-notes/Self Study/Portal 2 Web Host.md",
+    "class-notes/README.md",
+    "class-notes/Self Study",
+    "misc/2026-2027calendar_20260716.pdf",
+    "NTHU-related.md",
+    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 1 ~ Tuesday.md",
+    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 1 ~ Thursday.md",
+    "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Wednesday.md",
+    "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 2 ~ Monday.md",
+    "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 2 ~ Tuesday.md",
     "IMG_20260915_114826.jpg",
     "IMG_20260915_114830.jpg",
@@ -239,25 +278,18 @@
     "IMG_20260915_110119.jpg",
     "IMG_20260915_110152.jpg",
     "IMG_20260915_110027.jpg",
-    "NTHU-related.md",
     "misc",
-    "misc/2026-2027calendar_20260716.pdf",
     "class-notes/CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md",
     "2026-2027calendar_20260716.pdf.md",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 1 ~ Thursday.md",
     "NTHU",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/PDFs Images Miscellaneous/RosenDiscreteMath8Ed.pdf",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/PDFs Images Miscellaneous/mcgraw.hill_.discrete.mathematics.and_.its_.applications.7th.edition.jun_.2011_1.pdf",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Connectives.md",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 1 ~ Tuesday.md",
     "truth tables.md",
     "connectives.md",
-    "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Wednesday.md",
-    "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
     "class-notes/CS 3423-02 作業系統 - 陳耘志/PDFs and Miscellaneous",
-    "class-notes/README.md",
     "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
     "README.md",
     "CS 3423-02 作業系統 - 陳耘志/第一週 • 週一.md",
@@ -265,7 +297,6 @@
     "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/Essential University Physics_ Volume 1 (4th Edition) -- Richard Wolfson -- Always learning, Fourth edition, New York, 2020 -- Pearson Education -- 9780134988559 -- f3436ce64420c3ddf455201bcbec6df2 -- Anna’s Archive.pdf",
     "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/11510PHYS113307.pdf",
     "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md",
-    "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous",
     "IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/禮拜一 • 週二.md",
     "IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
     "CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md"

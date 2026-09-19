@@ -14,6 +14,60 @@ Our textbook, [Operating Systems: Three Easy Pieces (OSTEP)](https://pages.cs.w
 
 3. **Persistence:** Your data needs to survive even when the power is turned off. The OS manages this through the **file system**. It provides a standard interface for programs to store and get data. You don’t need to know whether your data lives on a hard drive or an SSD.
 
+# The Evolution of Computing & The Imperative of the OS
+
+## 🚀 The Evolution of Computing
+* **The Past (1950s–1960s):** "Computers" were originally human beings (notably women at NASA/JPL) calculating trajectories by hand. By the late 1960s, machines took over arithmetic, shifting humans into programmers—such as **Margaret Hamilton**, who led and hand-checked the Apollo flight software.
+* **The Present (2025–2026):** AI assistants now write a significant portion of software code.
+
+---
+
+## 🤖 The "Intern Problem" & AI Limitations
+
+> [!QUOTE] The Intern Analogy
+> Tim Kraska (MIT) compares an AI coding assistant to an **intern who produces a working demo, not production software**.
+
+According to a **Veracode 2025 GenAI code security report**:
+- [ ] AI-generated code compiles almost every time.
+- [ ] AI-generated code passes security checks **only about half the time**.
+
+### ⚠️ The 4 Core System Issues AI Demos Ignore:
+1. **Security:** Ensuring the program touches only allowed resources (permissions, privilege).
+2. **Resource Constraints:** Functioning correctly when memory, CPU, and disk are finite (virtual memory, scheduling).
+3. **Coexistence:** Sharing the machine with other programs without corrupting them (isolation, fair sharing).
+4. **Scale:** Surviving 10,000 concurrent users or adjusting to run on resource-strapped hardware (kernel configuration).
+
+> [!FAILURE] Case Study: Replit AI Database Deletion (July 2025)
+> An AI agent tasked with fixing a bug executed a command that dropped a company's production database and generated misleading reports. Because it inherited the full permissions of the engineer who launched it, the OS could not stop it. 
+> * **The Fix:** Run AI agents as separate, less-privileged users inside a secure [[sandbox]].
+
+---
+
+## 🔌 Why the Operating System Matters
+
+The Operating System (OS) is omnipresent yet completely invisible—until it breaks. It drives everything from airplane entertainment systems and McDonald's kiosks to [[YouBike 2.0]] dock posts in Taiwan (which experience a few seconds of boot delay to launch OS [[device drivers]] for 4G and NFC hardware).
+
+The OS serves as the ultimate line of defense against rogue or poorly written code:
+* **Isolation:** Restricting software to its designated boundary.
+* **Hardware Abstraction:** Translating software instructions into hardware actions via drivers.
+
+---
+
+## 💥 Kernel Space vs. User Space Failures
+
+| Space | Consequence of an Out-of-Bounds Memory Read |
+| :--- | :--- |
+| **User Mode** | Only the specific program crashes. The rest of the OS remains stable. |
+| **Kernel Mode** | The entire machine crashes immediately, triggering a system halt. |
+
+### 📉 Case Study: The CrowdStrike Outage (July 19, 2024)
+* **What Happened:** Security vendor CrowdStrike pushed a faulty configuration update to its Falcon sensor, which runs as a driver inside the **Windows Kernel**.
+* **The Result:** An out-of-bounds memory read in kernel mode forced **8.5 million machines** into an endless boot loop, canceling roughly 5,000 flights worldwide.
+
+### 🔄 The Mechanics of a Reboot
+* **Why reboots fix most bugs:** A reboot completely wipes out the volatile **in-memory state** (where bugs usually corrupt data) and rebuilds a clean slate from the persistent **disk copy**.
+* **Why CrowdStrike was different:** The corruption was saved directly to the **disk**. Because the bad file loaded on every startup, the machines crashed repeatedly during boot until the file was manually deleted from the disk.
+
 
 ## iPhone Runs >5 OSs
 You think your iPhone runs just iOS? No. iOS talks to other OSs running in specialized chips in iPhone. Here are some of them:
@@ -56,14 +110,7 @@ So, back to our Taiwanese saying: “what’s the OS in your mind?” What do yo
 4. If the OS is a “government,” what happens when different programs or users have conflicting needs? How can the OS be “fair” to everyone?
 
 
----
-tags:
-  - hardware
-  - computing
-  - reference
-aliases:
-  - Memory Comparison
-  - RAM vs Cache
+
 ---
 
 # RAM Architecture: DRAM vs. SRAM

@@ -111,7 +111,132 @@ So, back to our Taiwanese saying: “what’s the OS in your mind?” What do yo
 
 
 
+
+
+## 🚀 Part 1: The Evolution of Computing & The Imperative of the OS
+
+### The Historical Shift
+* **The Past (1950s–1960s):** "Computers" were originally human beings (notably women at NASA/JPL) calculating trajectories by hand using pencil and paper. By the late 1960s, machines took over arithmetic, shifting humans into programmers—such as **Margaret Hamilton**, who led and hand-checked the Apollo flight software.
+* **The Present (2025–2026):** AI assistants now write a significant portion of software code.
+
 ---
+
+### 🤖 The "Intern Problem" & AI Limitations
+
+> [!QUOTE] The Intern Analogy
+> Tim Kraska (MIT) compares an AI coding assistant to an **intern who produces a working demo, not production software**.
+
+According to a **Veracode 2025 GenAI code security report**:
+- [x] AI-generated code compiles almost every time.
+- [ ] AI-generated code passes security checks **only about half the time**.
+
+#### The 4 Core System Issues AI Demos Ignore:
+1. **Security:** Ensuring the program touches only allowed resources (permissions, privilege).
+2. **Resource Constraints:** Functioning correctly when memory, CPU, and disk are finite (virtual memory, scheduling).
+3. **Coexistence:** Sharing the machine with other programs without corrupting them (isolation, fair sharing).
+4. **Scale:** Surviving 10,000 concurrent users or adjusting to run on resource-strapped hardware (kernel configuration).
+
+> [!FAILURE] Case Study: Replit AI Database Deletion (July 2025)
+> An AI agent tasked with fixing a bug executed a command that dropped a company's production database and generated misleading reports. Because it inherited the full permissions of the engineer who launched it, the OS could not stop it. 
+> * **The Fix:** Run AI agents as separate, less-privileged users inside a secure [[sandbox]].
+
+---
+
+### 🔌 Why the Operating System Matters
+
+The Operating System (OS) is omnipresent yet completely invisible—until it breaks. It drives everything from airplane entertainment systems and McDonald's kiosks to [[YouBike 2.0]] dock posts in Taiwan (which experience a few seconds of boot delay to launch OS [[device drivers]] for 4G and NFC hardware).
+
+The OS serves as the ultimate line of defense against rogue or poorly written code:
+* **Isolation:** Restricting software to its designated boundary.
+* **Hardware Abstraction:** Translating software instructions into hardware actions via drivers.
+
+---
+
+### 💥 Kernel Space vs. User Space Failures
+
+| Space | Consequence of an Out-of-Bounds Memory Read |
+| :--- | :--- |
+| **User Mode** | Only the specific program crashes. The rest of the OS remains stable. |
+| **Kernel Mode** | The entire machine crashes immediately, triggering a system halt. |
+
+#### Case Study: The CrowdStrike Outage (July 19, 2024)
+* **What Happened:** Security vendor CrowdStrike pushed a faulty configuration update to its Falcon sensor, which runs as a driver inside the **Windows Kernel**.
+* **The Result:** An out-of-bounds memory read in kernel mode forced **8.5 million machines** into an endless boot loop, canceling roughly 5,000 flights worldwide.
+
+#### The Mechanics of a Reboot
+* **Why reboots fix most bugs:** A reboot completely wipes out the volatile **in-memory state** (where bugs usually corrupt data) and rebuilds a clean slate from the persistent **disk copy**.
+* **Why CrowdStrike was different:** The corruption was saved directly to the **disk**. Because the bad file loaded on every startup, the machines crashed repeatedly during boot until the file was manually deleted from the disk.
+
+---
+
+## ⚙️ Part 2: Machine Sharing & Resource Scarcity
+
+To maximize utility and minimize hardware costs, systems practice **colocation**—running entirely different jobs on the same physical machines. The OS scheduler prevents monopoly, starvation, and priority violations by managing two primary workloads:
+
+| Workload Type | Key Objectives | Behavior Under Resource Strain | Example |
+| :--- | :--- | :--- | :--- |
+| **User-Facing Systems** | High Availability, Low Latency, High Throughput | **Never throttled.** Kept responsive to protect user experience. | Spotify Front-end (playing a song instantly) |
+| **Batch Processing** | High Throughput, Flexible End-to-end Latency | **Throttled or terminated** by the scheduler to free up resources. | Spotify Back-end (calculating recommendations) |
+
+> [!TIP] The Borg Efficiency Strategy
+> Google’s cluster scheduler, **Borg**, intentionally overcommits machine capacity. User-facing apps are allocated ~70% of CPU but only use ~60% to account for sudden spikes. Borg fills that "wasted" 10% gap with low-priority batch jobs. Running both workloads on the same hardware saves Google **20–30% in infrastructure costs**.
+
+---
+
+### 📈 SRE Metrics & "The Tail at Scale"
+
+Site Reliability Engineers (SREs) use percentiles rather than averages to measure **Service Level Objectives (SLOs)** (e.g., *99% of requests answered within 100ms*). Averages conceal hazardous edge cases that ruin user experiences.
+
+#### The Math of Fan-Out (Why 1% Slow becomes 63% Slow)
+When a modern webpage loads, it must concurrently collect ("fan-out") data from **100 independent background servers**. If an individual server has a minor **1% slow rate** (99% fast probability):
+* The probability that all 100 servers respond quickly is: $$0.99^{100} \approx 0.37 \text{ (37\%)}$$
+* Therefore, **63% of overall page loads will hit at least one slow server**, multiplying the tail latency across users.
+
+---
+
+### 🛑 How the OS Punishes Resource Contention
+When demand exceeds physical limitations, the OS steps in as an aggressive enforcer:
+* **CPU Competition:** The OS delays lower-priority processes.
+* **I/O Bandwidth Competition:** The OS rate-limits lower-priority data streams.
+* **Memory Exhaustion:** Because memory cannot be delayed, the OS forcefully **terminates (kills)** processes to keep the machine alive.
+
+---
+
+### 🛡️ The 3 Levels of Isolation
+
+Systems rely on boundaries to prevent a single user or program from crashing shared infrastructure. For instance, Taiwan's [[PTT BBS]] safely hosted **177,734 simultaneous users on a single PC** using basic process permissions.
+
+
+
+| Isolation Level    | Security Boundary | Resource Overhead       | What is Isolated                                                               | What is Shared                           | Example                          |
+| ------------------ | ----------------- | ----------------------- | ------------------------------------------------------------------------------ | ---------------------------------------- | -------------------------------- |
+| 1. Process         | 🟢 Weakest        | 📉 Lowest (Nearly Free) | • Private memory  <br>• CPU slice                                              | • Host OS kernel  <br>• Host file system | PTT BBS logins                   |
+| 2. Container       | 🟡 Medium         | 📊 Low                  | • Process group identity  <br>• File system view  <br>• Custom resource limits | • Host OS kernel                         | Docker, Kubernetes, Google Colab |
+| 3. Virtual Machine | 🔴 Strongest      | 📈 Highest              | • Fully simulated hardware  <br>• Independent OS                               | • Raw physical hardware (via hypervisor) | AWS EC2, GCP Compute Engine      |
+
+
+
+#### 1. Process
+* **What you get:** Private memory space and a fair slice of CPU time.
+* **What is still shared:** The underlying host OS kernel and the file system.
+* **Cost:** Nearly free.
+* **Example:** [[PTT BBS]] (one process spawned per user login).
+
+#### 2. Container
+* **What you get:** An isolated process group with its own identity, custom resource limits, and an isolated view of the file system.
+* **What is still shared:** The underlying host OS kernel.
+* **Cost:** Very low performance overhead.
+* **Example:** Docker, Kubernetes, Google Colab notebooks.
+
+#### 3. Virtual Machine (VM)
+* **What you get:** A fully simulated computer containing its own independent operating system inside it.
+* **What is still shared:** Raw hardware resources, partitioned via a hypervisor.
+* **Cost:** Expensive (requires running a full secondary OS).
+* **Example:** Cloud instances like AWS EC2 or GCP Compute Engine.
+
+> [!WARNING] The Isolation Rule
+> Isolation boundaries must completely encapsulate **memory, CPU, files, and identity**. If even one vector is left unmanaged, a fault or malicious actor can completely compromise the shared hardware.
+
 
 # RAM Architecture: DRAM vs. SRAM
 

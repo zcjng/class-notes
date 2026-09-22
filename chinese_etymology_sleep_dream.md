@@ -1,0 +1,90 @@
+# Chinese Paleography Lecture: Etymology of Sleep & Dream
+
+## Executive Summary
+This document summarizes the historical linguistic lecture slide focusing on the etymology and evolution of ancient Chinese characters for **sleeping (寢 - *qǐn*)** and **dreaming (㝱/夢 - *mèng*)**. 
+* **Sleeping (`寢`)**: Originally depicted in Oracle Bone Script as a person leaning against a bed frame (`爿`).
+* **Dreaming (`㝱/夢`)**: Defined historically as maintaining "awareness or consciousness while asleep under a roof." Over time, the orthography simplified, rendering the complex character `㝱` obsolete and substituting it with the phonetic loan variant `夢` used today.
+
+---
+
+## Slide Breakdown & Translations
+
+### Header: 古代字典怎麼說？
+* **Pinyin:** Gǔdài zìdiǎn zěnme shuō?
+* **English:** What do ancient dictionaries say?
+
+---
+
+### Line 1: Oracle Bone Script Dictionary
+> **Chinese:** 《甲骨文編》：「象人依爿而睡，寢之初文。」
+> **English:** *Compendium of Oracle Bone Scripts*: "[The character] depicts a person sleeping against a bed; it is the original form of the character **寢** (*qǐn*)."
+
+#### Word-by-Word Breakdown:
+* **象** (*xiàng*): Depicts / mimics / visual representation of
+* **人** (*rén*): A person / human
+* **依** (*yī*): Leaning against / relying on
+* **爿** (*qián*/*pán*): A bed frame (ancient pictograph of a wooden sleeping mat/split log)
+* **而** (*ér*): And / and then (grammatical conjunction)
+* **睡** (*shuì*): To sleep
+* **寢** (*qǐn*): The character "寢" (to sleep, lie down, or bedroom)
+* **之** (*zhī*): 's / of (classical Chinese possessive particle)
+* **初** (*chū*): Original / initial / first
+* **文** (*wén*): Character / written form / graph
+
+---
+
+### Line 2: Shuowen Jiezi (On the Ancient Variant 㝱)
+> **Chinese:** 《說文》：「㝱，寐而有覺也。从宀，从疒，夢聲。」
+> **English:** *Shuowen Jiezi*: "**㝱** (*mèng*) means having awareness or consciousness while asleep. It is composed of **宀** (roof), **疒** (bed/sickness), and takes its pronunciation from **夢**."
+
+#### Word-by-Word Breakdown:
+* **㝱** (*mèng*): The ancient character "㝱" (early variant of "dream")
+* **寐** (*mèi*): To sleep / asleep
+* **而** (*ér*): And yet / but / while
+* **有** (*yǒu*): To have / there is
+* **覺** (*jué*): Awareness / consciousness / perception
+* **也** (*yě*): [Sentence-final particle] (acts as a copula/period)
+* **从** (*cóng*): Follows / derives from / is composed of (introduces a semantic radical)
+* **宀** (*mián*): The "roof" radical (representing a house or shelter)
+* **疒** (*nè*/*bìng*): The "sickness/bed" radical (historically related to resting/lying down)
+* **夢** (*mèng*): The character "夢" (dream)
+* **聲** (*shēng*): Sound / phonetic component (indicates the character's pronunciation)
+
+---
+
+### Line 3: Shuowen Jiezi (On the Modern Character 夢)
+> **Chinese:** 《說文》：「夢，不明也。从夕，瞢省聲。」
+> **English:** *Shuowen Jiezi*: "**夢** (*mèng*) means unclear or dim. It is composed of **夕** (evening/night) and takes its pronunciation from an abbreviated form of **瞢** (*méng*)."
+
+#### Word-by-Word Breakdown:
+* **夢** (*mèng*): The character "夢" / dream
+* **不** (*bù*): Not
+* **明** (*míng*): Clear / bright / luminous
+* **也** (*yě*): [Sentence-final particle]
+* **从** (*cóng*): Follows / derives from / is composed of
+* **夕** (*xī*): The "evening/night" radical (denoting the time when dreams occur)
+* **瞢** (*méng*): The character "瞢" (originally meaning dim-sighted / blurry vision)
+* **省** (*shěng*): Abbreviated / omitted / simplified (indicates dropping components when compounding)
+* **聲** (*shēng*): Sound / phonetic component
+
+---
+
+### Line 4: Qing Dynasty Commentary (Duan Yucai)
+> **Chinese:** 段玉裁注：「㝱，今字假夢為之，夢行而㝱廢矣。」
+> **English:** *Duan Yucai's Commentary*: "For the word 㝱, modern characters borrow 夢 to represent it; as 夢 became widely circulated, 㝱 became obsolete."
+
+#### Word-by-Word Breakdown:
+* **段玉裁** (*Duàn Yùcái*): Duan Yucai (Famous Qing Dynasty philologist)
+* **注** (*zhù*): Notes / commentary / annotated by
+* **㝱** (*mèng*): The ancient character "㝱"
+* **今** (*jīn*): Modern / today / current
+* **字** (*zì*): Character / word
+* **假** (*jiǎ*): Borrows / phonetic loan (short for 假借 *jiǎjiè*)
+* **夢** (*mèng*): The character "夢"
+* **為** (*wéi*): To be / as / to make
+* **之** (*zhī*): It (pronoun referring back to the original word/concept)
+* **行** (*xíng*): Circulated / became widespread / popular
+* **而** (*ér*): And thus / but / as a result
+* **廢** (*fèi*): Abandoned / obsolete / fell out of use
+* **矣** (*yǐ*): [Sentence-final particle] (indicates completed action / change of state)
+[[character_laws-2]]

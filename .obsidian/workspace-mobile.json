@@ -11,12 +11,42 @@
             "id": "c2e33fba4310d335",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/PDFs Images Miscellaneous/IMG_20260910_130125.jpg"
+                "file": "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "IMG_20260910_130125"
+              "icon": "lucide-file",
+              "title": "0-0 - Syllabus & eBook"
+            }
+          },
+          {
+            "id": "864e6db7e6931166",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Marathon.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Marathon"
+            }
+          },
+          {
+            "id": "87e963c2fc76f185",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "chinese_etymology_sleep_dream.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "chinese_etymology_sleep_dream"
             }
           },
           {
@@ -90,7 +120,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -253,8 +283,17 @@
       "obsidian-spaced-repetition:Review flashcards": false
     }
   },
-  "active": "2c9a7ef46b7ebe5a",
+  "active": "87e963c2fc76f185",
   "lastOpenFiles": [
+    "character_laws-2.md",
+    "chinese_etymology_sleep_dream.md",
+    "Ccl.md",
+    "Marathon.md",
+    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
+    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Connectives.md",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/Essential University Physics_ Volume 1 (4th Edition) -- Richard Wolfson -- Always learning, Fourth edition, New York, 2020 -- Pearson Education -- 9780134988559 -- f3436ce64420c3ddf455201bcbec6df2 -- Anna’s Archive.pdf",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/11510PHYS113307.pdf",
+    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/PDFs Images Miscellaneous/IMG_20260910_130125.jpg",
     "class-notes/Self Study/NETWORKING • HTTP, TCP, UDP.md",
     "class-notes/Self Study/Portal 2 Web Host.md",
     "class-notes/README.md",
@@ -277,7 +316,6 @@
     "IMG_20260915_110121.jpg",
     "IMG_20260915_110119.jpg",
     "IMG_20260915_110152.jpg",
-    "IMG_20260915_110027.jpg",
     "misc",
     "class-notes/CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md",
@@ -285,8 +323,6 @@
     "NTHU",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/PDFs Images Miscellaneous/RosenDiscreteMath8Ed.pdf",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/PDFs Images Miscellaneous/mcgraw.hill_.discrete.mathematics.and_.its_.applications.7th.edition.jun_.2011_1.pdf",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Connectives.md",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
     "truth tables.md",
     "connectives.md",
     "class-notes/CS 3423-02 作業系統 - 陳耘志/PDFs and Miscellaneous",
@@ -294,11 +330,6 @@
     "README.md",
     "CS 3423-02 作業系統 - 陳耘志/第一週 • 週一.md",
     "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials",
-    "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/Essential University Physics_ Volume 1 (4th Edition) -- Richard Wolfson -- Always learning, Fourth edition, New York, 2020 -- Pearson Education -- 9780134988559 -- f3436ce64420c3ddf455201bcbec6df2 -- Anna’s Archive.pdf",
-    "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/11510PHYS113307.pdf",
-    "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md",
-    "IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/禮拜一 • 週二.md",
-    "IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
-    "CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md"
+    "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md"
   ]
 }

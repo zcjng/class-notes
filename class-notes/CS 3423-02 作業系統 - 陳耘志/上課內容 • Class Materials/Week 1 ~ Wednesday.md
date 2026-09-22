@@ -330,3 +330,235 @@ To make `test2.c` display `"Hey"`, you must force the buffer to flush before `_e
 * **Option A:** Add a newline character: `printf("Hey\n");`
 * **Option B:** Explicitly flush standard output: `fflush(stdout);`
 
+
+---
+### Flashcards
+What does an OS need to enforce for software to run safely as production software?
+??
+The OS must enforce:
+- Permissions/security: programs can only access allowed resources.
+- Resource constraints: programs must work within finite CPU, memory, and disk.
+- Isolation/coexistence: one program should not corrupt or interfere with another.
+- Scale: the system must continue working with many users/programs or resource-constrained hardware.
+
+Why does an OS need to provide virtualization?
+??
+Virtualization creates the illusion that each program has its own resources.
+For the CPU, the OS makes multiple programs appear to run at the same time even though CPUs must be shared.
+For memory, the OS gives each program the illusion that it has its own private memory.
+This lets a program run without needing to know what other programs are using the machine.
+
+What problem does OS concurrency solve?
+??
+When multiple programs or CPUs operate on the same data at the same time, their operations can conflict.
+The OS provides mechanisms that allow concurrent operations to happen without causing conflicts.
+
+What is persistence, and how does the OS provide it?
+??
+Persistence means data survives even after power is turned off.
+The OS provides persistence through the file system, giving programs a standard interface for storing and retrieving data without requiring them to know whether the storage is a hard drive, SSD, etc.
+
+What are the four core system issues that AI-generated demos can ignore?
+??
+1. Security — ensuring programs only access allowed resources.
+2. Resource constraints — handling finite CPU, memory, and disk.
+3. Coexistence — sharing a machine without corrupting other programs.
+4. Scale — handling many concurrent users or resource-constrained hardware.
+
+Why can the OS stop a poorly written program from damaging other programs?
+??
+The OS provides isolation and permissions.
+A program is restricted to its allowed resources, so faults or malicious behavior in one program should not directly corrupt other programs or the entire machine.
+
+What is the difference between user mode and kernel mode when a program has an out-of-bounds memory read?
+??
+In user mode, the specific program normally crashes while the rest of the OS remains stable.
+In kernel mode, a memory fault can crash the entire machine because kernel code operates with much greater privileges.
+
+Why was the CrowdStrike 2024 failure able to cause machines to repeatedly crash during boot?
+??
+The faulty component ran in Windows kernel mode, so the memory error could crash the entire system.
+The problematic file was also stored on disk and loaded again during startup, so rebooting did not remove the cause.
+The machine therefore repeatedly crashed during boot until the bad file was manually removed.
+
+Why does rebooting normally fix many software problems?
+??
+A reboot wipes the volatile in-memory state where programs may have corrupted data and starts the system again from a clean state using the persistent data on disk.
+
+Why doesn't rebooting alone fix the CrowdStrike boot-loop problem described in the notes?
+??
+Because the problematic file had been saved on persistent disk storage.
+Every reboot loaded the same bad file again, so the machine crashed repeatedly during startup.
+
+Why does an iPhone use multiple operating systems instead of letting iOS handle everything?
+??
+Different specialized subsystems can run their own small operating systems.
+This improves isolation/security because compromising one subsystem does not necessarily compromise another, and it can improve power efficiency because low-power components do not need to keep the main iOS system awake.
+
+What are the specialized operating systems mentioned for the iPhone?
+??
+- sepOS — Secure Enclave
+- Java Card OS — Secure Element used for Apple Pay
+- QuRT — cellular modem
+- RTKit — low-power/Always-On processing such as sensors and voice-related functions
+
+What OS design trade-offs can change depending on the device?
+??
+Boot time, uptime, throughput, latency, power consumption, security, and resource usage.
+Different devices prioritize different goals.
+
+Why might a server prioritize throughput over latency?
+??
+A server may need to process work for many users simultaneously.
+High throughput means completing a large amount of total work, while low latency means making an individual operation finish quickly.
+A large server may therefore prioritize total system throughput rather than making one user's operation as fast as possible.
+
+Why can a server need much higher uptime than a personal computer?
+??
+A server may serve hundreds or thousands of users continuously.
+It cannot simply be rebooted whenever one user's program consumes too much memory or behaves incorrectly.
+The OS must isolate programs and control resource usage so one user does not damage service for everyone else.
+
+What is the difference between a user-facing workload and a batch workload?
+??
+A user-facing workload prioritizes high availability, low latency, and high throughput because users expect responsive service.
+A batch workload prioritizes high throughput and can tolerate more flexible end-to-end latency, so it can be throttled or terminated when resources are needed elsewhere.
+
+Why can averages be misleading when measuring service performance?
+??
+Averages can hide slow outliers that significantly affect users.
+SREs therefore use percentiles, such as an SLO requiring 99% of requests to complete within 100 ms, to understand tail latency.
+
+Why can a 1% slow rate at each of 100 independent servers result in about 63% of page loads being slow?
+??
+Each server has a 99% probability of responding quickly.
+The probability that all 100 respond quickly is:
+0.99^100 ≈ 0.37
+So the probability that at least one server is slow is:
+1 - 0.37 ≈ 0.63
+Therefore about 63% of page loads encounter at least one slow server.
+
+How does the OS handle CPU, I/O, and memory resource contention?
+??
+CPU: the OS delays lower-priority processes.
+I/O: the OS rate-limits lower-priority data streams.
+Memory: because memory cannot simply be delayed, the OS may terminate processes when memory is exhausted to keep the machine alive.
+
+What are the three levels of isolation discussed in the notes?
+??
+1. Process
+2. Container
+3. Virtual machine
+
+How does process isolation work?
+??
+A process gets its own private memory space and a fair share of CPU time.
+However, processes still share the host OS kernel and file system.
+It has very low overhead.
+
+How does container isolation differ from process isolation?
+??
+A container provides an isolated process group with its own identity, resource limits, and view of the file system.
+However, containers still share the host OS kernel.
+Examples include Docker and Kubernetes.
+
+How does virtual-machine isolation differ from container isolation?
+??
+A VM provides a fully simulated computer with its own independent operating system.
+The VM still shares the underlying physical hardware through a hypervisor.
+VM isolation is stronger but has greater overhead because a complete OS must run inside the VM.
+
+What is the isolation hierarchy from weakest to strongest?
+??
+Process → Container → Virtual Machine
+
+What must a complete isolation boundary encapsulate?
+??
+Memory, CPU, files, and identity.
+If even one of these vectors is not properly isolated, a fault or malicious actor may be able to compromise shared infrastructure.
+
+What is the fundamental trade-off between DRAM and SRAM?
+??
+DRAM provides high density and low cost but is slower and requires refreshing.
+SRAM is much faster and does not require refreshing, but uses more transistors, making it larger and much more expensive per unit of storage.
+
+How does DRAM store data, and why does it need refreshing?
+??
+DRAM stores data as electrical charge in a capacitor.
+The capacitor naturally loses charge, so the memory controller must periodically refresh it to preserve the stored data.
+
+How does SRAM store data, and why doesn't it require refreshing?
+??
+SRAM uses a multi-transistor flip-flop circuit to maintain its state while power is supplied.
+Because it does not rely on a leaking capacitor charge, it does not require periodic refreshes.
+
+Why is DRAM used for main memory while SRAM is used for CPU caches?
+??
+DRAM has high density and is inexpensive per GB, making it suitable for large main memory.
+SRAM is much faster but uses more transistors and is much more expensive, making it suitable for smaller CPU caches such as L1, L2, and L3.
+
+What is the difference between exit() and _exit()?
+??
+exit() is a C standard library function that performs normal termination and flushes open C streams.
+_exit() is a low-level system call that terminates the process immediately without performing standard-library cleanup or flushing user-level stdio buffers.
+
+Why does printf("Hey"); exit(1); print "Hey"?
+??
+printf() places "Hey" into the C library's user-level output buffer.
+exit() performs normal C library termination, which flushes the open streams before the process terminates.
+Therefore the buffered "Hey" reaches the output.
+
+Why does printf("Hey"); _exit(1); print nothing?
+??
+printf() puts "Hey" into the user-level stdio buffer.
+_exit() terminates the process without running C library cleanup.
+The buffer is therefore never flushed, so "Hey" is lost.
+
+When would you typically use _exit() instead of exit()?
+??
+A common case is terminating a child process after fork().
+_exit() avoids running the parent's inherited C library cleanup and flushing inherited stdio buffers.
+
+How can you force buffered printf output to appear before _exit()?
+??
+Either:
+- Add a newline when appropriate, such as printf("Hey\n");
+- Explicitly flush stdout with fflush(stdout);
+
+What is the key difference between libc buffering and kernel-level writing?
+??
+libc functions such as printf() can first store output in a user-space buffer and later call the kernel's write mechanism.
+A direct write() system call sends the bytes to the kernel immediately, without waiting for the libc stdio buffer to fill or be flushed.
+
+Why can printf output disappear when a program crashes?
+??
+printf() may have placed the output only in a user-space libc buffer.
+If the program crashes before the buffer is flushed, those bytes disappear with the process.
+
+Why does write() output survive a process crash?
+??
+write() is a system call.
+Once the kernel receives the bytes, they are no longer dependent on the process's user-space stdio buffer.
+The process can subsequently crash without undoing the already-issued write.
+
+Why can stdout and stderr behave differently when a program crashes?
+??
+stdout is normally buffered by the C library, while stderr is normally unbuffered.
+Therefore output sent to stdout may still be sitting in a user-space buffer when the program crashes, while stderr output is normally passed to the kernel immediately.
+
+Why is stderr useful for debugging messages?
+??
+stderr is normally unbuffered, so debugging or error messages are sent out immediately instead of waiting for stdout's buffer to flush.
+This makes the message more likely to appear even if the program crashes immediately afterward.
+
+What happens in `./test > out.txt` when test uses printf() and crashes before normal termination?
+??
+The shell redirects stdout to out.txt.
+printf() writes its output into the C library's user-space stdout buffer.
+The program crashes before that buffer is flushed, so the data never reaches the file and out.txt remains empty.
+
+What happens in `./test2 > out2.txt` when test2 uses write() and then crashes?
+??
+The shell redirects file descriptor 1 (stdout) to out2.txt.
+write(1, "hello", 5) immediately sends the bytes to the kernel.
+The kernel performs the write to the file, so "hello" remains in out2.txt even though the process crashes afterward.

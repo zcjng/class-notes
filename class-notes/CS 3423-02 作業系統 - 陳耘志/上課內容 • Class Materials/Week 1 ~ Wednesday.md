@@ -353,6 +353,7 @@ What problem does OS concurrency solve?
 ??
 When multiple programs or CPUs operate on the same data at the same time, their operations can conflict.
 The OS provides mechanisms that allow concurrent operations to happen without causing conflicts.
+<!--SR:!2026-09-23,1,230-->
 
 What is persistence, and how does the OS provide it?
 ??
@@ -365,6 +366,7 @@ What are the four core system issues that AI-generated demos can ignore?
 2. Resource constraints — handling finite CPU, memory, and disk.
 3. Coexistence — sharing a machine without corrupting other programs.
 4. Scale — handling many concurrent users or resource-constrained hardware.
+<!--SR:!2026-09-23,1,230-->
 
 Why can the OS stop a poorly written program from damaging other programs?
 ??
@@ -390,6 +392,7 @@ Why doesn't rebooting alone fix the CrowdStrike boot-loop problem described in t
 ??
 Because the problematic file had been saved on persistent disk storage.
 Every reboot loaded the same bad file again, so the machine crashed repeatedly during startup.
+<!--SR:!2026-09-23,1,230-->
 
 Why does an iPhone use multiple operating systems instead of letting iOS handle everything?
 ??
@@ -475,6 +478,7 @@ VM isolation is stronger but has greater overhead because a complete OS must run
 What is the isolation hierarchy from weakest to strongest?
 ??
 Process → Container → Virtual Machine
+<!--SR:!2026-09-23,1,230-->
 
 What must a complete isolation boundary encapsulate?
 ??
@@ -491,6 +495,7 @@ How does DRAM store data, and why does it need refreshing?
 ??
 DRAM stores data as electrical charge in a capacitor.
 The capacitor naturally loses charge, so the memory controller must periodically refresh it to preserve the stored data.
+<!--SR:!2026-09-23,1,230-->
 
 How does SRAM store data, and why doesn't it require refreshing?
 ??
@@ -502,6 +507,7 @@ Why is DRAM used for main memory while SRAM is used for CPU caches?
 ??
 DRAM has high density and is inexpensive per GB, making it suitable for large main memory.
 SRAM is much faster but uses more transistors and is much more expensive, making it suitable for smaller CPU caches such as L1, L2, and L3.
+<!--SR:!2026-09-23,1,230-->
 
 What is the difference between exit() and _exit()?
 ??
@@ -513,6 +519,7 @@ Why does printf("Hey"); exit(1); print "Hey"?
 printf() places "Hey" into the C library's user-level output buffer.
 exit() performs normal C library termination, which flushes the open streams before the process terminates.
 Therefore the buffered "Hey" reaches the output.
+<!--SR:!2026-09-23,1,230-->
 
 Why does printf("Hey"); _exit(1); print nothing?
 ??
@@ -530,11 +537,13 @@ How can you force buffered printf output to appear before _exit()?
 Either:
 - Add a newline when appropriate, such as printf("Hey\n");
 - Explicitly flush stdout with fflush(stdout);
+<!--SR:!2026-09-23,1,230-->
 
 What is the key difference between libc buffering and kernel-level writing?
 ??
 libc functions such as printf() can first store output in a user-space buffer and later call the kernel's write mechanism.
 A direct write() system call sends the bytes to the kernel immediately, without waiting for the libc stdio buffer to fill or be flushed.
+<!--SR:!2026-09-23,1,230-->
 
 Why can printf output disappear when a program crashes?
 ??
@@ -546,11 +555,13 @@ Why does write() output survive a process crash?
 write() is a system call.
 Once the kernel receives the bytes, they are no longer dependent on the process's user-space stdio buffer.
 The process can subsequently crash without undoing the already-issued write.
+<!--SR:!2026-09-23,1,230-->
 
 Why can stdout and stderr behave differently when a program crashes?
 ??
 stdout is normally buffered by the C library, while stderr is normally unbuffered.
 Therefore output sent to stdout may still be sitting in a user-space buffer when the program crashes, while stderr output is normally passed to the kernel immediately.
+<!--SR:!2026-09-23,1,230-->
 
 Why is stderr useful for debugging messages?
 ??
@@ -562,9 +573,11 @@ What happens in `./test > out.txt` when test uses printf() and crashes before no
 The shell redirects stdout to out.txt.
 printf() writes its output into the C library's user-space stdout buffer.
 The program crashes before that buffer is flushed, so the data never reaches the file and out.txt remains empty.
+<!--SR:!2026-09-23,1,230-->
 
 What happens in `./test2 > out2.txt` when test2 uses write() and then crashes?
 ??
 The shell redirects file descriptor 1 (stdout) to out2.txt.
 write(1, "hello", 5) immediately sends the bytes to the kernel.
 The kernel performs the write to the file, so "hello" remains in out2.txt even though the process crashes afterward.
+<!--SR:!2026-09-23,1,230-->

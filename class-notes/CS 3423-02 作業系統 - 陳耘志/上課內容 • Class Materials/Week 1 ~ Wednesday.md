@@ -347,6 +347,7 @@ Virtualization creates the illusion that each program has its own resources.
 For the CPU, the OS makes multiple programs appear to run at the same time even though CPUs must be shared.
 For memory, the OS gives each program the illusion that it has its own private memory.
 This lets a program run without needing to know what other programs are using the machine.
+<!--SR:!2026-09-23,1,230-->
 
 What problem does OS concurrency solve?
 ??
@@ -423,6 +424,7 @@ What is the difference between a user-facing workload and a batch workload?
 ??
 A user-facing workload prioritizes high availability, low latency, and high throughput because users expect responsive service.
 A batch workload prioritizes high throughput and can tolerate more flexible end-to-end latency, so it can be throttled or terminated when resources are needed elsewhere.
+<!--SR:!2026-09-23,1,230-->
 
 Why can averages be misleading when measuring service performance?
 ??
@@ -437,12 +439,14 @@ The probability that all 100 respond quickly is:
 So the probability that at least one server is slow is:
 1 - 0.37 ≈ 0.63
 Therefore about 63% of page loads encounter at least one slow server.
+<!--SR:!2026-09-23,1,230-->
 
 How does the OS handle CPU, I/O, and memory resource contention?
 ??
 CPU: the OS delays lower-priority processes.
 I/O: the OS rate-limits lower-priority data streams.
 Memory: because memory cannot simply be delayed, the OS may terminate processes when memory is exhausted to keep the machine alive.
+<!--SR:!2026-09-23,1,230-->
 
 What are the three levels of isolation discussed in the notes?
 ??
@@ -481,6 +485,7 @@ What is the fundamental trade-off between DRAM and SRAM?
 ??
 DRAM provides high density and low cost but is slower and requires refreshing.
 SRAM is much faster and does not require refreshing, but uses more transistors, making it larger and much more expensive per unit of storage.
+<!--SR:!2026-09-23,1,230-->
 
 How does DRAM store data, and why does it need refreshing?
 ??
@@ -491,6 +496,7 @@ How does SRAM store data, and why doesn't it require refreshing?
 ??
 SRAM uses a multi-transistor flip-flop circuit to maintain its state while power is supplied.
 Because it does not rely on a leaking capacitor charge, it does not require periodic refreshes.
+<!--SR:!2026-09-23,1,230-->
 
 Why is DRAM used for main memory while SRAM is used for CPU caches?
 ??

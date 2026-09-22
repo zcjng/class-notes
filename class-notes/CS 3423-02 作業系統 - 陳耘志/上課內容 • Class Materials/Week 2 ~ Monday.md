@@ -1108,35 +1108,40 @@ How does modern Chrome utilize process separation when you open a new tab?
 ??  
 It uses a multi-process architecture where opening a new tab forks an isolated Renderer Process, ensuring that if one tab crashes, the rest of the browser remains stable.
 
-What does a `fork()` return value of `0` signify to the running program?  
-??  
+What does a `fork()` return value of `0` signify to the running program?
+??
 It acts as a flag telling that specific process container: "You are the child process." (The child's actual PID is positive, but `fork()` returns `0` inside its code execution path).
+<!--SR:!2026-09-26,4,270-->
 
 What does `fork()` return to the Parent process, and why?
 ??
 It returns the actual, positive PID of the newly created child process (`> 0`) so the parent can track, manage, or wait for that specific child.
 <!--SR:!2026-10-07,15,290-->
 
-What does it mean when parent and child processes "execute different branches" of the same `if-else` statement?  
-??  
+What does it mean when parent and child processes "execute different branches" of the same `if-else` statement?
+??
 They share the exact same source code file, but because `fork()` returns `0` to the child and `> 0` to the parent, the conditional variables dynamically force them into separate execution paths.
+<!--SR:!2026-09-26,4,270-->
 
-How does memory isolation behave between a parent and child process right after a `fork()`?  
-??  
+How does memory isolation behave between a parent and child process right after a `fork()`?
+??
 They have completely separate, sandboxed memory spaces in RAM; if the child or parent modifies a local variable, the other process cannot see the change.
+<!--SR:!2026-09-26,4,270-->
 
-What core transformation happens in RAM when a child process successfully executes `execvp()`?  
-??  
+What core transformation happens in RAM when a child process successfully executes `execvp()`?
+??
 The OS completely wipes out the current program code and variables inside that container, replacing it entirely with the machine code of a new executable (like `ls`).
+<!--SR:!2026-09-23,1,230-->
 
 Why does `execvp()` never return to execute any code lines written directly below it?
 ??
 Because a successful `execvp()` entirely overwrites and erases the original program's memory space, leaving no original code left to execute.
 <!--SR:!2026-10-02,10,270-->
 
-Why must a command-line utility array passed to `execvp` always end with a `NULL` pointer?  
-??  
+Why must a command-line utility array passed to `execvp` always end with a `NULL` pointer?
+??
 It acts as a mandatory terminating sentinel so the OS kernel knows precisely where the argument list ends in RAM, preventing memory corruption crashes.
+<!--SR:!2026-09-23,1,230-->
 
 Why does a Shell need to use BOTH `fork()` and `execvp()` to run a command like `ls`?
 ??
@@ -1153,42 +1158,50 @@ What exact data does a child process pass to the OS Kernel upon calling exit(42)
 ??  
 It hands over its **Exit Status** (the integer `42`). The Kernel already knows the child's PID and pairs it with this exit code inside the system Process Table.
 
-What defines a Zombie Process in an operating system?  
-??  
+What defines a Zombie Process in an operating system?
+??
 A child process that has finished executing (`exit()`) but whose exit status has not yet been collected by its parent via `wait()`, leaving its metadata trapped in the Process Table.
+<!--SR:!2026-09-26,4,270-->
 
-What happens to a child's zombie status if the parent calls `wait()` _after_ the child has already exited?  
-??  
+What happens to a child's zombie status if the parent calls `wait()` _after_ the child has already exited?
+??
 The child becomes a zombie temporarily; the moment the parent finally calls `wait()`, the status is instantly collected and the zombie is wiped out of the Process Table.
+<!--SR:!2026-09-26,4,270-->
 
-What happens to a running child process (or a zombie child) if its parent process dies unexpectedly?  
-??  
+What happens to a running child process (or a zombie child) if its parent process dies unexpectedly?
+??
 The child becomes an **Orphan** and is immediately adopted by **`init` (PID 1 / `systemd`)**, which continuously runs background `wait()` calls to clean them up.
+<!--SR:!2026-09-26,4,270-->
 
-If zombie processes occupy virtually zero RAM, why are they considered dangerous?  
-??  
+If zombie processes occupy virtually zero RAM, why are they considered dangerous?
+??
 They hoard rows in the kernel's fixed-size **Process Table**. If a long-running app leaks thousands of zombies, it fills up the table and causes **PID Exhaustion**.
+<!--SR:!2026-09-26,4,270-->
 
 What is the consequence of PID Exhaustion on an operating system? 
 ??  
 The OS hits its hard limit (`pid_max`) and cannot generate new PIDs; it will refuse to launch any new programs, open terminal commands, or handle new tabs, effectively freezing the system.
 
-What are two primary system limitations that will cause a `fork()` call to fail and return `-1`? 
+What are two primary system limitations that will cause a `fork()` call to fail and return `-1`?
 ??
 1. The computer runs completely out of physical memory (RAM).
 2. The OS hits PID Exhaustion because the Process Table is entirely full.
+<!--SR:!2026-09-26,4,270-->
 
 What does `fork()` do at the Operating System level?
 ??
 It creates a new child process by cloning the calling parent process.
+<!--SR:!2026-09-26,4,270-->
 
 How does `fork()` return differently to the parent and child?
 ??
 The parent receives the child's PID (> 0), while the child receives 0.
+<!--SR:!2026-09-26,4,270-->
 
 What does a `fork()` return value of `0` signify?
 ??
 It means that the process receiving the return value is the child process.
+<!--SR:!2026-09-26,4,270-->
 
 What does `fork()` return to the parent?
 ??
@@ -1197,14 +1210,17 @@ It returns the actual PID of the newly created child process (> 0).
 What happens if `fork()` fails?
 ??
 It returns `-1`, typically because the OS cannot allocate the resources needed to create a new process.
+<!--SR:!2026-09-23,1,230-->
 
 How does memory isolation behave between a parent and child after `fork()`?
 ??
 The parent and child have separate memory spaces, so modifying a variable in one process does not modify the other.
+<!--SR:!2026-09-26,4,270-->
 
 Why can parent and child execute different branches of the same `if-else` after `fork()`?
 ??
 They execute the same code, but `fork()` returns different values in the parent and child, allowing the program to distinguish them.
+<!--SR:!2026-09-23,1,230-->
 
 What does `exec()` do?
 ??
@@ -1222,6 +1238,7 @@ Because the current process has been replaced by the new program.
 Why does a shell use both `fork()` and `execvp()` to run an external command?
 ??
 The shell forks a child so that the child can be replaced by the new program without replacing the shell itself.
+<!--SR:!2026-09-26,4,270-->
 
 What happens if the shell directly calls `execvp()` to run `ls`?
 ??
@@ -1230,10 +1247,12 @@ The shell itself would be replaced by `ls`, so the original shell would no longe
 What does the `p` in `execvp()` mean?
 ??
 It means `execvp()` performs a `PATH` search to find the executable.
+<!--SR:!2026-09-23,1,230-->
 
 What does the `v` in `execvp()` mean?
 ??
 It means the arguments are provided as a vector/array.
+<!--SR:!2026-09-23,1,230-->
 
 What is `libc`?
 ??
@@ -1243,10 +1262,12 @@ libc is the C standard library that provides user-space functions such as `print
 Does the kernel search `PATH` when executing a program?
 ??
 No. `PATH` searching is performed in user space by programs such as the shell or libc's `execvp()`. The kernel receives an actual pathname.
+<!--SR:!2026-09-23,1,230-->
 
 What is an environment variable?
 ??
 A named piece of information stored in a process's environment that can be inherited by child processes.
+<!--SR:!2026-09-26,4,270-->
 
 What does `export` do?
 ??
@@ -1255,7 +1276,7 @@ It makes a shell variable part of the environment inherited by child processes.
 What is `PATH`?
 ??
 `PATH` is an environment variable containing a list of directories where executable programs can be found.
-<!--SR:!2026-09-18,3,250-->
+<!--SR:!2026-10-04,12,270-->
 
 What does `echo $PATH` show?
 ??
@@ -1273,6 +1294,7 @@ It shows which `python` executable is found first through the `PATH` search.
 Does `PATH` contain executable files?
 ??
 No. `PATH` contains directories that contain executable files.
+<!--SR:!2026-09-26,4,270-->
 
 What is the difference between `/usr/bin` and `~/.local/bin`?
 ??
@@ -1285,18 +1307,22 @@ A command implemented directly inside the shell rather than being a separate exe
 Why does `cd` need to be a shell built-in?
 ??
 `cd` must change the current shell's working directory. If it ran in a child process, only the child's directory would change.
+<!--SR:!2026-09-26,4,270-->
 
 What happens if `cd /tmp` were executed only in a child process?
 ??
 The child would change to `/tmp`, but the parent shell would remain in its original directory after the child exits.
+<!--SR:!2026-09-26,4,270-->
 
 What are important examples of shell built-in commands?
 ??
 `cd`, `export`, `unset`, `exit`, `alias`, and `source`/`.`.
+<!--SR:!2026-09-26,4,270-->
 
 Why does `exit` need to be a shell built-in?
 ??
 It needs to terminate the current shell itself. If it ran in a child, only the child would terminate.
+<!--SR:!2026-09-26,4,270-->
 
 Why is `source` or `.` a shell built-in?
 ??
@@ -1305,10 +1331,12 @@ It executes commands inside the current shell process, allowing those commands t
 What are examples of external commands?
 ??
 `ls`, `cat`, `grep`, `gcc`, `python`, and `sleep`.
+<!--SR:!2026-09-23,1,230-->
 
 How does a shell normally execute an external command?
 ??
 The shell uses `fork()` to create a child, and the child uses `exec()` to replace itself with the external program.
+<!--SR:!2026-09-26,4,270-->
 
 What is a foreground command?
 ??
@@ -1330,6 +1358,7 @@ The child terminates and can temporarily become a zombie until the parent reaps 
 What is a zombie process?
 ??
 A child process that has already terminated, but whose parent has not yet collected its exit status using `wait()` or `waitpid()`.
+<!--SR:!2026-09-26,4,270-->
 
 Does a zombie process still execute?
 ??
@@ -1343,6 +1372,7 @@ Information such as the child's PID and exit status.
 Why does the kernel keep a terminated child's exit status?
 ??
 So that the parent can retrieve the child's termination information using `wait()` or `waitpid()`.
+<!--SR:!2026-09-26,4,270-->
 
 What happens when the parent calls `wait()` or `waitpid()` on a zombie?
 ??
@@ -1356,6 +1386,7 @@ A process whose parent has terminated while the process itself is still running.
 What happens to an orphan process?
 ??
 It is reparented to PID 1, usually `systemd` on modern Linux systems.
+<!--SR:!2026-09-26,4,270-->
 
 What is the difference between an orphan and a zombie?
 ??
@@ -1364,6 +1395,7 @@ An orphan is still running but its parent has died. A zombie has already termina
 What happens if the parent dies while its child is a zombie?
 ??
 The zombie is reparented to PID 1, which can reap it and remove its process-table entry.
+<!--SR:!2026-09-26,4,270-->
 
 What is a daemon process?
 ??
@@ -1372,6 +1404,7 @@ A process designed to run in the background and provide a service.
 What is the traditional Unix technique for creating a daemon?
 ??
 The traditional technique commonly uses `fork()` → `setsid()` → `fork()`.
+<!--SR:!2026-09-26,4,270-->
 
 Why is the first `fork()` used during traditional daemonization?
 ??
@@ -1399,6 +1432,7 @@ It waits for the specified child. If the child is still running, the parent bloc
 What does `WNOHANG` mean?
 ??
 It tells `waitpid()` not to block if the child has not finished.
+<!--SR:!2026-09-26,4,270-->
 
 What happens when `waitpid(pid, &status, WNOHANG)` finds that the child is still running?
 ??
@@ -1411,10 +1445,12 @@ It allows the shell to check whether a background child has finished without blo
 What is `SIGCHLD`?
 ??
 A signal that the kernel can send to a parent when one of its children changes state, commonly when the child terminates.
+<!--SR:!2026-09-23,1,230-->
 
 Is `SIGCHLD` the child's exit status?
 ??
 No. `SIGCHLD` is a notification. The parent uses `wait()` or `waitpid()` to collect the child's exit status.
+<!--SR:!2026-09-26,4,270-->
 
 What is a signal handler?
 ??

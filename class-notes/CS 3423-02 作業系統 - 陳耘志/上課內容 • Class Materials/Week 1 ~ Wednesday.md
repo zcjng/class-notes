@@ -340,6 +340,7 @@ The OS must enforce:
 - Resource constraints: programs must work within finite CPU, memory, and disk.
 - Isolation/coexistence: one program should not corrupt or interfere with another.
 - Scale: the system must continue working with many users/programs or resource-constrained hardware.
+<!--SR:!2026-09-26,4,270-->
 
 Why does an OS need to provide virtualization?
 ??
@@ -359,6 +360,7 @@ What is persistence, and how does the OS provide it?
 ??
 Persistence means data survives even after power is turned off.
 The OS provides persistence through the file system, giving programs a standard interface for storing and retrieving data without requiring them to know whether the storage is a hard drive, SSD, etc.
+<!--SR:!2026-09-26,4,270-->
 
 What are the four core system issues that AI-generated demos can ignore?
 ??
@@ -385,10 +387,12 @@ Why was the CrowdStrike 2024 failure able to cause machines to repeatedly crash 
 The faulty component ran in Windows kernel mode, so the memory error could crash the entire system.
 The problematic file was also stored on disk and loaded again during startup, so rebooting did not remove the cause.
 The machine therefore repeatedly crashed during boot until the bad file was manually removed.
+<!--SR:!2026-09-26,4,270-->
 
 Why does rebooting normally fix many software problems?
 ??
 A reboot wipes the volatile in-memory state where programs may have corrupted data and starts the system again from a clean state using the persistent data on disk.
+<!--SR:!2026-09-26,4,270-->
 
 Why doesn't rebooting alone fix the CrowdStrike boot-loop problem described in the notes?
 ??
@@ -400,6 +404,7 @@ Why does an iPhone use multiple operating systems instead of letting iOS handle 
 ??
 Different specialized subsystems can run their own small operating systems.
 This improves isolation/security because compromising one subsystem does not necessarily compromise another, and it can improve power efficiency because low-power components do not need to keep the main iOS system awake.
+<!--SR:!2026-09-26,4,270-->
 
 What are the specialized operating systems mentioned for the iPhone?
 ??
@@ -463,6 +468,7 @@ What are the three levels of isolation discussed in the notes?
 1. Process
 2. Container
 3. Virtual machine
+<!--SR:!2026-09-26,4,270-->
 
 How does process isolation work?
 ??
@@ -494,6 +500,7 @@ What must a complete isolation boundary encapsulate?
 ??
 Memory, CPU, files, and identity.
 If even one of these vectors is not properly isolated, a fault or malicious actor may be able to compromise shared infrastructure.
+<!--SR:!2026-09-26,4,270-->
 
 What is the fundamental trade-off between DRAM and SRAM?
 ??
@@ -537,6 +544,7 @@ Why does printf("Hey"); _exit(1); print nothing?
 printf() puts "Hey" into the user-level stdio buffer.
 _exit() terminates the process without running C library cleanup.
 The buffer is therefore never flushed, so "Hey" is lost.
+<!--SR:!2026-09-26,4,270-->
 
 When would you typically use _exit() instead of exit()?
 ??

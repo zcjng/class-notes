@@ -1462,7 +1462,7 @@ If a loop has 3 `fork()` calls and every process reaches every call, how many to
 If a loop has 3 `fork()` calls and 8 total processes exist, how many new processes were created?
 ??
 7 new processes, because the original process is included in the 8 total.
-<!--SR:!2026-09-15,0,230-->
+<!--SR:!2026-09-19,0,210-->
 
 
 

@@ -372,11 +372,13 @@ Why can the OS stop a poorly written program from damaging other programs?
 ??
 The OS provides isolation and permissions.
 A program is restricted to its allowed resources, so faults or malicious behavior in one program should not directly corrupt other programs or the entire machine.
+<!--SR:!2026-09-23,1,230-->
 
 What is the difference between user mode and kernel mode when a program has an out-of-bounds memory read?
 ??
 In user mode, the specific program normally crashes while the rest of the OS remains stable.
 In kernel mode, a memory fault can crash the entire machine because kernel code operates with much greater privileges.
+<!--SR:!2026-09-26,4,270-->
 
 Why was the CrowdStrike 2024 failure able to cause machines to repeatedly crash during boot?
 ??
@@ -405,23 +407,27 @@ What are the specialized operating systems mentioned for the iPhone?
 - Java Card OS — Secure Element used for Apple Pay
 - QuRT — cellular modem
 - RTKit — low-power/Always-On processing such as sensors and voice-related functions
+<!--SR:!2026-09-22,0,230-->
 
 What OS design trade-offs can change depending on the device?
 ??
 Boot time, uptime, throughput, latency, power consumption, security, and resource usage.
 Different devices prioritize different goals.
+<!--SR:!2026-09-26,4,270-->
 
 Why might a server prioritize throughput over latency?
 ??
 A server may need to process work for many users simultaneously.
 High throughput means completing a large amount of total work, while low latency means making an individual operation finish quickly.
 A large server may therefore prioritize total system throughput rather than making one user's operation as fast as possible.
+<!--SR:!2026-09-23,1,230-->
 
 Why can a server need much higher uptime than a personal computer?
 ??
 A server may serve hundreds or thousands of users continuously.
 It cannot simply be rebooted whenever one user's program consumes too much memory or behaves incorrectly.
 The OS must isolate programs and control resource usage so one user does not damage service for everyone else.
+<!--SR:!2026-09-26,4,270-->
 
 What is the difference between a user-facing workload and a batch workload?
 ??
@@ -433,6 +439,7 @@ Why can averages be misleading when measuring service performance?
 ??
 Averages can hide slow outliers that significantly affect users.
 SREs therefore use percentiles, such as an SLO requiring 99% of requests to complete within 100 ms, to understand tail latency.
+<!--SR:!2026-09-26,4,270-->
 
 Why can a 1% slow rate at each of 100 independent servers result in about 63% of page loads being slow?
 ??
@@ -462,18 +469,21 @@ How does process isolation work?
 A process gets its own private memory space and a fair share of CPU time.
 However, processes still share the host OS kernel and file system.
 It has very low overhead.
+<!--SR:!2026-09-26,4,270-->
 
 How does container isolation differ from process isolation?
 ??
 A container provides an isolated process group with its own identity, resource limits, and view of the file system.
 However, containers still share the host OS kernel.
 Examples include Docker and Kubernetes.
+<!--SR:!2026-09-23,1,230-->
 
 How does virtual-machine isolation differ from container isolation?
 ??
 A VM provides a fully simulated computer with its own independent operating system.
 The VM still shares the underlying physical hardware through a hypervisor.
 VM isolation is stronger but has greater overhead because a complete OS must run inside the VM.
+<!--SR:!2026-09-26,4,270-->
 
 What is the isolation hierarchy from weakest to strongest?
 ??
@@ -513,6 +523,7 @@ What is the difference between exit() and _exit()?
 ??
 exit() is a C standard library function that performs normal termination and flushes open C streams.
 _exit() is a low-level system call that terminates the process immediately without performing standard-library cleanup or flushing user-level stdio buffers.
+<!--SR:!2026-09-23,1,230-->
 
 Why does printf("Hey"); exit(1); print "Hey"?
 ??
@@ -531,6 +542,7 @@ When would you typically use _exit() instead of exit()?
 ??
 A common case is terminating a child process after fork().
 _exit() avoids running the parent's inherited C library cleanup and flushing inherited stdio buffers.
+<!--SR:!2026-09-23,1,230-->
 
 How can you force buffered printf output to appear before _exit()?
 ??
@@ -549,6 +561,7 @@ Why can printf output disappear when a program crashes?
 ??
 printf() may have placed the output only in a user-space libc buffer.
 If the program crashes before the buffer is flushed, those bytes disappear with the process.
+<!--SR:!2026-09-23,1,230-->
 
 Why does write() output survive a process crash?
 ??
@@ -567,6 +580,7 @@ Why is stderr useful for debugging messages?
 ??
 stderr is normally unbuffered, so debugging or error messages are sent out immediately instead of waiting for stdout's buffer to flush.
 This makes the message more likely to appear even if the program crashes immediately afterward.
+<!--SR:!2026-09-26,4,270-->
 
 What happens in `./test > out.txt` when test uses printf() and crashes before normal termination?
 ??

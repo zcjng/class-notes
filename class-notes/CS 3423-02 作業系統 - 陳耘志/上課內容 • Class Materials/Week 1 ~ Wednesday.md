@@ -582,7 +582,7 @@ Why can stdout and stderr behave differently when a program crashes?
 ??
 stdout is normally buffered by the C library, while stderr is normally unbuffered.
 Therefore output sent to stdout may still be sitting in a user-space buffer when the program crashes, while stderr output is normally passed to the kernel immediately.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-26,3,250-->
 
 Why is stderr useful for debugging messages?
 ??
@@ -602,4 +602,4 @@ What happens in `./test2 > out2.txt` when test2 uses write() and then crashes?
 The shell redirects file descriptor 1 (stdout) to out2.txt.
 write(1, "hello", 5) immediately sends the bytes to the kernel.
 The kernel performs the write to the file, so "hello" remains in out2.txt even though the process crashes afterward.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-26,3,250-->

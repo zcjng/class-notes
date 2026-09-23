@@ -1133,7 +1133,7 @@ They have completely separate, sandboxed memory spaces in RAM; if the child or p
 What core transformation happens in RAM when a child process successfully executes `execvp()`?
 ??
 The OS completely wipes out the current program code and variables inside that container, replacing it entirely with the machine code of a new executable (like `ls`).
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-24,1,210-->
 
 Why does `execvp()` never return to execute any code lines written directly below it?
 ??
@@ -1143,7 +1143,7 @@ Because a successful `execvp()` entirely overwrites and erases the original prog
 Why must a command-line utility array passed to `execvp` always end with a `NULL` pointer?
 ??
 It acts as a mandatory terminating sentinel so the OS kernel knows precisely where the argument list ends in RAM, preventing memory corruption crashes.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-24,1,210-->
 
 Why does a Shell need to use BOTH `fork()` and `execvp()` to run a command like `ls`?
 ??
@@ -1159,7 +1159,7 @@ What two things happen when a parent process executes the `waitpid()` function?
 What exact data does a child process pass to the OS Kernel upon calling exit(42)`?
 ??
 It hands over its **Exit Status** (the integer `42`). The Kernel already knows the child's PID and pairs it with this exit code inside the system Process Table.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-24,1,210-->
 
 What defines a Zombie Process in an operating system?
 ??
@@ -1215,7 +1215,7 @@ It returns the actual PID of the newly created child process (> 0).
 What happens if `fork()` fails?
 ??
 It returns `-1`, typically because the OS cannot allocate the resources needed to create a new process.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-24,1,210-->
 
 How does memory isolation behave between a parent and child after `fork()`?
 ??
@@ -1225,7 +1225,7 @@ The parent and child have separate memory spaces, so modifying a variable in one
 Why can parent and child execute different branches of the same `if-else` after `fork()`?
 ??
 They execute the same code, but `fork()` returns different values in the parent and child, allowing the program to distinguish them.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-24,1,210-->
 
 What does `exec()` do?
 ??
@@ -1255,12 +1255,12 @@ The shell itself would be replaced by `ls`, so the original shell would no longe
 What does the `p` in `execvp()` mean?
 ??
 It means `execvp()` performs a `PATH` search to find the executable.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-26,3,250-->
 
 What does the `v` in `execvp()` mean?
 ??
 It means the arguments are provided as a vector/array.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-26,3,250-->
 
 What is `libc`?
 ??
@@ -1270,7 +1270,7 @@ libc is the C standard library that provides user-space functions such as `print
 Does the kernel search `PATH` when executing a program?
 ??
 No. `PATH` searching is performed in user space by programs such as the shell or libc's `execvp()`. The kernel receives an actual pathname.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-26,3,250-->
 
 What is an environment variable?
 ??
@@ -1310,7 +1310,7 @@ No. `PATH` contains directories that contain executable files.
 What is the difference between `/usr/bin` and `~/.local/bin`?
 ??
 `/usr/bin` is generally a system-wide directory containing programs available to users. `~/.local/bin` is a directory inside a user's home directory for programs installed for that user.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-26,3,250-->
 
 What is a shell built-in command?
 ??
@@ -1340,12 +1340,12 @@ It needs to terminate the current shell itself. If it ran in a child, only the c
 Why is `source` or `.` a shell built-in?
 ??
 It executes commands inside the current shell process, allowing those commands to modify the shell's state.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-26,3,250-->
 
 What are examples of external commands?
 ??
 `ls`, `cat`, `grep`, `gcc`, `python`, and `sleep`.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-26,3,250-->
 
 How does a shell normally execute an external command?
 ??
@@ -1380,7 +1380,7 @@ A child process that has already terminated, but whose parent has not yet collec
 Does a zombie process still execute?
 ??
 No. It has already terminated. Only a small amount of information about it remains in the kernel's process table.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-24,1,210-->
 
 What information does the kernel keep for a zombie?
 ??
@@ -1430,7 +1430,7 @@ The traditional technique commonly uses `fork()` → `setsid()` → `fork()`.
 Why is the first `fork()` used during traditional daemonization?
 ??
 It allows the original parent to exit and the child to become independent of the original process hierarchy.
-<!--SR:!2026-09-23,1,210-->
+<!--SR:!2026-09-24,1,190-->
 
 What does `setsid()` do?
 ??
@@ -1470,7 +1470,7 @@ It allows the shell to check whether a background child has finished without blo
 What is `SIGCHLD`?
 ??
 A signal that the kernel can send to a parent when one of its children changes state, commonly when the child terminates.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-26,3,250-->
 
 Is `SIGCHLD` the child's exit status?
 ??
@@ -1490,7 +1490,7 @@ It can run a signal handler that responds to the notification, commonly by calli
 Does receiving `SIGCHLD` automatically call `waitpid()`?
 ??
 No. `SIGCHLD` is only a notification. The program must choose how to respond, such as by calling `waitpid()`.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-26,3,250-->
 
 What is the relationship between `SIGCHLD` and `waitpid()`?
 ??
@@ -1500,7 +1500,7 @@ What is the relationship between `SIGCHLD` and `waitpid()`?
 How many total processes can result from `n` independent `fork()` calls if every process reaches every `fork()`?
 ??
 Up to `2^n` total processes, including the original process.
-<!--SR:!2026-09-23,1,210-->
+<!--SR:!2026-09-26,3,230-->
 
 How many new processes are created by `n` independent `fork()` calls if every process reaches every `fork()`?
 ??
@@ -1510,7 +1510,7 @@ How many new processes are created by `n` independent `fork()` calls if every pr
 How do you determine how many times a line executes in a `fork()` counting problem?
 ??
 Ask: "How many processes reach this line?" Every process that reaches the line executes it.
-<!--SR:!2026-09-23,1,230-->
+<!--SR:!2026-09-24,1,210-->
 
 What happens if `printf()` appears before a `fork()`?
 ??
@@ -1530,7 +1530,7 @@ If a loop has 3 `fork()` calls and every process reaches every call, how many to
 If a loop has 3 `fork()` calls and 8 total processes exist, how many new processes were created?
 ??
 7 new processes, because the original process is included in the 8 total.
-<!--SR:!2026-09-23,1,190-->
+<!--SR:!2026-09-24,1,170-->
 
 
 

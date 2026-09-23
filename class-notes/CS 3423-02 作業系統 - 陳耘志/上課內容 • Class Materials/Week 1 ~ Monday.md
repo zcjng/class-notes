@@ -97,7 +97,7 @@ Code cells (runnable Python) and text/Markdown cells (notes, headings, explanati
 In Python, what exactly is a variable?
 ??
 A name (reference) bound to an object in memory — assigning it to another variable does not copy the object.
-<!--SR:!2026-09-23,1,190-->
+<!--SR:!2026-09-26,3,210-->
 
 What does `id(obj)` return?
 ??
@@ -112,7 +112,7 @@ How can you check an object's memory size in bytes?
 Which integers does CPython cache and share by default?
 ??
 -5 to 256 (small-integer caching), so all references to these values point to the same objects.
-<!--SR:!2026-09-23,1,190-->
+<!--SR:!2026-09-24,1,170-->
 
 Why is a NumPy array more memory-efficient than a Python list?
 ??
@@ -132,7 +132,7 @@ Give three common ways to create a NumPy array.
 What is vectorization in NumPy?
 ??
 Performing element-wise operations on entire arrays at once through ufuncs (optimized C loops) instead of looping in Python — orders of magnitude faster.
-<!--SR:!2026-09-23,1,190-->
+<!--SR:!2026-09-24,1,170-->
 
 What is broadcasting in NumPy?
 ??

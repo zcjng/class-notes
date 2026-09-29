@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "chinese_etymology_sleep_dream.md",
+                "file": "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "chinese_etymology_sleep_dream"
+              "title": "0-0 - Syllabus & eBook"
             }
           },
           {
@@ -285,11 +285,13 @@
   },
   "active": "87e963c2fc76f185",
   "lastOpenFiles": [
-    "character_laws-2.md",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md",
+    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
+    "misc/2026-2027calendar_20260716.pdf",
     "chinese_etymology_sleep_dream.md",
+    "character_laws-2.md",
     "Ccl.md",
     "Marathon.md",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Connectives.md",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/Essential University Physics_ Volume 1 (4th Edition) -- Richard Wolfson -- Always learning, Fourth edition, New York, 2020 -- Pearson Education -- 9780134988559 -- f3436ce64420c3ddf455201bcbec6df2 -- Anna’s Archive.pdf",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/11510PHYS113307.pdf",
@@ -298,7 +300,6 @@
     "class-notes/Self Study/Portal 2 Web Host.md",
     "class-notes/README.md",
     "class-notes/Self Study",
-    "misc/2026-2027calendar_20260716.pdf",
     "NTHU-related.md",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 1 ~ Tuesday.md",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 1 ~ Thursday.md",
@@ -318,7 +319,6 @@
     "IMG_20260915_110152.jpg",
     "misc",
     "class-notes/CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md",
-    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md",
     "2026-2027calendar_20260716.pdf.md",
     "NTHU",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/PDFs Images Miscellaneous/RosenDiscreteMath8Ed.pdf",
@@ -329,7 +329,6 @@
     "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
     "README.md",
     "CS 3423-02 作業系統 - 陳耘志/第一週 • 週一.md",
-    "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials",
-    "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md"
+    "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials"
   ]
 }

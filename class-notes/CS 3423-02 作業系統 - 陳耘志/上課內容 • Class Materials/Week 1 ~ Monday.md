@@ -77,7 +77,7 @@ tags:
 What is Google Colab?
 ??
 A free, cloud-based Jupyter notebook environment by Google for running Python and machine learning code in the browser — no local setup required.
-<!--SR:!2026-09-25,3,230-->
+<!--SR:!2026-10-13,7,230-->
 
 Why is Google Colab good for learning Python and ML?
 ??
@@ -92,7 +92,7 @@ Prefix the command with `!` and run it in a cell, e.g. `!pip install pytest`.
 What are the two main cell types in a Colab (Jupyter) notebook?
 ??
 Code cells (runnable Python) and text/Markdown cells (notes, headings, explanations).
-<!--SR:!2026-10-03,11,270-->
+<!--SR:!2026-11-14,39,290-->
 
 In Python, what exactly is a variable?
 ??
@@ -102,7 +102,7 @@ A name (reference) bound to an object in memory — assigning it to another vari
 What does `id(obj)` return?
 ??
 The identity (memory address) of the object, unique while the object is alive.
-<!--SR:!2026-09-25,3,230-->
+<!--SR:!2026-10-13,7,230-->
 
 How can you check an object's memory size in bytes?
 ??
@@ -112,12 +112,12 @@ How can you check an object's memory size in bytes?
 Which integers does CPython cache and share by default?
 ??
 -5 to 256 (small-integer caching), so all references to these values point to the same objects.
-<!--SR:!2026-09-24,1,170-->
+<!--SR:!2026-10-07,1,150-->
 
 Why is a NumPy array more memory-efficient than a Python list?
 ??
 A list stores 8-byte pointers to separate boxed Python objects (~28 bytes each for ints); an ndarray stores homogeneous values contiguously in a single C array (e.g. 8 bytes per int64 element).
-<!--SR:!2026-09-25,3,230-->
+<!--SR:!2026-10-15,9,250-->
 
 A Python list of 1,000,000 ints uses roughly how much memory?
 ??
@@ -127,7 +127,7 @@ About 36 MB — ~8 MB of pointers plus ~28 MB of int objects. An equivalent int6
 Give three common ways to create a NumPy array.
 ??
 `np.zeros(shape)`, `np.ones(shape)`, `np.arange()`, `np.linspace(a, b, n)`, `np.random.rand(...)`, or `np.array([...])`.
-<!--SR:!2026-09-25,3,230-->
+<!--SR:!2026-10-08,2,210-->
 
 What is vectorization in NumPy?
 ??
@@ -142,7 +142,7 @@ The rule that lets element-wise operations work on arrays of different shapes: t
 What is the zero page?
 ??
 The first page of virtual memory (starting at address 0), which the OS keeps unmapped/inaccessible so null pointer accesses cannot silently corrupt memory.
-<!--SR:!2026-10-02,10,270-->
+<!--SR:!2026-11-12,37,290-->
 
 What happens when a program dereferences a null pointer?
 ??

@@ -50,6 +50,32 @@
             }
           },
           {
+            "id": "527854d1233a138a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "0-0 - Syllabus & eBook"
+            }
+          },
+          {
+            "id": "bebec10f200cf00c",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "misc/2026-2027calendar_20260716.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "2026-2027calendar_20260716"
+            }
+          },
+          {
             "id": "c7c173dc1a9fc8e9",
             "type": "leaf",
             "state": {
@@ -120,7 +146,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -283,10 +309,12 @@
       "obsidian-spaced-repetition:Review flashcards": false
     }
   },
-  "active": "87e963c2fc76f185",
+  "active": "bebec10f200cf00c",
   "lastOpenFiles": [
+    "TCM Introductory Part 1.md",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
+    "9 30.md",
     "misc/2026-2027calendar_20260716.pdf",
     "chinese_etymology_sleep_dream.md",
     "character_laws-2.md",
@@ -328,7 +356,6 @@
     "class-notes/CS 3423-02 作業系統 - 陳耘志/PDFs and Miscellaneous",
     "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
     "README.md",
-    "CS 3423-02 作業系統 - 陳耘志/第一週 • 週一.md",
     "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials"
   ]
 }

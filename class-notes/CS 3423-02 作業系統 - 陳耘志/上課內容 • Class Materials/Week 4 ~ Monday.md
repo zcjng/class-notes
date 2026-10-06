@@ -1478,9 +1478,10 @@ What can a program do in user mode?
 ??  
 It can perform normal unprivileged operations but cannot perform privileged operations reserved for the kernel.
 
-What can the kernel do in kernel mode?  
-??  
+What can the kernel do in kernel mode?
+??
 The kernel can perform privileged operations such as managing hardware, memory, and other protected resources.
+<!--SR:!2026-10-10,4,270-->
 
 Why can't a user program perform privileged instructions?  
 ??  
@@ -1491,37 +1492,43 @@ Can a user program directly change the CPU's mode bit?
 No. Allowing a user program to change itself to kernel mode would defeat the entire protection mechanism. Hardware controls the transition.
 <!--SR:!2026-10-07,1,230-->
 
-How does a program enter kernel mode?  
-??  
+How does a program enter kernel mode?
+??
 Through controlled mechanisms such as system calls, exceptions, and interrupts.
+<!--SR:!2026-10-07,1,230-->
 
 Is being root the same as being in kernel mode?  
 ??  
 No. Root is a user-space privilege level. A root process still normally runs in user mode and must enter kernel mode to perform privileged operations.
 
-What is the purpose of the `time` command?  
-??  
+What is the purpose of the `time` command?
+??
 It measures how much time a program spends running, including user CPU time, system CPU time, and real elapsed time.
+<!--SR:!2026-10-10,4,270-->
 
 What is user time?  
 ??  
 The amount of CPU time spent executing the program's code in user mode.
 
-What is system time?  
-??  
+What is system time?
+??
 The amount of CPU time spent executing kernel code on behalf of the program.
+<!--SR:!2026-10-10,4,270-->
 
-What is real time?  
-??  
+What is real time?
+??
 The actual elapsed wall-clock time from when the program starts until it finishes.
+<!--SR:!2026-10-07,1,230-->
 
-Why can real time be greater than user time plus system time?  
-??  
+Why can real time be greater than user time plus system time?
+??
 Because the process may spend time waiting, sleeping, or being descheduled while other processes use the CPU.
+<!--SR:!2026-10-07,1,230-->
 
-What happens if a bug occurs while the kernel is executing?  
-??  
+What happens if a bug occurs while the kernel is executing?
+??
 A kernel-mode bug can be much more serious because the kernel has access to protected resources and controls the entire system.
+<!--SR:!2026-10-10,4,270-->
 
 What is a virtual address space?  
 ??  
@@ -1539,9 +1546,10 @@ What does a typical process address space contain?
 ??  
 It contains regions such as program code, data, heap, stack, and a mapping of the kernel.
 
-What is the heap used for?  
-??  
+What is the heap used for?
+??
 The heap is used for dynamically allocated memory, such as memory obtained with `malloc()`.
+<!--SR:!2026-10-10,4,270-->
 
 Which direction does the heap normally grow?  
 ??  
@@ -1572,9 +1580,10 @@ Does mapping the kernel into a process's address space mean the process can acce
 ??  
 No. The kernel's memory is protected so user-mode code cannot access it directly.
 
-Does every process have its own kernel stack?  
-??  
+Does every process have its own kernel stack?
+??
 Yes. Each process has a separate kernel stack used when that process enters the kernel.
+<!--SR:!2026-10-07,1,230-->
 
 What is a normal function call?
 ??
@@ -1585,17 +1594,19 @@ What is a system call?
 ??  
 A system call is a controlled mechanism that allows a user program to request a service from the kernel.
 
-Why can't a user program simply call a kernel function like a normal function?  
-??  
+Why can't a user program simply call a kernel function like a normal function?
+??
 A normal function call does not provide the required privilege transition. The CPU must switch from user mode to kernel mode through a protected system-call mechanism.
+<!--SR:!2026-10-10,4,270-->
 
 How does a system call enter the kernel?  
 ??  
 The program executes a special system-call or trap instruction that causes the CPU to enter kernel mode and transfer control to the kernel.
 
-Where is the system-call number passed?  
-??  
+Where is the system-call number passed?
+??
 The system-call number is placed in a designated CPU register before entering the kernel.
+<!--SR:!2026-10-10,4,270-->
 
 Where are system-call arguments passed?  
 ??  
@@ -1615,9 +1626,10 @@ What are the basic steps of a system call?
 6. The kernel places the result in the return-value register.
 7. Control returns to user mode.
 
-Why must the kernel validate system-call arguments?  
-??  
+Why must the kernel validate system-call arguments?
+??
 System-call arguments come from untrusted user programs, so the kernel must verify that they are valid and safe to access.
+<!--SR:!2026-10-07,1,230-->
 
 Why are pointer arguments especially important to validate?  
 ??  
@@ -1627,9 +1639,10 @@ What does the kernel need to check when given a pointer to a buffer?
 ??  
 It must verify that the entire memory range of the buffer is valid and accessible, not just the first address.
 
-What could happen if the kernel fails to validate a user pointer?  
-??  
+What could happen if the kernel fails to validate a user pointer?
+??
 The kernel could access invalid or protected memory, potentially causing a kernel crash or security vulnerability.
+<!--SR:!2026-10-10,4,270-->
 
 Is `printf()` a system call?  
 ??  
@@ -1668,13 +1681,15 @@ What is the key difference between a fault and an abort?
 A fault may be recoverable and allow the instruction to be retried, while an abort indicates an unrecoverable failure.
 <!--SR:!2026-10-09,3,250-->
 
-Can a page fault be a normal event?  
-??  
+Can a page fault be a normal event?
+??
 Yes. A page fault can occur because a needed page is not currently mapped into physical memory. The kernel can handle the fault and retry the instruction.
+<!--SR:!2026-10-10,4,270-->
 
-What is time sharing?  
-??  
+What is time sharing?
+??
 Time sharing allows multiple processes to share the CPU by giving each process opportunities to run for limited periods of time.
+<!--SR:!2026-10-10,4,270-->
 
 What is cooperative scheduling?  
 ??  
@@ -1697,9 +1712,10 @@ What happens when a timer interrupt occurs?
 The CPU enters the kernel, where the scheduler can decide whether the current process should continue or another process should run.
 <!--SR:!2026-10-07,1,230-->
 
-What is a context switch?  
-??  
+What is a context switch?
+??
 A context switch changes the CPU from running one process to running another by saving the first process's state and restoring the second process's state.
+<!--SR:!2026-10-10,4,270-->
 
 What is saved during a context switch?  
 ??  
@@ -1709,17 +1725,20 @@ Where is a process's saved execution state kept?
 ??  
 The operating system keeps the process's saved state in its process-control data structures, such as its PCB and related kernel structures.
 
-How can a process resume exactly where it stopped?  
-??  
+How can a process resume exactly where it stopped?
+??
 Its program counter, stack pointer, registers, and other necessary execution state were saved during the context switch and restored when it runs again.
+<!--SR:!2026-10-10,4,270-->
 
-What is the difference between a mode switch and a context switch?  
-??  
+What is the difference between a mode switch and a context switch?
+??
 A mode switch changes between user mode and kernel mode. A context switch changes which process is currently running.
+<!--SR:!2026-10-10,4,270-->
 
-Can a mode switch happen without a context switch?  
-??  
+Can a mode switch happen without a context switch?
+??
 Yes. A process can make a system call, execute in kernel mode, and then return to the same process without another process running.
+<!--SR:!2026-10-07,1,230-->
 
 Can a context switch happen without changing processes' user/kernel modes?  
 ??  
@@ -1730,33 +1749,38 @@ Does every timer interrupt cause a context switch?
 No. A timer interrupt gives the kernel an opportunity to schedule, but the scheduler may decide to continue running the same process.
 <!--SR:!2026-10-07,1,230-->
 
-What is a fast system call?  
-??  
+What is a fast system call?
+??
 A fast system call completes without waiting for an external event and usually returns quickly.
+<!--SR:!2026-10-10,4,270-->
 
 What is a slow system call?  
 ??  
 A slow system call may block because it needs to wait for an external event, such as input becoming available.
 
-What happens when a process makes a slow system call and the required event has not happened yet?  
-??  
+What happens when a process makes a slow system call and the required event has not happened yet?
+??
 The process can sleep or block, allowing the scheduler to run another process instead.
+<!--SR:!2026-10-10,4,270-->
 
 How does a blocked process become runnable again?  
 ??  
 The external event occurs, usually causing a hardware interrupt. The kernel handles the event and wakes the waiting process.
 
-What happens when `getpid()` is called?  
-??  
+What happens when `getpid()` is called?
+??
 It is a fast system call that returns the process ID without needing to wait for an external event.
+<!--SR:!2026-10-10,4,270-->
 
-Does `getpid()` necessarily cause a context switch?  
-??  
+Does `getpid()` necessarily cause a context switch?
+??
 No. It may involve a mode switch into the kernel and back, but the same process can continue running afterward.
+<!--SR:!2026-10-10,4,270-->
 
-What happens when `read()` waits for keyboard input that has not arrived?  
-??  
+What happens when `read()` waits for keyboard input that has not arrived?
+??
 The process blocks and sleeps while waiting for input, allowing another process to run.
+<!--SR:!2026-10-10,4,270-->
 
 What happens when a timer tick occurs?
 ??
@@ -1787,21 +1811,24 @@ Why can't `read()` generally be replaced by a vDSO implementation?
 ??  
 `read()` may need to interact with devices or wait for external input, which requires kernel involvement.
 
-What is an important system programming habit regarding input?  
-??  
+What is an important system programming habit regarding input?
+??
 Always treat input from user programs as untrusted and validate it before using it.
+<!--SR:!2026-10-10,4,270-->
 
 What is an important system programming habit regarding system calls?  
 ??  
 Assume every system call can fail and check its return value.
 
-Why is ignoring a system-call return value dangerous?  
-??  
+Why is ignoring a system-call return value dangerous?
+??
 The system call may have failed, and continuing as if it succeeded can cause incorrect behavior or hide an important error.
+<!--SR:!2026-10-07,1,230-->
 
-What can `errno` tell you?  
-??  
+What can `errno` tell you?
+??
 When a system call or library operation reports an error in the appropriate way, `errno` can provide additional information about the reason for the failure.
+<!--SR:!2026-10-07,1,230-->
 
 What should you remember about system calls and errors?  
 ??  
@@ -1820,18 +1847,21 @@ What can `/proc` be used for?
 ??  
 The `/proc` filesystem provides information about running processes and various kernel and system state.
 
-What should you be able to do with the `time` command?  
-??  
+What should you be able to do with the `time` command?
+??
 Measure and compare user CPU time, system CPU time, and real elapsed time for a program.
+<!--SR:!2026-10-07,1,230-->
 
 What is the key difference between user CPU time and system CPU time?  
 ??  
 User CPU time is spent executing user-space code, while system CPU time is spent executing kernel code on behalf of the process.
 
-What is the key difference between a system call and an exception?  
-??  
+What is the key difference between a system call and an exception?
+??
 A system call is a controlled request from user space to the kernel and is implemented using a trap-like CPU mechanism. Exceptions are the broader category of events that cause the CPU to transfer control to the kernel.
+<!--SR:!2026-10-10,4,270-->
 
-What is the overall mental model for Worksheet 4?  
-??  
+What is the overall mental model for Worksheet 4?
+??
 User programs normally run in user mode inside their own virtual address spaces. When they need privileged OS services, they enter the kernel through system calls, traps, faults, or interrupts. The kernel validates untrusted input, performs the requested work, and returns to user mode. Hardware timers allow the kernel to preempt processes, and context switches allow the CPU to move between processes.
+<!--SR:!2026-10-07,1,230-->

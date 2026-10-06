@@ -1469,13 +1469,15 @@ Why can't software alone enforce protection?
 A buggy or malicious program could simply ignore software rules. Hardware must enforce the boundary between protected and unprotected operations.
 <!--SR:!2026-10-07,1,230-->
 
-Why is hardware support necessary for OS protection?  
-??  
+Why is hardware support necessary for OS protection?
+??
 Hardware provides mechanisms such as CPU privilege modes and protected memory access that software cannot bypass.
+<!--SR:!2026-10-07,1,230-->
 
-What are the two CPU execution modes?  
-??  
+What are the two CPU execution modes?
+??
 User mode and kernel mode.
+<!--SR:!2026-10-10,4,270-->
 
 What can a program do in user mode?
 ??
@@ -1502,9 +1504,10 @@ How does a program enter kernel mode?
 Through controlled mechanisms such as system calls, exceptions, and interrupts.
 <!--SR:!2026-10-07,1,230-->
 
-Is being root the same as being in kernel mode?  
-??  
+Is being root the same as being in kernel mode?
+??
 No. Root is a user-space privilege level. A root process still normally runs in user mode and must enter kernel mode to perform privileged operations.
+<!--SR:!2026-10-07,1,230-->
 
 What is the purpose of the `time` command?
 ??
@@ -1536,9 +1539,10 @@ What happens if a bug occurs while the kernel is executing?
 A kernel-mode bug can be much more serious because the kernel has access to protected resources and controls the entire system.
 <!--SR:!2026-10-10,4,270-->
 
-What is a virtual address space?  
-??  
+What is a virtual address space?
+??
 It is the set of virtual memory addresses that a process can use. Each process has its own virtual address space.
+<!--SR:!2026-10-10,4,270-->
 
 Why does each process have its own address space?
 ??
@@ -1635,7 +1639,8 @@ Where is the system-call return value passed?
 The kernel places the return value in the designated return-value register before returning to user mode.
 <!--SR:!2026-10-10,4,270-->
 
-What are the basic steps of a system call?  
+
+                                                       What are the basic steps of a system call?
 ??
 1. The user program prepares the system-call number and arguments.
 2. It executes the system-call instruction.
@@ -1644,6 +1649,7 @@ What are the basic steps of a system call?
 5. The kernel performs the requested operation.
 6. The kernel places the result in the return-value register.
 7. Control returns to user mode.
+<!--SR:!2026-10-10,4,270-->
 
 Why must the kernel validate system-call arguments?
 ??
@@ -1675,9 +1681,10 @@ Why might multiple `printf()` calls produce only one `write()` system call?
 Because the C library can buffer the output and combine several `printf()` operations before making a system call.
 <!--SR:!2026-10-10,4,270-->
 
-What are the four types of CPU exceptions?  
-??  
+What are the four types of CPU exceptions?
+??
 Trap, fault, interrupt, and abort.
+<!--SR:!2026-10-10,4,270-->
 
 What is a trap?
 ??
@@ -1689,13 +1696,15 @@ What is a fault?
 A fault occurs when the current instruction encounters a condition that may be recoverable. The kernel may fix the problem and retry the instruction.
 <!--SR:!2026-10-10,4,270-->
 
-What is an interrupt?  
-??  
+What is an interrupt?
+??
 An interrupt is an event generated externally, typically by hardware, that causes the CPU to temporarily stop the current execution and enter the kernel.
+<!--SR:!2026-10-10,4,270-->
 
-What is an abort?  
-??  
+What is an abort?
+??
 An abort is a serious, unrecoverable error that generally cannot be restarted.
+<!--SR:!2026-10-10,4,270-->
 
 What is the key difference between a trap and an interrupt?
 ??
@@ -1717,13 +1726,15 @@ What is time sharing?
 Time sharing allows multiple processes to share the CPU by giving each process opportunities to run for limited periods of time.
 <!--SR:!2026-10-10,4,270-->
 
-What is cooperative scheduling?  
-??  
+What is cooperative scheduling?
+??
 Processes voluntarily give up the CPU. If a process never yields, it can prevent other processes from running.
+<!--SR:!2026-10-10,4,270-->
 
-What is the main problem with cooperative scheduling?  
-??  
+What is the main problem with cooperative scheduling?
+??
 A buggy or malicious process could keep running forever without yielding, preventing other processes from getting CPU time.
+<!--SR:!2026-10-07,1,230-->
 
 What is preemptive scheduling?
 ??
@@ -1745,9 +1756,10 @@ What is a context switch?
 A context switch changes the CPU from running one process to running another by saving the first process's state and restoring the second process's state.
 <!--SR:!2026-10-10,4,270-->
 
-What is saved during a context switch?  
-??  
+What is saved during a context switch?
+??
 Important CPU state such as registers, the program counter, and stack pointer is saved so the process can later resume correctly.
+<!--SR:!2026-10-10,4,270-->
 
 Where is a process's saved execution state kept?
 ??
@@ -1769,9 +1781,10 @@ Can a mode switch happen without a context switch?
 Yes. A process can make a system call, execute in kernel mode, and then return to the same process without another process running.
 <!--SR:!2026-10-07,1,230-->
 
-Can a context switch happen without changing processes' user/kernel modes?  
-??  
+Can a context switch happen without changing processes' user/kernel modes?
+??
 A context switch involves changing the running process, while mode changes are separate from that concept. The important distinction is that they represent different state changes.
+<!--SR:!2026-10-10,4,270-->
 
 Does every timer interrupt cause a context switch?
 ??
@@ -1793,9 +1806,10 @@ What happens when a process makes a slow system call and the required event has 
 The process can sleep or block, allowing the scheduler to run another process instead.
 <!--SR:!2026-10-10,4,270-->
 
-How does a blocked process become runnable again?  
-??  
+How does a blocked process become runnable again?
+??
 The external event occurs, usually causing a hardware interrupt. The kernel handles the event and wakes the waiting process.
+<!--SR:!2026-10-07,1,230-->
 
 What happens when `getpid()` is called?
 ??
@@ -1817,9 +1831,10 @@ What happens when a timer tick occurs?
 The timer generates an interrupt and gives the scheduler an opportunity to decide whether to perform a context switch.
 <!--SR:!2026-10-07,1,230-->
 
-What is the vDSO?  
-??  
+What is the vDSO?
+??
 The vDSO is a mechanism that provides certain system-call-like functionality directly in user space, avoiding a kernel transition.
+<!--SR:!2026-10-10,4,270-->
 
 Why is the vDSO useful?
 ??
@@ -1836,9 +1851,10 @@ Why could a time-related operation benefit from the vDSO?
 The kernel can provide information that allows the operation to be completed in user space without a full system-call transition.
 <!--SR:!2026-10-10,4,270-->
 
-Why could `getpid()` potentially be implemented using the vDSO?  
-??  
+Why could `getpid()` potentially be implemented using the vDSO?
+??
 The process ID can be obtained from information already available to the process without requiring privileged hardware access.
+<!--SR:!2026-10-07,1,230-->
 
 Why can't `read()` generally be replaced by a vDSO implementation?
 ??
@@ -1880,9 +1896,10 @@ Why is `strace` useful for learning system calls?
 It lets you see the boundary between a user-space program and the kernel by showing the system calls the program actually makes.
 <!--SR:!2026-10-10,4,270-->
 
-What can `/proc` be used for?  
-??  
+What can `/proc` be used for?
+??
 The `/proc` filesystem provides information about running processes and various kernel and system state.
+<!--SR:!2026-10-10,4,270-->
 
 What should you be able to do with the `time` command?
 ??

@@ -87,7 +87,7 @@ Pre-installed libraries, free GPU/TPU accelerators, generous cloud resources, an
 How do you install an extra Python package in a Colab cell?
 ??
 Prefix the command with `!` and run it in a cell, e.g. `!pip install pytest`.
-<!--SR:!2026-10-02,10,270-->
+<!--SR:!2026-11-13,38,290-->
 
 What are the two main cell types in a Colab (Jupyter) notebook?
 ??
@@ -147,6 +147,6 @@ The first page of virtual memory (starting at address 0), which the OS keeps unm
 What happens when a program dereferences a null pointer?
 ??
 The MMU raises a page fault that the OS turns into a segmentation fault (SIGSEGV), terminating the program instead of corrupting memory.
-<!--SR:!2026-09-25,3,230-->
+<!--SR:!2026-10-15,9,250-->
 
 #os

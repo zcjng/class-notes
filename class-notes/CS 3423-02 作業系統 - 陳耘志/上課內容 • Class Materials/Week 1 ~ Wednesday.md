@@ -354,7 +354,7 @@ What problem does OS concurrency solve?
 ??
 When multiple programs or CPUs operate on the same data at the same time, their operations can conflict.
 The OS provides mechanisms that allow concurrent operations to happen without causing conflicts.
-<!--SR:!2026-09-24,1,210-->
+<!--SR:!2026-10-07,1,190-->
 
 What is persistence, and how does the OS provide it?
 ??
@@ -368,7 +368,7 @@ What are the four core system issues that AI-generated demos can ignore?
 2. Resource constraints — handling finite CPU, memory, and disk.
 3. Coexistence — sharing a machine without corrupting other programs.
 4. Scale — handling many concurrent users or resource-constrained hardware.
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-16,10,270-->
 
 Why can the OS stop a poorly written program from damaging other programs?
 ??
@@ -380,7 +380,7 @@ What is the difference between user mode and kernel mode when a program has an o
 ??
 In user mode, the specific program normally crashes while the rest of the OS remains stable.
 In kernel mode, a memory fault can crash the entire machine because kernel code operates with much greater privileges.
-<!--SR:!2026-09-26,4,270-->
+<!--SR:!2026-10-21,15,290-->
 
 Why was the CrowdStrike 2024 failure able to cause machines to repeatedly crash during boot?
 ??
@@ -392,7 +392,7 @@ The machine therefore repeatedly crashed during boot until the bad file was manu
 Why does rebooting normally fix many software problems?
 ??
 A reboot wipes the volatile in-memory state where programs may have corrupted data and starts the system again from a clean state using the persistent data on disk.
-<!--SR:!2026-09-26,4,270-->
+<!--SR:!2026-10-22,16,290-->
 
 Why doesn't rebooting alone fix the CrowdStrike boot-loop problem described in the notes?
 ??
@@ -404,7 +404,7 @@ Why does an iPhone use multiple operating systems instead of letting iOS handle 
 ??
 Different specialized subsystems can run their own small operating systems.
 This improves isolation/security because compromising one subsystem does not necessarily compromise another, and it can improve power efficiency because low-power components do not need to keep the main iOS system awake.
-<!--SR:!2026-09-26,4,270-->
+<!--SR:!2026-10-20,14,290-->
 
 What are the specialized operating systems mentioned for the iPhone?
 ??
@@ -418,7 +418,7 @@ What OS design trade-offs can change depending on the device?
 ??
 Boot time, uptime, throughput, latency, power consumption, security, and resource usage.
 Different devices prioritize different goals.
-<!--SR:!2026-09-26,4,270-->
+<!--SR:!2026-10-08,2,250-->
 
 Why might a server prioritize throughput over latency?
 ??
@@ -432,7 +432,7 @@ Why can a server need much higher uptime than a personal computer?
 A server may serve hundreds or thousands of users continuously.
 It cannot simply be rebooted whenever one user's program consumes too much memory or behaves incorrectly.
 The OS must isolate programs and control resource usage so one user does not damage service for everyone else.
-<!--SR:!2026-09-26,4,270-->
+<!--SR:!2026-10-22,16,290-->
 
 What is the difference between a user-facing workload and a batch workload?
 ??
@@ -461,14 +461,14 @@ How does the OS handle CPU, I/O, and memory resource contention?
 CPU: the OS delays lower-priority processes.
 I/O: the OS rate-limits lower-priority data streams.
 Memory: because memory cannot simply be delayed, the OS may terminate processes when memory is exhausted to keep the machine alive.
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-08,2,230-->
 
 What are the three levels of isolation discussed in the notes?
 ??
 1. Process
 2. Container
 3. Virtual machine
-<!--SR:!2026-09-26,4,270-->
+<!--SR:!2026-10-20,14,290-->
 
 How does process isolation work?
 ??
@@ -537,7 +537,7 @@ Why does printf("Hey"); exit(1); print "Hey"?
 printf() places "Hey" into the C library's user-level output buffer.
 exit() performs normal C library termination, which flushes the open streams before the process terminates.
 Therefore the buffered "Hey" reaches the output.
-<!--SR:!2026-09-24,1,210-->
+<!--SR:!2026-10-09,3,230-->
 
 Why does printf("Hey"); _exit(1); print nothing?
 ??
@@ -557,7 +557,7 @@ How can you force buffered printf output to appear before _exit()?
 Either:
 - Add a newline when appropriate, such as printf("Hey\n");
 - Explicitly flush stdout with fflush(stdout);
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-18,12,270-->
 
 What is the key difference between libc buffering and kernel-level writing?
 ??
@@ -569,7 +569,7 @@ Why can printf output disappear when a program crashes?
 ??
 printf() may have placed the output only in a user-space libc buffer.
 If the program crashes before the buffer is flushed, those bytes disappear with the process.
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-18,12,270-->
 
 Why does write() output survive a process crash?
 ??

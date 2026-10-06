@@ -82,7 +82,7 @@ A free, cloud-based Jupyter notebook environment by Google for running Python an
 Why is Google Colab good for learning Python and ML?
 ??
 Pre-installed libraries, free GPU/TPU accelerators, generous cloud resources, and easy sharing/saving to Google Drive.
-<!--SR:!2026-09-29,7,250-->
+<!--SR:!2026-10-31,25,270-->
 
 How do you install an extra Python package in a Colab cell?
 ??
@@ -97,7 +97,7 @@ Code cells (runnable Python) and text/Markdown cells (notes, headings, explanati
 In Python, what exactly is a variable?
 ??
 A name (reference) bound to an object in memory — assigning it to another variable does not copy the object.
-<!--SR:!2026-09-26,3,210-->
+<!--SR:!2026-10-14,8,230-->
 
 What does `id(obj)` return?
 ??
@@ -107,7 +107,7 @@ The identity (memory address) of the object, unique while the object is alive.
 How can you check an object's memory size in bytes?
 ??
 `sys.getsizeof(obj)`.
-<!--SR:!2026-09-25,3,230-->
+<!--SR:!2026-10-15,9,250-->
 
 Which integers does CPython cache and share by default?
 ??
@@ -122,7 +122,7 @@ A list stores 8-byte pointers to separate boxed Python objects (~28 bytes each f
 A Python list of 1,000,000 ints uses roughly how much memory?
 ??
 About 36 MB — ~8 MB of pointers plus ~28 MB of int objects. An equivalent int64 NumPy array uses ~8 MB.
-<!--SR:!2026-10-03,11,270-->
+<!--SR:!2026-11-17,42,290-->
 
 Give three common ways to create a NumPy array.
 ??
@@ -132,12 +132,12 @@ Give three common ways to create a NumPy array.
 What is vectorization in NumPy?
 ??
 Performing element-wise operations on entire arrays at once through ufuncs (optimized C loops) instead of looping in Python — orders of magnitude faster.
-<!--SR:!2026-09-24,1,170-->
+<!--SR:!2026-10-08,2,190-->
 
 What is broadcasting in NumPy?
 ??
 The rule that lets element-wise operations work on arrays of different shapes: trailing dimensions must match, or one of them must be 1 (it gets stretched to the other's size).
-<!--SR:!2026-09-25,3,230-->
+<!--SR:!2026-10-15,9,250-->
 
 What is the zero page?
 ??

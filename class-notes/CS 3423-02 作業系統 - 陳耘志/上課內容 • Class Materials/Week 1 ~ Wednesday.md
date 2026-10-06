@@ -340,7 +340,7 @@ The OS must enforce:
 - Resource constraints: programs must work within finite CPU, memory, and disk.
 - Isolation/coexistence: one program should not corrupt or interfere with another.
 - Scale: the system must continue working with many users/programs or resource-constrained hardware.
-<!--SR:!2026-09-26,4,270-->
+<!--SR:!2026-10-08,2,250-->
 
 Why does an OS need to provide virtualization?
 ??
@@ -348,7 +348,7 @@ Virtualization creates the illusion that each program has its own resources.
 For the CPU, the OS makes multiple programs appear to run at the same time even though CPUs must be shared.
 For memory, the OS gives each program the illusion that it has its own private memory.
 This lets a program run without needing to know what other programs are using the machine.
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-08,2,230-->
 
 What problem does OS concurrency solve?
 ??
@@ -387,7 +387,7 @@ Why was the CrowdStrike 2024 failure able to cause machines to repeatedly crash 
 The faulty component ran in Windows kernel mode, so the memory error could crash the entire system.
 The problematic file was also stored on disk and loaded again during startup, so rebooting did not remove the cause.
 The machine therefore repeatedly crashed during boot until the bad file was manually removed.
-<!--SR:!2026-09-26,4,270-->
+<!--SR:!2026-10-20,14,290-->
 
 Why does rebooting normally fix many software problems?
 ??
@@ -398,7 +398,7 @@ Why doesn't rebooting alone fix the CrowdStrike boot-loop problem described in t
 ??
 Because the problematic file had been saved on persistent disk storage.
 Every reboot loaded the same bad file again, so the machine crashed repeatedly during startup.
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-18,12,270-->
 
 Why does an iPhone use multiple operating systems instead of letting iOS handle everything?
 ??
@@ -425,7 +425,7 @@ Why might a server prioritize throughput over latency?
 A server may need to process work for many users simultaneously.
 High throughput means completing a large amount of total work, while low latency means making an individual operation finish quickly.
 A large server may therefore prioritize total system throughput rather than making one user's operation as fast as possible.
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-17,11,270-->
 
 Why can a server need much higher uptime than a personal computer?
 ??
@@ -475,32 +475,32 @@ How does process isolation work?
 A process gets its own private memory space and a fair share of CPU time.
 However, processes still share the host OS kernel and file system.
 It has very low overhead.
-<!--SR:!2026-09-26,4,270-->
+<!--SR:!2026-10-22,16,290-->
 
 How does container isolation differ from process isolation?
 ??
 A container provides an isolated process group with its own identity, resource limits, and view of the file system.
 However, containers still share the host OS kernel.
 Examples include Docker and Kubernetes.
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-16,10,270-->
 
 How does virtual-machine isolation differ from container isolation?
 ??
 A VM provides a fully simulated computer with its own independent operating system.
 The VM still shares the underlying physical hardware through a hypervisor.
 VM isolation is stronger but has greater overhead because a complete OS must run inside the VM.
-<!--SR:!2026-09-26,4,270-->
+<!--SR:!2026-10-22,16,290-->
 
 What is the isolation hierarchy from weakest to strongest?
 ??
 Process → Container → Virtual Machine
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-18,12,270-->
 
 What must a complete isolation boundary encapsulate?
 ??
 Memory, CPU, files, and identity.
 If even one of these vectors is not properly isolated, a fault or malicious actor may be able to compromise shared infrastructure.
-<!--SR:!2026-09-26,4,270-->
+<!--SR:!2026-10-08,2,250-->
 
 What is the fundamental trade-off between DRAM and SRAM?
 ??
@@ -512,7 +512,7 @@ How does DRAM store data, and why does it need refreshing?
 ??
 DRAM stores data as electrical charge in a capacitor.
 The capacitor naturally loses charge, so the memory controller must periodically refresh it to preserve the stored data.
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-17,11,270-->
 
 How does SRAM store data, and why doesn't it require refreshing?
 ??
@@ -530,7 +530,7 @@ What is the difference between exit() and _exit()?
 ??
 exit() is a C standard library function that performs normal termination and flushes open C streams.
 _exit() is a low-level system call that terminates the process immediately without performing standard-library cleanup or flushing user-level stdio buffers.
-<!--SR:!2026-09-24,1,210-->
+<!--SR:!2026-10-09,3,230-->
 
 Why does printf("Hey"); exit(1); print "Hey"?
 ??
@@ -576,13 +576,13 @@ Why does write() output survive a process crash?
 write() is a system call.
 Once the kernel receives the bytes, they are no longer dependent on the process's user-space stdio buffer.
 The process can subsequently crash without undoing the already-issued write.
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-17,11,270-->
 
 Why can stdout and stderr behave differently when a program crashes?
 ??
 stdout is normally buffered by the C library, while stderr is normally unbuffered.
 Therefore output sent to stdout may still be sitting in a user-space buffer when the program crashes, while stderr output is normally passed to the kernel immediately.
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-16,10,270-->
 
 Why is stderr useful for debugging messages?
 ??
@@ -602,4 +602,4 @@ What happens in `./test2 > out2.txt` when test2 uses write() and then crashes?
 The shell redirects file descriptor 1 (stdout) to out2.txt.
 write(1, "hello", 5) immediately sends the bytes to the kernel.
 The kernel performs the write to the file, so "hello" remains in out2.txt even though the process crashes afterward.
-<!--SR:!2026-09-26,3,250-->
+<!--SR:!2026-10-16,10,270-->

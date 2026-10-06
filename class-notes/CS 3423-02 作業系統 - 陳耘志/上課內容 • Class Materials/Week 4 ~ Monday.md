@@ -11,30 +11,28 @@ tags:
 > 
 > The key mechanisms are:
 > 
-> - **User mode / Kernel mode**
+> - **User mode / Kernel mode** → protection
 >     
-> - **System calls**
+> - **Virtual address spaces** → memory isolation
 >     
-> - **Exceptions**
+> - **System calls** → controlled requests to the kernel
 >     
-> - **Interrupts**
+> - **Exceptions** → controlled transfer of execution to the kernel
 >     
-> - **Timer interrupts**
+> - **Timer interrupts** → prevent one process from monopolizing the CPU
 >     
-> - **Context switches**
->     
-> - **Virtual address spaces**
+> - **Context switches** → switch between processes
 >     
 
 ---
 
 # 1. Fault Isolation & Protection
 
-The OS treats every process as potentially **buggy or malicious**.
+The OS treats **every process as potentially buggy or malicious**.
 
 A process should not be able to:
 
-- Access another process's memory
+- Read/write another process's memory
     
 - Access kernel memory
     
@@ -46,23 +44,27 @@ A process should not be able to:
     
 - Change page tables
     
-- Run forever without giving other processes CPU time
+- Keep the CPU forever
     
 
-### Why hardware is necessary
+The OS must ensure that a failure in one process does not bring down the entire system.
 
-Software cannot protect itself reliably.
+## Why hardware is necessary
 
-A malicious program could execute a privileged instruction **before any checking code gets a chance to run**.
+Software alone cannot enforce protection.
 
-Therefore, the **CPU hardware** enforces protection using:
+A malicious program could execute a privileged instruction **before another program's checking code gets a chance to run**.
 
-- Execution modes
+Therefore, protection requires **hardware support**:
+
+- CPU execution modes
     
 - Memory permissions
     
 - Privileged instructions
     
+
+> **Hardware enforces the boundary between untrusted programs and the kernel.**
 
 ---
 
@@ -72,11 +74,11 @@ Modern CPUs have at least two execution modes.
 
 ||User Mode|Kernel Mode|
 |---|---|---|
-|Code|Untrusted application|Trusted OS/kernel|
-|Instructions|Limited|All|
-|Memory|User memory|All permitted memory|
+|Code|Untrusted applications|Trusted kernel|
+|Instructions|Limited|Privileged instructions allowed|
+|Memory|User memory|Kernel + user memory|
 |I/O devices|❌|✅|
-|Privileged instructions|❌|✅|
+|Privileged operations|❌|✅|
 
 The CPU maintains a **mode bit**:
 
@@ -85,21 +87,19 @@ mode = 0 → User mode
 mode = 1 → Kernel mode
 ```
 
-A user program **cannot directly change the mode bit**.
+A user program **cannot directly modify the mode bit**. The hardware changes it during controlled entry into the kernel and restores it when returning.
 
-The hardware changes it when entering the kernel and restores it when returning.
-
-### User → Kernel
+## User → Kernel
 
 ```
 User program
      │
-     │ system call / exception / interrupt
+     │ system call / fault / interrupt
      ▼
 Kernel mode
 ```
 
-### Kernel → User
+## Kernel → User
 
 ```
 Kernel
@@ -109,11 +109,48 @@ Kernel
 User mode
 ```
 
-### Important
+### What user mode prevents
 
-> **Root ≠ Kernel mode**
+A user program cannot directly:
 
-A root process still normally runs in **user mode**. Root has extensive OS-level permissions, but it does not directly become kernel code.
+- Access hardware
+    
+- Stop the CPU
+    
+- Disable interrupts
+    
+- Change page tables
+    
+- Install the trap table
+    
+- Access kernel-only memory
+    
+
+If it attempts a privileged operation, the CPU raises an exception instead of executing it.
+
+---
+
+## ⚠️ Root ≠ Kernel Mode
+
+This is an important quiz question.
+
+**Root** is a user identity (`UID 0`).
+
+**Kernel mode** is a CPU privilege state.
+
+Therefore:
+
+```
+root process
+     ↓
+still runs in user mode
+     ↓
+must use system calls
+     ↓
+cannot directly execute privileged instructions
+```
+
+Root has very powerful **permissions**, but it does not automatically become kernel code.
 
 ---
 
@@ -121,54 +158,87 @@ A root process still normally runs in **user mode**. Root has extensive OS-level
 
 Each process gets its own **private virtual address space**.
 
-Simplified layout:
+Simplified:
 
 ```
 High addresses
-┌──────────────────┐
-│      Stack ↓     │
-│                  │
-│       Free       │
-│                  │
-│      Heap ↑      │
-├──────────────────┤
-│       Code       │
-├──────────────────┤
-│   Kernel space   │
-└──────────────────┘
+┌────────────────────┐
+│      Stack ↓       │
+│                    │
+│       Free         │
+│                    │
+│      Heap ↑        │
+├────────────────────┤
+│       Code         │
+├────────────────────┤
+│   Kernel mapping   │
+└────────────────────┘
 Low addresses
 ```
 
-### Main regions
+## Main regions
 
-- **Code** — program instructions
+### Code
+
+Program instructions.
+
+### Heap
+
+Memory allocated with:
+
+```
+malloc()
+new
+```
+
+Grows **upward**.
+
+### Stack
+
+Contains function-call frames:
+
+- Local variables
     
-- **Heap** — memory from `malloc()` / `new`
+- Arguments
     
-    - grows upward
-        
-- **Stack** — function calls
-    
-    - local variables
-        
-    - arguments
-        
-    - return addresses
-        
-    - grows downward
-        
-- **Kernel mapping** — kernel code/data and kernel stack
+- Return addresses
     
 
-### Virtual addresses
+Grows **downward**.
 
-Every address a program sees is a **virtual address**.
+The stack pointer points to the current stack frame.
 
-The OS + hardware translate virtual addresses to physical memory.
+---
+
+## Virtual addresses
+
+Every address visible to a program is a **virtual address**.
+
+```
+Program
+   │
+   │ virtual address
+   ▼
+MMU / page tables
+   │
+   ▼
+Physical memory
+```
+
+This gives each process the illusion that it owns its own memory.
+
+It prevents:
+
+```
+Process A
+    ✗
+    ↓
+Process B's memory
+```
 
 ### ASLR
 
-**Address Space Layout Randomization (ASLR)** randomizes the locations of memory regions between executions.
+**Address Space Layout Randomization** changes virtual memory locations between executions.
 
 Purpose:
 
@@ -176,21 +246,66 @@ Purpose:
 
 ---
 
-# 4. Function Call vs System Call
+# 4. The Kernel Mapping
+
+The upper part of every process's address space contains a mapping of the kernel.
+
+```
+Process A                  Process B
+
+┌─────────────┐            ┌─────────────┐
+│   Kernel    │            │   Kernel    │
+│   mapping   │            │   mapping   │
+├─────────────┤            ├─────────────┤
+│   Stack A   │            │   Stack B   │
+│             │            │             │
+│   Heap A    │            │   Heap B    │
+│   Code A    │            │   Code B    │
+└─────────────┘            └─────────────┘
+```
+
+The kernel code/data mapping is shared, but **each process has its own kernel stack**.
+
+## Why map the kernel into every address space?
+
+**Speed.**
+
+When a system call or interrupt occurs, the CPU can enter the kernel without first switching to a completely separate address space.
+
+## Why does each process need its own kernel stack?
+
+The kernel may be working on multiple processes at the same time.
+
+For example:
+
+```
+Process A → sleeping inside read()
+Process B → currently running
+```
+
+A's kernel state must remain intact while B runs.
+
+Therefore:
+
+> **Each process has its own kernel stack so its kernel state cannot overwrite another process's state.**
+
+---
+
+# 5. Function Call vs System Call
 
 ## Normal function call
 
-A function call stays entirely in **user mode**.
+A normal function call stays in:
+
+> **User mode**
+
+Example:
 
 ```
-User program
-     │
-     │ function call
-     ▼
-User function
+foo();
 ```
 
-A function call mainly changes:
+It mainly changes:
 
 - Program counter
     
@@ -206,11 +321,19 @@ It does **not** change:
 - Process
     
 
+```
+User mode
+   │
+   │ function call
+   ▼
+Another user function
+```
+
 ---
 
 ## System call
 
-A system call lets a user program request a service from the kernel.
+A system call allows a user program to ask the kernel to perform a service.
 
 Example:
 
@@ -218,27 +341,69 @@ Example:
 write(1, "meow", 4);
 ```
 
-The program cannot directly talk to the screen because it is an I/O device.
+A user program cannot directly talk to the screen because the screen is an I/O device.
 
 Instead:
 
 ```
 User program
      │
-     │ system call / trap
+     │ system call
      ▼
 Kernel
      │
-     │ return-from-trap
+     │ return
      ▼
 User program
 ```
 
-A system call therefore involves a **user → kernel mode transition**.
+A system call therefore requires a **privilege transition**.
 
 ---
 
-# 5. System Call Steps
+# 6. Why Can't We Just Call a Kernel Function?
+
+The kernel's code is mapped into the process's address space, so why not:
+
+```
+sys_write(...);
+```
+
+like an ordinary function?
+
+Because a normal function call does **not** change the CPU mode.
+
+```
+function call:
+
+PC changes
+mode stays = user
+```
+
+The kernel function requires:
+
+```
+mode = kernel
+```
+
+Only the **hardware** can make this transition.
+
+Therefore the CPU provides a special instruction:
+
+> **trap / syscall instruction**
+
+It:
+
+1. Switches to kernel mode
+    
+2. Jumps to a controlled kernel entry point
+    
+
+The program provides a **system call number** telling the kernel which service it wants.
+
+---
+
+# 7. System Call Steps
 
 Example:
 
@@ -246,82 +411,118 @@ Example:
 write(1, "meow", 4);
 ```
 
-The system call uses registers to pass:
+Registers contain the syscall number and arguments:
 
 ```
-R1 → system call number
-R2 → first argument
-R3 → second argument
-R4 → third argument
+R1 = syscall number
+R2 = argument 1
+R3 = argument 2
+R4 = argument 3
 ```
 
 For `write`:
 
 ```
-R1 = 1          syscall number
+R1 = 1          write syscall
 R2 = 1          stdout
 R3 = address    pointer to "meow"
 R4 = 4          number of bytes
 ```
 
-### Five steps
+The important point:
 
-1. **Program**
+> `R3` contains the **address** of `"meow"`, not the string itself.
+
+## Five steps
+
+### 1. Program
+
+libc:
+
+- Places syscall number in a register
     
-    - libc wrapper puts syscall number + arguments in registers
-        
-    - Executes `syscall` / trap instruction
-        
-2. **Hardware**
+- Places arguments in registers
     
-    - Saves registers and program counter
-        
-    - Switches to kernel mode
-        
-    - Jumps to kernel entry point
-        
-3. **Kernel**
+- Executes the trap/syscall instruction
     
-    - Reads syscall number
-        
-    - Validates arguments
-        
-    - Performs privileged operation
-        
-4. **Hardware**
+
+### 2. Hardware
+
+CPU:
+
+- Saves registers and program counter
     
-    - `return-from-trap`
-        
-    - Restores registers
-        
-    - Switches back to user mode
-        
-5. **Program**
+- Switches to kernel mode
     
-    - Checks return value
-        
-    - Failure may result in `errno`
-        
+- Jumps to the kernel entry point
+    
+
+### 3. Kernel
+
+Kernel:
+
+- Reads syscall number
+    
+- Validates arguments
+    
+- Performs privileged work
+    
+
+### 4. Hardware
+
+On return:
+
+- Restores saved registers
+    
+- Places result in the return register
+    
+- Switches back to user mode
+    
+- Continues after the syscall
+    
+
+### 5. Program
+
+libc/program:
+
+- Checks the return value
+    
+- Converts failure into `-1` + `errno`
+    
+
+  
 
 ---
 
-# 6. System Call Argument Validation
+# 8. System Call Argument Validation
 
-System calls receive **untrusted input** from user programs.
+System calls receive **untrusted input**.
 
-For example:
+Consider:
 
 ```
 write(fd, buffer, size);
 ```
 
-`buffer` is represented by a pointer.
+`buffer` is passed as a pointer.
 
-The kernel must check that the pointer refers to valid user memory.
+The kernel must verify that:
 
-Otherwise, a malicious program could give the kernel a pointer to kernel memory.
+```
+buffer ... buffer + size
+```
 
-### Important principle
+lies within valid user memory.
+
+Otherwise a malicious program could give the kernel:
+
+```
+pointer → kernel memory
+```
+
+and trick the kernel into reading or modifying protected data.
+
+Therefore:
 
 > **Every system call argument must be validated at the user/kernel boundary.**
 
@@ -336,11 +537,13 @@ This is especially important for:
 - Memory ranges
     
 
+  
+
 ---
 
-# 7. `printf()` and System Calls
+# 9. `printf()` and System Calls
 
-`printf()` is a **libc function**, not directly a kernel operation.
+`printf()` is a **libc function**, not a direct kernel operation.
 
 It can buffer output.
 
@@ -352,32 +555,47 @@ printf("meow");
 printf("meow\n");
 ```
 
-These may become **one** `**write()**` **system call** instead of three.
+may result in:
+
+```
+3 × printf()
+      ↓
+1 × write()
+      ↓
+Kernel
+```
 
 Why?
 
-> System calls are expensive compared with normal function calls, so libc can reduce the number of trips into the kernel by buffering output.
+> System calls are more expensive than normal function calls, so libc can reduce kernel transitions by buffering output.
 
 ---
 
-# 8. Four Types of CPU Exceptions
+# 10. Four Types of CPU Exceptions
 
-An **exception** is an event that interrupts the CPU's normal instruction sequence and transfers control to the kernel.
+An **exception** is an event that interrupts the CPU's normal instruction sequence and transfers control to a kernel handler.
 
-There are four types:
+The four categories are based on:
 
-|Type|Who/what causes it?|What happens?|
+1. **Who caused it?**
+    
+2. **What happens afterward?**
+    
+
+|Type|Cause|Afterward|
 |---|---|---|
-|**Trap**|Program intentionally|Continue at next instruction|
-|**Fault**|Current instruction goes wrong|Fix + retry, or kill process|
+|**Trap**|Program intentionally asks|Continue at next instruction|
+|**Fault**|Instruction goes wrong|Fix + retry OR kill process|
 |**Interrupt**|External hardware|Handle event, continue|
 |**Abort**|Serious hardware/system failure|Usually kernel panic|
+
+  
 
 ---
 
 ## Trap
 
-The program intentionally asks to enter the kernel.
+Program intentionally requests kernel attention.
 
 Examples:
 
@@ -393,14 +611,18 @@ Trap
   ↓
 Kernel
   ↓
-Continue at next instruction
+Continue
 ```
+
+### Key idea
+
+> **Trap = intentional**
 
 ---
 
 ## Fault
 
-An instruction encounters a problem.
+The current instruction causes a problem.
 
 Examples:
 
@@ -408,40 +630,48 @@ Examples:
     
 - Divide by zero
     
-- Invalid memory access
+- Invalid address
     
 - Privileged instruction in user mode
     
 
-A fault can be recoverable.
+A fault can be:
 
-### Page fault
-
-The first access to newly allocated memory may cause a page fault.
-
-The kernel can:
+### Recoverable
 
 ```
-page fault
+Page fault
     ↓
-kernel creates/maps page
+Kernel fixes mapping
     ↓
-retry instruction
+Retry instruction
     ↓
-program continues
+Continue
 ```
 
-So:
+### Fatal
 
-> **A page fault is not necessarily an error.**
+```
+Invalid address
+    ↓
+Kernel cannot fix it
+    ↓
+SIGSEGV
+    ↓
+Process terminates
+```
 
-A bad address that cannot be fixed can instead result in a **Segmentation fault**.
+Therefore:
+
+> **A fault does NOT automatically mean the process dies.**
+
+A page fault can be completely normal.
 
 ---
 
 ## Interrupt
 
-An interrupt comes from the **outside world**, not the currently executing program.
+Caused by something **outside the currently running program**.
 
 Examples:
 
@@ -455,57 +685,86 @@ Examples:
     
 
 ```
-Hardware event
-      ↓
+Hardware
+   ↓
 Interrupt
-      ↓
+   ↓
 Kernel handler
-      ↓
-Continue execution
+   ↓
+Continue / schedule
 ```
+
+### Key idea
+
+> **Interrupt = external event**
 
 ---
 
 ## Abort
 
-A severe hardware/system failure where the system cannot safely continue.
+A serious failure where the system cannot safely continue.
 
-Example:
+Examples:
 
 - Uncorrectable memory error
     
-- Corrupted kernel structure
+- Machine check
+    
+- Corrupted kernel state
     
 
 Usually:
 
 ```
-Abort → Kernel panic
+Abort
+  ↓
+Kernel panic
+```
+
+### Key idea
+
+> **Abort = catastrophic**
+
+---
+
+## Easy way to remember
+
+```
+TRAP      → program intentionally asks
+FAULT     → instruction goes wrong
+INTERRUPT → outside hardware asks
+ABORT     → system is seriously broken
 ```
 
 ---
 
-# 9. Time Sharing
+# 11. Time Sharing
 
-A CPU can only execute one process at a time on a single core.
+A single CPU core can execute only **one process at a time**.
 
-The OS creates the illusion of simultaneous execution by rapidly switching between processes.
+The OS creates the illusion of concurrency by switching rapidly:
 
 ```
-Process A → Process B → Process C → Process A → ...
+A → B → C → A → B → C → ...
 ```
 
 This is **time sharing**.
 
+The mechanism is called:
+
+> **Limited direct execution**
+
+The program runs directly on the CPU for speed, but the OS needs mechanisms to regain control.
+
 ---
 
-# 10. Cooperative vs Preemptive Scheduling
+# 12. Cooperative vs Preemptive Scheduling
 
 ## Cooperative scheduling
 
-The process must voluntarily give up the CPU.
+The process voluntarily gives up the CPU.
 
-For example:
+Example:
 
 ```
 yield();
@@ -522,13 +781,15 @@ If the process never yields:
 
 ```
 Process runs forever
-       ↓
+        ↓
 Kernel cannot regain CPU
-       ↓
+        ↓
 Other processes cannot run
-       ↓
+        ↓
 System hangs
 ```
+
+This is why cooperative scheduling is unsafe.
 
 ---
 
@@ -539,26 +800,26 @@ Modern systems use a **hardware timer**.
 The timer periodically generates an interrupt.
 
 ```
-Timer
-  ↓
-Timer interrupt
-  ↓
-Kernel regains control
-  ↓
-Scheduler chooses process
+Timer tick
+    ↓
+Interrupt
+    ↓
+Kernel regains CPU
+    ↓
+Scheduler decides what to run
 ```
 
-The process cannot prevent the timer interrupt.
+The process cannot prevent the hardware timer from interrupting it.
 
-This allows the OS to enforce CPU sharing.
+Linux commonly uses around **250 or 1000 timer ticks per second**.
 
 ---
 
-# 11. Context Switch
+# 13. Context Switch
 
-A **context switch** switches the CPU from one process to another.
+A **context switch** changes the process running on the CPU.
 
-The kernel needs to save the current process's CPU state:
+To stop a process and resume it later, the kernel saves its **context**:
 
 - Registers
     
@@ -569,13 +830,11 @@ The kernel needs to save the current process's CPU state:
 - Other CPU state
     
 
-This state is called the **context**.
-
-It is stored in the process's:
+The context is stored in the process's:
 
 > **PCB — Process Control Block**
 
-### Context switch
+## Context switch
 
 ```
 Process A
@@ -583,44 +842,43 @@ Process A
    │ save context
    ▼
 PCB of A
-   │
-   │ load context
-   ▼
+
 PCB of B
    │
+   │ load context
    ▼
 Process B
 ```
 
-When A runs again, its saved context is restored.
+When A runs again, its saved state is restored.
 
 Therefore:
 
-> Process A resumes exactly where it stopped.
+> **A resumes exactly where it stopped.**
 
 ---
 
-# 12. Mode Switch vs Context Switch
+# 14. Mode Switch vs Context Switch
 
-These are **different concepts**.
+This distinction is **very important**.
 
-### Mode switch
+## Mode switch
 
-Changes privilege level:
+Changes **privilege level**:
 
 ```
-User mode
-    ↓
-Kernel mode
-    ↓
-User mode
+User
+ ↓
+Kernel
+ ↓
+User
 ```
 
 The same process may continue running.
 
-### Context switch
+## Context switch
 
-Changes which process is running:
+Changes **which process is running**:
 
 ```
 Process A
@@ -628,13 +886,61 @@ Process A
 Process B
 ```
 
-A context switch requires saving/loading process state.
+### Therefore:
 
-> A system call causes a **mode switch**, but it does not necessarily cause a **context switch**.
+```
+Mode switch ≠ Context switch
+```
+
+Examples:
+
+### `getpid()`
+
+```
+Process A
+  ↓
+user → kernel       ← mode switch
+  ↓
+kernel → user
+  ↓
+Process A
+```
+
+**No context switch.**
+
+### `read()` with no data
+
+```
+Process A
+  ↓
+user → kernel
+  ↓
+A sleeps
+  ↓
+Process B runs
+```
+
+**Context switch occurs.**
+
+### Timer tick with only one ready process
+
+```
+Process A
+  ↓
+timer interrupt
+  ↓
+kernel
+  ↓
+Process A
+```
+
+**No context switch.**
+
+> A timer tick **may** cause a context switch, but does not always cause one.
 
 ---
 
-# 13. Fast vs Slow System Calls
+# 15. Fast vs Slow System Calls
 
 ## Fast system call
 
@@ -662,17 +968,17 @@ The process does not need to sleep.
 
 ## Slow system call
 
-The process needs to wait for an external event.
+The kernel must wait for an external event.
 
 Examples:
 
 ```
-read()   // keyboard / disk / network
-write()  // full pipe
-wait()   // child hasn't exited
+read()    // keyboard / disk / network
+write()   // full pipe
+wait()    // child hasn't exited
 ```
 
-Instead of wasting CPU while waiting:
+Instead of wasting CPU:
 
 ```
 Process A
@@ -684,25 +990,35 @@ sleep
 Process B runs
 ```
 
-When the event happens:
+When the event occurs:
 
 ```
 External event
-     ↓
+      ↓
 Interrupt
-     ↓
-Wake Process A
-     ↓
-Process A becomes runnable
+      ↓
+Wake A
+      ↓
+A becomes runnable
 ```
 
 A sleeping process consumes **no CPU time**.
 
+### Important distinction
+
+A slow syscall does not necessarily mean:
+
+> "The system call itself is computationally slow."
+
+It means:
+
+> **The process may have to wait for an external event.**
+
 ---
 
-# 14. vDSO
+# 16. vDSO
 
-A system call has overhead because it requires a user/kernel transition.
+System calls have overhead because they require:
 
 ```
 User
@@ -716,60 +1032,88 @@ return
 User
 ```
 
-Some operations don't need privileged kernel work every time.
+For some operations, this transition is unnecessary.
 
-Linux uses the **vDSO (virtual dynamic shared object)** for selected operations such as time functions.
+Linux provides the:
 
-Instead of:
+> **vDSO — virtual dynamic shared object**
 
-```
-gettimeofday()
-      ↓
-kernel
-```
-
-it can do:
+For certain time-related functions, libc can use the vDSO instead of trapping into the kernel.
 
 ```
 gettimeofday()
       ↓
-vDSO
+     vDSO
       ↓
-shared read-only data
+read shared kernel-maintained data
 ```
 
-No trap or mode switch is required.
+No:
 
-### Key idea
+- Trap
+    
+- Mode switch
+    
+- Kernel entry
+    
 
-> **vDSO avoids the user/kernel transition for selected operations.**
+Therefore it behaves like a normal function call.
 
-It cannot replace every system call because many operations actually require privileged kernel work.
+The worksheet gives an example where `gettimeofday()` took about **961 ns** through a real syscall versus **128 ns** through the vDSO.
+
+## Why can't every syscall use vDSO?
+
+Because many system calls require actual kernel work.
+
+For example, `read()` may:
+
+- Access an I/O device
+    
+- Block
+    
+- Use the process's kernel-managed file descriptor table
+    
+
+So:
+
+> **vDSO works only for operations that can be answered from suitable kernel-maintained data without privileged work.**
 
 ---
 
-# 15. Two System Programming Habits
+# 17. Two System Programming Habits
 
-## 1. Platform providers
+## Habit 1 — If you provide a service
 
 > **Validate every input from untrusted code.**
 
-Examples:
+Example:
 
-- Kernel validates syscall arguments
+```
+Kernel
+  ↑
+untrusted syscall arguments
+```
+
+The kernel must not assume the caller is correct.
+
+This applies to:
+
+- Kernels
     
-- Browser sandbox validates/restricts web code
+- Browsers
     
-- Database validates user input
+- Databases
+    
+- Other system software
     
 
 ---
 
-## 2. Platform users
+## Habit 2 — If you use a service
 
 > **Assume every system call can fail.**
 
-Example:
+For example:
 
 ```
 int fd = open("config.txt", O_RDONLY);
@@ -788,18 +1132,62 @@ Common `errno` values:
 |`EFAULT`|Bad address|
 |`ENOMEM`|Cannot allocate memory|
 
+  
+
 ---
 
-# 16. Key Comparisons
+# 18. Why Error Checking Matters
 
-## Function call vs System call
+Consider:
+
+```
+int fd = open("config.txt", O_RDONLY);
+read(fd, buf, 100);
+printf("config: %s\n", buf);
+```
+
+If the file doesn't exist:
+
+```
+open()
+ ↓
+-1 + errno = ENOENT
+ ↓
+ignored ❌
+
+read(-1, ...)
+ ↓
+fails with EBADF
+ ↓
+ignored ❌
+
+printf(buf)
+ ↓
+buf contains invalid/uninitialized data
+ ↓
+undefined behavior / possible crash
+```
+
+The lesson:
+
+> **Check the return value of every system call before using its result.**
+
+Also:
+
+> For `read()`, use its return value to know how many bytes in the buffer are actually valid.
+
+---
+
+# 19. Key Comparisons
+
+## Function Call vs System Call
 
 |Function call|System call|
 |---|---|
 |User → user|User → kernel → user|
-|Stays in user mode|Switches to kernel mode|
+|Stays in user mode|Enters kernel mode|
 |Uses user stack|Kernel uses kernel stack|
-|Relatively cheap|More expensive|
+|Cheap|More expensive|
 |Program chooses function address|Controlled kernel entry point|
 
 ---
@@ -807,81 +1195,255 @@ Common `errno` values:
 ## Trap vs Fault vs Interrupt vs Abort
 
 ```
-Trap
+TRAP
 → Program intentionally asks
 
-Fault
-→ Instruction causes a problem
+FAULT
+→ Current instruction causes a problem
 
-Interrupt
+INTERRUPT
 → External hardware event
 
-Abort
+ABORT
 → Serious unrecoverable failure
 ```
 
 ---
 
-## Fast vs Slow syscall
+## Fast vs Slow System Call
 
 ```
-Fast
+FAST
 → Kernel can answer immediately
-→ Process keeps running
+→ Process continues
 
-Slow
-→ Must wait for an event
+SLOW
+→ Must wait for external event
 → Process sleeps
 → Another process runs
-→ Event wakes the sleeping process
+→ Event wakes it
+→ Process becomes runnable
 ```
 
 ---
 
-## Mode switch vs Context switch
+## Mode Switch vs Context Switch
 
 ```
-Mode switch
+MODE SWITCH
 → Changes privilege level
 → User ↔ Kernel
+→ Same process may continue
 
-Context switch
+CONTEXT SWITCH
 → Changes process
 → Process A ↔ Process B
+→ Saves/loads process context
 ```
 
 ---
 
+# 20. Important Quiz Scenarios
+
+These are worth being able to answer immediately.
+
+### `getpid()`
+
+**Mode switch?** Yes.  
+**Context switch?** No.
+
+```
+A → kernel → A
+```
+
 ---
 
-# One-Minute Mental Model
+### `read()` from keyboard with no key available
 
-The entire worksheet can be reduced to this:
+**Mode switch?** Yes.  
+**Context switch?** Usually yes.
 
 ```
-                 HARDWARE
-                    │
-        ┌───────────┴───────────┐
-        │                       │
-   User Mode                Kernel Mode
-        │                       │
-   Applications          Operating System
-        │                       │
-        │ syscall               │
-        └──────────→────────────┘
-        ←──────── return ────────
-        
-        Timer interrupt
-              ↓
-          Kernel gets CPU
-              ↓
-        Scheduler decides
-              ↓
-       Context switch
-              ↓
-        Another process
+A → kernel → A sleeps → B runs
 ```
 
-**The big picture:**
+Later:
 
-> The CPU runs user programs directly for speed, but hardware prevents them from doing dangerous things. When the OS needs to intervene, a system call, fault, interrupt, or other exception transfers control to the kernel. Timer interrupts let the kernel regain control periodically, and context switches let it share the CPU between processes.**
+```
+keyboard interrupt
+      ↓
+wake A
+      ↓
+A becomes runnable
+```
+
+---
+
+### Timer tick with only one runnable process
+
+**Interrupt?** Yes.  
+**Context switch?** No.
+
+```
+A → kernel → A
+```
+
+---
+
+### Timer tick with another runnable process
+
+**Interrupt?** Yes.  
+**Context switch?** May happen.
+
+```
+A → kernel → B
+```
+
+---
+
+### First access to a newly allocated page
+
+**Exception?** Fault.  
+**Process killed?** No, if the kernel can handle it.
+
+```
+page fault
+ → map page
+ → retry instruction
+ → continue
+```
+
+---
+
+### `while(1){}`
+
+**Cooperative scheduling:** can hang the machine.
+
+**Preemptive scheduling:** timer interrupts periodically return control to the kernel.
+
+---
+
+# 21. Quiz Checklist
+
+You should be able to explain **without looking at the notes**:
+
+- Why the kernel treats every process as potentially buggy/malicious
+    
+- Why protection requires hardware
+    
+- User mode vs kernel mode
+    
+- What privileged operations user mode cannot perform
+    
+- Why root is still user mode
+    
+- Process virtual address space
+    
+- Stack grows down / heap grows up
+    
+- Why addresses are virtual
+    
+- What ASLR does
+    
+- Why the kernel is mapped into every address space
+    
+- Why every process needs its own kernel stack
+    
+- Function call vs system call
+    
+- Why a normal function call cannot directly call the kernel
+    
+- The five steps of a system call
+    
+- How syscall arguments are passed
+    
+- Why syscall arguments must be validated
+    
+- Why `printf()` may result in one `write()`
+    
+- The four types of exceptions
+    
+- Trap vs fault vs interrupt vs abort
+    
+- Why a page fault can be normal
+    
+- Why cooperative scheduling fails
+    
+- How timer interrupts enable preemptive scheduling
+    
+- What a context switch saves
+    
+- Where the context is stored
+    
+- Mode switch vs context switch
+    
+- Whether a timer tick always causes a context switch
+    
+- Fast vs slow system calls
+    
+- What happens when a process blocks
+    
+- How a blocked process becomes runnable again
+    
+- How the vDSO avoids a trap
+    
+- Why `read()` cannot simply use the vDSO
+    
+- Why system calls can fail
+    
+- Why return values must be checked
+    
+
+---
+
+# 22. One-Minute Mental Model
+
+```
+                    HARDWARE
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+      USER MODE                 KERNEL MODE
+          │                         │
+    Applications              Operating System
+          │                         │
+          │ system call             │
+          ├──────────────→──────────┤
+          │                         │
+          │      mode switch        │
+          │                         │
+          ├────────────←────────────┤
+          │                         │
+          ▼                         │
+      Application                  │
+                                    │
+                         timer interrupt
+                                    │
+                                    ▼
+                               Scheduler
+                                    │
+                             context switch
+                                    │
+                                    ▼
+                              Another process
+```
+
+### The whole worksheet in one chain
+
+> **Programs run directly in user mode for speed.**
+
+> **Hardware prevents them from doing dangerous things.**
+
+> **System calls provide a controlled way to request kernel services.**
+
+> **Exceptions and interrupts give the kernel a way to regain control.**
+
+> **Timer interrupts prevent a process from monopolizing the CPU.**
+
+> **Context switches let the kernel move the CPU from one process to another.**
+
+> **Virtual address spaces isolate processes from each other.**
+
+> **Slow system calls put waiting processes to sleep instead of wasting CPU.**
+
+> **vDSO avoids the kernel transition for a small set of operations where it is safe to do so.**

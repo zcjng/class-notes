@@ -1,15 +1,13 @@
 ### 可連結之網頁位址 相關網頁(Personal Website)
 
-### https://sys-nthu.github.io/os25-fall 
+### https://os26.sys-nthu.tw/
 
 ___
 
 # Schedules and Topics
 (Refer to the link above if necessary)
 
-<iframe src="https://sys-nthu.github.io/os25-fall " width="100%" height="500px"></iframe> 
-
-___
+<iframe src="https://os26.sys-nthu.tw/ width"="100%" height="500px"></iframe> 
 
 This course explores how modern operating systems work. You will learn how an operating system manages hardware resources, and how it ensures secure and fair resource sharing among processes. We will cover process management, system calls, virtual memory, storage, scheduling, virtualization, and modern system architectures. You learn by doing. You will acquire the skills to analyze, debug, and improve the complex systems you use every day. You will run virtual machines and containers in a miniR09;cloud, trace system calls, and write programs that communicate with each other through the interfaces the operating system offers. You will form a team, maintain shared notes, and explore together. The course follows a flippedR09;classroom format. You watch videos and read textbook articles to learn the basics at home, then come to class to test your knowledge and interact with others.
 

@@ -1527,7 +1527,7 @@ The amount of CPU time spent executing kernel code on behalf of the program.
 What is real time?
 ??
 The actual elapsed wall-clock time from when the program starts until it finishes.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-09,2,230-->
 
 Why can real time be greater than user time plus system time?
 ??
@@ -1592,7 +1592,7 @@ Address Space Layout Randomization randomizes important memory locations so that
 Why is the kernel mapped into every process's address space?
 ??
 It allows the kernel to access its own code and data when handling a system call, exception, or interrupt without switching to a completely different address space.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-09,2,230-->
 
 Does mapping the kernel into a process's address space mean the process can access the kernel?
 ??
@@ -1602,7 +1602,7 @@ No. The kernel's memory is protected so user-mode code cannot access it directly
 Does every process have its own kernel stack?
 ??
 Yes. Each process has a separate kernel stack used when that process enters the kernel.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-09,2,230-->
 
 What is a normal function call?
 ??
@@ -1744,7 +1744,7 @@ The operating system can forcibly interrupt a running process and take control o
 What mechanism allows preemptive scheduling?
 ??
 A hardware timer periodically generates interrupts, allowing the kernel to regain control of the CPU.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-07,0,210-->
 
 What happens when a timer interrupt occurs?
 ??
@@ -1789,7 +1789,7 @@ A context switch involves changing the running process, while mode changes are s
 Does every timer interrupt cause a context switch?
 ??
 No. A timer interrupt gives the kernel an opportunity to schedule, but the scheduler may decide to continue running the same process.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-09,2,230-->
 
 What is a fast system call?
 ??
@@ -1809,7 +1809,7 @@ The process can sleep or block, allowing the scheduler to run another process in
 How does a blocked process become runnable again?
 ??
 The external event occurs, usually causing a hardware interrupt. The kernel handles the event and wakes the waiting process.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-09,2,230-->
 
 What happens when `getpid()` is called?
 ??

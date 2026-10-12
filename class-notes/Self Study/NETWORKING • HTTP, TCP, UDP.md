@@ -11,13 +11,13 @@ Sending data over the internet is like sending a multi-page book through the mai
 
 ## 📦 The Postal Analogy Breakdown
 
-| Term | What it means | The Postal Analogy |
-| :--- | :--- | :--- |
-| **HTTP** | **HyperText Transfer Protocol**. The rules and formatting for web data. | **The Language of the Letter.** (Writing "Dear Server, please give me the homepage," in a format it understands.) |
-| **Packets** | **Small chunks of data**. Large files (like a webpage) are chopped into tiny pieces to travel across the internet efficiently. | **The Pages of the Book.** You can't fit a whole book in one small envelope, so you tear the pages out and mail them in separate, numbered envelopes. |
-| **TCP** | **Transmission Control Protocol**. A delivery method that guarantees **100% accuracy**. It numbers packets, checks for errors, and puts them back in order. | **Registered Mail with Delivery Confirmation.** If page 3 gets lost, the post office notices, asks for a re-send, and won't give you the book until every page is there. |
-| **UDP** | **User Datagram Protocol**. A delivery method that favors **speed over accuracy**. It shoots packets out fast without checking if they arrived. | **Regular Mail.** The mailman throws the pages at your door. If page 5 is missing, he doesn't care. Great for live streams or gaming; terrible for loading text/code. |
-| **Sockets** | An **IP address combined with a Port number** (e.g., `192.168.1.1:80`). It is the unique doorway connecting two specific apps. | **The Mailbox + Apartment Number.** The IP gets the mail to the correct building; the Port makes sure it goes to the right apartment (e.g., Port 80 for Web). |
+| Term        | What it means                                                                                                                                               | The Postal Analogy                                                                                                                                                       |
+| :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **HTTP**    | **HyperText Transfer Protocol**. The rules and formatting for web data.                                                                                     | **The Language of the Letter.** (Writing "Dear Server, please give me the homepage," in a format it understands.)                                                        |
+| **Packets** | **Small chunks of data**. Large files (like a webpage) are chopped into tiny pieces to travel across the internet efficiently.                              | **The Pages of the Book.** You can't fit a whole book in one small envelope, so you tear the pages out and mail them in separate, numbered envelopes.                    |
+| **TCP**     | **Transmission Control Protocol**. A delivery method that guarantees **100% accuracy**. It numbers packets, checks for errors, and puts them back in order. | **Registered Mail with Delivery Confirmation.** If page 3 gets lost, the post office notices, asks for a re-send, and won't give you the book until every page is there. |
+| **UDP**     | **User Datagram Protocol**. A delivery method that favors **speed over accuracy**. It shoots packets out fast without checking if they arrived.             | **Regular Mail.** The mailman throws the pages at your door. If page 5 is missing, he doesn't care. Great for live streams or gaming; terrible for loading text/code.    |
+| **Sockets** | An **IP address combined with a Port number** (e.g., `192.168.1.1:80`). It is the unique doorway connecting two specific apps.                              | **The Mailbox + Apartment Number.** The IP gets the mail to the correct building; the Port makes sure it goes to the right apartment (e.g., Port 80 for Web).            |
 
 ---
 

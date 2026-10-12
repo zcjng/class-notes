@@ -165,12 +165,14 @@
             "id": "c9f27479fc8a975a",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "misc/2026-2027calendar_20260716.pdf"
+                "file": "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 4 ~ Monday.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "2026-2027calendar_20260716"
+              "icon": "lucide-file",
+              "title": "Week 4 ~ Monday"
             }
           }
         ],
@@ -337,7 +339,7 @@
       "obsidian-spaced-repetition:Review flashcards": false
     }
   },
-  "active": "2c9a7ef46b7ebe5a",
+  "active": "c9f27479fc8a975a",
   "lastOpenFiles": [
     "misc/2026-2027calendar_20260716.pdf",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",

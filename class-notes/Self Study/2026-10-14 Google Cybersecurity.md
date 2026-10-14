@@ -180,6 +180,56 @@ Social engineering
 
 
 
-  
+**Advanced persistent threats** (APTs) have significant expertise accessing an organization's network without authorization
 
- 
+
+  **Insider threats** abuse their authorized access to obtain data
+Sabotage
+Corruption
+Espionage
+Unauthorized data access or leaks 
+
+
+
+Security and Risk Management
+Focuses on defining security goals, mitigating risks, ensuring compliance, and maintaining business continuity.
+
+Example: Security analysts update company policies to comply with federal regulations like HIPAA.
+
+Asset Security
+Deals with securing both digital and physical assets, including data storage, maintenance, retention, and destruction.
+
+Example: Security analysts ensure proper disposal and destruction of old equipment containing confidential information.
+
+Security Architecture and Engineering
+Aims to optimize data security through effective tools, systems, and processes.
+
+Example: Configuring firewalls to prevent attacks and maintain productivity.
+
+Communication and Network Security
+Concentrates on managing and securing physical networks and wireless communications.
+
+Example: Analyzing user behavior to identify and mitigate risks from unsecured wireless hotspots.
+
+**Identity and Access Management (IAM)**
+Focuses on securing data by ensuring users adhere to established policies for controlling physical and logical assets.
+
+• Involves validating employee identities and documenting access roles to maintain physical and digital security.
+
+**Security Assessment and Testing**
+• Involves conducting security control testing, data collection and analysis, and security audits to monitor for risks, threats, and vulnerabilities.
+
+Security analysts may perform regular audits of user permissions to ensure appropriate access levels.
+
+**Security Operations**
+Concentrates on conducting investigations and implementing preventative measures.
+
+• An example is responding to an alert about an unknown device on the internal network by following organizational policies to stop potential threats.
+
+**Software Development Security**
+Emphasizes using secure coding practices to create secure applications and services.
+
+Security analysts may advise software development teams on incorporating security practices throughout the software development lifecycle, such as password policies and user data management for new mobile apps.
+
+# Course 2 - Play it Safe
+National Institute of Standards and Technology’s (NIST) Risk Management Framework and the steps of risk management.

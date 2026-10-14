@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
+                "file": "class-notes/Self Study/2026-10-14 Google Cybersecurity.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "0-0 - Syllabus & eBook"
+              "title": "2026-10-14 Google Cybersecurity"
             }
           },
           {
@@ -167,16 +167,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 4 ~ Monday.md",
+                "file": "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 5 ~ Monday.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Week 4 ~ Monday"
+              "title": "Week 5 ~ Monday"
             }
           }
-        ],
-        "currentTab": 11
+        ]
       }
     ],
     "direction": "vertical"
@@ -339,52 +338,53 @@
       "obsidian-spaced-repetition:Review flashcards": false
     }
   },
-  "active": "c9f27479fc8a975a",
+  "active": "c2e33fba4310d335",
   "lastOpenFiles": [
-    "misc/2026-2027calendar_20260716.pdf",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
+    "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 5 ~ Monday.md",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH9_Obsidian/CH9.md",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian/CH8.md",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH7_Obsidian/CH7.md",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH6/CH6.md",
+    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 2 ~ Tuesday.md",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH5_Obsidian_with_FBD_Images/CH5.md",
+    "Physics ch5.md",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH9_Obsidian/images/Inelastic_Collision_960.png",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH9_Obsidian/images/Elastic_Collision_Return_982.png",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH9_Obsidian/images/Momentum_Vectors_926.png",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH9_Obsidian/images/Rocket_Explosion_965.png",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH9_Obsidian/images",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH9_Obsidian",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian/images/Galaxy_Orbit_845.png",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian/images/Meteoroid_Approach_856.png",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian/images/Moon_Distance_871.png",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian/images/Satellite_Altitude_859.png",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian/images/Satellite_Catchup_867.png",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian/images",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH7_Obsidian/images/Potential_Energy_730.png",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH7_Obsidian/images",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH7_Obsidian",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH6/images",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH6",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH5_Obsidian_with_FBD_Images/CH5_Obsidian/CH5.md",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH5_Obsidian_with_FBD_Images/CH5_Obsidian/images",
+    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH5_Obsidian_with_FBD_Images/CH5_Obsidian",
     "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 4 ~ Monday.md",
     "Denuvo.md",
     "class-notes/Self Study/Ports.md",
     "NTHU-related.md",
     "class-notes/Self Study/NETWORKING • HTTP, TCP, UDP.md",
     "class-notes/CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 2 ~ Tuesday.md",
     "TCM Introductory Part 1.md",
-    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md",
     "9 30.md",
     "chinese_etymology_sleep_dream.md",
     "character_laws-2.md",
     "Ccl.md",
     "Marathon.md",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Connectives.md",
-    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/Essential University Physics_ Volume 1 (4th Edition) -- Richard Wolfson -- Always learning, Fourth edition, New York, 2020 -- Pearson Education -- 9780134988559 -- f3436ce64420c3ddf455201bcbec6df2 -- Anna’s Archive.pdf",
-    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/PDFs Images Miscellaneous/11510PHYS113307.pdf",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/PDFs Images Miscellaneous/IMG_20260910_130125.jpg",
     "class-notes/Self Study/Portal 2 Web Host.md",
-    "class-notes/README.md",
-    "class-notes/Self Study",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 1 ~ Tuesday.md",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 1 ~ Thursday.md",
-    "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Wednesday.md",
-    "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 2 ~ Monday.md",
-    "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
-    "IMG_20260915_114826.jpg",
-    "IMG_20260915_114830.jpg",
-    "IMG_20260915_115537.jpg",
-    "IMG_20260915_112342.jpg",
-    "Week 2 ~ Tuesday.md",
-    "IMG_20260915_110245.jpg",
-    "IMG_20260915_110126.jpg",
-    "IMG_20260915_110121.jpg",
-    "IMG_20260915_110119.jpg",
-    "IMG_20260915_110152.jpg",
-    "misc",
-    "2026-2027calendar_20260716.pdf.md",
-    "NTHU",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/PDFs Images Miscellaneous/RosenDiscreteMath8Ed.pdf",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/PDFs Images Miscellaneous/mcgraw.hill_.discrete.mathematics.and_.its_.applications.7th.edition.jun_.2011_1.pdf",
-    "class-notes/CS 3423-02 作業系統 - 陳耘志/PDFs and Miscellaneous",
-    "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials"
+    "class-notes/README.md"
   ]
 }

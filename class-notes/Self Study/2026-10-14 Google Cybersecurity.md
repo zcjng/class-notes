@@ -231,5 +231,36 @@ Emphasizes using secure coding practices to create secure applications and servi
 
 Security analysts may advise software development teams on incorporating security practices throughout the software development lifecycle, such as password policies and user data management for new mobile apps.
 
+
+
 # Course 2 - Play it Safe
 National Institute of Standards and Technology’s (NIST) Risk Management Framework and the steps of risk management.
+
+
+InfoSec design processes, such as:
+
+- Incident response
+    
+- Vulnerability management
+    
+- Application security
+    
+- Cloud security
+    
+- Infrastructure security
+
+Security architecture and engineering 
+include
+- Threat modeling
+- Least privilege
+- Defense in depth
+- Fail securely
+- Separation of duties
+- Keep it simple
+- Zero trust
+- Trust but verify
+
+Identity and access management 
+Essentially, IAM uses what is referred to as the principle of least privilege,
+
+

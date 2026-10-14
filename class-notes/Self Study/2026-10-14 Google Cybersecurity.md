@@ -82,3 +82,104 @@ So pro will help mitigate or reduce impact
 - Cybersecurity analyst or specialist
 - Security operations center (SOC) analyst
 - Information security analyst
+
+This video outlines the key responsibilities of an entry-level security analyst, emphasizing their role in protecting digital infrastructure from evolving cyber threats.
+
+  
+
+Core Responsibilities of a Security Analyst
+
+- Security analysts are tasked with monitoring and safeguarding an organization's information and systems.
+
+- They are often the first responders to detected threats within an organization's internal network.
+
+  
+
+Proactive Threat Prevention
+
+- Analysts participate in exercises like penetration testing or ethical hacking to identify system weaknesses.
+
+- They collaborate with IT teams to implement preventative software for risk and vulnerability identification.
+
+  
+
+Ensuring Data Protection
+
+- Security analysts support product security by working with development teams to establish appropriate data protection processes and systems.
+
+- They conduct periodic security audits to review security records and activities, ensuring the confidentiality of sensitive information.
+
+
+Technical Skills for Security Analysts
+
+- Programming Languages: A basic understanding of languages like Python and SQL is important for automating tasks and identifying error messages.
+
+- SIEM Tools: Security Information and Event Management (SIEM) tools are used to identify and analyze security threats, risks, and vulnerabilities.
+
+- Computer Forensics: This involves identifying, analyzing, and preserving digital evidence within networks, computers, and electronic devices, similar to forensic science in criminal justice.
+
+
+- Personally Identifiable Information (PII): Data that can identify an individual, such as name, address, and IP address.
+
+- Sensitive Personally Identifiable Information (SPII): A stricter category of PII, including social security numbers, medical, financial, and biometric data, which can cause more significant damage if stolen
+- 
+
+
+**Compliance** is the process of adhering to internal standards and external regulations and enables organizations to avoid fines and security breaches.
+
+**Security frameworks** are guidelines used for building plans to help mitigate risks and threats to data and privacy.
+
+**Security controls** are safeguards designed to reduce specific security risks. They are used with security frameworks to establish a strong security posture.
+
+**Security posture** is an organization’s ability to manage its defense of critical assets and data and react to change. A strong security posture leads to lower risk for the organization.
+
+
+
+
+
+This lecture explores how understanding past cyberattacks, like the Brain virus and the Morris worm, is crucial for security analysts to handle and investigate current incidents.
+
+  
+
+
+  
+
+### Early Malware Attacks
+
+*   The Brain Virus (1986): Created to track illegal software copies, this virus unexpectedly infected computers and disks, spreading globally and impacting business productivity, highlighting the need for security plans.
+
+*   The Morris Worm (1988): Developed to assess internet size, this program malfunctioned by repeatedly reinstalling itself, crashing approximately 6,000 computers and leading to the establishment of Computer Emergency Response Teams (CERTs).
+
+
+Conduct regular internal training
+Phising, uses email or digital information 
+
+
+computer security incident response teams (CSIRTs
+
+
+## Phishing
+
+**Phishing** is the use of digital communications to trick people into revealing sensitive data or deploying malicious software. 
+
+Some of the most common types of phishing attacks today include: 
+
+- **Business Email Compromise (BEC):** A threat actor sends an email message that seems to be from a known source to make a seemingly legitimate request for information, in order to obtain a financial advantage.
+    
+- **Spear phishing:** A malicious email attack that targets a specific user or group of users. The email seems to originate from a trusted source.
+    
+- **Whaling:** A form of spear phishing. Threat actors target company executives to gain access to sensitive data.
+    
+- **Vishing:** The exploitation of electronic voice communication to obtain sensitive information or to impersonate a known source.
+    
+- **Smishing:** The use of text messages to trick users, in order to obtain sensitive information or to impersonate a known source.
+
+Social engineering 
+
+- **Watering hole attack:** A threat actor attacks a website frequently visited by a specific group of users.
+
+
+
+  
+
+ 

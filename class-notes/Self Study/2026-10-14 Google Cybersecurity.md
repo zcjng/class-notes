@@ -191,52 +191,32 @@ Unauthorized data access or leaks
 
 
 
-Security and Risk Management
-Focuses on defining security goals, mitigating risks, ensuring compliance, and maintaining business continuity.
-
-Example: Security analysts update company policies to comply with federal regulations like HIPAA.
-
-Asset Security
-Deals with securing both digital and physical assets, including data storage, maintenance, retention, and destruction.
-
-Example: Security analysts ensure proper disposal and destruction of old equipment containing confidential information.
-
-Security Architecture and Engineering
-Aims to optimize data security through effective tools, systems, and processes.
-
-Example: Configuring firewalls to prevent attacks and maintain productivity.
-
-Communication and Network Security
-Concentrates on managing and securing physical networks and wireless communications.
-
-Example: Analyzing user behavior to identify and mitigate risks from unsecured wireless hotspots.
-
-**Identity and Access Management (IAM)**
-Focuses on securing data by ensuring users adhere to established policies for controlling physical and logical assets.
-
-• Involves validating employee identities and documenting access roles to maintain physical and digital security.
-
-**Security Assessment and Testing**
-• Involves conducting security control testing, data collection and analysis, and security audits to monitor for risks, threats, and vulnerabilities.
-
-Security analysts may perform regular audits of user permissions to ensure appropriate access levels.
-
-**Security Operations**
-Concentrates on conducting investigations and implementing preventative measures.
-
-• An example is responding to an alert about an unknown device on the internal network by following organizational policies to stop potential threats.
-
-**Software Development Security**
-Emphasizes using secure coding practices to create secure applications and services.
-
-Security analysts may advise software development teams on incorporating security practices throughout the software development lifecycle, such as password policies and user data management for new mobile apps.
 
 
 
 # Course 2 - Play it Safe
 National Institute of Standards and Technology’s (NIST) Risk Management Framework and the steps of risk management.
 
+the **CISSP Common Body of Knowledge (CBK)**, which is organized into eight distinct domains:
 
+1. **Security and Risk Management**  
+    Covers governance, compliance, legal regulations, business continuity, and risk management frameworks (such as the **NIST RMF** discussed earlier).
+2. **Asset Security**  
+    Focuses on data classification, privacy protection, and the lifecycles of physical and digital assets.
+3. **Security Architecture and Engineering**  
+    Covers secure design principles (like **Least Privilege** and **Zero Trust** shown in your image), cryptography, and vulnerability mitigation.
+4. **Communication and Network Security**  
+    Focuses on secure network structures, communication channels, and cloud infrastructure protection.
+5. **Identity and Access Management (IAM)**  
+    Deals with controlling physical and logical access to assets, including authentication methods and identity provisioning.
+6. **Security Assessment and Testing**  
+    Covers vulnerability assessments, penetration testing, log analysis, and auditing strategies.
+7. **Security Operations**  
+    Focuses on day-to-day concepts like **Incident Response**, disaster recovery, forensic investigations, and resource provisioning.
+8. **Software Development Security**  
+    Deals with **Application Security**, secure coding practices, and implementing security within the software development lifecycle (SDLC).
+
+---
 InfoSec design processes, such as:
 
 - Incident response
@@ -264,3 +244,37 @@ Identity and access management
 Essentially, IAM uses what is referred to as the principle of least privilege,
 
 
+
+NIST RMF steps:
+• Prepare: Set up risk management activities and identify initial controls before a breach happens.
+• Categorize: Analyze how potential impacts to system confidentiality, integrity, and availability affect the organization.
+• Select: Choose, customize, and document the specific safeguards needed to protect the organization.
+• Implement: Put the selected security and privacy plans into action (e.g., updating password policies).
+• Assess: Check if the controls are working correctly and efficiently to find any weaknesses.
+• Authorize: Take accountability for remaining risks and align security plans with organizational goals.
+• Monitor: Continuously check systems to ensure they function properly and make changes as needed.
+
+common strategies used to manage risks include:
+
+Acceptance: Accepting a risk to avoid disrupting business continuity
+
+Avoidance: Creating a plan to avoid the risk altogether
+
+Transference: Transferring risk to a third party to manage
+
+Mitigation: Lessening the impact of a known risk
+
+
+Some vulnerabilities include:
+
+ProxyLogon: A pre-authenticated vulnerability that affects the Microsoft Exchange server. This means a threat actor can complete a user authentication process to deploy malicious code from a remote location.
+
+ZeroLogon: A vulnerability in Microsoft’s Netlogon authentication protocol. An authentication protocol is a way to verify a person's identity. Netlogon is a service that ensures a user’s identity before allowing access to a website's location.
+
+Log4Shell: Allows attackers to run Java code on someone else’s computer or leak sensitive information. It does this by enabling a remote attacker to take control of devices connected to the internet and run malicious code.
+
+PetitPotam: Affects Windows New Technology Local Area Network (LAN) Manager (NTLM). It is a theft technique that allows a LAN-based attacker to initiate an authentication request.
+
+Security logging and monitoring failures: Insufficient logging and monitoring capabilities that result in attackers exploiting vulnerabilities without the organization knowing it
+
+Server-side request forgery: Allows attackers to manipulate a server-side application into accessing and updating backend resources. It can also allow threat actors to steal data..

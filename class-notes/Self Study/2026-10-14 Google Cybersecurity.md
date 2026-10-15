@@ -82,3 +82,13 @@ So pro will help mitigate or reduce impact
 - Cybersecurity analyst or specialist
 - Security operations center (SOC) analyst
 - Information security analyst
+
+a **phishing tactic** (the psychological trick used) 
+**sense of urgency** ("Act now!"), creating **fear** ("Your account is locked!"), or leveraging **authority** (impersonating a manager).
+
+and a **technical indicator** (the verifiable, unforgeable flaw).
+**incorrect sender email domains** (e.g., bank-support.co instead of bank.com) or **malicious link addresses** that point to a different website than the one listed (e.g., the visible text says bank.com, but the link points to scam.net).
+
+**Content Indicators:**
+**poor grammar, misspellings, generic greetings**, or **unusual requests** (like buying gift cards).
+

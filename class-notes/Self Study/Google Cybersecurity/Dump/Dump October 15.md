@@ -85,3 +85,19 @@ Incident and Vulnerability Response Playbooks
 
 - These playbooks are based on an organization's business continuity plan, ensuring operations continue despite disruptions.
 - They include steps like preparation, detection, analysis, containment, eradication, and recovery, minimizing errors and ensuring timely actions.
+
+
+# Course 3 Module 1
+Understanding Networks
+- A network is essentially a collection of connected devices.
+- Examples include laptops, cell phones, smart devices at home, and workstations, printers, and servers in an office.
+
+Device Communication
+
+- Devices on a network communicate using either cables or wireless connections.
+- They use unique identifiers, specifically IP and MAC addresses, to locate each other and ensure proper communication.
+
+Types of Networks
+
+- **Local Area Network (LAN):** Spans a small geographical area like a home or office, such as devices connected to your home Wi-Fi.
+- **Wide Area Network (WAN):** Covers a large geographical area, like a city or country, with the internet being a prime example of a WAN

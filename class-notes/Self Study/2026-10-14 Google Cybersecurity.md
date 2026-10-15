@@ -83,6 +83,7 @@ So pro will help mitigate or reduce impact
 - Security operations center (SOC) analyst
 - Information security analyst
 
+
 This video outlines the key responsibilities of an entry-level security analyst, emphasizing their role in protecting digital infrastructure from evolving cyber threats.
 
   

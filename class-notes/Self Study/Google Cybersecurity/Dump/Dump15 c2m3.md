@@ -48,5 +48,7 @@ TLDR: SIEM tools are gonna be further enchanced to improve automation for tasks 
 often free to use and can be user friendly. The objective of open-source tools is to provide users with software that is built by the public in a collaborative way, which can result in the software being more secure. Additionally, open-source tools allow for more customization by users, resulting in a variety of new services built from the same open-source software package. 
 
 
+**Suricata:** An open-source network analysis and threat detection software that inspects network traffic to identify suspicious behavior and generate logs.
+
 ## Proprietary tools
-Proprietary tools are developed and owned by a person or company, and users typically pay a fee for usage and training. The owners of proprietary tools are the only ones who can access and modify the source code. This means that users generally need to wait for updates to be made to the software, and at times they might need to pay a fee for those updates. Proprietary software generally allows users to modify a limited number of features to meet individual and organizational needs. Examples of proprietary tools include Splunk® and Google SecOps (Chronicle) SIEM tools.
+Proprietary tools are developed and owned by a person or company, and users typically pay a fee for usage and training. The owners of proprietary tools are the only ones who can access and modify the source code. Examples of proprietary tools include Splunk® and Google SecOps (Chronicle) SIEM tools.

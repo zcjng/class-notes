@@ -57,3 +57,31 @@ Proprietary tools are developed and owned by a person or company, and users typi
 
 
 # Course 2 Module 4
+**Playbooks in Security**
+
+- Playbooks help security teams address issues identified by Security Information and Event Management (SIEM) tools.
+- They provide a structured approach to incident response.
+
+Phases of an Incident Response Playbook
+
+- **Preparation:** This initial phase involves documenting procedures, establishing staffing plans, and educating users to build a strong foundation for incident response.
+- **Detection and Analysis:** In this phase, security analysts use tools and strategies to determine if a breach has occurred and assess its potential impact.
+- **Containment:** The goal here is to prevent further damage and minimize the immediate effects of a security incident.
+- **Eradication and Recovery:** This phase focuses on removing all traces of the incident and restoring affected systems to a secure state.
+- **Post-incident activity** focuses on what happens _after_ the incident has been contained and eradicated. It's about learning from the event and improving future responses. This includes: (reflection)
+
+	- Documenting the incident.
+	- Informing organizational leadership.
+	- Applying lessons learned to enhance overall security.
+	- Conducting a full-scale analysis to determine the root cause and implement improvements.
+
+- **Coordination**, on the other hand, is about how information is shared and reported _throughout_ the entire incident response process. It ensures that all relevant parties are kept informed and that the response is unified. This includes: (communication and collaboration during the entire incident response.)
+	- Reporting incidents.
+	- Sharing information based on established organizational standards.
+	- Ensuring compliance requirements are met.
+	- Facilitating a coordinated response and resolution.
+
+Incident and Vulnerability Response Playbooks
+
+- These playbooks are based on an organization's business continuity plan, ensuring operations continue despite disruptions.
+- They include steps like preparation, detection, analysis, containment, eradication, and recovery, minimizing errors and ensuring timely actions.

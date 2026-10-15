@@ -215,3 +215,5 @@ Internal security audit:
 	Manager wants compoany to comply with regulations for online payments for business in the EU
 	Manager uses NIST CSF, and has done a complete risk assessment and now wants an audit
 	I have to complete a control and compliance checklist
+	we want to focus on the assets and bullet points under on the report
+	

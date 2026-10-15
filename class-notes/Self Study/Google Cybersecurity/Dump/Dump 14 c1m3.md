@@ -206,3 +206,12 @@ Note: Encoding and encryption serve different purposes. Encoding uses a public c
 
 Penetration testing 
 Penetration testing, also called pen testing, is the act of participating in a simulated attack that helps identify vulnerabilities in systems, networks, websites, applications, and processes. It is a thorough risk assessment that can evaluate and identify external and internal threats as well as weaknesses.
+
+
+## Conduct a security audit
+Internal security audit:
+- Botium Toys
+	single physical location, online presence booming, IT has pressure to support online business because it needs to ship abroad
+	Manager wants compoany to comply with regulations for online payments for business in the EU
+	Manager uses NIST CSF, and has done a complete risk assessment and now wants an audit
+	I have to complete a control and compliance checklist

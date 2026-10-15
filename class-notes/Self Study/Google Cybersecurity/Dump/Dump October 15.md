@@ -1,3 +1,5 @@
+# Course 2 Module 3
+
 a log is a record of events that ​occur within an organization's systems and networks.
 It also includes outbound requests ​to the internet from within the network.
 
@@ -52,3 +54,6 @@ often free to use and can be user friendly. The objective of open-source tools i
 
 ## Proprietary tools
 Proprietary tools are developed and owned by a person or company, and users typically pay a fee for usage and training. The owners of proprietary tools are the only ones who can access and modify the source code. Examples of proprietary tools include Splunk® and Google SecOps (Chronicle) SIEM tools.
+
+
+# Course 2 Module 4

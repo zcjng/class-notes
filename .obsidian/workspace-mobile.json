@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "class-notes/Self Study/2026-10-15 Google Cybersecurity.md",
+                "file": "class-notes/Self Study/Google Cybersecurity/Topics/Security Frameworks.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-15 Google Cybersecurity"
+              "title": "Security Frameworks"
+            }
+          },
+          {
+            "id": "aac5bfc58712e0bc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "class-notes/Self Study/Google Cybersecurity/Dump/Dump 14 c1m3.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Dump 14 c1m3"
             }
           },
           {
@@ -175,7 +189,8 @@
               "title": "Week 5 ~ Monday"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -319,8 +334,8 @@
         "state": {
           "type": "review-queue-list-view",
           "state": {},
-          "icon": "lucide-ghost",
-          "title": "review-queue-list-view"
+          "icon": "SpacedRepIcon",
+          "title": "Notes Review Queue"
         }
       }
     ],
@@ -338,8 +353,16 @@
       "obsidian-spaced-repetition:Review flashcards": false
     }
   },
-  "active": "c2e33fba4310d335",
+  "active": "d6137c7407634945",
   "lastOpenFiles": [
+    "class-notes/Self Study/Google Cybersecurity/Dump",
+    "class-notes/Self Study/Google Cybersecurity/Topics/Risk Management.md",
+    "class-notes/Self Study/Google Cybersecurity/Daily Notes/2026-10-14.md",
+    "class-notes/Self Study/Google Cybersecurity/Topics/Security Frameworks.md",
+    "class-notes/Self Study/Google Cybersecurity/Topics/NIST SP 800-53.md",
+    "class-notes/Self Study/Google Cybersecurity/Daily Notes/2026-10-15.md",
+    "class-notes/Self Study/Google Cybersecurity/Dump/Dump 14 c1m3.md",
+    "class-notes/Self Study/Google Cybersecurity/Google Cybersecurity.md",
     "class-notes/Self Study/2026-10-14 Google Cybersecurity.md",
     "class-notes/Self Study/2026-10-15 Google Cybersecurity.md",
     "misc/2026-2027calendar_20260716.pdf",
@@ -377,14 +400,6 @@
     "Denuvo.md",
     "class-notes/Self Study/Ports.md",
     "NTHU-related.md",
-    "class-notes/Self Study/NETWORKING • HTTP, TCP, UDP.md",
-    "class-notes/CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md",
-    "TCM Introductory Part 1.md",
-    "9 30.md",
-    "chinese_etymology_sleep_dream.md",
-    "character_laws-2.md",
-    "Ccl.md",
-    "Marathon.md",
-    "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Connectives.md"
+    "class-notes/Self Study/NETWORKING • HTTP, TCP, UDP.md"
   ]
 }

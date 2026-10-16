@@ -218,3 +218,26 @@ Packet Sniffing
 The **OSI model** is a standardized concept that describes the seven layers computers use to communicate and send data over the network. Network and security professionals often use this model to communicate with each other about potential sources of problems or security threats when they occur.
 
 ![[Pasted image 20261016090022.png]]
+
+- **Layer 7: Application Layer**: The user-facing interface. Uses protocols like **HTTP/HTTPS**, **SMTP**, and **DNS** to connect software applications to the internet.
+- **Layer 6: Presentation Layer**: The translator. Handles data **formatting, encryption (like SSL), compression**, and character translation so different systems can understand each other.
+- **Layer 5: Session Layer**: The manager. Opens, maintains, checkpoints, and terminates **communication sessions** between two devices.
+- **Layer 4: Transport Layer**: The delivery service. Breaks large data into smaller pieces (**segmentation**), manages transfer speeds, and uses protocols like **TCP** and **UDP**.
+- **Layer 3: Network Layer**: The traffic router. Moves data packets **between completely different networks** using **IP addresses** and routers.
+- **Layer 2: Data Link Layer**: The local delivery. Organizes and moves data **within a single local network** using **MAC addresses**, network cards, and switches.
+- **Layer 1: Physical Layer**: The raw hardware. Translates data into a stream of **0s and 1s (binary)** to transmit them over physical cables, wires, hubs, and modems.
+
+---
+
+The Core Difference: Network Layer (Layer 3) vs. Data Link Layer (Layer 2)
+
+The fundamental difference comes down to **scope**: **Layer 2 stays local**, while **Layer 3 goes global**.
+
+- **Data Link Layer (Layer 2)**:
+    - **Scope**: Only handles communication **inside the exact same local network (LAN)**.
+    - **Addressing**: Uses **MAC addresses** (the permanent physical hardware address of your device).
+    - **Main Device**: **Switches**. A switch uses Layer 2 data to send a packet directly from your laptop to your home printer or file server. It cannot talk to the outside world.
+- **Network Layer (Layer 3)**:
+    - **Scope**: Handles communication **between multiple, separate networks** across the globe.
+    - **Addressing**: Uses **IP addresses** (logical coordinates assigned to a network location).
+    - **Main Device**: **Routers**. A router reads Layer 3 data to take a packet leaving your local home network and figure out how to navigate it across the internet to Google's external network.

@@ -105,16 +105,30 @@ Types of Networks
 Core Network Infrastructure
 
 - **Firewalls**: Serve as the first line of defense by monitoring and restricting incoming and outgoing traffic based on organizational security rules.
-- **Modems**: Connect a local network to an Internet Service Provider (ISP) by converting digital signals into formats compatible with the ISP's physical infrastructure.
+- **Modems**: Connect a local network to an Internet Service Provider (ISP) by converting digital signals into formats compatible with the ISP's physical infrastructure. It usually has only **one outgoing port** because you get only one public IP address.
 - **Routers**: Operate at the network layer to connect different networks and direct traffic using IP addresses; they can also include built-in firewall features.
 - **Wireless Access Points (WAPs)**: Emit radio waves using Wi-Fi standards to allow wireless devices to connect to the network.
 
 Traffic Direction & Network Models
 
-- **Switches**: The preferred choice for modern local networks; they analyze MAC addresses to forward data packets _only_ to the specific intended device, improving performance and security.
-- **Hubs**: Outdated devices that blindly repeat all incoming data to every connected port, making them highly vulnerable to eavesdropping.
+- **Switches**: Wired The preferred choice for modern local networks; they analyze MAC addresses to forward data packets _only_ to the specific intended device, improving performance and security. The port multiplier. Connects multiple wired devices within the _same_ network so they can talk to each other.
+- **Hubs**: Wired Outdated devices that blindly repeat all incoming data to every connected port, making them highly vulnerable to eavesdropping.
 - **Client-Server Model**: An architecture where end-user devices (clients) send requests for information or services, and centralized systems (servers)—such as DNS, file, or mail servers—fulfill those requests.
 
 Practical Security Application
 
-- **Network Diagrams**: Crucial visual maps that security analysts and administrators use to study network architecture, identify potential structural vulnerabilities, and plan defense strategies.
+- **Network Diagrams**: Crucial visual maps that security analysts and administrators use to study network architecture, identify potential structural vulnerabilities, and plan defense strategies.'
+
+The box you have at home is a **3-in-1 combo device**. It contains:
+
+- A **Router** brain to talk to the modem.
+- A built-in **Switch** (the multiple Ethernet ports on the back) to connect wired devices.
+- A **WAP** (the antennas) to emit radio waves for Wi-Fi.  
+    This is why both standalone switches and your home router have Ethernet ports—your router just has a switch built right into it.
+
+Router Operation Modes Summary
+- **Wireless Router Mode**: Default setting. Acts as the main network boss, creates the network, assigns IPs, and handles firewall security.
+- **Access Point (AP) Mode**: Turns off the router brain. Takes a wired cable from the main router and simply emits Wi-Fi (Ideal for your Floor 2 setup).
+- **Repeater / Range Extender Mode**: Connects to Floor 1 Wi-Fi _wirelessly_ and rebroadcasts it (cuts internet speed in half).
+- **Client / Media Bridge Mode**: Turns off Wi-Fi broadcasting. Acts purely as a wireless antenna receiver to feed internet into wired-only devices (like an old desktop PC).
+- **WISP Mode**: Connects wirelessly to a public hotspot (like a hotel) but builds a private, safe firewall network inside your room.

@@ -195,3 +195,26 @@ Packet Sniffing
 - Assign port numbers to data packets, allowing devices to prioritize and process network traffic.
 
 ## 4 Layers of TCP/IP
+- **Network Access Layer:** This layer handles the creation of data packets and their transmission, involving hardware devices, physical cables, and switches.
+- **Internet Layer:** IP addresses are attached to data packets here to specify sender and receiver locations, and this layer determines how networks connect.
+	- **Internet Protocol (IP)**. IP sends the data packets to the correct destination and relies on the Transmission Control Protocol/User Datagram Protocol (TCP/UDP) to deliver them to the corresponding service. IP packets allow communication between two networks. They are routed from the sending network to the receiving network. TCP in particular retransmits any data that is lost or corrupt.
+    
+	- **Internet Control Message Protocol (ICMP)**. The ICMP shares error information and status updates of data packets. This is useful for detecting and troubleshooting network errors. The ICMP reports information about packets that were dropped or that disappeared in transit, issues with network connectivity, and packets redirected to other routers.
+
+**Controlling Data Flow and Interaction**
+
+- **Transport Layer:** Protocols in this layer manage the flow of network traffic, including error control to ensure smooth data transmission.
+	- The **Transmission Control Protocol (TCP)** is an internet communication protocol that allows two devices to form a connection and stream data. It ensures that data is reliably transmitted to the destination service. TCP contains the port number of the intended destination service, which resides in the TCP header of a TCP/IP packet.
+	- The **User Datagram Protocol (UDP)** is a connectionless protocol that does not establish a connection between devices before transmissions. It is used by applications that are not concerned with the reliability of the transmission. Data sent over UDP is not tracked as extensively as data sent using TCP. Because UDP does not establish network connections, it is used mostly for performance sensitive applications that operate in real time, such as video streaming.
+- **Application Layer:** This layer defines how data packets interact with receiving devices, supporting functions like file transfers and email services.
+	- Hypertext transfer protocol (HTTP)
+	- Simple mail transfer protocol (SMTP)
+	- Secure shell (SSH)
+	- File transfer protocol (FTP)
+	- Domain name system (DNS)
+![[Pasted image 20261016085430.png]]
+
+## OSI Model
+The **OSI model** is a standardized concept that describes the seven layers computers use to communicate and send data over the network. Network and security professionals often use this model to communicate with each other about potential sources of problems or security threats when they occur.
+
+![[Pasted image 20261016090022.png]]

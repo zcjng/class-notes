@@ -241,3 +241,34 @@ The fundamental difference comes down to **scope**: **Layer 2 stays local**, whi
     - **Scope**: Handles communication **between multiple, separate networks** across the globe.
     - **Addressing**: Uses **IP addresses** (logical coordinates assigned to a network location).
     - **Main Device**: **Routers**. A router reads Layer 3 data to take a packet leaving your local home network and figure out how to navigate it across the internet to Google's external network.
+
+**IP Addresses**
+
+- An IP address is a unique string of characters that identifies a device's location on the internet.
+- There are two types: IPv4, which consists of four sets of 1, 2, or 3-digit numbers separated by decimals, and IPv6, which uses 32 characters to accommodate more devices.
+
+**Public vs. Private IP Addresses**
+
+- A public IP address is assigned by your internet service provider and is shared by all devices on your network when communicating outside the local network.
+- Private IP addresses are used for communication between devices within the same local network and are not visible to the rest of the internet.
+
+**MAC Addresses**
+
+- A MAC address is a unique alphanumeric identifier assigned to each physical device on a network.
+- Switches use MAC addresses to direct data packets to the correct device by maintaining a MAC address table.
+
+How ARP Works
+
+- **The Shouting Method**: When a computer knows a local IP address but lacks its physical MAC address, it sends an **ARP Request** out as a **Layer 2 Broadcast** (`FF:FF:FF:FF:FF:FF`).
+- **Switch Behavior**: The network switch receives this broadcast and is forced to forward the message out to **every single connected device** on that local network segment.
+- **The Response**: The device that actually owns the requested IP address responds back with its physical MAC address, which the original computer saves into its local **ARP cache** memory.
+
+The Security Vulnerability
+
+- **Zero Authentication**: Designed in 1982, the ARP protocol features **no verification mechanism**. Devices blindly accept and trust any ARP response they receive.
+- **ARP Spoofing / Poisoning**: A malicious actor on the same network can exploit this trust by replying to the broadcast with a lie: _"I am the router, send your data to my MAC address!"_
+- **Man-in-the-Middle (MitM)**: The victim's computer unknowingly updates its ARP table with the hacker's MAC address, allowing the attacker to intercept, steal, or alter all outgoing internet traffic.
+
+Modern Defense
+
+- **Dynamic ARP Inspection (DAI)**: Enterprise-grade security switches use DAI to intercept ARP replies, cross-reference them against a trusted database of known IP-to-MAC bindings, and **instantly drop fraudulent packets**.

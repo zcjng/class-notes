@@ -101,12 +101,20 @@ Types of Networks
 
 - **Local Area Network (LAN):** Spans a small geographical area like a home or office, such as devices connected to your home Wi-Fi.
 - **Wide Area Network (WAN):** Covers a large geographical area, like a city or country, with the internet being a prime example of a WAN
+- 
+Core Network Infrastructure
 
-Network Devices and Their Functions
-- **Hubs:** These devices broadcast information to every connected device on a network, similar to a radio tower.
-- **Switches:** More intelligent than hubs, switches create specific connections between devices, sending data only to the intended recipient for improved security and performance.
+- **Firewalls**: Serve as the first line of defense by monitoring and restricting incoming and outgoing traffic based on organizational security rules.
+- **Modems**: Connect a local network to an Internet Service Provider (ISP) by converting digital signals into formats compatible with the ISP's physical infrastructure.
+- **Routers**: Operate at the network layer to connect different networks and direct traffic using IP addresses; they can also include built-in firewall features.
+- **Wireless Access Points (WAPs)**: Emit radio waves using Wi-Fi standards to allow wireless devices to connect to the network.
 
-Routers and Modems
+Traffic Direction & Network Models
 
-- **Routers:** These devices connect multiple networks, directing information between them based on destination addresses.
-- **Modems:** Modems connect your router to the internet, enabling internet access for your local area network (LAN).
+- **Switches**: The preferred choice for modern local networks; they analyze MAC addresses to forward data packets _only_ to the specific intended device, improving performance and security.
+- **Hubs**: Outdated devices that blindly repeat all incoming data to every connected port, making them highly vulnerable to eavesdropping.
+- **Client-Server Model**: An architecture where end-user devices (clients) send requests for information or services, and centralized systems (servers)—such as DNS, file, or mail servers—fulfill those requests.
+
+Practical Security Application
+
+- **Network Diagrams**: Crucial visual maps that security analysts and administrators use to study network architecture, identify potential structural vulnerabilities, and plan defense strategies.

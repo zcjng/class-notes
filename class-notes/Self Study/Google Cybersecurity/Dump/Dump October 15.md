@@ -101,3 +101,12 @@ Types of Networks
 
 - **Local Area Network (LAN):** Spans a small geographical area like a home or office, such as devices connected to your home Wi-Fi.
 - **Wide Area Network (WAN):** Covers a large geographical area, like a city or country, with the internet being a prime example of a WAN
+
+Network Devices and Their Functions
+- **Hubs:** These devices broadcast information to every connected device on a network, similar to a radio tower.
+- **Switches:** More intelligent than hubs, switches create specific connections between devices, sending data only to the intended recipient for improved security and performance.
+
+Routers and Modems
+
+- **Routers:** These devices connect multiple networks, directing information between them based on destination addresses.
+- **Modems:** Modems connect your router to the internet, enabling internet access for your local area network (LAN).

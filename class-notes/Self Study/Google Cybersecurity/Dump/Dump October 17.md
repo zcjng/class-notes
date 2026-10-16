@@ -7,8 +7,8 @@ Key Network Protocols
 
 - **Transmission Control Protocol (TCP):** Establishes connections and streams data between devices, verifying them through a "handshake" before communication.
 - **Address Resolution Protocol (ARP):** Determines the MAC address of the next router or device in the data's path, ensuring correct delivery.
-- **Hypertext Transfer Protocol Secure (HTTPS):** Provides secure communication between web browsers and servers, encrypting data using SSL/TLS.
-- **Domain Name System (DNS):** Translates internet domain names (like "yummyrecipesforme.org") into IP addresses, which are used as destination addresses for data packets.
+- **Hypertext Transfer Protocol Secure (HTTPS):** Provides secure communication between web browsers and servers, encrypting data using SSL/TLS, HTTPS uses port 443 meanwhile HTTP uses port 80
+- **Domain Name System (DNS):** Translates internet domain names (like "yummyrecipesforme.org") into IP addresses, which are used as destination addresses for data packets. Uses port 53
 
 Protocols and Security
 - **HTTPS and Encryption:** HTTPS encrypts data using SSL (Secure Sockets Layer)/TLS (Transport Layer Security), protecting sensitive information from malicious actors during transmission.
@@ -22,4 +22,39 @@ Specific Protocol Examples
 
 Some protocols are assigned port numbers by the **Internet Assigned Numbers Authority (IANA).**
 
-This process is known as **Network Address Translation (NAT)**, replaces private source IP add NAT is a part of layer 2 (internet layer) and layer 3 (transport layer) of the TCP/IP model.
+This process is known as **Network Address Translation (NAT)**, replaces private source IP address with its public IP address. NAT is a part of layer 2 (internet layer) and layer 3 (transport layer) of the TCP/IP model.
+
+Private IPs, Address ranges:
+- 10.0.0.0-10.255.255.255
+- 172.16.0.0-172.31.255.255
+- 192.168.0.0-192.168.255.255
+
+Public IPs, Address ranges:
+- 1.0.0.0-9.255.255.255
+- 11.0.0.0-126.255.255.255
+- 128.0.0.0-172.15.255.255
+- 172.32.0.0-192.167.255.255
+
+
+**Dynamic Host Configuration Protocol (DHCP)**: application layer protocol, assigns unique IP addresses, provide addresses of the appropriate DNS server and default gateway for each device. 
+- DHCP servers : port 67
+- DHCP clients : port 68
+
+Address Resolution Protocol (ARP) operates on layer 2, does not have a specific port number because port numbers are associated with the layer 7 Application layer.
+
+### Telnet 
+Telnet is an application layer protocol that is used to connect with a remote system, telnet is not as secure as SSH. Telnet can be used to connect to local or remote devices and uses TCP port 23.
+
+
+## Secure shell
+Secure shell protocol (SSH) is used to create a secure connection with a remote system. This application layer protocol provides an alternative for secure authentication and encrypted communication. SSH operates over the TCP port 22.
+
+
+## Post office protocol
+Post office protocol (POP) is an application layer (layer 4 of the TCP/IP model) protocol used to manage and retrieve email from a mail server. POP3 is the most commonly used version of POP. 
+- Unencrypted, plaintext authentication uses TCP/UDP port 110 
+- Encrypted emails use Secure Sockets Layer/Transport Layer Security (SSL/TLS) over TCP/UDP port 995.  
+
+## Internet Message Access Protocol (IMAP)
+IMAP is used for incoming email. It downloads the headers of emails and the message content. The content also remains on the email server, which allows users to access their email from multiple devices. IMAP uses TCP port 143 for unencrypted email and TCP port 993 over the TLS protocol. Using IMAP allows users to partially read email before it is finished downloading. Since the mail is kept on the mail server, it allows a user to sync emails across multiple devices.
+

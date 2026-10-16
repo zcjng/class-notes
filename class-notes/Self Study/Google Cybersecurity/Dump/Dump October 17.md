@@ -73,11 +73,37 @@ Simple Mail Transfer Protocol (SMTP) is used to transmit and route email from th
 * **Definition:** Commonly known as **Wi-Fi**, it is a suite of communication protocols that defines standards for Wireless Local Area Networks (WLANs).
 * **IEEE:** Stands for the **Institute of Electrical and Electronics Engineers**, the organization responsible for maintaining these wireless standards.
 
-## 🔒 Evolution of Wi-Fi Security
-Wi-Fi protocols have adapted over time to match the reliability and security levels of traditional wired connections.
+## 🌐 The Rise of Wireless Networking
 
-* **WPA (Wi-Fi Protected Access):** Introduced in **2004** as a wireless security protocol to allow devices to connect securely to the internet.
-* **WPA2 & WPA3:** Newer iterations that introduced critical security improvements, including more **advanced encryption** methods.
+* **Wi-Fi Terminology:** A marketing term commissioned by the **Wi-Fi Alliance** (formerly WECA). It refers to the **IEEE 802.11** family of standards maintained by the Institute of Electrical and Electronics Engineers.
 
-## 🛡️ Security Analyst Role
-* Responsible for ensuring all wireless network connections within an organization are fully secure and up to date.
+---
+
+## 🔒 Wireless Security Protocols Evolution
+
+### 1. WEP (Wired Equivalent Privacy)
+* **Launch:** Developed in **1999** (the oldest wireless standard).
+* **Goal:** Intended to provide wireless connections with the same privacy level as wired networks.
+* **Current Status:** Outdated and considered **high-risk**. Encryption flaws allow malicious actors to easily break it. 
+* **Analyst Note:** Still encountered on legacy hardware or due to unconfigured router defaults.
+
+### 2. WPA (Wi-Fi Protected Access)
+* **Launch:** Developed in **2003** as a transitional measure compatible with older hardware.
+* **Improvements over WEP:** Introduced **TKIP** (Temporal Key Integrity Protocol), larger secret keys, and a **Message Integrity Check** to reject altered transmissions.
+* **Core Vulnerability:** Susceptible to **KRACK (Key Reinstallation Attacks)**, where an attacker intercepts the authentication handshake and forces an encryption key of all zeros.
+
+### 3. WPA2 (Wi-Fi Protected Access 2)
+* **Launch:** Released in **2004**; widely considered the current security standard.
+* **Improvements over WPA:** Replaced TKIP with **AES** (Advanced Encryption Standard) and introduced **CCMP** for strong encapsulation and message integrity.
+* **Core Vulnerability:** Remains vulnerable to KRACK attacks.
+
+#### ⚖️ WPA2 Deployment Modes
+* **Personal Mode:** Uses a global passphrase manually applied to each device. Easy to set up; ideal for home networks but unmanageable for corporations.
+* **Enterprise Mode:** Features individualized, centralized control over access via an authentication server. Users never see encryption keys, preventing attackers from recovering keys from lost devices.
+
+### 4. WPA3 (Wi-Fi Protected Access 3)
+* **Launch:** Released in **2018**; steadily growing in adoption.
+* **Improvements over WPA2:** 
+  * Fixes the handshake vulnerability to prevent KRACK attacks.
+  * Introduces **SAE (Simultaneous Authentication of Equals)**, a password-authenticated key agreement that blocks offline data decryption attempts.
+  * Upgrades baseline protection to **128-bit encryption**, with an optional **192-bit encryption** tier for Enterprise mode.

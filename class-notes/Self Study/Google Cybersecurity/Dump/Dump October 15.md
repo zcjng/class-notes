@@ -132,3 +132,17 @@ Router Operation Modes Summary
 - **Repeater / Range Extender Mode**: Connects to Floor 1 Wi-Fi _wirelessly_ and rebroadcasts it (cuts internet speed in half).
 - **Client / Media Bridge Mode**: Turns off Wi-Fi broadcasting. Acts purely as a wireless antenna receiver to feed internet into wired-only devices (like an old desktop PC).
 - **WISP Mode**: Connects wirelessly to a public hotspot (like a hotel) but builds a private, safe firewall network inside your room.
+
+
+
+Cloud Computing Explained
+- Cloud computing utilizes remote servers, applications, and network services hosted on the internet, rather than local physical devices.
+- This model allows companies to save money and access more network resources by outsourcing network management to third-party providers.
+
+Cloud Networks vs. Traditional Networks
+- Cloud networks store resources and data in remote data centers accessible via the internet, meaning companies don't house the servers physically.
+- Traditional networks host web servers from a business's physical location, whereas cloud networks use remote servers for online services and web applications accessible from anywhere.
+
+The Rise of Cloud Security
+- As more organizations migrate to cloud services, cloud security is becoming increasingly relevant for security professionals.
+- Cloud service providers offer on-demand storage, processing power, and analytics, leading to a focus on identity-based security in addition to traditional network-based solutions.

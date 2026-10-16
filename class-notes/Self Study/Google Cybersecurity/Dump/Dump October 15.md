@@ -164,3 +164,34 @@ Core Business Benefits
 - **Reliability**: Ensures high availability, consistent uptime, and secure remote access for users with minimal connection interruptions.
 - **Cost Efficiency**: Eliminates massive upfront hardware expenses; companies outsource physical equipment maintenance, upgrades, and patching to the provider.
 - **Scalability (Elasticity)**: Allows businesses to instantly scale up or scale down resources via a dashboard to meet changing demands, meaning they only pay for what they use.
+
+Data Packet Structure and Function
+- Data packets are the fundamental units of information transferred across a network, similar to a physical letter.
+- Each packet contains a header with destination and source IP/MAC addresses, a protocol number, the message body, and a footer to signal completion.
+
+Network Performance and Security
+- Network performance is measured by bandwidth (data received per second) and speed (rate of packet reception).
+- Irregularities in bandwidth or speed can indicate a network attack, making these metrics crucial for security personnel.
+
+Packet Sniffing
+
+- Packet sniffing involves capturing and inspecting data packets to monitor network communication.
+- This practice is used to analyze network activity and identify potential security threats.
+
+### TCP/IP Model
+**TCP (Transmission Control Protocol)**
+
+- Establishes connections between devices and organizes data for transmission.
+- Ensures data packets reach their correct destination across a network.
+
+**IP (Internet Protocol)**
+
+- Provides standards for routing and addressing data packets.
+- Includes IP addresses, which act as unique identifiers for devices on a network.
+
+**Ports**
+
+- Software-based locations within an operating system that organize data sending and receiving.
+- Assign port numbers to data packets, allowing devices to prioritize and process network traffic.
+
+## 4 Layers of TCP/IP

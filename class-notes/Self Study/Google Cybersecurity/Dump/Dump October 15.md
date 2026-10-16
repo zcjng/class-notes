@@ -146,3 +146,21 @@ Cloud Networks vs. Traditional Networks
 The Rise of Cloud Security
 - As more organizations migrate to cloud services, cloud security is becoming increasingly relevant for security professionals.
 - Cloud service providers offer on-demand storage, processing power, and analytics, leading to a focus on identity-based security in addition to traditional network-based solutions.
+
+The Three Main Cloud Service Models
+
+- **Software as a Service (SaaS)**: Ready-to-use software suites hosted and fully managed by the provider (CSPs) that companies access remotely without any setup.
+- **Infrastructure as a Service (IaaS)**: On-demand raw virtual computing components like virtual servers, storage, and containers that companies configure and manage themselves.
+- **Platform as a Service (PaaS)**: Pre-configured cloud environments and tools tailored specifically for application developers to build and deploy custom apps.
+
+Cloud Environments & Virtual Networking
+
+- **Hybrid Cloud**: Combining a company's own physical, on-premise hardware with third-party cloud provider services.
+- **Multi-Cloud**: Using services from more than one distinct cloud provider (e.g., using both AWS and Google Cloud).
+- **Software-Defined Networks (SDNs)**: Completely virtualized network infrastructure (like virtual switches, routers, and firewalls) hosted on the provider's physical data center servers and configured programmatically.
+
+Core Business Benefits
+
+- **Reliability**: Ensures high availability, consistent uptime, and secure remote access for users with minimal connection interruptions.
+- **Cost Efficiency**: Eliminates massive upfront hardware expenses; companies outsource physical equipment maintenance, upgrades, and patching to the provider.
+- **Scalability (Elasticity)**: Allows businesses to instantly scale up or scale down resources via a dashboard to meet changing demands, meaning they only pay for what they use.

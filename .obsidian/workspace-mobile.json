@@ -188,9 +188,21 @@
               "icon": "lucide-file",
               "title": "Week 5 ~ Monday"
             }
+          },
+          {
+            "id": "16cedbac83b2216a",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "misc/2026-2027calendar_20260716.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "2026-2027calendar_20260716"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 13
       }
     ],
     "direction": "vertical"
@@ -334,8 +346,8 @@
         "state": {
           "type": "review-queue-list-view",
           "state": {},
-          "icon": "SpacedRepIcon",
-          "title": "Notes Review Queue"
+          "icon": "lucide-ghost",
+          "title": "review-queue-list-view"
         }
       }
     ],
@@ -353,12 +365,13 @@
       "obsidian-spaced-repetition:Review flashcards": false
     }
   },
-  "active": "d6137c7407634945",
+  "active": "16cedbac83b2216a",
   "lastOpenFiles": [
+    "YATAOME.md",
+    "class-notes/Self Study/Google Cybersecurity/Topics/Security Frameworks.md",
     "class-notes/Self Study/Google Cybersecurity/Dump",
     "class-notes/Self Study/Google Cybersecurity/Topics/Risk Management.md",
     "class-notes/Self Study/Google Cybersecurity/Daily Notes/2026-10-14.md",
-    "class-notes/Self Study/Google Cybersecurity/Topics/Security Frameworks.md",
     "class-notes/Self Study/Google Cybersecurity/Topics/NIST SP 800-53.md",
     "class-notes/Self Study/Google Cybersecurity/Daily Notes/2026-10-15.md",
     "class-notes/Self Study/Google Cybersecurity/Dump/Dump 14 c1m3.md",
@@ -395,7 +408,6 @@
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH6/images",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH6",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH5_Obsidian_with_FBD_Images/CH5_Obsidian/CH5.md",
-    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH5_Obsidian_with_FBD_Images/CH5_Obsidian/images",
     "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 4 ~ Monday.md",
     "Denuvo.md",
     "class-notes/Self Study/Ports.md",

@@ -56,5 +56,28 @@ Post office protocol (POP) is an application layer (layer 4 of the TCP/IP model)
 - Encrypted emails use Secure Sockets Layer/Transport Layer Security (SSL/TLS) over TCP/UDP port 995.  
 
 ## Internet Message Access Protocol (IMAP)
-IMAP is used for incoming email. It downloads the headers of emails and the message content. The content also remains on the email server, which allows users to access their email from multiple devices. IMAP uses TCP port 143 for unencrypted email and TCP port 993 over the TLS protocol. Using IMAP allows users to partially read email before it is finished downloading. Since the mail is kept on the mail server, it allows a user to sync emails across multiple devices.
+IMAP is used for incoming email. It downloads the headers of emails and the message content. The content also remains on the email server, which allows users to access their email from multiple devices. 
+- MAP uses TCP port 143 for unencrypted email
+- TCP port 993 over the TLS protocol.
+Using IMAP allows users to partially read email before it is finished downloading. Since the mail is kept on the mail server, it allows a user to sync emails across multiple devices.
 
+## Simple Mail Transfer Protocol
+Simple Mail Transfer Protocol (SMTP) is used to transmit and route email from the sender to the recipient’s address. SMTP works with Message Transfer Agent (MTA) software, which searches DNS servers to resolve email addresses to IP addresses, to ensure emails reach their intended destination. 
+- SMTP uses TCP/UDP port 25 for unencrypted emails, often used by high-volume spam. SMTP helps to filter out spam by regulating how many emails a source can send at a time.
+- TCP/UDP port 587 using TLS for encrypted emails
+![[Pasted image 20261017073657.png]]
+
+# 📡 IEEE 802.11 & Wi-Fi Security
+
+## 🔹 Overview of IEEE 802.11
+* **Definition:** Commonly known as **Wi-Fi**, it is a suite of communication protocols that defines standards for Wireless Local Area Networks (WLANs).
+* **IEEE:** Stands for the **Institute of Electrical and Electronics Engineers**, the organization responsible for maintaining these wireless standards.
+
+## 🔒 Evolution of Wi-Fi Security
+Wi-Fi protocols have adapted over time to match the reliability and security levels of traditional wired connections.
+
+* **WPA (Wi-Fi Protected Access):** Introduced in **2004** as a wireless security protocol to allow devices to connect securely to the internet.
+* **WPA2 & WPA3:** Newer iterations that introduced critical security improvements, including more **advanced encryption** methods.
+
+## 🛡️ Security Analyst Role
+* Responsible for ensuring all wireless network connections within an organization are fully secure and up to date.

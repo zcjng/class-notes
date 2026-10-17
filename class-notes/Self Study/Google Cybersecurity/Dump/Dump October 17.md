@@ -286,6 +286,38 @@ CIDR addresses look exactly like standard IPv4 addresses, but they add a trailin
 * **Verification:** Validates sender headers to ensure the source address was not forged, significantly mitigating business email compromise (BEC) and impersonation attacks.
 * **Real-World Use:** Multi-layered anti-spam filtering architectures are frequently deployed on enterprise or ISP email proxies to scrub messages thoroughly before delivering them to a user's inbox.
 
+---
+
+## 🗺️ VPN Deployments: Remote Access vs. Site-to-Site
+
+### 💻 Remote Access VPN
+* **Target Audience:** Individual users and remote employees.
+* **Function:** Establishes a secure connection between a single personal endpoint and a corporate or provider VPN server.
+* **Mechanism:** Encrypts data directly sent or received by that specific personal device over the internet.
+
+### 🏢 Site-to-Site VPN
+* **Target Audience:** Enterprises with multiple geographical footprints.
+* **Function:** Extends a primary corporate network to link up with entirely separate remote networks (e.g., connecting a branch office to headquarters).
+* **Trade-offs:** Provides seamless cross-office connectivity, but is significantly more complex to configure, deploy, and manage than a standard remote access setup.
 
 ---
 
+## 🔏 VPN Protocols: WireGuard vs. IPSec
+A **VPN protocol** is a dedicated set of rules determining exactly how data moves and establishes a secure network tunnel between endpoints.
+
+### ⚡ 1. WireGuard VPN
+* **Nature:** A relatively new, open-source VPN protocol.
+* **Design Philosophy:** Engineered strictly for high speed, clean deployment, and simple maintenance.
+* **Advantages:**
+  * **Performance:** Leverages a lightweight codebase (fewer lines of code) to drastically enhance download speeds.
+  * **Flexibility:** Can be deployed for both client-server (remote access) and site-to-site connections.
+  * **Usability:** Open-source nature makes it easier to deploy, audit, and debug.
+* **Best Used For:** High-bandwidth processes like downloading massive files or streaming video content.
+
+### 🏛️ 2. IPSec VPN
+* **Nature:** One of the earliest, most established cryptographic network suites.
+* **Design Philosophy:** Built heavily into the foundational network layers to systematically encrypt and authenticate individual data packets.
+* **Advantages:**
+  * **Compatibility:** Native support is baked into the majority of modern operating systems due to its long history.
+  * **Maturity:** Highly favored by conservative enterprise environments because of its long track record, extensive security vetting, and global adoption.
+* **Disadvantages:** Considerably older, larger, and more complex to configure and optimize than WireGuard.

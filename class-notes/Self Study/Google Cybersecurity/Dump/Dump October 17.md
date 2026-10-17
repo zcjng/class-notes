@@ -182,3 +182,110 @@ A fundamental routing paradox exists: encrypting an entire data packet secures t
   2. **Encapsulation:** It wraps that encrypted packet inside a new, public packet containing the destination address of the VPN server.
   3. **Routing:** Network routers read the outer packet to successfully forward it across the internet.
   4. **Decryption:** Once it hits the VPN server, the outer layer is stripped, the inner packet is processed, and it is safely forwarded to the final web destination using the VPN's IP address instead of yours.
+
+
+# 🌐 Network Segmentation & Security Zones
+
+## 🧩 What is Network Segmentation?
+* **Definition:** A security technique that divides a unified network into distinct, smaller segments.
+* **Granular Security:** Each separate network segment maintains its own unique access permissions and security rules.
+* **Blast Radius Mitigation:** Acts as a containment barrier; if a single segment is compromised or contaminated, administrators can isolate it to prevent lateral movement to the rest of the network.
+* **Examples:**
+  * **Hospitality:** A hotel hosting an unsecured public guest Wi-Fi network completely isolated from the encrypted staff network.
+  * **Education:** A university separating network traffic into a faculty subnet and a student subnet.
+
+---
+
+## 🗂️ Classifications of Security Zones
+
+### 🔴 1. Uncontrolled Zone
+* **Definition:** Any external network that falls completely outside of the organization's control, monitoring, or administration.
+* **Primary Example:** The public internet.
+
+### 🟢 2. Controlled Zone
+* **Definition:** The collective subnets and internal networks protected from the uncontrolled zone. It is structurally divided into three distinct layers:
+
+	#### A. Demilitarized Zone (DMZ)
+	* **Nature:** The network perimeter and outermost layer of the controlled zone.
+	* **Purpose:** Houses public-facing services that must securely interact with the internet.
+	* **Contained Assets:** Web servers, public proxy servers, external DNS servers, and external email or file-transfer servers.
+	
+	#### B. Internal Network
+	* **Nature:** The core corporate network layer situated behind the DMZ.
+	* **Purpose:** Houses the private servers, endpoints, and standard business data that the organization must protect from public exposure.
+	
+	#### C. Restricted Zone
+	* **Nature:** The deepest, most isolated layer located entirely within the internal network.
+	* **Purpose:** Protects highly confidential information and critical assets.
+	* **Access Control:** Restricted strictly to specific internal employees with elevated privileges.
+
+---
+
+## 🧱 Perimeter Architecture & Firewall Deployment
+To maximize defense-in-depth, firewalls are strategically deployed to isolate each security zone:
+
+1. **External Firewall:** Filters and scrubs incoming traffic coming from the uncontrolled internet into the DMZ.
+2. **Internal Firewall:** Sits between the DMZ and the internal network, blocking threats that penetrate the outer perimeter from spreading deeper.
+3. **Restricted Firewall:** Guards the boundary of the restricted zone, ensuring even compromised internal network devices cannot access highly confidential data.
+![[Pasted image 20261017080635.png]]
+
+## 🛡️ Security Analyst Operations
+* **Policy Regulation:** Responsible for implementing and enforcing access control policies across all zone-boundary firewalls.
+* **Traffic Restriction:** Controls transit pathways by tightly restricting allowed IP addresses and communication ports.
+* **Example Rule:** Configuring perimeter firewalls to only allow inbound **HTTPS (Port 443)** traffic directly to public web servers hosted inside the DMZ, while dropping all other traffic types.
+
+**Subnetting** is the process of taking one large network and **dividing it into several smaller, organized groups** called **subnets**. 
+	Subnetting divides up a network address range into smaller subnets within the network. These organized subnets are defined by the unique combination of the **IP address** and the **network mask** assigned to every device.
+
+## 🌐 The Shift from Classful to Classless Addressing
+* **Classful Addressing (1980s):** An outdated system that grouped IP addresses into strict categories (**Class A through Class E**). 
+* **The Problem:** Each class had a rigid, limited number of available IP addresses. As the internet exploded in the 1990s, these fixed pools rapidly depleted.
+* **Classless Inter-Domain Routing (CIDR):** Introduced to replace classful networking, dramatically expanding the efficiency and availability of the modern IPv4 address space.
+
+---
+## 🛠️ What is Classless Inter-Domain Routing (CIDR)?
+* **Definition:** A flexible method of assigning subnet masks to IP addresses to split networks into customizable, smaller chunks.
+* **Purpose:** Allows cybersecurity and network professionals to perform precise network segmentation, reduce the massive size of routing tables, and allocate IP addresses without wasting empty blocks.
+
+## 📝 Understanding CIDR Notation
+CIDR addresses look exactly like standard IPv4 addresses, but they add a trailing slash (`/`) followed by a specific number.
+* **IP Network Prefix:** The number following the slash (e.g., the `24` in `/24`). It defines how many bits of the address are dedicated to the network identifier.
+* **Notation Example:** `198.51.100.0/24`
+* **Network Range:** The single `/24` example above encompasses the entire block of 256 sequential IP addresses ranging from **198.51.100.0 to 198.51.100.255**.
+
+## 🧊 What is a Proxy Server?
+* **Definition:** A dedicated server that acts as an intermediary, fulfilling client requests by forwarding them to other servers.
+* **Network Position:** Sits directly between the public internet and the internal private network.
+* **IP Anonymization:** Operates using a public IP address completely distinct from the internal network. This hides private host IPs from external discovery.
+* **Security Mechanics:** When an external client receives a response, they see a distorted proxy IP or no IP at all, completely obscuring the organization's real backend server.
+
+---
+
+## 🛡️ Core Security and Performance Functions
+
+* **Inbound Inspection:** Evaluates incoming internet connection requests to determine if they are safe before letting traffic interact with the network.
+* **Content Filtering:** Enforces web policies by actively blocking employee access to unsafe, unauthorized, or malicious websites.
+* **Caching (Temporary Memory):** Stores frequently requested data locally. By serving common requests directly from its cache, it minimizes direct external contact with internal servers, reducing the target's attack surface.
+
+---
+
+## 🗂️ Classifications of Proxy Servers
+
+### 1. Forward Proxy Server
+* **Direction:** Regulates and restricts **outgoing** traffic (Internal User ➡️ Internet).
+* **Objective:** Intercepts traffic from internal employees, verifies it against organizational policy, hides the individual user's IP address, and forwards approved requests out to the internet.
+
+### 2. Reverse Proxy Server
+* **Direction:** Regulates and restricts **incoming** internet access to internal systems (Internet ➡️ Internal Server).
+* **Objective:** Accepts traffic from external parties, validates the requests, and forwards them to backend servers.
+* **Application:** Ideal for shielding internal web servers containing confidential data, ensuring their true IP addresses are never exposed to the public.
+
+### 3. Email Proxy Server
+* **Direction:** Inspects inbound and outbound electronic mail messaging.
+* **Objective:** Specifically flags and filters spam and phishing attempts.
+* **Verification:** Validates sender headers to ensure the source address was not forged, significantly mitigating business email compromise (BEC) and impersonation attacks.
+* **Real-World Use:** Multi-layered anti-spam filtering architectures are frequently deployed on enterprise or ISP email proxies to scrub messages thoroughly before delivering them to a user's inbox.
+
+
+---
+

@@ -412,11 +412,6 @@ Why can't software alone enforce protection?
 A buggy or malicious program could simply ignore software rules. Hardware must enforce the boundary between protected and unprotected operations.
 <!--SR:!2026-10-07,1,230-->
 
-Why is hardware support necessary for OS protection?
-??
-Hardware provides mechanisms such as CPU privilege modes and protected memory access that software cannot bypass.
-<!--SR:!2026-10-07,1,230-->
-
 What are the two CPU execution modes?
 ??
 User mode and kernel mode.
@@ -768,11 +763,6 @@ What happens when `read()` waits for keyboard input that has not arrived?
 The process blocks and sleeps while waiting for input, allowing another process to run.
 <!--SR:!2026-10-10,4,270-->
 
-What happens when a timer tick occurs?
-??
-The timer generates an interrupt and gives the scheduler an opportunity to decide whether to perform a context switch.
-<!--SR:!2026-10-07,1,230-->
-
 What is the vDSO?
 ??
 The vDSO is a mechanism that provides certain system-call-like functionality directly in user space, avoiding a kernel transition.
@@ -788,20 +778,10 @@ Why can't every system call use the vDSO?
 Some operations require privileged kernel access, hardware interaction, or waiting for external events and therefore cannot safely be performed entirely in user space.
 <!--SR:!2026-10-10,4,270-->
 
-Why could a time-related operation benefit from the vDSO?
-??
-The kernel can provide information that allows the operation to be completed in user space without a full system-call transition.
-<!--SR:!2026-10-10,4,270-->
-
 Why could `getpid()` potentially be implemented using the vDSO?
 ??
 The process ID can be obtained from information already available to the process without requiring privileged hardware access.
 <!--SR:!2026-10-07,1,230-->
-
-Why can't `read()` generally be replaced by a vDSO implementation?
-??
-`read()` may need to interact with devices or wait for external input, which requires kernel involvement.
-<!--SR:!2026-10-10,4,270-->
 
 What is an important system programming habit regarding input?
 ??
@@ -842,11 +822,6 @@ What can `/proc` be used for?
 ??
 The `/proc` filesystem provides information about running processes and various kernel and system state.
 <!--SR:!2026-10-10,4,270-->
-
-What should you be able to do with the `time` command?
-??
-Measure and compare user CPU time, system CPU time, and real elapsed time for a program.
-<!--SR:!2026-10-07,1,230-->
 
 What is the key difference between user CPU time and system CPU time?
 ??

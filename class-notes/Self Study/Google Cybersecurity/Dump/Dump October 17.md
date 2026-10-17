@@ -107,3 +107,78 @@ Simple Mail Transfer Protocol (SMTP) is used to transmit and route email from th
   * Fixes the handshake vulnerability to prevent KRACK attacks.
   * Introduces **SAE (Simultaneous Authentication of Equals)**, a password-authenticated key agreement that blocks offline data decryption attempts.
   * Upgrades baseline protection to **128-bit encryption**, with an optional **192-bit encryption** tier for Enterprise mode.
+
+
+# 🛡️ Firewall Types, Operations, and Management
+
+## 🧱 What is a Firewall?
+* **Definition:** A network security device that monitors incoming and outgoing network traffic.
+* **Core Function:** Blocks or allows traffic based on a predefined set of security rules determined by an organization's security policy.
+* **Port Filtering:** Limits unwanted communication by explicitly opening or closing specific ports (e.g., allowing **Port 443** for HTTPS or **Port 25** for email while dropping everything else).
+
+---
+
+## 🎛️ Types of Firewalls by Deployment
+
+### 1. Hardware Firewall
+* **Nature:** A physical, standalone appliance.
+* **Function:** Inspects every individual data packet before it is permitted to physically enter the internal network.
+* **Benefit:** Serves as the most foundational line of defense against network perimeter threats.
+
+### 2. Software Firewall
+* **Nature:** A software application installed directly onto existing hardware.
+* **Computer Deployment:** Analyzes traffic strictly received by that specific local machine.
+* **Server Deployment:** Protects all secondary devices connected to and relying on that server.
+* **Trade-offs:** Costs less than physical hardware and saves physical space, but introduces a processing and resource burden to host devices.
+
+### 3. Cloud-Based Firewall / Firewall as a Service (FaaS)
+* **Nature:** Software firewalls hosted entirely by a third-party cloud service provider.
+* **Operation:** Rules are configured via the provider's management interface. 
+* **Traffic Flow:** Scrubs and filters incoming traffic in the cloud *before* it can reach the onsite enterprise network.
+* **Scope:** Secures local networks as well as an organization's existing cloud-native assets and processes.
+
+---
+
+## 🧠 State Tracking Architecture
+
+### Stateful Firewalls
+* **Behavior:** Proactively tracks the connection state and information history of passing data packets.
+* **Security Level:** Higher protection; dynamically analyzes characteristics and behavioral context to flag and block suspicious trends.
+
+### Stateless Firewalls
+* **Behavior:** Operates strictly on static, preconfigured rules established by an administrator.
+* **Data Handling:** Does not store analyzed packet information or track connection states.
+* **Security Level:** Lower protection; completely blind to broader behavioral anomalies or emerging threat trends.
+
+---
+
+## 🚀 Next-Generation Firewalls (NGFW)
+* **Capabilities:** Delivers significantly higher security than standard stateful configurations.
+* **Advanced Features:** Performs deep packet inspection (DPI) and active intrusion protection.
+* **Threat Intelligence:** Connects directly to cloud-based threat intelligence services for real-time definitions update against zero-day and emerging exploits.
+
+# 🔒 Virtual Private Networks (VPNs) & Encapsulation
+
+## 🌐 The Privacy Risk of Standard Traffic
+* **ISP Exposure:** When connecting to the internet normally, your Internet Service Provider (ISP) receives and forwards all network requests directly to destination servers.
+* **Data Leakage:** Standard internet requests include your public IP address, private data, and physical location.
+* **Interception Threat:** If unencrypted traffic is intercepted, malicious actors can tie your online activity to your physical location and steal highly sensitive information like banking details and credit card numbers.
+
+---
+
+## 🛡️ What is a VPN?
+* **Definition:** A network security service that creates an encrypted tunnel between your local device and a remote VPN server.
+* **Anonymization:** It masks your public IP address and hides your true virtual location.
+* **Confidentiality:** It encrypts your data as it travels across the public internet, making it unreadable without the correct cryptographic key.
+
+---
+
+## 📦 Data Encapsulation Explained
+A fundamental routing paradox exists: encrypting an entire data packet secures the information, but routers can no longer read the destination IP and MAC addresses in the header to deliver it. VPNs solve this using **encapsulation**.
+
+* **The Process:** Encapsulation wraps sensitive, fully encrypted data packets inside completely separate, unencrypted outer packets.
+* **How It Works:**
+  1. **Encryption:** The VPN software encrypts your original data packet (including your real IP address and private data payload).
+  2. **Encapsulation:** It wraps that encrypted packet inside a new, public packet containing the destination address of the VPN server.
+  3. **Routing:** Network routers read the outer packet to successfully forward it across the internet.
+  4. **Decryption:** Once it hits the VPN server, the outer layer is stripped, the inner packet is processed, and it is safely forwarded to the final web destination using the VPN's IP address instead of yours.

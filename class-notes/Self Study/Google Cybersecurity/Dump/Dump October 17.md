@@ -321,3 +321,28 @@ A **VPN protocol** is a dedicated set of rules determining exactly how data move
   * **Compatibility:** Native support is baked into the majority of modern operating systems due to its long history.
   * **Maturity:** Highly favored by conservative enterprise environments because of its long track record, extensive security vetting, and global adoption.
 * **Disadvantages:** Considerably older, larger, and more complex to configure and optimize than WireGuard.
+
+
+## Course 3 Module 3
+# ⚠️ Network Threats: Interception, Backdoors & Impacts
+
+## ⚔️ Types of Cyber Attacks
+
+### 1. Network Interception Attacks
+* **Definition:** Intercepting data in transit to steal information or alter transmissions.
+* **Packet Sniffing:** Using software or hardware tools to capture and inspect network traffic.
+* **Risks:** Attackers can read sensitive data, inject malicious code, or manipulate active transactions (e.g., altering bank transfer routing details).
+* **Key Variations:** Includes on-path attacks and replay attacks.
+
+### 2. Backdoor Attacks
+* **Definition:** Bypassing normal access controls via intentionally or maliciously created entry points.
+* **Origin:** Originally left by developers for troubleshooting, or installed by hackers to maintain persistent access after an initial breach.
+* **Risks:** Allows attackers to quietly deploy malware, steal corporate data, or launch a **Denial of Service (DoS)** attack—which deliberately floods a server with traffic to knock it offline.
+
+---
+
+## 💥 Organizational Impacts
+
+* **💰 Financial:** Halts revenue-generating systems via DoS, creates massive infrastructure repair bills, and triggers expensive legal litigation or ransomware payouts.
+* **🤝 Reputation:** Destroys consumer trust when a breach becomes public, causing customers to flee to competitors.
+* **🛡️ Public Safety:** Threatens physical infrastructure (like power grids, water systems, and military networks), potentially causing physical harm to citizens.

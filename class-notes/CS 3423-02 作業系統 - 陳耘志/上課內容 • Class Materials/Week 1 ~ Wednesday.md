@@ -340,7 +340,7 @@ The OS must enforce:
 - Resource constraints: programs must work within finite CPU, memory, and disk.
 - Isolation/coexistence: one program should not corrupt or interfere with another.
 - Scale: the system must continue working with many users/programs or resource-constrained hardware.
-<!--SR:!2026-10-08,2,250-->
+<!--SR:!2026-10-23,5,250-->
 
 Why does an OS need to provide virtualization?
 ??
@@ -348,13 +348,13 @@ Virtualization creates the illusion that each program has its own resources.
 For the CPU, the OS makes multiple programs appear to run at the same time even though CPUs must be shared.
 For memory, the OS gives each program the illusion that it has its own private memory.
 This lets a program run without needing to know what other programs are using the machine.
-<!--SR:!2026-10-08,2,230-->
+<!--SR:!2026-10-23,5,230-->
 
 What problem does OS concurrency solve?
 ??
 When multiple programs or CPUs operate on the same data at the same time, their operations can conflict.
 The OS provides mechanisms that allow concurrent operations to happen without causing conflicts.
-<!--SR:!2026-10-07,1,190-->
+<!--SR:!2026-10-18,0,170-->
 
 What is persistence, and how does the OS provide it?
 ??
@@ -366,7 +366,7 @@ Why can the OS stop a poorly written program from damaging other programs?
 ??
 The OS provides isolation and permissions.
 A program is restricted to its allowed resources, so faults or malicious behavior in one program should not directly corrupt other programs or the entire machine.
-<!--SR:!2026-10-18,12,270-->
+<!--SR:!2026-11-20,33,270-->
 
 What is the difference between user mode and kernel mode when a program has an out-of-bounds memory read?
 ??
@@ -398,7 +398,7 @@ What are the specialized operating systems mentioned for the iPhone?
 - Java Card OS — Secure Element used for Apple Pay
 - QuRT — cellular modem
 - RTKit — low-power/Always-On processing such as sensors and voice-related functions
-<!--SR:!2026-10-08,2,230-->
+<!--SR:!2026-10-18,0,210-->
 
 What OS design trade-offs can change depending on the device?
 ??
@@ -411,7 +411,7 @@ Why might a server prioritize throughput over latency?
 A server may need to process work for many users simultaneously.
 High throughput means completing a large amount of total work, while low latency means making an individual operation finish quickly.
 A large server may therefore prioritize total system throughput rather than making one user's operation as fast as possible.
-<!--SR:!2026-10-17,11,270-->
+<!--SR:!2026-11-16,29,270-->
 
 Why can a server need much higher uptime than a personal computer?
 ??
@@ -424,13 +424,13 @@ What is the difference between a user-facing workload and a batch workload?
 ??
 A user-facing workload prioritizes high availability, low latency, and high throughput because users expect responsive service.
 A batch workload prioritizes high throughput and can tolerate more flexible end-to-end latency, so it can be throttled or terminated when resources are needed elsewhere.
-<!--SR:!2026-10-17,11,270-->
+<!--SR:!2026-11-16,29,270-->
 
 Why can averages be misleading when measuring service performance?
 ??
 Averages can hide slow outliers that significantly affect users.
 SREs therefore use percentiles, such as an SLO requiring 99% of requests to complete within 100 ms, to understand tail latency.
-<!--SR:!2026-10-08,2,250-->
+<!--SR:!2026-10-23,5,250-->
 
 Why can a 1% slow rate at each of 100 independent servers result in about 63% of page loads being slow?
 ??
@@ -440,14 +440,14 @@ The probability that all 100 respond quickly is:
 So the probability that at least one server is slow is:
 1 - 0.37 ≈ 0.63
 Therefore about 63% of page loads encounter at least one slow server.
-<!--SR:!2026-10-17,11,270-->
+<!--SR:!2026-11-17,30,270-->
 
 How does the OS handle CPU, I/O, and memory resource contention?
 ??
 CPU: the OS delays lower-priority processes.
 I/O: the OS rate-limits lower-priority data streams.
 Memory: because memory cannot simply be delayed, the OS may terminate processes when memory is exhausted to keep the machine alive.
-<!--SR:!2026-10-08,2,230-->
+<!--SR:!2026-10-20,2,210-->
 
 What are the three levels of isolation discussed in the notes?
 ??
@@ -468,7 +468,7 @@ How does container isolation differ from process isolation?
 A container provides an isolated process group with its own identity, resource limits, and view of the file system.
 However, containers still share the host OS kernel.
 Examples include Docker and Kubernetes.
-<!--SR:!2026-10-16,10,270-->
+<!--SR:!2026-11-14,27,270-->
 
 How does virtual-machine isolation differ from container isolation?
 ??
@@ -487,38 +487,38 @@ What is the fundamental trade-off between DRAM and SRAM?
 ??
 DRAM provides high density and low cost but is slower and requires refreshing.
 SRAM is much faster and does not require refreshing, but uses more transistors, making it larger and much more expensive per unit of storage.
-<!--SR:!2026-10-13,7,250-->
+<!--SR:!2026-11-05,18,250-->
 
 How does DRAM store data, and why does it need refreshing?
 ??
 DRAM stores data as electrical charge in a capacitor.
 The capacitor naturally loses charge, so the memory controller must periodically refresh it to preserve the stored data.
-<!--SR:!2026-10-17,11,270-->
+<!--SR:!2026-11-17,30,270-->
 
 How does SRAM store data, and why doesn't it require refreshing?
 ??
 SRAM uses a multi-transistor flip-flop circuit to maintain its state while power is supplied.
 Because it does not rely on a leaking capacitor charge, it does not require periodic refreshes.
-<!--SR:!2026-10-16,10,270-->
+<!--SR:!2026-11-13,26,270-->
 
 Why is DRAM used for main memory while SRAM is used for CPU caches?
 ??
 DRAM has high density and is inexpensive per GB, making it suitable for large main memory.
 SRAM is much faster but uses more transistors and is much more expensive, making it suitable for smaller CPU caches such as L1, L2, and L3.
-<!--SR:!2026-10-17,11,270-->
+<!--SR:!2026-11-16,29,270-->
 
 What is the difference between exit() and _exit()?
 ??
 exit() is a C standard library function that performs normal termination and flushes open C streams.
 _exit() is a low-level system call that terminates the process immediately without performing standard-library cleanup or flushing user-level stdio buffers.
-<!--SR:!2026-10-09,3,230-->
+<!--SR:!2026-10-25,7,230-->
 
 Why does printf("Hey"); exit(1); print "Hey"?
 ??
 printf() places "Hey" into the C library's user-level output buffer.
 exit() performs normal C library termination, which flushes the open streams before the process terminates.
 Therefore the buffered "Hey" reaches the output.
-<!--SR:!2026-10-09,3,230-->
+<!--SR:!2026-10-25,7,230-->
 
 Why does printf("Hey"); _exit(1); print nothing?
 ??
@@ -531,39 +531,39 @@ When would you typically use _exit() instead of exit()?
 ??
 A common case is terminating a child process after fork().
 _exit() avoids running the parent's inherited C library cleanup and flushing inherited stdio buffers.
-<!--SR:!2026-10-13,7,250-->
+<!--SR:!2026-10-20,2,230-->
 
 How can you force buffered printf output to appear before _exit()?
 ??
 Either:
 - Add a newline when appropriate, such as printf("Hey\n");
 - Explicitly flush stdout with fflush(stdout);
-<!--SR:!2026-10-18,12,270-->
+<!--SR:!2026-11-19,32,270-->
 
 What is the key difference between libc buffering and kernel-level writing?
 ??
 libc functions such as printf() can first store output in a user-space buffer and later call the kernel's write mechanism.
 A direct write() system call sends the bytes to the kernel immediately, without waiting for the libc stdio buffer to fill or be flushed.
-<!--SR:!2026-10-16,10,270-->
+<!--SR:!2026-11-15,28,270-->
 
 Why can printf output disappear when a program crashes?
 ??
 printf() may have placed the output only in a user-space libc buffer.
 If the program crashes before the buffer is flushed, those bytes disappear with the process.
-<!--SR:!2026-10-18,12,270-->
+<!--SR:!2026-11-18,31,270-->
 
 Why does write() output survive a process crash?
 ??
 write() is a system call.
 Once the kernel receives the bytes, they are no longer dependent on the process's user-space stdio buffer.
 The process can subsequently crash without undoing the already-issued write.
-<!--SR:!2026-10-17,11,270-->
+<!--SR:!2026-11-16,29,270-->
 
 Why can stdout and stderr behave differently when a program crashes?
 ??
 stdout is normally buffered by the C library, while stderr is normally unbuffered.
 Therefore output sent to stdout may still be sitting in a user-space buffer when the program crashes, while stderr output is normally passed to the kernel immediately.
-<!--SR:!2026-10-16,10,270-->
+<!--SR:!2026-11-14,27,270-->
 
 Why is stderr useful for debugging messages?
 ??
@@ -576,11 +576,11 @@ What happens in `./test > out.txt` when test uses printf() and crashes before no
 The shell redirects stdout to out.txt.
 printf() writes its output into the C library's user-space stdout buffer.
 The program crashes before that buffer is flushed, so the data never reaches the file and out.txt remains empty.
-<!--SR:!2026-10-08,2,210-->
+<!--SR:!2026-10-18,0,190-->
 
 What happens in `./test2 > out2.txt` when test2 uses write() and then crashes?
 ??
 The shell redirects file descriptor 1 (stdout) to out2.txt.
 write(1, "hello", 5) immediately sends the bytes to the kernel.
 The kernel performs the write to the file, so "hello" remains in out2.txt even though the process crashes afterward.
-<!--SR:!2026-10-16,10,270-->
+<!--SR:!2026-11-13,26,270-->

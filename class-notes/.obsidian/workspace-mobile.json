@@ -13,44 +13,35 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md",
+                "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 5 ~ Monday.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "0-0 - Syllabus & Website"
+              "title": "Week 5 ~ Monday"
             }
           },
           {
             "id": "bac5bd10dfcf1d71",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Week 1 ~ Monday"
+              "title": "New tab"
             }
           },
           {
             "id": "2a5732445e9aca2e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Self Study/2026-10-14 Google Cybersecurity.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "2026-10-14 Google Cybersecurity"
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -146,7 +137,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "Self Study/2026-10-14 Google Cybersecurity.md",
+            "file": "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 5 ~ Monday.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -213,8 +204,9 @@
       "obsidian-spaced-repetition:Review flashcards": false
     }
   },
-  "active": "2a5732445e9aca2e",
+  "active": "7d20e1c333177db0",
   "lastOpenFiles": [
+    "CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md",
     "Self Study/2026-10-14 Google Cybersecurity.md",
     "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH5_Obsidian_with_FBD_Images/images/FBD_SpaceStation.png",
     "PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH5_Obsidian_with_FBD_Images/images/FBD_Spring.png",
@@ -249,7 +241,6 @@
     "IEEM 2021-2 離散數學 - 岩間一雄/上課內容 • Class Materials/Week 2 ~ Tuesday.md",
     "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 2 ~ Monday.md",
     "CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 1 ~ Monday.md",
-    "CS 3423-02 作業系統 - 陳耘志/0-0 - Syllabus & Website.md",
     "README.md"
   ]
 }

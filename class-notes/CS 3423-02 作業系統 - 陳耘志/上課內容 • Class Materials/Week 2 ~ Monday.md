@@ -457,7 +457,7 @@ What two things happen when a parent process executes the `waitpid()` function?
 What exact data does a child process pass to the OS Kernel upon calling `exit(42)`?
 ??
 It hands over its **Exit Status** (the integer `42`). The Kernel already knows the child's PID and pairs it with this exit code inside the system Process Table.
-<!--SR:!2026-10-07,1,190-->
+<!--SR:!2026-10-20,2,190-->
 
 What happens to a child's zombie status if the parent calls `wait()` _after_ the child has already exited?
 ??
@@ -558,7 +558,7 @@ libc is the C standard library that provides user-space functions such as `print
 Does the kernel search `PATH` when executing a program?
 ??
 No. `PATH` searching is performed in user space by programs such as the shell or libc's `execvp()`. The kernel receives an actual pathname.
-<!--SR:!2026-10-08,2,230-->
+<!--SR:!2026-10-23,5,230-->
 
 What is an environment variable?
 ??
@@ -573,7 +573,7 @@ It makes a shell variable part of the environment inherited by child processes.
 What is `PATH`?
 ??
 `PATH` is an environment variable containing a list of directories where executable programs can be found.
-<!--SR:!2026-10-12,6,250-->
+<!--SR:!2026-11-02,15,250-->
 
 What does `echo $PATH` show?
 ??
@@ -593,7 +593,7 @@ It shows which `python` executable is found first through the `PATH` search.
 Does `PATH` contain executable files?
 ??
 No. `PATH` contains directories that contain executable files.
-<!--SR:!2026-10-18,12,270-->
+<!--SR:!2026-11-19,32,270-->
 
 What is the difference between `/usr/bin` and `~/.local/bin`?
 ??
@@ -618,7 +618,7 @@ The child would change to `/tmp`, but the parent shell would remain in its origi
 What are important examples of shell built-in commands?
 ??
 `cd`, `export`, `unset`, `exit`, `alias`, and `source`/`.`.
-<!--SR:!2026-10-08,2,250-->
+<!--SR:!2026-10-23,5,250-->
 
 Why does `exit` need to be a shell built-in?
 ??
@@ -658,7 +658,7 @@ The child terminates and can temporarily become a zombie until the parent reaps 
 What is a zombie process?
 ??
 A child process that has already terminated, but whose parent has not yet collected its exit status using `wait()` or `waitpid()`.
-<!--SR:!2026-10-17,11,270-->
+<!--SR:!2026-11-18,31,270-->
 
 Does a zombie process still execute?
 ??
@@ -668,7 +668,7 @@ No. It has already terminated. Only a small amount of information about it remai
 What information does the kernel keep for a zombie?
 ??
 Information such as the child's PID and exit status.
-<!--SR:!2026-10-13,7,250-->
+<!--SR:!2026-11-04,17,250-->
 
 Why does the kernel keep a terminated child's exit status?
 ??
@@ -708,7 +708,7 @@ A process designed to run in the background and provide a service.
 What is the traditional Unix technique for creating a daemon?
 ??
 The traditional technique commonly uses `fork()` → `setsid()` → `fork()`.
-<!--SR:!2026-10-16,10,270-->
+<!--SR:!2026-11-13,26,270-->
 
 Why is the first `fork()` used during traditional daemonization?
 ??
@@ -793,7 +793,7 @@ How many new processes are created by `n` independent `fork()` calls if every pr
 How do you determine how many times a line executes in a `fork()` counting problem?
 ??
 Ask: "How many processes reach this line?" Every process that reaches the line executes it.
-<!--SR:!2026-10-07,1,190-->
+<!--SR:!2026-10-20,2,170-->
 
 What happens if `printf()` appears before a `fork()`?
 ??

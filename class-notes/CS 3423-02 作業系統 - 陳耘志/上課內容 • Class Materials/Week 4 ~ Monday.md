@@ -400,7 +400,7 @@ Worth being able to answer immediately:
 What is fault isolation?
 ??
 Fault isolation is the OS's ability to prevent a buggy or malicious process from interfering with other processes or the kernel.
-<!--SR:!2026-10-18,0,210-->
+<!--SR:!2026-10-20,2,210-->
 
 Why does the OS treat every process as potentially buggy or malicious?
 ??
@@ -415,7 +415,7 @@ A buggy or malicious program could simply ignore software rules. Hardware must e
 What are the two CPU execution modes?
 ??
 User mode and kernel mode.
-<!--SR:!2026-10-10,4,270-->
+<!--SR:!2026-10-29,11,270-->
 
 What can a program do in user mode?
 ??
@@ -425,7 +425,7 @@ It can perform normal unprivileged operations but cannot perform privileged oper
 What can the kernel do in kernel mode?
 ??
 The kernel can perform privileged operations such as managing hardware, memory, and other protected resources.
-<!--SR:!2026-10-10,4,270-->
+<!--SR:!2026-10-28,10,270-->
 
 Why can't a user program perform privileged instructions?
 ??
@@ -435,7 +435,7 @@ The CPU detects that the program is running in user mode and prevents privileged
 Can a user program directly change the CPU's mode bit?
 ??
 No. Allowing a user program to change itself to kernel mode would defeat the entire protection mechanism. Hardware controls the transition.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-20,2,230-->
 
 How does a program enter kernel mode?
 ??
@@ -480,7 +480,7 @@ A kernel-mode bug can be much more serious because the kernel has access to prot
 What is a virtual address space?
 ??
 It is the set of virtual memory addresses that a process can use. Each process has its own virtual address space.
-<!--SR:!2026-10-10,4,270-->
+<!--SR:!2026-10-28,10,270-->
 
 Why does each process have its own address space?
 ??
@@ -490,7 +490,7 @@ So processes can use the same virtual addresses without directly interfering wit
 What is a virtual address?
 ??
 An address generated and used by a program that is translated by the memory-management hardware into a physical memory address.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-20,2,230-->
 
 What does a typical process address space contain?
 ??
@@ -505,7 +505,7 @@ The heap is used for dynamically allocated memory, such as memory obtained with 
 Which direction does the heap normally grow?
 ??
 The heap grows upward toward higher virtual addresses.
-<!--SR:!2026-10-10,4,270-->
+<!--SR:!2026-10-28,10,270-->
 
 What is the stack used for?
 ??
@@ -555,7 +555,7 @@ A system call is a controlled mechanism that allows a user program to request a 
 Why can't a user program simply call a kernel function like a normal function?
 ??
 A normal function call does not provide the required privilege transition. The CPU must switch from user mode to kernel mode through a protected system-call mechanism.
-<!--SR:!2026-10-10,4,270-->
+<!--SR:!2026-10-30,12,270-->
 
 How does a system call enter the kernel?
 ??
@@ -591,7 +591,7 @@ What are the basic steps of a system call?
 Why must the kernel validate system-call arguments?
 ??
 System-call arguments come from untrusted user programs, so the kernel must verify that they are valid and safe to access.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-20,2,230-->
 
 Why are pointer arguments especially important to validate?
 ??
@@ -646,7 +646,7 @@ An abort is a serious, unrecoverable error that generally cannot be restarted.
 What is the key difference between a trap and an interrupt?
 ??
 A trap is caused intentionally by the currently running program, while an interrupt comes from an external source such as hardware.
-<!--SR:!2026-10-10,4,270-->
+<!--SR:!2026-10-30,12,270-->
 
 What is the key difference between a fault and an abort?
 ??
@@ -656,7 +656,7 @@ A fault may be recoverable and allow the instruction to be retried, while an abo
 Can a page fault be a normal event?
 ??
 Yes. A page fault can occur because a needed page is not currently mapped into physical memory. The kernel can handle the fault and retry the instruction.
-<!--SR:!2026-10-10,4,270-->
+<!--SR:!2026-10-30,12,270-->
 
 What is time sharing?
 ??
@@ -676,7 +676,7 @@ A buggy or malicious process could keep running forever without yielding, preven
 What is preemptive scheduling?
 ??
 The operating system can forcibly interrupt a running process and take control of the CPU.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-20,2,230-->
 
 What mechanism allows preemptive scheduling?
 ??
@@ -721,7 +721,7 @@ Yes. A process can make a system call, execute in kernel mode, and then return t
 Can a context switch happen without changing processes' user/kernel modes?
 ??
 A context switch involves changing the running process, while mode changes are separate from that concept. The important distinction is that they represent different state changes.
-<!--SR:!2026-10-10,4,270-->
+<!--SR:!2026-10-28,10,270-->
 
 Does every timer interrupt cause a context switch?
 ??
@@ -741,7 +741,7 @@ A slow system call may block because it needs to wait for an external event, suc
 What happens when a process makes a slow system call and the required event has not happened yet?
 ??
 The process can sleep or block, allowing the scheduler to run another process instead.
-<!--SR:!2026-10-10,4,270-->
+<!--SR:!2026-10-29,11,270-->
 
 How does a blocked process become runnable again?
 ??
@@ -781,7 +781,7 @@ Some operations require privileged kernel access, hardware interaction, or waiti
 Why could `getpid()` potentially be implemented using the vDSO?
 ??
 The process ID can be obtained from information already available to the process without requiring privileged hardware access.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-20,2,230-->
 
 What is an important system programming habit regarding input?
 ??
@@ -791,7 +791,7 @@ Always treat input from user programs as untrusted and validate it before using 
 What is an important system programming habit regarding system calls?
 ??
 Assume every system call can fail and check its return value.
-<!--SR:!2026-10-18,0,250-->
+<!--SR:!2026-10-21,3,250-->
 
 Why is ignoring a system-call return value dangerous?
 ??
@@ -811,7 +811,7 @@ A system call is a request to the kernel, not a guarantee of success. Always che
 What can `strace` be used for?
 ??
 `strace` can observe the system calls made by a program, including their arguments and return values.
-<!--SR:!2026-10-07,1,230-->
+<!--SR:!2026-10-20,2,230-->
 
 Why is `strace` useful for learning system calls?
 ??
@@ -826,7 +826,7 @@ The `/proc` filesystem provides information about running processes and various 
 What is the key difference between user CPU time and system CPU time?
 ??
 User CPU time is spent executing user-space code, while system CPU time is spent executing kernel code on behalf of the process.
-<!--SR:!2026-10-10,4,270-->
+<!--SR:!2026-10-29,11,270-->
 
 What is the key difference between a system call and an exception?
 ??

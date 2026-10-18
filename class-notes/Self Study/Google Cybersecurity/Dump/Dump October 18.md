@@ -131,3 +131,91 @@ No single security control stops all network attacks; defenses must be layered a
 - **Network Hygiene**:
     
     - Avoid unencrypted, open public Wi-Fi networks unless an encrypted VPN tunnel is established before transmitting sensitive credentials.
+
+
+
+🔍 1. Understanding Brute Force Attacks
+
+A **brute force attack** is a trial-and-error process used by malicious actors to discover private credentials. While tedious when done manually, attackers frequently leverage automated tools to scale their efforts.
+
+Attack Vectors
+
+- **Simple Brute Force Attacks**
+    - Attackers guess login credentials by entering combinations of usernames and passwords until one works.
+- **Dictionary Attacks**
+    - Attackers utilize a pre-compiled list of commonly used passwords and stolen credentials from previous breaches.
+    - _Historical Context:_ Originally named because they used literal dictionary word lists before complex password rules became standard.
+
+---
+
+🧪 2. Assessing Vulnerabilities
+
+Organizations proactively identify security gaps and simulate incidents using isolated testing environments before a live breach occurs.
+
+mermaid
+
+```
+graph TD
+    A[Vulnerability Assessment] --> B[Virtual Machines VMs]
+    A --> C[Sandbox Environments]
+    B --> D[Isolated Code Execution]
+    C --> E[Patch & Malware Testing]
+```
+
+Use code with caution.
+
+💻 Virtual Machines (VMs)
+
+> [!INFO] Definition  
+> **Virtual Machines (VMs)** are software-emulated versions of physical computers that run in isolated environments.
+
+- **Key Benefits:**
+    - **Isolation:** Prevents malicious code from leaking into the host operating system.
+    - **Disposability:** Can be completely deleted and replaced with a pristine image post-testing.
+    - **State Control:** Allows analysts to snapshot and revert to a clean, previous state.
+- > [!WARNING] Virtualization Risk  
+    > There is a small, persistent risk that advanced malware can perform a **virtualization escape** to access and compromise the underlying host machine.
+    
+
+🏜️ Sandbox Environments
+
+- **Purpose:** Isolated environments built specifically to execute untrusted software, test security patches, find bugs, and simulate attack scenarios.
+- **Deployment:** Can be standalone physical hardware, but cloud-based or software-driven VMs are more cost-effective.
+- > [!ATTENTION] Evasion Tactics  
+    > Modern malware authors write code capable of detecting VM or sandbox environments. If detected, the malware alters its behavior to appear completely harmless.
+    
+
+---
+
+🛡️ 3. Prevention & Defensive Measures
+
+Operating system hardening requires a defense-in-depth approach combining cryptographic techniques and strict access management.
+
+Technical Controls
+
+- **Salting & Hashing**
+    - `Hashing`: A one-way cryptographic function that converts data into a unique fixed-length value. It cannot be decrypted back into plain text.
+    - `Salting`: Inserts random characters into the password before hashing, exponentially increasing hash complexity and resisting pre-computed crack lists.
+- **Identity Verification**
+    - `MFA`: Requires \(\ge 2\) distinct authentication factors (e.g., something you know like a password, and something you are like a fingerprint).
+    - `2FA`: A subset of MFA utilizing exactly two forms of verification.
+
+Perimeter & Administrative Controls
+
+- **CAPTCHA & reCAPTCHA**
+    - _Completely Automated Public Turing test to tell Computers and Humans Apart_.
+    - Challenges users with simple tasks to distinguish humans from automated scripts, effectively blocking bot-driven brute-forcing.
+- **Password Policies**
+    - Standardizes corporate password hygiene by enforcing strict rules:
+        - Complexity and character requirements
+        - Maximum password age (rotation intervals)
+        - Password history/reuse prohibitions
+        - **Account lockout thresholds** (suspending access after \(X\) failed attempts)
+
+---
+
+🔗 Related Vault Links
+
+- `[[OS Hardening Best Practices]]`
+- `[[Identity and Access Management (IAM)]]`
+- `[[Introduction to Cryptography]]`

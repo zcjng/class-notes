@@ -152,9 +152,8 @@ Attack Vectors
 
 Organizations proactively identify security gaps and simulate incidents using isolated testing environments before a live breach occurs.
 
-mermaid
 
-```
+```mermaid
 graph TD
     A[Vulnerability Assessment] --> B[Virtual Machines VMs]
     A --> C[Sandbox Environments]
@@ -173,15 +172,15 @@ Use code with caution.
     - **Isolation:** Prevents malicious code from leaking into the host operating system.
     - **Disposability:** Can be completely deleted and replaced with a pristine image post-testing.
     - **State Control:** Allows analysts to snapshot and revert to a clean, previous state.
-- > [!WARNING] Virtualization Risk  
-    > There is a small, persistent risk that advanced malware can perform a **virtualization escape** to access and compromise the underlying host machine.
-    
+
+> [!warning] Virtualization Risk  
+There is a small, persistent risk that advanced malware can perform a **virtualization escape** to access and comprom ise the underlying host machine.
 
 🏜️ Sandbox Environments
 
 - **Purpose:** Isolated environments built specifically to execute untrusted software, test security patches, find bugs, and simulate attack scenarios.
 - **Deployment:** Can be standalone physical hardware, but cloud-based or software-driven VMs are more cost-effective.
-- > [!ATTENTION] Evasion Tactics  
+> [!ATTENTION] Evasion Tactics  
     > Modern malware authors write code capable of detecting VM or sandbox environments. If detected, the malware alters its behavior to appear completely harmless.
     
 
@@ -214,8 +213,3 @@ Perimeter & Administrative Controls
 
 ---
 
-🔗 Related Vault Links
-
-- `[[OS Hardening Best Practices]]`
-- `[[Identity and Access Management (IAM)]]`
-- `[[Introduction to Cryptography]]`

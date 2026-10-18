@@ -403,6 +403,7 @@ A UNIX pipeline (`cmd1 | cmd2 | cmd3`) relies on an internal kernel **reference 
 What does IPC stand for, and why does a system need it?
 ??
 Inter-Process Communication. Processes have separate memory spaces and cannot directly share data, so they use OS-provided channels (pipes, shared memory, signals, sockets) to exchange data and coordinate.
+<!--SR:!2026-10-19,1,230-->
 
 Why does PTT use a multi-process design?
 ??
@@ -411,6 +412,7 @@ PTT is a robust system that splits responsibilities across multiple processes, s
 What are the main IPC mechanisms covered in the notes?
 ??
 Pipes, FIFOs (named pipes), shared memory, signals, and Unix domain sockets.
+<!--SR:!2026-10-22,4,270-->
 
 What is a pipe?
 ??
@@ -419,6 +421,7 @@ A one-way byte-stream channel inside the kernel, typically used between related 
 How does a FIFO (named pipe) differ from a pipe?
 ??
 A pipe only exists between related processes, while a FIFO exists as a special file in the filesystem, so unrelated processes with permission can use it for decoupled communication.
+<!--SR:!2026-10-22,4,270-->
 
 What is shared memory as an IPC mechanism, and what is its main risk?
 ??
@@ -427,6 +430,7 @@ Multiple processes map and access the same memory region directly (no copy), whi
 What do signals provide, and give an example?
 ??
 Signals send a notification about an event to a process. For example, pressing Ctrl+C sends `SIGINT`.
+<!--SR:!2026-10-22,4,270-->
 
 What is special about Unix domain sockets?
 ??
@@ -454,6 +458,7 @@ A small integer index into a process's file descriptor table that refers to an e
 Where is the file offset stored, and what does it do?
 ??
 It is stored in the open-file table entry, not in the descriptor itself. It works like a bookmark: each `read()` or `write()` advances it by the number of bytes transferred.
+<!--SR:!2026-10-19,1,230-->
 
 What does `read()` return when it reaches end-of-file?
 ??
@@ -494,6 +499,7 @@ Before `exec`, the shell calls `dup2(fd, 1)` so that STDOUT (fd 1) now points to
 Why is it safe to close the original descriptor after `dup2()`?
 ??
 `dup2()` created a second reference to the same open-file entry, so closing the original descriptor only removes one reference; the file stays open through the new descriptor.
+<!--SR:!2026-10-22,4,270-->
 
 What does `pipe(fds)` do and what does it return?
 ??
@@ -540,6 +546,7 @@ When the last write end is closed (zero write descriptors remain anywhere), the 
 What happens when a process writes to a pipe whose read end has been closed?
 ??
 The kernel sends `SIGPIPE` to the writer; by default this terminates the process (the `write()` also fails with `EPIPE`).
+<!--SR:!2026-10-22,4,270-->
 
 When is a pipe fully deallocated?
 ??

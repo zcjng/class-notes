@@ -1,3 +1,14 @@
+---
+title: 第五週 • 週一
+course: CS 3423-02 作業系統
+week: 5
+day: Monday
+tags:
+  - os
+---
+
+# 第五週 • 週一 — Inter-Process Communication & Pipes
+
 ## PTT 
 boolean robust system design ptt uses multi-process design, where each process handles different responsibilities.
 
@@ -39,7 +50,7 @@ PTT uses all of these IPC.
 	- The second program can start running immediately picking up the output from the first program on the fly, while its still running. (**Pipelined parallel execution**)
 
 
-# Week 5 Main Topic: Pipe
+## Week 5 Main Topic: Pipe
  
 - Each process has file descriptors.
 When, we open "cats.txt", the kernel finds the inode file.
@@ -384,3 +395,188 @@ A UNIX pipeline (`cmd1 | cmd2 | cmd3`) relies on an internal kernel **reference 
 * **Trigger:** An active upstream producer calls a `write()` system call aiming at a channel where the receiving end is completely dead.
 * **Action:** The operating system kernel immediately catches the dead connection and flags an `EPIPE` error condition.
 * **Result:** To prevent system memory resource leaks and redundant computation cycles, the kernel delivers a **`SIGPIPE` signal** to the upstream process. By default, `SIGPIPE` terminates the process instantly, cascading backwards until the entire front end of the pipeline is dead.
+
+---
+
+## Flashcards
+
+What does IPC stand for, and why does a system need it?
+??
+Inter-Process Communication. Processes have separate memory spaces and cannot directly share data, so they use OS-provided channels (pipes, shared memory, signals, sockets) to exchange data and coordinate.
+
+Why does PTT use a multi-process design?
+??
+PTT is a robust system that splits responsibilities across multiple processes, so if one process has a problem the others are not affected. The processes then coordinate using IPC.
+
+What are the main IPC mechanisms covered in the notes?
+??
+Pipes, FIFOs (named pipes), shared memory, signals, and Unix domain sockets.
+
+What is a pipe?
+??
+A one-way byte-stream channel inside the kernel, typically used between related processes such as a parent and child after `fork()`.
+
+How does a FIFO (named pipe) differ from a pipe?
+??
+A pipe only exists between related processes, while a FIFO exists as a special file in the filesystem, so unrelated processes with permission can use it for decoupled communication.
+
+What is shared memory as an IPC mechanism, and what is its main risk?
+??
+Multiple processes map and access the same memory region directly (no copy), which is fast. The risk is that the processes must synchronize carefully, or they will overwrite each other's data.
+
+What do signals provide, and give an example?
+??
+Signals send a notification about an event to a process. For example, pressing Ctrl+C sends `SIGINT`.
+
+What is special about Unix domain sockets?
+??
+They provide local (same-machine) bidirectional communication and can pass file descriptors between processes.
+
+What is the Unix philosophy behind pipelines?
+??
+Make each program do one thing well and let programs work together by chaining them, e.g. `ls | wc`.
+
+Why is piping better than using a temporary file to connect two programs?
+??
+With a temp file, the first program must finish writing before the second can read (sequential execution, plus an unnecessary disk round-trip). A pipe wires the first program's output directly to the second program's input, so it can start immediately as data arrives (pipelined parallel execution) and never touches the disk.
+
+What three data structures does the kernel maintain for an open file?
+??
+1. The per-process file descriptor table.
+2. A system-wide open-file table entry (offset, access mode, pointer to the inode).
+3. The inode table entry (metadata: size, permissions, disk location).
+
+What is a file descriptor?
+??
+A small integer index into a process's file descriptor table that refers to an entry in the system-wide open-file table (and therefore to an open file).
+
+Where is the file offset stored, and what does it do?
+??
+It is stored in the open-file table entry, not in the descriptor itself. It works like a bookmark: each `read()` or `write()` advances it by the number of bytes transferred.
+
+What does `read()` return when it reaches end-of-file?
+??
+It returns 0 bytes (the EOF marker): an empty string in Python, the integer 0 in C/C++/Java.
+
+What is `lseek()` used for?
+??
+It changes the file offset manually, e.g. `lseek(fd, -900, SEEK_CUR)` jumps the offset back by 900 bytes.
+
+Why does the `cp` program keep writing inside a loop instead of calling `write()` once?
+??
+Because a single `write()` may write only part of the buffer, the program must loop until all `bytesRead` bytes have been written.
+
+After `fork()`, what does the child inherit about open files?
+??
+The child inherits a copy of the parent's file descriptor table; the descriptors point to the same open-file table entries, so parent and child share the same file offset.
+
+If the parent reads from a shared file, what happens to the child's position?
+??
+The child is affected too, because parent and child share the same open-file table entry and therefore the same file offset.
+
+What does `dup(fd)` do?
+??
+It creates a copy of a file descriptor at the lowest unused descriptor number; the new descriptor points to the same open-file table entry (same file and same offset).
+
+Why do two `dup`'ed descriptors writing to the same file continue from the same offset?
+??
+Because both descriptors point to the same open-file table entry, they share one offset; the second write continues where the first left off.
+
+What does `dup2(oldfd, newfd)` do?
+??
+It makes `newfd` refer to the same open file as `oldfd`; if `newfd` was already open, the kernel closes it first. It is mainly used to redirect I/O.
+
+How does the shell implement `ls > out.txt`?
+??
+Before `exec`, the shell calls `dup2(fd, 1)` so that STDOUT (fd 1) now points to `out.txt`. `ls` still thinks it is writing to STDOUT, but the output goes to the file.
+
+Why is it safe to close the original descriptor after `dup2()`?
+??
+`dup2()` created a second reference to the same open-file entry, so closing the original descriptor only removes one reference; the file stays open through the new descriptor.
+
+What does `pipe(fds)` do and what does it return?
+??
+It creates a pipe and fills `fds[0]` (read end) and `fds[1]` (write end). It returns 0 on success, or -1 on failure (leaving the array untouched and setting `errno`).
+
+Which end of a pipe is which, and in which direction does data flow?
+??
+`fds[0]` is the read end and `fds[1]` is the write end. Data flows one way only: you write to `fds[1]` and read from `fds[0]`.
+
+What happens if a process reads from a pipe before anything is written?
+??
+The `read()` call blocks and the process sleeps until data is written (or the write end is closed), consuming no CPU while it waits.
+
+Describe, step by step, how a shell runs `a | b`.
+??
+1. The shell calls `pipe()` and `fork()`.
+2. For `a`: close the read end, `dup2` the write end onto STDOUT (fd 1), close the original write end, then `exec` `a`.
+3. For `b`: close the write end, `dup2` the read end onto STDIN (fd 0), close the original read end, then `exec` `b`.
+4. The parent closes both ends and waits for both children.
+
+Why must each child close the pipe end it does not use?
+??
+Leaving the unused end open keeps the pipe open, so the reader would never see EOF, and it would leak a file descriptor into the `exec`'d program.
+
+Why must the parent close both pipe ends after forking the children?
+??
+If the parent keeps the write end open, the kernel never observes all write ends closed, so it never delivers EOF and a reader such as `wc` hangs forever.
+
+Why does a reader like `wc` stop reading?
+??
+It stops when `read()` returns 0 (EOF), which the kernel sends only after every process holding the write end has closed it.
+
+What are the three possible outcomes of `read()` on a pipe?
+??
+1. It returns more than 0 bytes when data is available.
+2. It returns 0 (EOF) when all write ends are closed.
+3. It blocks (sleeps) when no data is available but a write end is still open.
+
+When does a pipe deliver EOF to the reader?
+??
+When the last write end is closed (zero write descriptors remain anywhere), the reader's `read()` returns 0.
+
+What happens when a process writes to a pipe whose read end has been closed?
+??
+The kernel sends `SIGPIPE` to the writer; by default this terminates the process (the `write()` also fails with `EPIPE`).
+
+When is a pipe fully deallocated?
+??
+When every read and write descriptor for the pipe, across all processes, has reached zero; the kernel then frees the pipe's buffer.
+
+In a pipeline, what happens downstream when a middle-stage process is killed?
+??
+The dead stage's write-end count drops to zero, so downstream readers immediately see EOF (0 bytes), flush, and exit cleanly — the effect cascades forward to the end of the pipeline.
+
+In a program such as `04-capture-noclose`, what keeps the reader waiting forever, and why is no error reported?
+??
+The write end of the pipe is still open somewhere (a process forgot to close it), so the reader never receives EOF and blocks in `read()` indefinitely. No error is reported because nothing has failed — the reader is simply waiting for data or EOF that never comes.
+
+Does a pipe have a limited capacity, and what happens when it is full?
+??
+Yes. A pipe has a fixed buffer (Linux default 64 KiB). When it is full, `write()` blocks until the reader frees space, and the blocked process uses no CPU.
+
+Why can calling `wait()` before reading a child's output deadlock?
+??
+If the child's output is larger than the pipe buffer, the child blocks on `write()` while the parent blocks in `wait()` waiting for the child to exit — a deadlock. Small output fits in the buffer, so the child exits and `wait()` returns normally. Fix: read (drain) the pipe before waiting, or use non-blocking I/O or threads.
+
+Why must a program that uses a pipe as a protocol channel write only protocol messages to stdout?
+??
+When stdout is wired to a pipe, everything written there is consumed by the other program as protocol, so extra output (like debug messages) would corrupt the stream. Debug output should go to stderr instead.
+
+Why does a debugging message on stderr still reach the terminal when stdout is a pipe?
+??
+Only stdout (fd 1) was redirected to the pipe; stderr (fd 2) still points to the terminal, so debug output is still displayed.
+
+Name `SIGINT`, `SIGTERM`, and `SIGKILL`, and say who sends each.
+??
+- `SIGINT`: sent when the user presses Ctrl+C at the terminal.
+- `SIGTERM`: sent by `kill` or a process manager — a polite, catchable request to terminate.
+- `SIGKILL`: sent by `kill -9`/the kernel — cannot be caught or ignored, and forcibly terminates the process.
+
+Why do process managers send `SIGTERM` before `SIGKILL`?
+??
+`SIGTERM` lets the program clean up and exit gracefully; if it does not exit in time, `SIGKILL` forces termination.
+
+Why can't `SIGKILL` be caught?
+??
+It is handled directly by the kernel and cannot be caught, blocked, or ignored, so a process cannot refuse or delay being killed.

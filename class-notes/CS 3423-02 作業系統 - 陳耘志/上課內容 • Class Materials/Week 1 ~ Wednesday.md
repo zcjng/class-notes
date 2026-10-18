@@ -2,7 +2,7 @@
 title: 第一週 • 週三
 course: CS 3423-02 作業系統
 week: 1
-day: Monday
+day: Wednesday
 tags:
   - os
 ---
@@ -362,14 +362,6 @@ Persistence means data survives even after power is turned off.
 The OS provides persistence through the file system, giving programs a standard interface for storing and retrieving data without requiring them to know whether the storage is a hard drive, SSD, etc.
 <!--SR:!2026-10-08,2,250-->
 
-What are the four core system issues that AI-generated demos can ignore?
-??
-1. Security — ensuring programs only access allowed resources.
-2. Resource constraints — handling finite CPU, memory, and disk.
-3. Coexistence — sharing a machine without corrupting other programs.
-4. Scale — handling many concurrent users or resource-constrained hardware.
-<!--SR:!2026-10-16,10,270-->
-
 Why can the OS stop a poorly written program from damaging other programs?
 ??
 The OS provides isolation and permissions.
@@ -393,12 +385,6 @@ Why does rebooting normally fix many software problems?
 ??
 A reboot wipes the volatile in-memory state where programs may have corrupted data and starts the system again from a clean state using the persistent data on disk.
 <!--SR:!2026-10-22,16,290-->
-
-Why doesn't rebooting alone fix the CrowdStrike boot-loop problem described in the notes?
-??
-Because the problematic file had been saved on persistent disk storage.
-Every reboot loaded the same bad file again, so the machine crashed repeatedly during startup.
-<!--SR:!2026-10-18,12,270-->
 
 Why does an iPhone use multiple operating systems instead of letting iOS handle everything?
 ??
@@ -490,11 +476,6 @@ A VM provides a fully simulated computer with its own independent operating syst
 The VM still shares the underlying physical hardware through a hypervisor.
 VM isolation is stronger but has greater overhead because a complete OS must run inside the VM.
 <!--SR:!2026-10-22,16,290-->
-
-What is the isolation hierarchy from weakest to strongest?
-??
-Process → Container → Virtual Machine
-<!--SR:!2026-10-18,12,270-->
 
 What must a complete isolation boundary encapsulate?
 ??

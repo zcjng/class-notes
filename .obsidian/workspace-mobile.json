@@ -195,12 +195,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 5 ~ Monday.md",
+                "file": "Ccl.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Week 5 ~ Monday"
+              "title": "Ccl"
             }
           }
         ],
@@ -369,9 +369,12 @@
   },
   "active": "16cedbac83b2216a",
   "lastOpenFiles": [
+    "NTHU-related.md",
+    "Marathon.md",
+    "YATAOME.md",
+    "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 5 ~ Monday.md",
     "class-notes/Self Study/Google Cybersecurity/Dump/Pasted image 20261016090022.png",
     "misc/2026-2027calendar_20260716.pdf",
-    "YATAOME.md",
     "class-notes/Self Study/Google Cybersecurity/Topics/Security Frameworks.md",
     "class-notes/Self Study/Google Cybersecurity/Dump",
     "class-notes/Self Study/Google Cybersecurity/Topics/Risk Management.md",
@@ -383,7 +386,6 @@
     "class-notes/Self Study/2026-10-14 Google Cybersecurity.md",
     "class-notes/Self Study/2026-10-15 Google Cybersecurity.md",
     "class-notes/IEEM 2021-2 離散數學 - 岩間一雄/0-0 - Syllabus & eBook.md",
-    "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 5 ~ Monday.md",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH9_Obsidian/CH9.md",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian/CH8.md",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/0-0 - Syllabus and e-Book.md",
@@ -405,7 +407,6 @@
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian/images/Satellite_Catchup_867.png",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian/images",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH8_Obsidian",
-    "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH7_Obsidian/images/Potential_Energy_730.png",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH7_Obsidian/images",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH7_Obsidian",
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH6/images",
@@ -413,7 +414,6 @@
     "class-notes/PHYS 1133-07普通物理Ｂ一 - 霍夫曼/CH5_Obsidian_with_FBD_Images/CH5_Obsidian/CH5.md",
     "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 4 ~ Monday.md",
     "Denuvo.md",
-    "class-notes/Self Study/Ports.md",
-    "NTHU-related.md"
+    "class-notes/Self Study/Ports.md"
   ]
 }

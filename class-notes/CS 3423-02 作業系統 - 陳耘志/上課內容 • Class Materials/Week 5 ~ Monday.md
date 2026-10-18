@@ -408,6 +408,7 @@ Inter-Process Communication. Processes have separate memory spaces and cannot di
 Why does PTT use a multi-process design?
 ??
 PTT is a robust system that splits responsibilities across multiple processes, so if one process has a problem the others are not affected. The processes then coordinate using IPC.
+<!--SR:!2026-10-22,4,270-->
 
 What are the main IPC mechanisms covered in the notes?
 ??
@@ -417,6 +418,7 @@ Pipes, FIFOs (named pipes), shared memory, signals, and Unix domain sockets.
 What is a pipe?
 ??
 A one-way byte-stream channel inside the kernel, typically used between related processes such as a parent and child after `fork()`.
+<!--SR:!2026-10-22,4,270-->
 
 How does a FIFO (named pipe) differ from a pipe?
 ??
@@ -542,6 +544,7 @@ What are the three possible outcomes of `read()` on a pipe?
 When does a pipe deliver EOF to the reader?
 ??
 When the last write end is closed (zero write descriptors remain anywhere), the reader's `read()` returns 0.
+<!--SR:!2026-10-22,4,270-->
 
 What happens when a process writes to a pipe whose read end has been closed?
 ??

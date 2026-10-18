@@ -433,6 +433,7 @@ Name the four moments at which the scheduler may run.
 At which scheduling points does a cooperative scheduler decide?
 ??
 Only when the running process leaves the CPU by itself: blocking (①) and exiting (④).
+<!--SR:!2026-10-22,4,270-->
 
 At which additional points does a preemptive scheduler decide?
 ??
@@ -577,6 +578,7 @@ About 1.25× per level. Nice −5: 3121, nice 0: 1024, nice +5: 335, nice +10: 1
 How does CFS give important processes more CPU without starving others?
 ??
 Their vruntime grows slowly, so they stay among the smallest vruntimes and are picked more often. But while a process waits its vruntime stops growing, so the others catch up and it is eventually picked too.
+<!--SR:!2026-10-22,4,270-->
 
 Two processes, nice 0 and nice 5 — what CPU shares does CFS give?
 ??

@@ -193,10 +193,14 @@
             "id": "16cedbac83b2216a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "class-notes/CS 3423-02 作業系統 - 陳耘志/上課內容 • Class Materials/Week 5 ~ Monday.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Week 5 ~ Monday"
             }
           }
         ],

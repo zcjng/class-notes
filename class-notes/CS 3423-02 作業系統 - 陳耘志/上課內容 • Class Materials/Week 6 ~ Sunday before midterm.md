@@ -386,6 +386,7 @@ Waiting = turnaround − burst. The total time the job spent sitting in the read
 What is throughput?
 ??
 Jobs completed per unit of time (jobs done ÷ time).
+<!--SR:!2026-10-22,4,270-->
 
 What is CPU utilization?
 ??
@@ -394,6 +395,7 @@ The fraction of time the CPU does useful work, not idling and not switching (use
 What is starvation?
 ??
 When a job waits forever because other jobs are always chosen ahead of it.
+<!--SR:!2026-10-22,4,270-->
 
 Why do response time and throughput conflict?
 ??
@@ -402,6 +404,7 @@ To respond fast, the scheduler must interrupt long jobs often, but each interrup
 Roughly how do real slice lengths and switch costs compare?
 ??
 A real context switch takes a few microseconds and typical time slices are a few milliseconds, so switch overhead stays at a few percent.
+<!--SR:!2026-10-22,4,270-->
 
 What is preemptive scheduling?
 ??
@@ -445,6 +448,7 @@ A process can be stopped halfway through updating shared data, which later cause
 What is FIFO (FCFS) scheduling?
 ??
 The job that arrived first runs first, until it is done. Simple and intuitively fair, but short jobs can wait a long time behind a long job (the convoy effect).
+<!--SR:!2026-10-21,3,250-->
 
 What is the convoy effect?
 ??
@@ -473,6 +477,7 @@ If short jobs keep arriving, a long job may never be selected — it starves.
 How can the kernel estimate a job's burst if it cannot know the future?
 ??
 By guessing from the past, typically an exponential average of recent bursts where newer bursts count more: next guess = α × last burst + (1 − α) × previous guess.
+<!--SR:!2026-10-22,4,270-->
 
 Compute: α = ½, previous guess 10 ms, last burst 6 ms.
 ??
@@ -497,6 +502,7 @@ Average response 2 ms (first runs at 0, 2, 4), average turnaround 10 ms — betw
 How does RR interact with I/O-bound processes?
 ??
 When an I/O-bound job blocks it leaves the ready queue entirely, so a CPU-bound job uses the CPU meanwhile; but a just-woken job rejoins at the back, so it may still wait for the rest of someone's slice.
+<!--SR:!2026-10-21,3,250-->
 
 Why must the time slice be much longer than a context-switch cost?
 ??
@@ -509,6 +515,7 @@ Every process has a priority; the scheduler always picks the ready process with 
 Why do schedulers boost the priority of interactive processes?
 ??
 So tiny latency-sensitive tasks (like displaying a keypress) run immediately even when CPU-hungry background jobs exist; the editor runs its short burst and sleeps again, and the game barely notices.
+<!--SR:!2026-10-22,4,270-->
 
 What is aging?
 ??
@@ -521,6 +528,7 @@ Starvation of low-priority processes under a stream of high-priority arrivals.
 What are fairness and liveness as scheduling goals?
 ??
 Fairness: every process gets CPU time in proportion to its priority. Liveness: even the lowest-priority process runs within a finite amount of time (free from starvation).
+<!--SR:!2026-10-22,4,270-->
 
 What is a Linux nice value?
 ??
@@ -541,6 +549,7 @@ The Completely Fair Scheduler, Linux's default scheduler until version 6.6: it g
 What is vruntime?
 ??
 Virtual runtime: how much (weighted) CPU time a process has received so far. CFS always picks the ready process with the lowest vruntime — the one most behind.
+<!--SR:!2026-10-19,1,230-->
 
 How does the nice value affect vruntime growth?
 ??

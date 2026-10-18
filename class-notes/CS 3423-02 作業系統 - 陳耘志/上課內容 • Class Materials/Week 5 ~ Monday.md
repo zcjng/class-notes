@@ -439,6 +439,7 @@ Make each program do one thing well and let programs work together by chaining t
 Why is piping better than using a temporary file to connect two programs?
 ??
 With a temp file, the first program must finish writing before the second can read (sequential execution, plus an unnecessary disk round-trip). A pipe wires the first program's output directly to the second program's input, so it can start immediately as data arrives (pipelined parallel execution) and never touches the disk.
+<!--SR:!2026-10-22,4,270-->
 
 What three data structures does the kernel maintain for an open file?
 ??
@@ -497,6 +498,7 @@ Why is it safe to close the original descriptor after `dup2()`?
 What does `pipe(fds)` do and what does it return?
 ??
 It creates a pipe and fills `fds[0]` (read end) and `fds[1]` (write end). It returns 0 on success, or -1 on failure (leaving the array untouched and setting `errno`).
+<!--SR:!2026-10-22,4,270-->
 
 Which end of a pipe is which, and in which direction does data flow?
 ??
@@ -554,6 +556,7 @@ The write end of the pipe is still open somewhere (a process forgot to close it)
 Does a pipe have a limited capacity, and what happens when it is full?
 ??
 Yes. A pipe has a fixed buffer (Linux default 64 KiB). When it is full, `write()` blocks until the reader frees space, and the blocked process uses no CPU.
+<!--SR:!2026-10-22,4,270-->
 
 Why can calling `wait()` before reading a child's output deadlock?
 ??
@@ -572,6 +575,7 @@ Name `SIGINT`, `SIGTERM`, and `SIGKILL`, and say who sends each.
 - `SIGINT`: sent when the user presses Ctrl+C at the terminal.
 - `SIGTERM`: sent by `kill` or a process manager — a polite, catchable request to terminate.
 - `SIGKILL`: sent by `kill -9`/the kernel — cannot be caught or ignored, and forcibly terminates the process.
+<!--SR:!2026-10-22,4,270-->
 
 Why do process managers send `SIGTERM` before `SIGKILL`?
 ??

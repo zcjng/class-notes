@@ -282,4 +282,50 @@ Securing cloud assets relies on a blended approach of administrative governance,
 
 ---
 ---
+# Course 4 - Module 1
+Introduction to Operating Systems (OS)
+What is an Operating System?
 
+- **Definition**: The interface that bridges the communication gap between computer hardware and the user.
+- **Core Purpose**: Makes computers run as efficiently as possible while ensuring they are easy for humans to use.
+- **Key Concept**: Translates human interactions into **binary** (the computer's native language of 0s and 1s).
+
+Hardware vs. Software Evolution
+
+- **Hardware**: Refers to the physical components of a computer.
+- **The 1950s Challenge**: Early computers lacked an OS interface and could not run multiple programs simultaneously. Users had to wait for a program to finish, reset the computer, and manually load the next one.
+- **Modern OS Capabilities**: Today's systems run multiple applications at once and seamlessly manage external devices like printers, keyboards, and mice.
+
+Common Operating Systems
+
+- **Desktop/Laptop**: Windows, macOS, and Linux.
+- **Mobile (Smartphones/Tablets)**: Android and iOS.
+- **Security Industry**: **Linux** is highly popular and a primary tool for security professionals.
+
+The Role of OS Security
+
+Operating system security protects and prevents threats such as **viruses, worms, and malware**. It focuses on securing:
+
+- Files
+- Data access
+- User authentication
+
+Security Analyst Responsibilities
+
+A deep understanding of the OS is required to perform critical security tasks, including:
+
+- Configuring and maintaining system security by managing access.
+- Managing and configuring firewalls.
+- Setting security policies.
+- Enabling virus protection.
+- Performing auditing, accounting, and logging to detect unusual behavior.
+
+## Operating systems and vulnerabilities
+
+Security issues are inevitable with all operating systems. An important part of protecting an operating system is keeping the system and all of its components up to date.
+
+### **Legacy operating systems**
+
+A **legacy operating system** is an operating system that is outdated but still being used. Some organizations continue to use legacy operating systems because software they rely on is not compatible with newer operating systems. This can be more common in industries that use a lot of equipment that requires embedded software—software that’s placed inside components of the equipment.
+
+Legacy operating systems can be vulnerable to security issues because they’re no longer supported or updated. This means that legacy operating systems might be vulnerable to new threats.

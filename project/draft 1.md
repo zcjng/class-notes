@@ -4,6 +4,7 @@ your phone, your computer screen, your smart refrigerator, what do you think all
 
 They all can post a tweet on twitter, i know i know thats old news, literally straight from 2019, what are you a millineal boomer? (hit the road dude meme) Im just kidding they all can do
 
-lets get to point, they all have operating systems embedded
-this is you, a guy who just watched 1 episode of mr robot, or maybe youre an it freshmen in college all stressed out because of ai.
+lets get to point, they all have operating systems embedded inside, inside where, well you know deep inside.
+
+But you guys who are watching probably have already known all that, you probably already watched the entire series of mr robot, wearing a hoodie every time you go outside, having arch AND hyprland for your OS.  
 Oh no! ai is gonna take over my job!  im gonna be unemployed! 

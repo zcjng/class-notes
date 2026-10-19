@@ -358,14 +358,17 @@ A phase in which a program is computing and needs the CPU. Its length is the job
 What is an I/O burst?
 ??
 A phase in which a program waits for something like disk or keyboard input; it sleeps and needs no CPU at all.
+<!--SR:!2026-10-22,4,270-->
 
 How do I/O-bound and CPU-bound programs differ?
 ??
 I/O-bound programs have many short CPU bursts and long waits (editors, interactive programs); CPU-bound programs have long CPU bursts and rarely wait (compilers, video rendering).
+<!--SR:!2026-10-22,4,270-->
 
 Why can't a scheduler treat all programs the same way?
 ??
 They behave differently: I/O-bound programs want little CPU but want it immediately for responsiveness, while CPU-bound programs want as much CPU as possible. A good scheduler must serve both demands.
+<!--SR:!2026-10-22,4,270-->
 
 Why should a scheduler favor a just-woken interactive process?
 ??
@@ -386,22 +389,27 @@ Waiting = turnaround − burst. The total time the job spent sitting in the read
 What is throughput?
 ??
 Jobs completed per unit of time (jobs done ÷ time).
+<!--SR:!2026-10-22,4,270-->
 
 What is CPU utilization?
 ??
 The fraction of time the CPU does useful work, not idling and not switching (useful time ÷ total time).
+<!--SR:!2026-10-22,4,270-->
 
 What is starvation?
 ??
 When a job waits forever because other jobs are always chosen ahead of it.
+<!--SR:!2026-10-22,4,270-->
 
 Why do response time and throughput conflict?
 ??
 To respond fast, the scheduler must interrupt long jobs often, but each interruption is a context switch that costs time — reducing useful work. Small slices give fast response but more switch overhead; large slices waste little but respond slowly.
+<!--SR:!2026-10-22,4,270-->
 
 Roughly how do real slice lengths and switch costs compare?
 ??
 A real context switch takes a few microseconds and typical time slices are a few milliseconds, so switch overhead stays at a few percent.
+<!--SR:!2026-10-22,4,270-->
 
 What is preemptive scheduling?
 ??
@@ -425,10 +433,12 @@ Name the four moments at which the scheduler may run.
 At which scheduling points does a cooperative scheduler decide?
 ??
 Only when the running process leaves the CPU by itself: blocking (①) and exiting (④).
+<!--SR:!2026-10-22,4,270-->
 
 At which additional points does a preemptive scheduler decide?
 ??
 At the timer tick (②) and at wakeup (③) — the moments the kernel can take the CPU away or a new competitor appears.
+<!--SR:!2026-10-22,4,270-->
 
 Why did early personal computers use cooperative scheduling?
 ??
@@ -441,10 +451,12 @@ The kernel couldn't trust users' programs: one user's infinite loop would lock o
 What price does preemption pay?
 ??
 A process can be stopped halfway through updating shared data, which later causes synchronization problems.
+<!--SR:!2026-10-19,1,230-->
 
 What is FIFO (FCFS) scheduling?
 ??
 The job that arrived first runs first, until it is done. Simple and intuitively fair, but short jobs can wait a long time behind a long job (the convoy effect).
+<!--SR:!2026-10-21,3,250-->
 
 What is the convoy effect?
 ??
@@ -457,10 +469,12 @@ Shortest Job First: always run the ready job with the smallest burst. Non-preemp
 Why does SJF minimize average turnaround when all jobs arrive together?
 ??
 Each job's turnaround includes the bursts of all jobs before it. Putting long bursts at the back adds them to the fewest turnarounds, so short-first minimizes the sum.
+<!--SR:!2026-10-22,4,270-->
 
 What is STCF?
 ??
 Shortest Time-to-Completion First: SJF with preemption. Whenever a new job arrives, compare its burst with the running job's remaining time; run whichever is shorter.
+<!--SR:!2026-10-22,4,270-->
 
 Why does STCF need preemption?
 ??
@@ -473,10 +487,12 @@ If short jobs keep arriving, a long job may never be selected — it starves.
 How can the kernel estimate a job's burst if it cannot know the future?
 ??
 By guessing from the past, typically an exponential average of recent bursts where newer bursts count more: next guess = α × last burst + (1 − α) × previous guess.
+<!--SR:!2026-10-22,4,270-->
 
 Compute: α = ½, previous guess 10 ms, last burst 6 ms.
 ??
 ½ × 6 + ½ × 10 = 8 ms.
+<!--SR:!2026-10-22,4,270-->
 
 What is round robin?
 ??
@@ -489,18 +505,22 @@ RR improves average response time dramatically (everyone starts quickly) but wor
 For three 4 ms jobs arriving at 0, compare FIFO and RR q = 1.
 ??
 FIFO: avg response 4 ms, avg turnaround 8 ms. RR (q = 1): avg response 1 ms, avg turnaround 11 ms.
+<!--SR:!2026-10-22,4,270-->
 
 For three 4 ms jobs and RR with q = 2, what are the average response and turnaround?
 ??
 Average response 2 ms (first runs at 0, 2, 4), average turnaround 10 ms — between RR q = 1 and FIFO, as expected.
+<!--SR:!2026-10-22,4,270-->
 
 How does RR interact with I/O-bound processes?
 ??
 When an I/O-bound job blocks it leaves the ready queue entirely, so a CPU-bound job uses the CPU meanwhile; but a just-woken job rejoins at the back, so it may still wait for the rest of someone's slice.
+<!--SR:!2026-10-21,3,250-->
 
 Why must the time slice be much longer than a context-switch cost?
 ??
 Otherwise a large fraction of the CPU is spent switching instead of doing useful work (in the worksheet example, q = 0.5 ms with 0.25 ms switches wastes 29% of the CPU).
+<!--SR:!2026-10-22,4,270-->
 
 What is priority scheduling?
 ??
@@ -509,6 +529,7 @@ Every process has a priority; the scheduler always picks the ready process with 
 Why do schedulers boost the priority of interactive processes?
 ??
 So tiny latency-sensitive tasks (like displaying a keypress) run immediately even when CPU-hungry background jobs exist; the editor runs its short burst and sleeps again, and the game barely notices.
+<!--SR:!2026-10-22,4,270-->
 
 What is aging?
 ??
@@ -517,10 +538,12 @@ Dynamically raising a waiting process's priority step by step (e.g. +1 per 2 ms 
 What problem does aging solve?
 ??
 Starvation of low-priority processes under a stream of high-priority arrivals.
+<!--SR:!2026-10-22,4,270-->
 
 What are fairness and liveness as scheduling goals?
 ??
 Fairness: every process gets CPU time in proportion to its priority. Liveness: even the lowest-priority process runs within a finite amount of time (free from starvation).
+<!--SR:!2026-10-22,4,270-->
 
 What is a Linux nice value?
 ??
@@ -529,6 +552,7 @@ A per-process priority setting: −20 is the highest priority (least nice), +19 
 Which direction is "more important" in Linux nice values, and why the confusing name?
 ??
 Smaller (more negative) = more important. It is called "nice" because a higher nice value means the process voluntarily runs at a lower priority — it is being nice to everyone else.
+<!--SR:!2026-10-22,4,270-->
 
 Who may set a negative nice value?
 ??
@@ -541,6 +565,7 @@ The Completely Fair Scheduler, Linux's default scheduler until version 6.6: it g
 What is vruntime?
 ??
 Virtual runtime: how much (weighted) CPU time a process has received so far. CFS always picks the ready process with the lowest vruntime — the one most behind.
+<!--SR:!2026-10-19,1,230-->
 
 How does the nice value affect vruntime growth?
 ??
@@ -553,10 +578,12 @@ About 1.25× per level. Nice −5: 3121, nice 0: 1024, nice +5: 335, nice +10: 1
 How does CFS give important processes more CPU without starving others?
 ??
 Their vruntime grows slowly, so they stay among the smallest vruntimes and are picked more often. But while a process waits its vruntime stops growing, so the others catch up and it is eventually picked too.
+<!--SR:!2026-10-22,4,270-->
 
 Two processes, nice 0 and nice 5 — what CPU shares does CFS give?
 ??
 Weights 1024 vs 335: approximately 75% and 25%. If both are nice 5, weights are equal and each gets 50%. Nice only matters relative to other processes; a lone process with nice 19 still gets the whole CPU.
+<!--SR:!2026-10-22,4,270-->
 
 What is the scheduling latency in CFS?
 ??
@@ -577,6 +604,7 @@ When the process has used up its slice and another process is waiting, or when a
 What is EEVDF, and how does it differ from CFS?
 ??
 EEVDF (Earliest Eligible Virtual Deadline First), Linux's default since 6.6, keeps vruntime, nice weights and the red-black tree, but picks the process with the earliest virtual deadline among those not ahead of their fair share — giving latency-sensitive processes short frequent turns without CFS's special cases.
+<!--SR:!2026-10-19,1,230-->
 
 What is task migration, and why is it expensive?
 ??

@@ -403,22 +403,27 @@ A UNIX pipeline (`cmd1 | cmd2 | cmd3`) relies on an internal kernel **reference 
 What does IPC stand for, and why does a system need it?
 ??
 Inter-Process Communication. Processes have separate memory spaces and cannot directly share data, so they use OS-provided channels (pipes, shared memory, signals, sockets) to exchange data and coordinate.
+<!--SR:!2026-10-19,1,230-->
 
 Why does PTT use a multi-process design?
 ??
 PTT is a robust system that splits responsibilities across multiple processes, so if one process has a problem the others are not affected. The processes then coordinate using IPC.
+<!--SR:!2026-10-22,4,270-->
 
 What are the main IPC mechanisms covered in the notes?
 ??
 Pipes, FIFOs (named pipes), shared memory, signals, and Unix domain sockets.
+<!--SR:!2026-10-22,4,270-->
 
 What is a pipe?
 ??
 A one-way byte-stream channel inside the kernel, typically used between related processes such as a parent and child after `fork()`.
+<!--SR:!2026-10-22,4,270-->
 
 How does a FIFO (named pipe) differ from a pipe?
 ??
 A pipe only exists between related processes, while a FIFO exists as a special file in the filesystem, so unrelated processes with permission can use it for decoupled communication.
+<!--SR:!2026-10-22,4,270-->
 
 What is shared memory as an IPC mechanism, and what is its main risk?
 ??
@@ -427,6 +432,7 @@ Multiple processes map and access the same memory region directly (no copy), whi
 What do signals provide, and give an example?
 ??
 Signals send a notification about an event to a process. For example, pressing Ctrl+C sends `SIGINT`.
+<!--SR:!2026-10-22,4,270-->
 
 What is special about Unix domain sockets?
 ??
@@ -439,6 +445,7 @@ Make each program do one thing well and let programs work together by chaining t
 Why is piping better than using a temporary file to connect two programs?
 ??
 With a temp file, the first program must finish writing before the second can read (sequential execution, plus an unnecessary disk round-trip). A pipe wires the first program's output directly to the second program's input, so it can start immediately as data arrives (pipelined parallel execution) and never touches the disk.
+<!--SR:!2026-10-22,4,270-->
 
 What three data structures does the kernel maintain for an open file?
 ??
@@ -453,6 +460,7 @@ A small integer index into a process's file descriptor table that refers to an e
 Where is the file offset stored, and what does it do?
 ??
 It is stored in the open-file table entry, not in the descriptor itself. It works like a bookmark: each `read()` or `write()` advances it by the number of bytes transferred.
+<!--SR:!2026-10-19,1,230-->
 
 What does `read()` return when it reaches end-of-file?
 ??
@@ -493,10 +501,12 @@ Before `exec`, the shell calls `dup2(fd, 1)` so that STDOUT (fd 1) now points to
 Why is it safe to close the original descriptor after `dup2()`?
 ??
 `dup2()` created a second reference to the same open-file entry, so closing the original descriptor only removes one reference; the file stays open through the new descriptor.
+<!--SR:!2026-10-22,4,270-->
 
 What does `pipe(fds)` do and what does it return?
 ??
 It creates a pipe and fills `fds[0]` (read end) and `fds[1]` (write end). It returns 0 on success, or -1 on failure (leaving the array untouched and setting `errno`).
+<!--SR:!2026-10-22,4,270-->
 
 Which end of a pipe is which, and in which direction does data flow?
 ??
@@ -534,10 +544,12 @@ What are the three possible outcomes of `read()` on a pipe?
 When does a pipe deliver EOF to the reader?
 ??
 When the last write end is closed (zero write descriptors remain anywhere), the reader's `read()` returns 0.
+<!--SR:!2026-10-22,4,270-->
 
 What happens when a process writes to a pipe whose read end has been closed?
 ??
 The kernel sends `SIGPIPE` to the writer; by default this terminates the process (the `write()` also fails with `EPIPE`).
+<!--SR:!2026-10-22,4,270-->
 
 When is a pipe fully deallocated?
 ??
@@ -554,6 +566,7 @@ The write end of the pipe is still open somewhere (a process forgot to close it)
 Does a pipe have a limited capacity, and what happens when it is full?
 ??
 Yes. A pipe has a fixed buffer (Linux default 64 KiB). When it is full, `write()` blocks until the reader frees space, and the blocked process uses no CPU.
+<!--SR:!2026-10-22,4,270-->
 
 Why can calling `wait()` before reading a child's output deadlock?
 ??
@@ -572,6 +585,7 @@ Name `SIGINT`, `SIGTERM`, and `SIGKILL`, and say who sends each.
 - `SIGINT`: sent when the user presses Ctrl+C at the terminal.
 - `SIGTERM`: sent by `kill` or a process manager — a polite, catchable request to terminate.
 - `SIGKILL`: sent by `kill -9`/the kernel — cannot be caught or ignored, and forcibly terminates the process.
+<!--SR:!2026-10-22,4,270-->
 
 Why do process managers send `SIGTERM` before `SIGKILL`?
 ??

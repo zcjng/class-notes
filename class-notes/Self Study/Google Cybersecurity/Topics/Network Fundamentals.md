@@ -62,7 +62,7 @@ Crucial **visual maps** that security analysts and administrators use to study n
 
 ## 🔗 Related
 
-- [[TCP/IP & OSI Models]]
+- [[TCPIP & OSI Models]]
 - [[IP Addressing & ARP]]
 - [[Network Protocols]]
 - [[Firewalls]]

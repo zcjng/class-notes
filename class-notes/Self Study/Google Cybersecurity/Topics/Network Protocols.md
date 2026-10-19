@@ -72,7 +72,7 @@ HTTPS encrypts data using **SSL (Secure Sockets Layer) / TLS (Transport Layer Se
 
 ## 🔗 Related
 
-- [[TCP/IP & OSI Models]]
+- [[TCPIP & OSI Models]]
 - [[IP Addressing & ARP]]
 - [[Network Fundamentals]]
 - [[Wi-Fi Security]]

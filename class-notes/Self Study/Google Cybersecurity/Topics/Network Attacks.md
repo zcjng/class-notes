@@ -117,7 +117,7 @@ No single control stops all network attacks; defenses must be **layered** across
 
 ## 🔗 Related
 
-- [[TCP/IP & OSI Models]]
+- [[TCPIP & OSI Models]]
 - [[IP Addressing & ARP]]
 - [[Firewalls]]
 - [[VPNs]]

@@ -103,7 +103,7 @@ An IPv4 packet = **Data Section** (message body, up to 65,535 bytes) + **Header 
 
 ## 🔗 Related
 
-- [[TCP/IP & OSI Models]]
+- [[TCPIP & OSI Models]]
 - [[Network Fundamentals]]
 - [[Network Protocols]]
 - [[Network Attacks]]

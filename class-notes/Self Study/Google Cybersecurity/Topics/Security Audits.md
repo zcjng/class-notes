@@ -8,7 +8,7 @@ tags:
 
 # 🔎 Security Audits
 
-[[Google Cybersecurity|← Back to Course Hub]] · [[2026-10-15|Related day: 2026-10-15]]
+[[Google Cybersecurity|← Back to Course Hub]] · [[2026-10-14|2026-10-14]] · [[2026-10-15|Related day: 2026-10-15]]
 
 ## 📌 What it is
 
@@ -56,6 +56,17 @@ A checklist is generally made up of the following areas of focus:
 - **Conduct the audit** — assess the security of the identified assets listed in the audit scope.
 - **Create a mitigation plan** — a strategy to lower the level of risk and potential costs, penalties, or other issues that can negatively affect the organization's security posture.
 - **Communicate results to stakeholders** — provide a detailed report of findings, suggested improvements, and the compliance regulations and standards the organization must adhere to.
+
+---
+
+## 🧸 Case Study: Botium Toys
+
+Practice scenario — conduct an internal security audit for **Botium Toys**:
+
+- Single physical location, but its **online presence is booming**; IT faces pressure to support the online business because it needs to **ship abroad**.
+- The manager wants the company to **comply with regulations for online payments for business in the EU** (→ [[Compliance & Regulations|GDPR]] / [[Compliance & Regulations|PCI DSS]]).
+- The manager uses the **NIST CSF** ([[NIST Cybersecurity Framework]]), has done a complete **risk assessment**, and now wants an audit.
+- Task: complete a **control and compliance checklist**, focusing on the assets and the bullet points listed under each item on the report.
 
 ---
 

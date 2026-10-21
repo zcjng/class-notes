@@ -354,13 +354,13 @@ What problem does OS concurrency solve?
 ??
 When multiple programs or CPUs operate on the same data at the same time, their operations can conflict.
 The OS provides mechanisms that allow concurrent operations to happen without causing conflicts.
-<!--SR:!2026-10-18,0,170-->
+<!--SR:!2026-10-20,2,170-->
 
 What is persistence, and how does the OS provide it?
 ??
 Persistence means data survives even after power is turned off.
 The OS provides persistence through the file system, giving programs a standard interface for storing and retrieving data without requiring them to know whether the storage is a hard drive, SSD, etc.
-<!--SR:!2026-10-08,2,250-->
+<!--SR:!2026-10-20,2,230-->
 
 Why can the OS stop a poorly written program from damaging other programs?
 ??
@@ -398,13 +398,13 @@ What are the specialized operating systems mentioned for the iPhone?
 - Java Card OS — Secure Element used for Apple Pay
 - QuRT — cellular modem
 - RTKit — low-power/Always-On processing such as sensors and voice-related functions
-<!--SR:!2026-10-18,0,210-->
+<!--SR:!2026-10-20,2,210-->
 
 What OS design trade-offs can change depending on the device?
 ??
 Boot time, uptime, throughput, latency, power consumption, security, and resource usage.
 Different devices prioritize different goals.
-<!--SR:!2026-10-08,2,250-->
+<!--SR:!2026-10-23,5,250-->
 
 Why might a server prioritize throughput over latency?
 ??
@@ -481,7 +481,7 @@ What must a complete isolation boundary encapsulate?
 ??
 Memory, CPU, files, and identity.
 If even one of these vectors is not properly isolated, a fault or malicious actor may be able to compromise shared infrastructure.
-<!--SR:!2026-10-08,2,250-->
+<!--SR:!2026-10-23,5,250-->
 
 What is the fundamental trade-off between DRAM and SRAM?
 ??
@@ -576,7 +576,7 @@ What happens in `./test > out.txt` when test uses printf() and crashes before no
 The shell redirects stdout to out.txt.
 printf() writes its output into the C library's user-space stdout buffer.
 The program crashes before that buffer is flushed, so the data never reaches the file and out.txt remains empty.
-<!--SR:!2026-10-18,0,190-->
+<!--SR:!2026-10-20,2,170-->
 
 What happens in `./test2 > out2.txt` when test2 uses write() and then crashes?
 ??

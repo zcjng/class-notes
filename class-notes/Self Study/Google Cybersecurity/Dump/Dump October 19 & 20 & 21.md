@@ -212,3 +212,7 @@ Used to find files or directories last modified within a certain time frame.
 - **`find`** locates files and directories based on attributes like name, path, and time.
 - **Wildcards (`*`)** represent unknown characters and are essential when searching with patterns.
 - **Case Sensitivity:** `-name` is case-sensitive, while `-iname` is case-insensitive.
+
+
+
+

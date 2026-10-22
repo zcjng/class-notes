@@ -134,7 +134,7 @@ While low-level package managers handle the heavy lifting, **package management 
     * `..` represents the parent directory.
 
 ---
-# Course 4 Module 3
+# Course 4 Module 39
 ## 🧭 2. Key Navigation Commands
 
 | Command | Description | Example |

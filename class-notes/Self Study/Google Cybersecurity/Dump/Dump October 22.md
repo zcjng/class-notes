@@ -62,3 +62,81 @@ Tables are connected together when they share a common column. These connecting 
 A programming language used to create, interact with, and request information from a database
 
 A query is a request for data from a database table or a combination of tables.
+
+
+
+
+
+## 🔑 Core Keywords: SELECT & FROM
+Every basic SQL query requires these two essential components:
+
+### 1. `SELECT` (Specifies Columns)
+Indicates exactly which data fields you want to return.
+* **Single Column:** `SELECT customerid`
+* **Multiple Columns:** Separate with commas (`SELECT customerid, city`)
+* **All Columns:** Use an asterisk wildcard (`SELECT *`)
+
+> [!WARNING] Performance Warning
+> Avoid using `SELECT *` on massive, enterprise-level production databases. It can severely drag system performance and generate unreadable outputs.
+
+### 2. `FROM` (Specifies Table)
+Indicates the exact table name you want to query.
+* **Semicolon ( ; ):** Placed at the very end of the statement to signal to the SQL engine that the query is complete.
+* **Formatting:** Line breaks are optional and ignored by SQL, but highly recommended to keep code readable.
+
+```sql
+-- Clean multi-line layout
+SELECT employee_id, device_id
+FROM employees;
+
+-- Single-line layout (runs exactly the same)
+SELECT * FROM customers;
+```
+
+---
+
+## 📊 Organizing Output: ORDER BY
+The `ORDER BY` clause sequences your query results based on the values in one or more specified columns. It is always placed at the **very end** of the query.
+
+### 1. Ascending Order (Default)
+If you don't specify a sorting direction, SQL automatically sorts in ascending order.
+* **Text / Alphabetical:** Sorts from **A to Z** (e.g., sorting by `city`).
+* **Numeric:** Sorts from **smallest to largest** (e.g., `1` to `100`).
+
+```sql
+SELECT customerid, city, country
+FROM customers
+ORDER BY city;
+```
+
+### 2. Descending Order (`DESC`)
+To flip the sorting order, append the `DESC` keyword directly after the column name.
+* **Text / Alphabetical:** Sorts from **Z to A**.
+* **Numeric:** Sorts from **largest to smallest**.
+
+```sql
+SELECT customerid, city, country
+FROM customers
+ORDER BY city DESC;
+```
+
+### 3. Sorting by Multiple Columns
+You can pass multiple columns separated by a comma. SQL will sort by the first column first, and then use the second column to break any ties.
+
+```sql
+-- Sorts globally by country, then alphabetically by city within each country
+SELECT customerid, city, country
+FROM customers
+ORDER BY country, city;
+```
+
+---
+
+## 🎯 Summary Sheet
+
+| Keyword | Purpose | Placement |
+| :--- | :--- | :--- |
+| **`SELECT`** | Defines *what columns* to pull | First line of the query |
+| **`FROM`** | Defines *which table* to pull from | Follows `SELECT` |
+| **`ORDER BY`** | Sorts the rows alphabetically or numerically | End of the query |
+| **`DESC`** | Forces a reverse / descending sort direction | Right after the column in `ORDER BY` |

@@ -1,11 +1,5 @@
-RWX permissions
 
-On dir.
-R - Able to see the contents inside dir
-W - New files can be created in dir
-X - Enter into dir to access the files
-
- apropos -a for 2 strings
+Course 4 Module 4
  
 # Introduction to Databases & Relational Structure
 
@@ -329,3 +323,70 @@ WHERE NOT country = 'USA' AND NOT country = 'Canada';
 | **`AND`** | **Both** conditions match | Only the overlap / intersection |
 | **`OR`** | **Either** condition matches | Combines both groups entirely |
 | **`NOT`** | The condition **does not** match | Everything *except* the target |
+
+
+# SQL Joins: Connecting Tables
+
+SQL Joins combine data fields across multiple tables by linking them together through a shared, common column (the relational key).
+
+---
+
+## 🔍 1. INNER JOIN (Strict Match Only)
+An **Inner Join** returns records **only if a matching value exists in both tables**. It isolates the absolute intersection of your data.
+
+* **Behavior:** If a row in the left table doesn't have a matching key in the right table, it is completely hidden.
+* **Wildcard Note:** If you use `SELECT *`, columns that exist in both tables will be returned **twice** in your output.
+
+```sql
+SELECT username, operating_system, employees.device_id
+FROM employees
+INNER JOIN machines ON employees.device_id = machines.device_id;
+```
+> ⚠️ **Syntax Rule:** When pulling a column name that exists in *both* tables (like `device_id`), you must specify the source table using dot notation: `table_name.column_name`.
+
+---
+
+## 📐 2. OUTER JOINS (Expanding Results)
+Outer joins preserve unmatched data rows from one or both tables instead of throwing them away. Missing matching entries are automatically filled with **`NULL`**.
+
+### A. LEFT JOIN (Left-Table Priority)
+Returns **all** records from the first (Left) table, but **only** matching records from the second (Right) table.
+
+* **Security Context:** Finding which employees do *not* have a corporate machine assigned to them yet.
+
+```sql
+SELECT *
+FROM employees
+LEFT JOIN machines ON employees.device_id = machines.device_id;
+```
+
+### B. RIGHT JOIN (Right-Table Priority)
+Returns **all** records from the second (Right) table, but **only** matching records from the first (Left) table.
+
+```sql
+SELECT *
+FROM employees
+RIGHT JOIN machines ON employees.device_id = machines.device_id;
+```
+
+> 🔄 **Pro Tip:** A `LEFT JOIN` and a `RIGHT JOIN` can produce the exact same data outputs if you simply swap the table names before and after the join keyword.
+
+### C. FULL OUTER JOIN (Complete Merge)
+Completely merges both tables. It returns **all records from both tables**, regardless of whether a match exists or not. 
+
+```sql
+SELECT *
+FROM employees
+FULL OUTER JOIN machines ON employees.device_id = machines.device_id;
+```
+
+---
+
+## 🎯 Joins Quick-Reference Cheat Sheet
+
+| Join Type | Records Returned | Visual Concept | Table Order Matter? |
+| :--- | :--- | :--- | :---: |
+| **`INNER JOIN`** | Only entries that match **both** sides | The intersection slice | ❌ No |
+| **`LEFT JOIN`** | All Left entries + matching Right entries | Left circle full + overlap |  Yes |
+| **`RIGHT JOIN`** | All Right entries + matching Left entries | Right circle full + overlap |  Yes |
+| **`FULL OUTER JOIN`**| All entries across **both** tables completely | Both circles completely filled | ❌ No |

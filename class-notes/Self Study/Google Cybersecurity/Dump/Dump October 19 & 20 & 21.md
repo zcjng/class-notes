@@ -113,6 +113,7 @@ While low-level package managers handle the heavy lifting, **package management 
 
 
 
+# Course 4 Module 2
 # Linux File System Navigation & Commands
 
 ## 📂 1. The Filesystem Hierarchy Standard (FHS) & Paths
@@ -133,7 +134,7 @@ While low-level package managers handle the heavy lifting, **package management 
     * `..` represents the parent directory.
 
 ---
-
+# Course 4 Module 3
 ## 🧭 2. Key Navigation Commands
 
 | Command | Description | Example |

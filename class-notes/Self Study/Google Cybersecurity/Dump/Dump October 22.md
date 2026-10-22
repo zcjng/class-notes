@@ -206,3 +206,126 @@ SELECT *
 FROM invoices
 WHERE state LIKE 'N_';
 ```
+
+# SQL Filtering: Numbers, Dates, & Times
+
+## 📊 Non-String Data Types in Security
+Security analysts do not just handle text strings. You will constantly analyze numeric and chronological data points:
+
+### 1. Numeric Data
+* The **count** of failed login attempts or specific alert categories.
+* The **volume of bytes** transmitted from a source or received by a destination (identifying data exfiltration).
+
+### 2. Date and Time Data
+* **Timestamps** automatically appended to system logs.
+* Core timelines like **login times**, **patch deployment dates**, and network **connection durations**.
+
+---
+
+## ⚙️ Comparison Operators
+To filter numbers and dates inside a `WHERE` clause, use standard arithmetic operators.
+
+| Operator | Meaning | Behavior |
+| :---: | :--- | :--- |
+| **`<`** | Less than | Exclusive (Does not include the target value) |
+| **`>`** | Greater than | Exclusive (Does not include the target value) |
+| **`=`** | Equal to | Matches the exact value |
+| **`<=`** | Less than or equal to | Inclusive (Includes the target value) |
+| **`>=`** | Greater than or equal to | Inclusive (Includes the target value) |
+| **`<>`** or **`!=`** | **Not equal to** | Excludes the exact value |
+
+### 💡 Formatting Rule for Dates
+While numbers are typed raw (`WHERE login_count > 5`), **dates and times must be wrapped in single quotes** using the `YYYY-MM-DD` standard format (`WHERE birthdate > '1970-01-01'`).
+
+```sql
+-- Finds employees born strictly AFTER January 1, 1970
+SELECT first_name, last_name
+FROM employees
+WHERE birthdate > '1970-01-01';
+```
+
+---
+
+## 🗺️ Range Filtering: The BETWEEN Operator
+The `BETWEEN` operator isolates data within a specified structural range. It uses the syntax: `BETWEEN ValueA AND ValueB`.
+
+* **Behavior:** It is **strictly inclusive**. It will capture entries matching the boundaries exactly.
+
+```sql
+-- Finds employees hired from Jan 1, 2002 up to and including Jan 1, 2003
+SELECT first_name, last_name
+FROM employees
+WHERE hiredate BETWEEN '2002-01-01' AND '2003-01-01';
+```
+
+
+# SQL Filtering: Logical Operators (AND, OR, NOT)
+
+Logical operators allow security analysts to chain multiple conditions together to isolate complex security events or specific groups of users.
+
+---
+
+## 🛠️ The Three Core Logical Operators
+
+### 1. `AND` (Intersection)
+* **Rule:** **Both** conditions on either side of the operator must be met simultaneously for a row to be returned.
+* **Security Use Case:** Pinpointing an active threat that requires multiple indicators to match.
+
+```sql
+-- Finds customers who are in the USA AND handled by Support Rep ID 5
+SELECT first_name, last_name, email
+FROM customers
+WHERE supportrepid = 5 AND country = 'USA';
+```
+
+### 2. `OR` (Union)
+* **Rule:** At least **one** of the conditions (the first, the second, or both) must be met for a row to be returned.
+* **Syntax Warning:** You must write out the full column name for *every* condition, even if you are checking the same column twice.
+
+```sql
+-- CORRECT Syntax (Repeats the 'country' column name)
+SELECT first_name, last_name, email
+FROM customers
+WHERE country = 'Canada' OR country = 'USA';
+
+-- ❌ INCORRECT Syntax (Will fail)
+-- WHERE country = 'Canada' OR 'USA';
+```
+
+### 3. `NOT` (Negation)
+* **Rule:** Reverses a condition. It returns all records that do **not** match the specified value.
+* **Placement:** Placed directly after the `WHERE` keyword.
+
+```sql
+-- Pulls all customers except those living in the USA
+SELECT first_name, last_name, country
+FROM customers
+WHERE NOT country = 'USA';
+```
+
+> [!TIP] Pro Tip: Alternative Syntax
+> Using `WHERE NOT country = 'USA'` performs exactly the same as using comparison operators:
+> * `WHERE country <> 'USA'`
+> * `WHERE country != 'USA'`
+
+---
+
+## 🧠 Combining Logical Operators
+You can chain multiple logical operators together to handle complex exclusions or multi-country filtering profiles.
+
+```sql
+-- Safely isolates all international customers outside of North America (USA & Canada)
+SELECT first_name, last_name, country
+FROM customers
+WHERE NOT country = 'USA' AND NOT country = 'Canada';
+```
+
+---
+
+## 🎯 Logical Operators Summary Sheet
+
+| Operator | Evaluates To True If... | Visual Concept |
+| :---: | :--- | :--- |
+| **`AND`** | **Both** conditions match | Only the overlap / intersection |
+| **`OR`** | **Either** condition matches | Combines both groups entirely |
+| **`NOT`** | The condition **does not** match | Everything *except* the target |

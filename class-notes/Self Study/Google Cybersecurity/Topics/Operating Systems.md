@@ -68,6 +68,8 @@ A **legacy operating system** is an operating system that is **outdated but stil
 ## 🔗 Related
 
 - [[Linux, SQL & Python]]
+- [[Inside the Operating System]]
+- [[Virtualization]]
 - [[Vulnerability Assessment]]
 - [[Security Analyst Roles & Skills]]
 - [[Firewalls]]

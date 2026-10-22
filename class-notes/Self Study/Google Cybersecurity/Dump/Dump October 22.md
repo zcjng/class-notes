@@ -140,3 +140,69 @@ ORDER BY country, city;
 | **`FROM`** | Defines *which table* to pull from | Follows `SELECT` |
 | **`ORDER BY`** | Sorts the rows alphabetically or numerically | End of the query |
 | **`DESC`** | Forces a reverse / descending sort direction | Right after the column in `ORDER BY` |
+
+
+# SQL Filtering Foundations: WHERE & LIKE
+
+## 🛡️ Why Filtering Matters in Security
+Security analysts work with massive, complicated security logs. Filtering allows you to cut through the noise to:
+* Isolate login attempts for a **specific user**.
+* View all system events that occurred at the **exact time of an incident**.
+* Identify which network devices are running an **outdated application version**.
+
+---
+
+## 🔍 Exact Filtering: The WHERE Clause
+The `WHERE` keyword applies a strict condition to your query. Rows that do not meet the condition are completely hidden from the output.
+
+* **Placement:** Follows the `FROM` clause.
+* **The Semicolon ( ; ):** Moves to the very end of the `WHERE` statement line.
+* **Operator:** Uses the equals sign (`=`) for exact text or numeric matches.
+
+```sql
+SELECT employee_id, first_name, title
+FROM employees
+WHERE title = 'IT Staff';
+```
+*(Note: Text strings inside a WHERE clause must be wrapped in single quotes).*
+
+---
+
+## 🎨 Pattern Filtering: LIKE & Wildcards
+When you don't know the exact value or want to capture a range of similar values (e.g., finding both `IT Staff` and `IT Manager`), you swap the `=` operator for **`LIKE`** and use **wildcards**.
+
+### 🧩 The Two Essential Wildcards
+
+| Wildcard | What it Matches | Example Pattern | Possible Matches |
+| :--- | :--- | :--- | :--- |
+| **`%`** (Percent) | **Any number** of characters (0 or more) | `'IT%'` | `IT Staff`, `IT Manager`, `IT` |
+| **`_`** (Underscore) | **Exactly one** single character | `'N_'` | `NY`, `NV`, `NS`, `NT` (but not `NYPD`) |
+
+### 📋 Pattern Reference Sheet
+
+| Pattern Syntax | Logical Meaning | Example Matched Output |
+| :--- | :--- | :--- |
+| **`'a%'`** | Must **start** with "a" | `apple123`, `art`, `a` |
+| **`'%a'`** | Must **end** with "a" | `pizza`, `Z6ra`, `a` |
+| **`'%a%'`** | Contains "a" **anywhere** inside it | `Again`, `back`, `a` |
+| **`'a_'`** | Starts with "a" and has **exactly 1** character after it | `as`, `an`, `a7` |
+| **`'a__'`** | Starts with "a" and has **exactly 2** characters after it | `ant`, `add` |
+| **`'_a_'`** | Has **exactly 3** characters, with "a" in the middle | `Car`, `ban` |
+
+---
+
+### 💻 Code Examples
+
+#### Example 1: Finding all IT-related roles
+```sql
+SELECT *
+FROM employees
+WHERE title LIKE 'IT%';
+```
+
+#### Example 2: Filtering logs by explicit state abbreviation patterns
+```sql
+SELECT *
+FROM invoices
+WHERE state LIKE 'N_';
+```

@@ -33,11 +33,18 @@ The server uses a custom archive format. When you click /backup, the server buil
 
 
 both of these needs the PRNG + MT19937 algorithm 
-Session ID -> Hacker logs in and out to get a pattern and predict
+Session ID -> Hacker logs in and out to get a pattern and correctly calculate the algorithm using 
+
+The zipfile's payload has compressed hash strings and footer has signature (r, s)
+- We first un-hash the hashed strings using a hash function to get a File Hash (z)
+
+s = k¯¹ × (z + r × Master Key)
+
+Now, we only have 2 unknown variables, k and Master Key
 
 Because we have the algorithm mapped out,
-Nonce -> Created by MT19937 + the K number
+we can correctly guess the K number which is the next generated number from the MT19937 algorithm.
 
-we can correctly guess the K number.
+This way we can find the **Master Key**.
 
 

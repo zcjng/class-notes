@@ -115,3 +115,90 @@ An organization must answer four foundational questions for every asset:
     - _Recipient Name:_ Public / low sensitivity.
         
     - _Mailing Address / Account Balance:_ Confidential / restricted.
+
+
+
+# Cloud Computing & Cloud Security
+
+> [!quote] Definition: Cloud Computing (UK NCSC) _"An on-demand, massively scalable service, hosted on shared infrastructure, accessible via the internet."_
+
+## 1. The Cloud Computing Shift
+
+Historically, launching digital products required building and maintaining expensive, on-premises back-end infrastructure.
+
+### Core Drivers of Cloud Adoption
+
+- **Scalability:** Scale workloads rapidly up or down based on traffic.
+    
+- **Agility:** Accelerate development life cycles and deploy instantly.
+    
+- **Cost Efficiency:** Shift from upfront capital expenditure (CapEx) on physical servers to flexible operational expenditure (OpEx).
+    
+- **The Trade-off:** While simplifying operations, cloud environments introduce complex shared-tenancy attack surfaces and distributed governance risks.
+    
+
+## 2. Cloud Service Models
+
+Cloud solutions generally fall into three service tiers depending on the level of customer control vs. provider management:
+
+```
+▲ User Control
+│
+│  [ IaaS ]  Infrastructure (Virtual machines, networking, raw storage)
+│  [ PaaS ]  Platform (Runtime environments, developer build tools)
+│  [ SaaS ]  Software (Turnkey applications delivered via browser)
+▼
+```
+
+|   |   |   |   |   |   |
+|---|---|---|---|---|---|
+|**Model**|**Full Name**|**Primary Focus**|**Customer Responsibility**|**Provider Responsibility**|**Representative Examples**|
+|**SaaS**|Software as a Service|End-user applications|Data access policies, user credentials, end-point devices|App uptime, patching, runtime, infrastructure|Gmail, Slack, Zoom|
+|**PaaS**|Platform as a Service|Application development & hosting|Application code, data, app-level configurations|Hardware, OS, runtime environment, network security|Google App Engine, Heroku, VMware Cloud Foundry|
+|**IaaS**|Infrastructure as a Service|Foundational infrastructure|Operating systems, runtime, firewall configs, storage, apps|Physical hardware, physical data center security, virtualization hypervisors|AWS EC2, Google Cloud Platform (Compute), Azure VMs|
+
+## 3. The Shared Responsibility Model
+
+Moving to the cloud replaces traditional perimeter defense with a partnership model between the **Cloud Service Provider (CSP)** and the **Customer**.
+
+```
+Traditional (On-Prem)           Cloud (Shared Model)
+┌───────────────────────┐       ┌───────────────────────┐
+│ Everything managed by │  ───▶ │ Customer: Data / IAM  │
+│ customer's internal   │       ├───────────────────────┤
+│ security team         │       │ CSP: Infrastructure   │
+└───────────────────────┘       └───────────────────────┘
+```
+
+### Customer Scope (Direct Control)
+
+- **Identity & Access Management (IAM):** Who gets access to which resource and under what conditions.
+    
+- **Resource Configuration:** Hardening network security groups, object storage buckets, and access ports.
+    
+- **Data Security & Handling:** Encryption at rest, encryption in transit, data retention, and classification.
+    
+
+> [!tip] Rule of Thumb The amount of security responsibility delegated to the CSP increases as you move from **IaaS** $\rightarrow$ **PaaS** $\rightarrow$ **SaaS**. However, **data classification, identity management, and credential protection always remain the customer's responsibility.**
+
+## 4. Key Cloud Security Challenges
+
+> [!warning] Critical Vulnerabilities & Risks
+
+1. **Misconfiguration (Primary Threat Vector):**
+    
+    - Relying on default "out-of-the-box" settings that leave public write/read permissions enabled (e.g., exposed storage buckets).
+        
+2. **Cloud-Native Breaches:**
+    
+    - Exploits targeting misconfigured IAM roles, API gateways, and cloud service metadata endpoints.
+        
+3. **Visibility & Access Monitoring:**
+    
+    - Distributed workloads make it challenging to maintain unified log ingestion and behavioral auditing across hybrid/multi-cloud setups.
+        
+4. **Regulatory & Compliance Demands:**
+    
+    - Auditing cross-border data residency and privacy mandates (e.g., **GDPR**, **HIPAA**, **PCI DSS**) in distributed multi-tenant environments.
+        
+

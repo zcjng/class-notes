@@ -200,5 +200,223 @@ Traditional (On-Prem)           Cloud (Shared Model)
 4. **Regulatory & Compliance Demands:**
     
     - Auditing cross-border data residency and privacy mandates (e.g., **GDPR**, **HIPAA**, **PCI DSS**) in distributed multi-tenant environments.
-        
 
+
+Three States of Data Protection
+
+- **Data in Use:** This refers to data actively being accessed by users, such as checking emails on a laptop.
+- **Data in Transit:** This is data moving from one point to another, like sending an email.
+- **Data at Rest:** This describes data that is not currently being accessed and is typically stored on a physical device, such as a closed laptop.
+
+
+
+
+
+
+
+# Security Culture, Plans, and the NIST Cybersecurity Framework (CSF)
+
+> [!quote] Core Philosophy
+> 
+> **Security is all about people, processes, and technology.**
+> 
+>   
+> 
+> It is not just an IT task—it is an organizational culture built on shared values spanning employees, vendors, and customers.
+> 
+>   
+
+## 1. Security Plans: Policies, Standards, and Procedures
+
+Security plans exist to prepare organizations for risks affecting the **Confidentiality, Integrity, and Availability (CIA triad)** of assets. Operationalizing these plans relies on three hierarchical elements:
+
+  
+
+```
+┌───────────────────────────────────────────────┐
+│                   POLICIES                    │  Strategic: What & Why
+└───────────────────────┬───────────────────────┘
+                        │ informs
+┌───────────────────────▼───────────────────────┐
+│                  STANDARDS                    │  Tactical: Points of Reference
+└───────────────────────┬───────────────────────┘
+                        │ dictates
+┌───────────────────────▼───────────────────────┐
+│                  PROCEDURES                   │  Operational: Step-by-Step
+└───────────────────────────────────────────────┘
+```
+
+|**Component**|**Nature**|**Primary Role**|**Concrete Example**|
+|---|---|---|---|
+|**Policies**|**Strategic**|Foundational rules that set the scope, goals, and boundaries of what to protect and why.|**Acceptable Use Policy (AUP)** governing permitted corporate network and hardware usage.|
+|**Standards**|**Tactical**|Benchmark requirements and objective references used to shape enforceable policies.|Mandating minimum 8-character passwords referencing **NIST SP 800-63B**.|
+|**Procedures**|**Operational**|Step-by-step technical instructions for carrying out specific tasks consistently.|Standard operating procedure (SOP) for resetting a locked user account.|
+
+## 2. Compliance vs. Frameworks
+
+Understanding the distinction between mandatory constraints and voluntary guidelines is critical for security governance:
+
+  
+
+- **Regulations**: Mandatory rules created by governments or regulatory authorities (e.g., HIPAA, GDPR, PCI DSS). Failure to comply can result in severe financial fines, legal prosecution, and brand destruction.
+    
+      
+    
+- **Compliance**: The ongoing act of adhering to both internal standards and external regulatory mandates.
+    
+      
+    
+- **Frameworks**: Voluntary, structured collections of guidelines, baselines, and best practices designed to help organizations manage risk and reach target compliance levels.
+    
+      
+    
+
+> [!tip] Framework vs. Regulation
+> 
+>   
+> 
+> - **Regulations** are legally mandatory requirements you **must** follow.
+>     
+>       
+>     
+> - **Frameworks** (like NIST CSF) are structured blueprints you **choose** to use to systematically meet those legal and business objectives.
+>     
+>       
+>     
+
+## 3. NIST Cybersecurity Framework (CSF) Architecture
+
+Originally created in 2014 by the National Institute of Standards and Technology to safeguard U.S. critical infrastructure, the CSF is widely adopted globally across both public and private sectors.
+
+  
+
+The CSF is composed of **three pillars**:
+
+  
+
+### Pillar 1: The Core (Functions)
+
+The CSF Core represents key cybersecurity outcomes organized into **6 Functions** (updated in CSF 2.0 to include _Govern_):
+
+  
+
+```
+       ┌──────────────┐
+       │    GOVERN    │  <-- Cross-cutting: Strategy, oversight & policy
+       └──────┬───────┘
+  ┌───────────┼───────────┐
+  │           │           │
+┌─▼────────┐┌─▼────────┐┌─▼────────┐
+│ IDENTIFY ││ PROTECT  ││  DETECT  │
+└──────────┘└──────────┘└──────────┘
+  │           │           │
+  └───────────┼───────────┘
+       ┌──────┴───────┐
+       │   RESPOND    │
+       └──────┬───────┘
+       ┌──────▼───────┐
+       │   RECOVER    │
+       └──────────────┘
+```
+
+- **Govern (GV)** _(Added Feb 2024)_: Establishes organizational context, cybersecurity strategy, risk tolerance, and governance oversight.
+    
+      
+    
+- **Identify (ID)**: Determines critical systems, assets, data, and risk environments (asset tracking, risk assessment).
+    
+      
+    
+- **Protect (PR)**: Implements safeguards to secure asset delivery and limit cyber event impacts (access control, training, data security).
+    
+      
+    
+- **Detect (DE)**: Surfaces the occurrence of anomalies, indicators of compromise, and unauthorized activities.
+    
+      
+    
+- **Respond (RS)**: Directs the containment, investigation, and mitigation actions taken once an incident is detected.
+    
+      
+    
+- **Recover (RC)**: Restores capabilities, infrastructure, and resilience post-incident.
+    
+      
+    
+
+### Pillar 2: Implementation Tiers
+
+Tiers assess the maturity and sophistication of an organization's security practices, serving as a progress benchmark rather than a strict pass/fail grade:
+
+  
+
+- **Tier 1 (Partial / Passive)**: Informal, reactive, and minimal security controls implemented.
+    
+      
+    
+- **Tier 2 (Risk Informed)**: Aware of risks, but processes remain inconsistent or partially approved.
+    
+      
+    
+- **Tier 3 (Repeatable)**: Organization-wide policies and procedures are formally defined, approved, and updated.
+    
+      
+    
+- **Tier 4 (Adaptive)**: Security controls dynamically evolve based on real-time threat intelligence and continuous posture refinement.
+    
+      
+    
+
+### Pillar 3: Profiles
+
+Profiles map organizational requirements, risk tolerance, and available resources against CSF Core categories.
+
+  
+
+> [!note] The "Snapshot" Mental Model
+> 
+> Think of profiles like point-in-time photos:
+> 
+>   
+> 
+> - **Current Profile**: Captures "as-is" cybersecurity operational outcomes today.
+>     
+>       
+>     
+> - **Target Profile**: Illustrates the "to-be" state needed to meet target risk thresholds and compliance goals.
+>     
+>       
+>     
+> - **Gap Analysis**: Comparing Current vs. Target highlights the exact deficiencies requiring capital and operational focus.
+>     
+>       
+>     
+
+## 4. Practical Implementation Workflow (CISA Guidance)
+
+To deploy the NIST CSF across business operations, the Cybersecurity and Infrastructure Security Agency (CISA) outlines a structured 4-step implementation sequence:
+
+  
+
+```
+┌─────────────────────────┐
+│ 1. Current Profile      │ Map existing operations and business needs
+└───────────┬─────────────┘
+            ▼
+┌─────────────────────────┐
+│ 2. Risk Assessment      │ Evaluate compliance against regulatory & internal bars
+└───────────┬─────────────┘
+            ▼
+┌─────────────────────────┐
+│ 3. Gap Analysis         │ Identify and prioritize operational vulnerabilities
+└───────────┬─────────────┘
+            ▼
+┌─────────────────────────┐
+│ 4. Action Plan          │ Execute prioritized controls to achieve target profile
+└─────────────────────────┘
+```
+
+> [!warning] Implementation Reminder
+> 
+> Keep organizational risk priorities informed by current threat landscape data, emerging vulnerabilities, and relevant industry threat intelligence rather than static annual assessments.
+​

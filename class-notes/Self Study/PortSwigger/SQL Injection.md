@@ -19,3 +19,10 @@ You can directly modify the username parameter in the log in page website
 SELECT a, b FROM table1 UNION SELECT c, d FROM table2
 ```
 
+Requirements:
+- The individual queries must return the same number of columns. 
+	(How many columns are being returned from original query)
+	- We can increment columns using **ORDER BY**
+	- We can also use **UNION SELECT NULL**
+- The data types in each column must be compatible between the individual queries.
+	(Which columns returned are of a suitable data type)

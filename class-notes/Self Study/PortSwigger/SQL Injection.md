@@ -7,3 +7,7 @@ SQL Injection might be possible in:
 
 For queries that searches up the table using WHERE we can inject 
 - `'--`   and `'+OR+1=1--` to find unlisted products.
+It can also be used for log in pages
+```sql
+SELECT * FROM users WHERE username = 'administrator'--' AND password = ''
+```

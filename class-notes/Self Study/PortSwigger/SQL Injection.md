@@ -11,3 +11,11 @@ It can also be used for log in pages
 ```sql
 SELECT * FROM users WHERE username = 'administrator'--' AND password = ''
 ```
+You can directly modify the username parameter in the log in page website
+
+**UNION** can be used to retrieve data from other tables, execute one or more additional **SELECT** 
+
+```sql
+SELECT a, b FROM table1 UNION SELECT c, d FROM table2
+```
+

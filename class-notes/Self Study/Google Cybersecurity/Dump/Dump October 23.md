@@ -420,3 +420,17 @@ To deploy the NIST CSF across business operations, the Cybersecurity and Infrast
 > 
 > Keep organizational risk priorities informed by current threat landscape data, emerging vulnerabilities, and relevant industry threat intelligence rather than static annual assessments.
 ​
+
+
+
+### Likelihood
+
+A range of likelihood scores were estimated based on factors that could lead to a security incident. Each risk was scored as a 1, 2, or 3 on a risk matrix, meaning the chances of occurring were rare, likely, or certain. A supply chain attack caused by natural disaster was scored with a 1, meaning it was regarded as unlikely due to the unpredictability of those events. On the other hand, compromised data events were scored a 2 because they are likely to occur given the possible causes.
+
+### Severity
+
+No risk received a severity score less than 2 because risks that involve data breaches such as business email compromise, can have serious consequences. Customers at a bank trust the businesses to protect their money and personal information. Also, the bank's operations could be terminated if they fail to comply with regulations.
+
+### Priority
+
+A financial records leak received the highest overall risk score of 9. This indicates that this risk is almost certain to happen and would greatly impact the bank's ability to operate. Such a high overall score signals the security team to prioritize remediating, or resolving any issues related to that risk before moving on to risks that scored lower.

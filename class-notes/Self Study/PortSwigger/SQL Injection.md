@@ -24,5 +24,19 @@ Requirements:
 	(How many columns are being returned from original query)
 	- We can increment columns using **ORDER BY**
 	- We can also use **UNION SELECT NULL**
+
+```sql
+UNION SELECT NULL FROM DUAL--
+```
+On Oracle, every SELECT query must use the FROM keyword, but we can use the built-in table DUAL.
+	
 - The data types in each column must be compatible between the individual queries.
 	(Which columns returned are of a suitable data type)
+
+After finding the number of columns, we then look for a data in a string form, we probe by:
+```sql
+ UNION SELECT 'a',NULL,NULL,NULL--
+ UNION SELECT NULL,'a',NULL,NULL--
+ UNION SELECT NULL,NULL,'a',NULL--
+ UNION SELECT NULL,NULL,NULL,'a'--
+```

@@ -434,3 +434,67 @@ No risk received a severity score less than 2 because risks that involve data br
 ### Priority
 
 A financial records leak received the highest overall risk score of 9. This indicates that this risk is almost certain to happen and would greatly impact the bank's ability to operate. Such a high overall score signals the security team to prioritize remediating, or resolving any issues related to that risk before moving on to risks that scored lower.
+
+
+
+# Course 5 Module 2
+
+# Security Controls, Information Privacy, and Data Governance
+
+> [!quote] Core Definition
+> 
+> **Security Controls** are safeguards designed to reduce specific security risks. They encompass tools, processes, and guidelines used to protect assets **before, during, and after** a security event.
+
+## 1. The Three Types of Security Controls
+
+Organizations divide controls into three categories to ensure coverage across technology, human actions, and governance:
+
+|**Control Type**|**Focus Area**|**Description**|**Concrete Examples**|
+|---|---|---|---|
+|**Technical**|Systems & Technology|Automated hardware and software tools configured to protect assets.|Encryption, multi-factor authentication (MFA), firewalls, access control lists (ACLs).|
+|**Operational**|Day-to-Day Operations|People-driven practices and operational routines that maintain daily security.|Security awareness training, routine system audits, incident response drills.|
+|**Managerial** (Administrative)|Strategy & Governance|High-level organizational frameworks, standards, and oversight guiding overall risk reduction.|Security policies (e.g., Acceptable Use Policy), compliance benchmarks, standard operating procedures.|
+
+## 2. Information Privacy & The Right to Choose
+
+> [!important] Information Privacy
+> 
+> **Information privacy** is the protection against unauthorized access to and distribution of data. At its heart, it is about **the right to choose**: the ability of individuals and organizations to determine **when, how, and to what extent** their private data is shared.
+
+### The Principle of Least Privilege (PoLP)
+
+To uphold privacy, organizations enforce the **Principle of Least Privilege**:
+
+- Users and services are granted only the minimum permissions necessary to complete their job functions, and only for the duration required.
+    
+- _Example (Airline Booking):_ A customer service representative may access payment and booking records temporarily while assisting a passenger, whereas marketing personnel have no business need or access permission to view customer credit card details.
+    
+
+## 3. Data Roles: Owner vs. Custodian
+
+Proper asset classification and handling depend on distinguishing between who possesses authority over data versus who is responsible for safeguarding it:
+
+```
+┌──────────────────────────────────────────────┐
+│                  DATA OWNER                  │
+│  • Holds ultimate authority over the asset   │
+│  • Dictates access, usage, and destruction   │
+└──────────────────────┬───────────────────────┘
+                       │ delegates operational handling to
+┌──────────────────────▼───────────────────────┐
+│                DATA CUSTODIAN                │
+│  • Implements controls and backups           │
+│  • Responsible for transit, storage & safety │
+│  • Can be a person, team, or automated system│
+└──────────────────────────────────────────────┘
+```
+
+- **Data Owner**:
+    
+    - Decides who can access, edit, use, or destroy the information.
+        
+    - Can be an individual or collective group (e.g., corporate intellectual property owned across multiple departments).
+        
+- **Data Custodian**:
+    
+    - Anyone or _anything_ (including database administrators, third-party cloud providers, and automated backup storage systems) tasked with the safe handling, transport, maintenance, and storage of that data.

@@ -492,3 +492,4 @@ Organizations defend against brute force attacks with a combination of technical
 ### **CAPTCHA**
 
 CAPTCHA stands for Completely Automated Public Turing test to tell Computers and Humans Apart. It is known as a challenge-response authentication system. CAPTCHA asks users to complete a simple test that proves they are human and not software that’s trying to brute force a password.
+

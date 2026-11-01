@@ -250,5 +250,13 @@ MAC is the strictest of the three frameworks. Authorization in this model is bas
 
 
 - Discretionary access control (DAC)
+- ### **Discretionary Access Control (DAC)**
+
+DAC is typically applied when a data owner decides appropriate levels of access. One example of DAC is when the owner of a Google Drive folder shares editor, viewer, or commentor access with someone else.
     
 - Role-based access control (RBAC)
+- ### **Role-Based Access Control (RBAC)**
+
+RBAC is used when authorization is determined by a user's role within an organization. For example, a user in the marketing department may have access to user analytics but not network administration.
+
+[IDPro](https://idpro.org/)© is a professional organization dedicated to sharing essential IAM industry knowledge.

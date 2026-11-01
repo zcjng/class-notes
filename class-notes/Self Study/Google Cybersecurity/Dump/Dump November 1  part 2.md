@@ -337,3 +337,48 @@ Certain permissions need to be enabled by users or IT groups before updates can 
 ## End-of-life software
 
 Sometimes updates are not available for a certain type of software known as end-of-life (EOL) software. All software has a lifecycle. It begins when it’s produced and ends when a newer version is released. At that point, developers must allocate resources to the newer versions, which leads to EOL software. While the older software is still useful, the manufacturer no longer supports it.
+
+## Penetration testing
+
+A **penetration test**, or pen test, is a simulated attack that helps identify vulnerabilities in systems, networks, websites, applications, and processes. The simulated attack in a pen test involves using the same tools and techniques as malicious actors in order to mimic a real life attack. Since a pen test is an authorized attack, it is considered to be a form of ethical hacking. exploits those vulnerabilities from the assessments
+
+**Note:** Organizations that are regulated by PCI DSS, HIPAA, or GDPR must routinely perform penetration testing to maintain compliance standards.
+
+- Red team tests _simulate attacks_ to identify vulnerabilities in systems, networks, or applications.
+    
+- Blue team tests focus on _defense_ _and incident response_ to validate an organization's existing security systems.
+    
+- Purple team tests are _collaborative_, focusing on improving the security posture of the organization by combining elements of red and blue team exercises.
+
+## Penetration testing strategies
+
+There are three common penetration testing strategies: 
+
+- **Open-box testing** is when the tester has the same privileged access that an internal developer would have—information like system architecture, data flow, and network diagrams. This strategy goes by several different names, including internal, full knowledge, white-box, and clear-box penetration testing.
+    
+- **Closed-box testing** is when the tester has little to no access to internal systems—similar to a malicious hacker. This strategy is sometimes referred to as external, black-box, or zero knowledge penetration testing.
+    
+- **Partial knowledge testing** is when the tester has limited access and knowledge of an internal system—for example, a customer service representative. This strategy is also known as gray-box testing.
+### **Bug bounty programs**
+
+Organizations commonly run bug bounty programs which offer freelance pen testers financial rewards for finding and reporting vulnerabilities in their products. Bug bounties are great opportunities for amateur security professionals to participate and grow their skills. 
+
+**Pro tip:** [HackerOne](https://hackerone.com/bug-bounty-programs) is a community of ethical hackers where you can find active bug bounties to participate in.
+
+
+
+
+- **The Physical Attack Surface:** This area is comprised of the organization's people and physical devices. It is uniquely vulnerable to both **external threats** (e.g., a competitor viewing sensitive data on an unattended laptop in a coffee shop) and **internal threats** (e.g., disgruntled employees intentionally leaking private corporate data).
+- **The Digital Attack Surface:** This area includes everything that connects to an organization online, extending far beyond the traditional network firewall. Historically, data was centralized on on-site servers, meaning the attack surface was confined to a single, tightly managed workplace network. Today, cloud computing has drastically expanded this surface, allowing information to be accessed globally from anywhere. While this provides speed and flexibility, it introduces countless new entry points that organizations must secure.
+
+To combat these expanding environments, security teams use a process called **security hardening**. The objective of hardening is to minimize the attack surface by reducing vulnerabilities and eliminating unnecessary entry points. A smaller attack surface is inherently easier to protect. Security teams frequently achieve physical hardening by implementing organizational policies and strict access controls to create obstacles that deter threat actors.
+
+
+# Approach cybersecurity with an attacker mindset
+## Simulating threats
+
+One method of applying an attacker mindset is using attack simulations. These activities are normally performed in one of two ways: _proactively_ and _reactively_. Both approaches share a common goal, which is to make systems safer.
+
+- _Proactive simulations_ assume the role of an attacker by exploiting vulnerabilities and breaking through defenses. This is sometimes called a red team exercise.
+    
+- _Reactive simulations_ assume the role of a defender responding to an attack. This is sometimes called a blue team exercise.

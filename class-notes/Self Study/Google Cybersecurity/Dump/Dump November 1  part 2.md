@@ -84,3 +84,23 @@ The CI/CD environment itself (the servers and systems that run your pipeline) ne
 - **Keep Dependencies Updated:** Maintain a current inventory of all third-party dependencies, libraries, and CI/CD plugins. Regularly update these components to patch security vulnerabilities (CVEs). Tools like [Dependabot](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide) and [Snyk](https://snyk.io/) can automate dependency management.
     
 - **Secure Secrets Management:** Never hardcode sensitive information in your code or pipeline configurations. Require the use of dedicated secrets management tools like HashiCorp Vault or AWS Secrets Manager. Securely store, access, and rotate secrets throughout the CI/CD process.
+
+
+
+defense-in-depth model, a multi-layered security approach designed to minimize risk by placing redundant protective controls around an organization's critical assets.
+
+The Castle Approach
+
+- Resembles medieval castle architecture, where multiple barriers such as moats, walls, and watchtowers ensure protection even if an outer barrier is breached.
+- Employs unique security controls at each level to identify vulnerabilities and stop attacks when one system fails.
+
+The Outer Layers (Perimeter, Network, and Endpoint)
+
+- The perimeter layer authenticates external users (e.g., using usernames and passwords) to filter external access.
+- The network layer handles authorization and traffic control via firewalls, 
+- The endpoint layer protects network-connected devices using tools like antivirus software.
+
+The Core Layers (Application and Data)
+
+- The application layer safeguards technological interfaces using controls such as multi-factor authentication (MFA).
+- The data layer protects critical information—such as personally identifiable information—using controls like asset classification.

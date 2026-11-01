@@ -178,4 +178,22 @@ It works by having users prove that they are who they claim to be. The user must
 
 
 # 2 authorization 
+Core Authorization Principles
+
+- The principle of least privilege ensures that access to information and resources is granted only to the extent and duration needed.
+- Separation of duties distributes critical responsibilities across multiple individuals or systems to reduce the risk of misuse and errors.
+
+HTTP Basic Auth and HTTPS
+
+- HTTP Basic Auth transmits usernames and passwords as plain text across the network, leaving credentials vulnerable to interception.
+- HTTPS protects sensitive data by encrypting transmissions over the network to prevent unauthorized access.
+
+OAuth and API Tokens
+
+- OAuth is an open-standard authorization protocol that allows applications to share designated access without exchanging actual user passwords.
+- API tokens are encrypted blocks of code containing identity and permission details that verify access securely between devices and servers.
+
+And if you want to continue exploring this topic, try one of these follow-up questions:
+
+
 # 3 Accounting framework

@@ -281,3 +281,59 @@ When a scan of any layer begins, the scanning tool compares the findings against
 
 Vulnerability scanners are meant to be non-intrusive.
 **Note:** While vulnerability scanners are non-intrusive, there are instances when a scan can inadvertently cause issues, like crash a system.
+**External vs. internal**
+
+External and internal scans simulate an attacker's approach.
+
+_External scans_ test the perimeter layer outside of the internal network. They analyze outward facing systems, like websites and firewalls. These kinds of scans can uncover vulnerable things like vulnerable network ports or servers.
+
+_Internal scans_ start from the opposite end by examining an organization's internal systems. For example, this type of scan might analyze application software for weaknesses in how it handles user input.
+
+### **Authenticated vs. unauthenticated**
+
+Authenticated and unauthenticated scans simulate whether or not a user has access to a system.
+
+_Authenticated scans_ might test a system by logging in with a real user account or even with an admin account. These service accounts are used to check for vulnerabilities, like broken access controls.
+
+_Unauthenticated scans_ simulate external threat actors that do not have access to your business resources. For example, a scan might analyze file shares within the organization that are used to house internal-only documents. Unauthenticated users should receive "access denied" results if they tried opening these files. However, a vulnerability would be identified if you were able to access a file.
+
+### **Limited vs. comprehensive**
+
+Limited and comprehensive scans focus on particular devices that are accessed by internal and external users.
+
+_Limited scans_ analyze particular devices on a network, like searching for misconfigurations on a firewall.
+
+_Comprehensive scans_ analyze all devices connected to a network. This includes operating systems, user databases, and more.
+
+**Pro tip:** Discovery scanning should be done prior to limited or comprehensive scans. Discovery scanning is used to get an idea of the computers, devices, and open ports that are on a network.
+
+## Patching gaps in security
+A **patch update** is a software and operating system update that addresses security vulnerabilities within a program or product. Patches usually contain bug fixes that address common security vulnerabilities and exposures.
+**Note:** Ideally, patches address common vulnerabilities and exposures before malicious hackers find them. However, patches are sometimes developed as a result of a **zero-day**, which is an exploit that was previously unknown.
+
+## Common update strategies
+
+
+- Manual updates
+### **Manual updates**
+
+A manual deployment strategy relies on IT departments or users obtaining updates from the developers. Home office or small business environments might require you to find, download, and install updates yourself. In enterprise settings, the process is usually handled with a configuration management tool. T
+
+**Advantage:** An advantage of manual update deployment strategies is control. That can be useful if software updates are not thoroughly tested by developers, leading to instability issues.
+
+**Disadvantage:** A drawback to manual update deployments is that critical updates can be forgotten or disregarded entirely.
+- Automatic updates
+### **Automatic updates**
+
+An automatic deployment strategy takes the opposite approach. With this option, finding, downloading, and installing updates can be done by the system or application.
+**Pro tip:** The Cybersecurity and Infrastructure Security Agency (CISA) recommends using automatic options whenever they’re available.
+
+Certain permissions need to be enabled by users or IT groups before updates can be installed, or pushed, when they're available. It is up to the developers to adequately test their patches before release.
+
+**Advantage:** An advantage to automatic updates is that the deployment process is simplified. It also keeps systems and software current with the latest, critical patches.
+
+**Disadvantage:** A drawback to automatic updates is that instability issues can occur if the patches were not thoroughly tested by the vendor. This can result in performance problems and a poor user experience.
+
+## End-of-life software
+
+Sometimes updates are not available for a certain type of software known as end-of-life (EOL) software. All software has a lifecycle. It begins when it’s produced and ends when a newer version is released. At that point, developers must allocate resources to the newer versions, which leads to EOL software. While the older software is still useful, the manufacturer no longer supports it.

@@ -104,3 +104,44 @@ The Core Layers (Application and Data)
 
 - The application layer safeguards technological interfaces using controls such as multi-factor authentication (MFA).
 - The data layer protects critical information—such as personally identifiable information—using controls like asset classification.
+
+
+📝 Executive Summary
+
+Information security requires a global, collaborative effort that extends far beyond individual security teams. A key part of this collective defense involves tracking and sharing information via online public libraries. While often grouped together, **vulnerabilities** and **exposures** have distinct definitions: a vulnerability is an inherent weakness within a system, whereas an exposure is a operational mistake or condition that allows a threat to exploit that system.
+
+The most prominent library for documenting these flaws is the **CVE List**, an openly accessible dictionary created in 1999 by the MITRE Corporation—a US government-sponsored, non-profit research collective. The CVE list standardizes how security issues are identified and categorized worldwide. Anyone can report a flaw, but before it receives an official CVE ID, it must undergo strict evaluation by a **CVE Numbering Authority (CNA)**. To qualify for an ID, a submission must pass four specific criteria:
+
+1. **Independence:** The issue must be fixable on its own without requiring a fix to a separate problem.
+2. **Recognition:** The reporter must formally acknowledge it as a potential security risk.
+3. **Evidence:** The submission must include supporting proof.
+4. **Single Codebase Impact:** The flaw must only affect one program's source code (e.g., affecting Chrome for desktop but not Chrome for Android).
+
+Once a vulnerability is assigned an ID, other public databases review it to assess its severity. A primary example is the **NIST National Vulnerability Database (NVD)**, which uses the **Common Vulnerability Scoring System (CVSS)**. CVSS applies a static base score ranging from 0 to 10 to measure a flaw's impact at the time of evaluation. Scores below 4.0 are deemed low risk and do not need immediate remediation, while scores above 9.0 indicate critical risks requiring urgent intervention. Security teams leverage these standardized CVE entries and CVSS scores to architect their vulnerability management strategies, allowing them to prioritize critical patches and efficiently safeguard company assets.
+
+---
+
+📖 Abbreviations & Key Terms Reference List
+
+**Core Concepts**
+
+- **Vulnerability:** An inherent weakness or flaw within a system's structure or software.
+- **Exposure:** A mistake or environmental condition that opens a system up to being exploited by a threat.
+- **Base Score:** A static rating on a scale of 0 to 10 that reflects the severity of a vulnerability at the exact moment it is evaluated.
+
+**Organizations & Authorities**
+
+- **MITRE Corporation:** A US government-sponsored collection of non-profit research and development centers that created the CVE list in 1999.
+- **CNA (CVE Numbering Authority):** Volunteer organizations with proven security expertise that analyze, verify, and distribute information on eligible CVE submissions.
+- **NIST (National Institute of Standards and Technology):** The organization responsible for maintaining the National Vulnerability Database.
+
+**Systems & Frameworks**
+
+- **CVE (Common Vulnerabilities and Exposures):** An openly accessible, standardized public dictionary used to identify and categorize known security flaws.
+- **NVD (National Vulnerability Database):** A popular public database (maintained by NIST) that reviews CVEs and calculates their severity scores.
+- **CVSS (Common Vulnerability Scoring System):** The standardized measurement framework used to score the impact and severity of a vulnerability on a scale from 0 to 10.
+
+
+## What is OWASP?
+
+OWASP is a nonprofit foundation that works to improve the security of software. OWASP is an open platform that security professionals from around the world use to share information, tools, and events that are focused on securing the web.

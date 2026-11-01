@@ -8,7 +8,15 @@ tags:
 
 # ⚠️ Risk Management
 
-[[Google Cybersecurity|← Back to Course Hub]] · [[2026-10-14|Related day: 2026-10-14]]
+[[Google Cybersecurity|← Back to Course Hub]] · [[2026-10-14|2026-10-14]] · [[2026-10-23|Related day: 2026-10-23]]
+
+---
+
+## 📐 Risk in One Line
+
+$$\text{Risk} = \text{Likelihood} \times \text{Impact}$$
+
+A **risk** is anything that can impact the confidentiality, integrity, or availability of an asset. Planning around it means analyzing three elements — **assets, threats, and vulnerabilities** (see [[Security Risk Planning]]).
 
 ---
 
@@ -40,5 +48,7 @@ The **NIST RMF** describes steps for managing risk across a system's lifecycle:
 ## 🔗 Related
 
 - [[Security Frameworks]]
+- [[Security Risk Planning]]
+- [[Asset Management & Classification]]
 - [[NIST Cybersecurity Framework]]
 - [[Security Audits]]

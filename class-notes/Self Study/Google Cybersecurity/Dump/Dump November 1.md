@@ -260,3 +260,23 @@ DAC is typically applied when a data owner decides appropriate levels of access.
 RBAC is used when authorization is determined by a user's role within an organization. For example, a user in the marketing department may have access to user analytics but not network administration.
 
 [IDPro](https://idpro.org/)© is a professional organization dedicated to sharing essential IAM industry knowledge.
+
+
+# Course 5 Module 3
+
+Security teams protect organizational assets by identifying weaknesses, anticipating how they can be exploited, and continuously maintaining defenses against both known and unexpected threats.
+
+Vulnerabilities and Exploits
+
+- A vulnerability is an inherent weakness in a system, whereas an exploit is the specific method or tool used to take advantage of that weakness.
+- Effective security planning relies on anticipating potential exploits in advance so proper safeguards can be implemented before an attack occurs.
+
+The Vulnerability Management Cycle
+
+- Vulnerability management is an ongoing four-step cycle: identify vulnerabilities, analyze potential exploits, implement defensive controls, and evaluate defense effectiveness.
+- Leveraging diverse perspectives across security teams improves the identification of obscure flaws and strengthens defensive planning.
+
+#### **Zero-Day Exploits**
+
+- A zero-day refers to an unknown exploit that is discovered while actively occurring, giving organizations zero days of advance notice to develop a patch.
+- These unmapped threats present elevated risk because traditional defenses and mitigations have not yet been designed to counter them. 

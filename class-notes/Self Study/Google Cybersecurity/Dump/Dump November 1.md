@@ -143,10 +143,14 @@ system are broken down to AAA
 
 # 1 Authentication, 
 
+
 Authentication Factors
 
-- Knowledge, ownership, and characteristics represent the three primary ways to verify identity, ranging from passwords to one-time passcodes and biometrics.
-- Biometrics and multi-factor approaches are more difficult for attackers to compromise compared to single-factor methods.
+- **Knowledge**, or something the user knows
+    
+- **Ownership**, or something the user possesses
+    
+- **Characteristic**, or something the user is
 
 ### Single Sign-On (SSO)
 
@@ -177,11 +181,16 @@ It works by having users prove that they are who they claim to be. The user must
 - **Something a user is:** refers to physical characteristics of a user, like their fingerprints or facial scans
 
 
+
 # 2 authorization 
 Core Authorization Principles
 
 - The principle of least privilege ensures that access to information and resources is granted only to the extent and duration needed.
 - Separation of duties distributes critical responsibilities across multiple individuals or systems to reduce the risk of misuse and errors.
+In other words, least privilege _limits_ _the access_ that an individual receives, while separation of duties _divides responsibilities_ among multiple people to prevent any one person from having too much control.
+
+
+
 
 HTTP Basic Auth and HTTPS
 
@@ -197,3 +206,49 @@ And if you want to continue exploring this topic, try one of these follow-up que
 
 
 # 3 Accounting framework
+
+Accounting monitors access logs to track user sessions, uncover security incidents, and protect systems from unauthorized activity.
+
+The Role of Accounting and Access Logs
+
+- Accounting is the practice of tracking access logs, which record who accessed a system, when, and what resources were used.
+- Security analysts use these logs as a primary tool to identify trends, investigate security breaches, and detect unauthorized access.
+
+Sessions, IDs, and Cookies
+
+- A session begins when a user accesses a system, generating a unique session ID that identifies the user and device until logout or timeout.
+- Session cookies are exchanged between the device and server to validate the session and securely manage data without repeatedly sending sensitive credentials.
+
+Session Hijacking Risks
+
+- Attackers can commit session hijacking by stealing a user's session ID or cookie to impersonate them.
+- Monitoring access logs helps analysts identify the unusual activity caused by stolen session tokens and protect sensitive organizational assets.
+
+
+## Identity and access management (IAM)
+
+**Identity and access management** (IAM) is a collection of processes and technologies that helps organizations manage digital identities in their environment. Both AAA and IAM systems are designed to authenticate users, determine their access privileges, and track their activities within a system.
+
+Either model used by your organization is more than a single, clearly defined system. They each consist of a collection of security controls that ensure the _right user_ is granted access to the _right resources_ at the _right time_ and for the _right reasons_. Each of those four factors is determined by your organization's policies and processes.
+
+**Note:** A user can either be a person, a device, or software.
+
+
+### **User provisioning**
+
+Back-end systems need to be able to verify whether the information provided by a user is accurate. To accomplish this, users must be properly provisioned. **User provisioning** is the process of creating and maintaining a user's digital identity.
+
+**Pro tip:** Another role analysts have in IAM is to deprovision users. This is an important practice that removes a user's access rights when they should no longer have them.
+
+
+If the right user has been authenticated, the network should ensure the right resources are made available. There are three common frameworks that organizations use to handle this step of IAM:
+
+- Mandatory access control (MAC)
+    ### **Mandatory Access Control (MAC)**
+
+MAC is the strictest of the three frameworks. Authorization in this model is based on a strict need-to-know basis. Access to information must be granted manually by a central authority or system administrator. For example, MAC is commonly applied in law enforcement, military, and other government agencies where users must request access through a chain of command. MAC is also known as non-discretionary control because access isn’t given at the discretion of the data owner.
+
+
+- Discretionary access control (DAC)
+    
+- Role-based access control (RBAC)

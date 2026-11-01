@@ -136,3 +136,46 @@ This is a safe system unless an attacker gains access to the user database. If p
 A **rainbow table** is a file of pre-generated hash values and their associated plaintext. They’re like dictionaries of weak passwords. Attackers capable of obtaining an organization’s password database can use a rainbow table to compare them against all possible values.
 
 **Salting** is an additional safeguard that's used to strengthen hash functions. A _salt_ is a random string of characters that's added to data before it's hashed. The additional characters produce a more unique hash value, making salted data resilient to rainbow table attacks.
+
+## Access Controls
+Maintain CIA 
+system are broken down to AAA
+
+# 1 Authentication, 
+
+Authentication Factors
+
+- Knowledge, ownership, and characteristics represent the three primary ways to verify identity, ranging from passwords to one-time passcodes and biometrics.
+- Biometrics and multi-factor approaches are more difficult for attackers to compromise compared to single-factor methods.
+
+### Single Sign-On (SSO)
+
+- SSO streamlines user access by consolidating multiple logins into a single identity verification step.
+- Relying on SSO alone creates significant security risks if it depends only on a single authentication factor.
+**Single sign-on** (SSO) is a technology that combines several different logins into one. More companies are turning to SSO as a solution to their authentication needs for three reasons:
+
+1. **SSO improves the user experience** by eliminating the number of usernames and passwords people have to remember.
+    
+2. **Companies can lower costs** by streamlining how they manage connected services.
+    
+3. **SSO improves overall security** by reducing the number of access points attackers can target.
+## How SSO works
+
+SSO works by automating how trust is established between a user and a service provider. Rather than placing the responsibility on an employee or customer, SSO solutions use trusted third-parties to prove that a user is who they claim to be. This is done through the exchange of encrypted access tokens between the identity provider and the service provider.
+
+Similar to other kinds of digital information, these access tokens are exchanged using specific protocols. SSO implementations commonly rely on two different authentication protocols: LDAP and SAML. LDAP, which stands for Lightweight Directory Access Protocol, is mostly used to transmit information on-premises; SAML, which stands for Security Assertion Markup Language, is mostly used to transmit information off-premises, like in the cloud.
+
+**Note:** LDAP and SAML protocols are often used together.
+
+### MFA builds on the benefits of SSO.
+It works by having users prove that they are who they claim to be. The user must provide two factors (2FA) or three factors (3FA) to authenticate their identification. The MFA process asks users to provide these proofs, such as:
+
+- **Something a user knows:** most commonly a username and password
+    
+- **Something a user has:** normally received from a service provider, like a one-time passcode (OTP) sent via SMS
+    
+- **Something a user is:** refers to physical characteristics of a user, like their fingerprints or facial scans
+
+
+# 2 authorization 
+# 3 Accounting framework

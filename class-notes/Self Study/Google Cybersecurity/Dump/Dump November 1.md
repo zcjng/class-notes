@@ -92,3 +92,47 @@ Knowing the basics of encryption is important for all security professionals. Sy
 
 
 
+Hash Functions and Unique Values
+
+- Unlike symmetric or asymmetric encryption, a hash function is a one-way process that produces a fixed, unique identifier known as a hash value or digest instead of generating decryption keys.
+- Even the slightest alteration to an original file—such as changing a single line of code—will produce an entirely different hash value, exposing unauthorized modifications.
+
+Data Integrity and Non-Repudiation
+
+- Hashes are primarily used to confirm data integrity by verifying the accuracy and consistency of files and applications.
+- They establish non-repudiation by ensuring that the authenticity of information cannot be denied once validated against its original hash.
+
+Practical Application in Security
+
+- Analysts can generate hash values using common algorithms (like MD5 or SHA-256) via command-line tools to check files on their systems.
+- Generated hashes can be cross-referenced against databases of known malicious software, such as VirusTotal, to detect threats.
+
+
+
+One of the earliest hash functions is Message Digest 5, more commonly known as MD5. Professor Ronald Rivest of the Massachusetts Institute of Technology (MIT) developed MD5 in the early 1990s as a way to verify that a file sent over a network matched its source file.
+MD5 works by converting data into a 128-bit value.
+
+
+### **Hash collisions**
+
+One of the flaws in MD5 happens to be a characteristic of all hash functions. Hash algorithms map any input, regardless of its length, into a fixed-size value of letters and numbers.
+MD5 values are limited to 32 characters in length. Due to the limited output size, the algorithm is considered to be vulnerable to **hash collision**, an instance when different inputs produce the same hash value. Because hashes are used for authentication, a hash collision is similar to copying someone’s identity. Attackers can carry out collision attacks to fraudulently impersonate authentic data.MD5's shortcomings gave way to a new group of functions known as the Secure Hashing Algorithms, or SHAs.
+
+Numbers besides each SHA function indicate the size of its hash value in bits. Except for SHA-1, which produces a 160-bit digest, (NIST) approves each of these algorithms.
+
+**Five functions make up the SHA family of algorithms:**
+- SHA-1
+- SHA-224
+- SHA-256
+- SHA-384
+- SHA-512
+
+## Secure password storage
+
+Passwords are typically stored in a database where they are mapped to a username. The server receives a request for authentication that contains the credentials supplied by the user. It then looks up the username in the database and compares it with the password that was provided and verifies that it matches before granting them access.
+
+This is a safe system unless an attacker gains access to the user database. If passwords are stored in plaintext, then an attacker can steal that information and use it to access company resources. Hashing adds an additional layer of security. Because hash values can't be reversed, an attacker would not be able to steal someone's login credentials if they managed to gain access to the database.
+
+A **rainbow table** is a file of pre-generated hash values and their associated plaintext. They’re like dictionaries of weak passwords. Attackers capable of obtaining an organization’s password database can use a rainbow table to compare them against all possible values.
+
+**Salting** is an additional safeguard that's used to strengthen hash functions. A _salt_ is a random string of characters that's added to data before it's hashed. The additional characters produce a more unique hash value, making salted data resilient to rainbow table attacks.

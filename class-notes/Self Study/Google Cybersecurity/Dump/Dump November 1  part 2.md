@@ -460,3 +460,35 @@ When security teams analyze a vector from a threat actor's perspective, they mus
 
 - **Attack Vector:** The specific pathway, channel, or method a threat actor uses to penetrate an organization's defenses and exploit its attack surface.
 - **Attacker Mindset:** A proactive security practice where analysts think like a hacker to identify, evaluate, and test potential weaknesses before they can be maliciously exploited.
+
+Attackers use a variety of tactics to find their way into a system:
+
+- _Simple brute force attacks_ are an approach in which attackers guess a user's login credentials. They might do this by entering any combination of username and password that they can think of until they find the one that works.
+    
+- _Dictionary attacks_ are a similar technique except in these instances attackers use a list of commonly used credentials to access a system. This list is similar to matching a definition to a word in a dictionary.
+    
+- _Reverse brute force attacks_ are similar to dictionary attacks, except they start with a single credential and try it in various systems until a match is found.
+    
+- _Credential stuffing_ is a tactic in which attackers use stolen login credentials from previous data breaches to access user accounts at another organization. A specialized type of credential stuffing is called _pass the hash_. These attacks reuse stolen, unsalted hashed credentials to trick an authentication system into creating a new authenticated user session on the network.
+**Note:** Besides access credentials, encrypted information can sometimes be brute forced using a technique known as _exhaustive key search_.
+
+Instead of dedicating the time to do this, attackers often use software to do the guess work for them. These are some common brute forcing tools:
+
+- Aircrack-ng
+- Hashcat 
+- John the Ripper
+- Ophcrack
+- THC Hydra
+
+## Prevention measures
+
+Organizations defend against brute force attacks with a combination of technical and managerial controls. Each make cracking defense systems through brute force less likely:
+
+- Hashing and salting
+- Multi-factor authentication (MFA)
+- CAPTCHA
+- Password policies
+
+### **CAPTCHA**
+
+CAPTCHA stands for Completely Automated Public Turing test to tell Computers and Humans Apart. It is known as a challenge-response authentication system. CAPTCHA asks users to complete a simple test that proves they are human and not software that’s trying to brute force a password.

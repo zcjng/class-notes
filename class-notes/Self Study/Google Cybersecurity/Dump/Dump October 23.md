@@ -498,3 +498,245 @@ Proper asset classification and handling depend on distinguishing between who po
 - **Data Custodian**:
     
     - Anyone or _anything_ (including database administrators, third-party cloud providers, and automated backup storage systems) tasked with the safe handling, transport, maintenance, and storage of that data.
+
+
+---
+
+
+# 🔐 Data Privacy, Governance & Cryptography
+
+> [!abstract] TL;DR
+> Data must be protected **at rest, in use, and in transit**. Organizations do this through the **data lifecycle**, **governance policies**, **privacy regulations**, **audits/assessments**, and **cryptography**.
+
+## 🗺️ Overview
+
+```mermaid
+mindmap
+  root((Protecting Data))
+    Data Lifecycle
+      Collect
+      Store
+      Use
+      Archive
+      Destroy
+    Data Governance
+      Owner
+      Custodian
+      Steward
+    Protected Data
+      PII
+      SPII
+      PHI
+    Regulations
+      GDPR
+      PCI DSS
+      HIPAA
+    Compliance
+      Audits
+      Assessments
+    Cryptography
+      Encryption
+      Decryption
+      Keys
+```
+
+---
+
+## 1. 🔄 The Data Lifecycle
+
+The lifecycle shows how data flows through an organization from creation until it is no longer useful. Each stage shapes the security controls used to maintain the **CIA triad**.
+
+```mermaid
+flowchart LR
+    A["📥 Collect"] --> B["💾 Store"]
+    B --> C["⚙️ Use"]
+    C --> D["🗄️ Archive"]
+    D --> E["🗑️ Destroy"]
+    style A fill:#4c9be8,color:#fff
+    style B fill:#6c7ae0,color:#fff
+    style C fill:#9b59b6,color:#fff
+    style D fill:#e67e22,color:#fff
+    style E fill:#e74c3c,color:#fff
+```
+
+> [!note] Why it matters
+> Protecting data at every stage means keeping it **accessible and recoverable** if something goes wrong.
+
+---
+
+## 2. 🏛️ Data Governance
+
+**Data governance** is a set of processes defining how an organization manages information, keeping it **private, accurate, available, and secure** throughout its lifecycle.
+
+| Role | Responsibility |
+| --- | --- |
+| 👤 **Data owner** | Decides who can access, edit, use, or destroy their information |
+| 🛡️ **Data custodian** | Responsible for safe handling, transport, and storage of data |
+| 📋 **Data steward** | Maintains and implements the governance policies set by the organization |
+
+```mermaid
+flowchart TD
+    P["📜 Data Governance Policy"] --> O["👤 Owner<br/>decides access"]
+    P --> C["🛡️ Custodian<br/>safe handling"]
+    P --> S["📋 Steward<br/>enforces policy"]
+    O -.->|authorizes| C
+    S -.->|oversees| C
+```
+
+> [!tip] Your role
+> As a security professional you'll usually be a **data custodian**: ensuring data isn't damaged, stolen, or misused, and maintaining security and privacy rules.
+
+---
+
+## 3. 🧾 Legally Protected Information
+
+Data owners should decide whether their data is shared. Regulators define what must be protected **by default**.
+
+| Type | Meaning | Examples / Notes |
+| --- | --- | --- |
+| **PII** | Info used to infer, contact, or locate an individual | Name, address, phone |
+| **SPII** | Sensitive PII with stricter handling, **need-to-know** access | Bank account number, login credentials |
+| **PHI** | Info on past, present, or future physical or mental health | Regulated by **HIPAA** (US) and **GDPR** (EU) |
+
+```mermaid
+graph TD
+    PII["PII<br/>Personally Identifiable Information"] --> SPII["SPII<br/>Sensitive PII"]
+    PII --> PHI["PHI<br/>Protected Health Information"]
+```
+
+> [!important] Need-to-know
+> SPII should only be accessed on a **need-to-know basis**.
+
+---
+
+## 4. ⚖️ Privacy vs. Security
+
+> [!question] What's the difference?
+> They're related but not interchangeable.
+
+| | 🔏 Information Privacy | 🔒 Information Security (InfoSec) |
+| --- | --- | --- |
+| **Focus** | Giving people **control** over their personal info and how it's shared | Keeping data in **all states** away from unauthorized users |
+| **Concerned with** | Unauthorized access and distribution | Protecting people's choices from threats |
+
+> [!example] Retail example
+> A retailer collects age, gender, and location for marketing.
+> 1. **Privacy**: disclose how data will be used *before* collecting; allow **opt-out**.
+> 2. **Security**: once consent is given, apply controls against unauthorized access, use, or disclosure, and respect those who opted out.
+
+> [!warning] Key insight
+> The more data is collected, stored, and used, the more vulnerable it is to **breaches and threats**.
+
+---
+
+## 5. 📚 Notable Privacy Regulations
+
+```mermaid
+graph LR
+    R["Regulations"] --> G["🇪🇺 GDPR"]
+    R --> P["💳 PCI DSS"]
+    R --> H["🏥 HIPAA"]
+```
+
+| Regulation | Origin | Purpose |
+| --- | --- | --- |
+| **GDPR** | European Union | Gives data owners **total control** of personal info (name, address, phone, financial, medical) |
+| **PCI DSS** | Major financial industry orgs | Secures **credit and debit card** transactions against theft and fraud |
+| **HIPAA** | United States law | Protects sensitive **patient health info**; no disclosure without knowledge and consent |
+
+> [!info] Scope of GDPR
+> GDPR applies to **any business handling data of EU citizens or residents**, wherever the business operates. Example: a US company with EU website visitors is subject to GDPR.
+
+> [!note]
+> These regulations influence data handling worldwide, even though they were created by specific nations. Which ones apply depends on your **industry** and **area of authority**.
+
+---
+
+## 6. ✅ Audits vs. Assessments
+
+```mermaid
+flowchart LR
+    A["🔍 Security Audit<br/>Review controls vs. expectations<br/>about once a year"] --> B["📊 Security Assessment<br/>Test resilience against threats<br/>every 3 to 6 months"]
+    B -->|prepares for| A
+```
+
+| | 🔍 Security Audit | 📊 Security Assessment |
+| --- | --- | --- |
+| **Definition** | Review of controls, policies, and procedures against a set of expectations | Check of how resilient current security is against threats |
+| **Frequency** | ~Once per year | ~Every 3 to 6 months |
+| **Performed by** | Internal **and** external third parties | Usually internal employees |
+| **Role** | Verifies compliance (e.g., GDPR) | Often preparation for an audit |
+
+> [!example] MFA scenario
+> **Regulation**: MFA required on admin accounts → **Audit** checks those accounts → **Assessment** finds many weak passwords → Team enables MFA on **all** accounts.
+
+> [!danger] Don't ignore results
+> Overlooking or delaying fixes from an assessment can lead to **fines or data breaches**.
+
+---
+
+## 7. 🔑 Cryptography Fundamentals
+
+Cryptography keeps PII and sensitive data private across open networks.
+
+```mermaid
+flowchart LR
+    PT["📄 Plaintext<br/>readable"] -->|Encryption + Key| CT["🔒 Ciphertext<br/>scrambled"]
+    CT -->|Decryption + Key| PT2["📄 Plaintext<br/>readable"]
+```
+
+| Term | Definition |
+| --- | --- |
+| **Plaintext** | Readable, unencrypted data |
+| **Ciphertext** | Scrambled, unreadable data |
+| **Encryption** | Converts plaintext to ciphertext |
+| **Decryption** | Converts ciphertext back to plaintext |
+| **Cipher** | Algorithm used to encrypt data |
+| **Key** | Value or mechanism needed to decrypt (e.g., the shift amount) |
+
+### 🏛️ The Caesar Cipher
+
+Shifts each letter of the alphabet by a set number of spaces.
+
+> [!example] Shift of 3
+> `A → D`, `B → E`, `C → F`
+> `HELLO` → `KHOOR`
+
+### ⚠️ Vulnerabilities
+
+```mermaid
+flowchart TD
+    V["Caesar Cipher Weaknesses"] --> B["Brute force<br/>only 25 possible shifts<br/>in a small alphabet"]
+    V --> K["Single key risk<br/>if the key leaks,<br/>everything is exposed"]
+    K --> M["Key management"]
+    M --> M1["Keep keys private"]
+    M --> M2["Send keys separately<br/>from encrypted messages"]
+```
+
+> [!warning] Brute force
+> Testing every possible shift is easy in a small alphabet, so the code can be cracked **without the key**.
+
+> [!tip] Key management best practices
+> - Keep keys **private**
+> - Transmit keys **separately** from the encrypted message
+
+> [!quote] Fun aside
+> A key of `4` isn't "best" just because it was randomly chosen. Once it's known, it's no longer secret. 🎲 ([xkcd "Random Number"](https://xkcd.com/221/))
+
+---
+
+## 🧠 Quick Review
+
+> [!success] Key takeaways
+> - Data has a **lifecycle**: Collect → Store → Use → Archive → Destroy
+> - **Owners** decide, **custodians** protect, **stewards** enforce policy
+> - **PII** → **SPII** (need-to-know) and **PHI** (health) get extra protection
+> - **Privacy** = control over data. **Security** = protecting it
+> - **GDPR, PCI DSS, HIPAA** are the big three regulations
+> - **Audits** (yearly, often external) vs. **Assessments** (every 3 to 6 months, internal)
+> - **Encryption** turns plaintext into ciphertext; **keys** unlock it
+> - Weak ciphers fall to **brute force**; protect your **keys**
+
+> [!question]- Self-test (click to reveal)
+> **Q:** Why is the Caesar cipher insecure?
+> **A:** Its tiny keyspace (about 25 shifts) means brute force cracks it instantly.

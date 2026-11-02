@@ -23,7 +23,9 @@ Central index for the **Coursera Google Cybersecurity Professional Certificate**
 - [[2026-10-16]] — Friday · *Connect and Protect* M1 — networks, cloud, TCP/IP & OSI, addressing
 - [[2026-10-17]] — Saturday · *Connect and Protect* M2–M3 — protocols, Wi-Fi, firewalls, VPNs, segmentation
 - [[2026-10-18]] — Sunday · *Connect and Protect* M3 finish + start of *Tools of the Trade* (Linux & SQL)
-- [[2026-10-19]] — Monday · *Tools of the Trade* M1 (dump pending)
+- [[2026-10-21]] — Wednesday · *Tools of the Trade* — inside the OS, virtualization, package managers, Linux file system & filtering (merged Oct 19 session)
+- [[2026-10-22]] — Thursday · *Tools of the Trade* M4 — databases & SQL queries
+- [[2026-10-23]] — Friday · *Assets, Threats, and Vulnerabilities* M1–M2 — risk planning, assets, NIST CSF tiers, privacy, data governance, cryptography
 
 ---
 
@@ -52,7 +54,23 @@ Central index for the **Coursera Google Cybersecurity Professional Certificate**
 - [[Logs & SIEM]] — log types, SIEM hosting options, SOAR, Splunk, Chronicle, Suricata
 - [[Playbooks & Incident Response]] — IR playbook phases, chain of custody, order of volatility
 - [[Linux, SQL & Python]] — automation value and the core analyst toolset
+
+### Linux & Operating Systems (Course 4)
+
 - [[Operating Systems]] — OS basics, OS security, legacy operating systems
+- [[Inside the Operating System]] — boot process, OS request flow, resource management
+- [[Virtualization]] — VMs, vCPU, hypervisor, host vs guest OS
+- [[Linux Package Managers]] — APT/`dpkg` vs YUM/RPM, dependencies, patching
+- [[Linux File System]] — FHS directories, absolute vs relative paths
+- [[Linux Commands]] — `pwd`, `ls`, `cd`, `cat`, `head`, `tail`, `less`
+- [[Linux Filtering]] — `grep`, piping, `find` with name/time options
+
+### SQL & Databases (Course 4)
+
+- [[Databases]] — relational structure, primary & foreign keys
+- [[SQL Basics]] — `SELECT`, `FROM`, `ORDER BY`
+- [[SQL Filtering]] — `WHERE`, `LIKE`, `BETWEEN`, `AND`/`OR`/`NOT`
+- [[SQL Joins]] — inner, left, right, full outer joins
 
 ### Threats & Attacks
 
@@ -85,6 +103,15 @@ Central index for the **Coursera Google Cybersecurity Professional Certificate**
 - [[CISSP Eight Domains]] — the CBK domains
 - [[Common Vulnerabilities]] — ProxyLogon, ZeroLogon, Log4Shell, PetitPotam…
 - [[Vulnerability Assessment]] — VMs, sandboxes, hashing/salting, MFA, password policies
+
+### Assets, Risk & Data (Course 5)
+
+- [[Security Risk Planning]] — assets + threats + vulnerabilities; likelihood × impact; risk matrix
+- [[Asset Management & Classification]] — asset types, classification levels, ownership, data aggregation
+- [[Security Plans & Policies]] — policies → standards → procedures; regulations vs. compliance vs. frameworks
+- [[Information Privacy]] — right to choose, principle of least privilege, privacy vs. security, audits vs. assessments
+- [[Data Governance]] — lifecycle, owner/custodian/steward, PII/SPII/PHI, three states of data
+- [[Cryptography]] — plaintext/ciphertext, ciphers, Caesar cipher, brute force, key management
 
 ---
 

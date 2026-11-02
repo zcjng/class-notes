@@ -8,13 +8,22 @@ tags:
 
 # ☁️ Cloud Computing
 
-[[Google Cybersecurity|← Back to Course Hub]] · [[2026-10-16|Related day: 2026-10-16]]
+[[Google Cybersecurity|← Back to Course Hub]] · [[2026-10-16|2026-10-16]] · [[2026-10-23|Related day: 2026-10-23]]
 
 ---
 
 ## 📌 What it is
 
-**Cloud computing** utilizes **remote servers, applications, and network services hosted on the internet**, rather than local physical devices. This model allows companies to save money and access more network resources by **outsourcing network management to third-party providers**.
+**Cloud computing** (UK NCSC): *an on-demand, massively scalable service, hosted on shared infrastructure, accessible via the internet.*
+
+It utilizes **remote servers, applications, and network services hosted on the internet**, rather than local physical devices — letting companies save money and access more network resources by **outsourcing network management to third-party providers**.
+
+### Why organizations move to the cloud
+
+- **Scalability** — rapidly scale workloads up or down with traffic.
+- **Agility** — accelerate development cycles and deploy instantly.
+- **Cost efficiency** — shift from up-front CapEx on physical servers to flexible OpEx.
+- **The trade-off** — simplified operations, but new shared-tenancy attack surfaces and distributed governance risks (→ [[Cloud Security]]). This model allows companies to save money and access more network resources by **outsourcing network management to third-party providers**.
 
 ### Cloud vs. Traditional Networks
 
@@ -33,6 +42,17 @@ tags:
 | **SaaS** (Software as a Service) | Ready-to-use software suites hosted and fully managed by the CSP; accessed remotely with no setup | Almost everything — just use the app |
 | **IaaS** (Infrastructure as a Service) | On-demand raw **virtual computing components** — virtual servers, storage, containers | Company configures and manages the components themselves |
 | **PaaS** (Platform as a Service) | Pre-configured cloud environments and tools tailored for **application developers** to build and deploy custom apps | Provider runs the platform; devs build on it |
+
+### 🧾 Who manages what
+
+| Model | Customer responsibility | Provider responsibility | Examples |
+| :--- | :--- | :--- | :--- |
+| **SaaS** | Data access policies, user credentials, endpoints | App uptime, patching, runtime, infrastructure | Gmail, Slack, Zoom |
+| **PaaS** | Application code, data, app-level configuration | Hardware, OS, runtime, network security | Google App Engine, Heroku |
+| **IaaS** | Operating systems, runtime, firewall configs, storage, apps | Physical hardware, data-center security, hypervisors | AWS EC2, GCP Compute, Azure VMs |
+
+> [!TIP] Rule of thumb
+> CSP responsibility grows as you move **IaaS → PaaS → SaaS**. But **data classification, identity management, and credential protection always stay with the customer**.
 
 ---
 

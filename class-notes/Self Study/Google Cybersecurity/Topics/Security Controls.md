@@ -8,7 +8,7 @@ tags:
 
 # 🛠️ Security Controls
 
-[[Google Cybersecurity|← Back to Course Hub]] · [[2026-10-14|2026-10-14]] · [[2026-10-15|2026-10-15]]
+[[Google Cybersecurity|← Back to Course Hub]] · [[2026-10-14|2026-10-14]] · [[2026-10-15|2026-10-15]] · [[2026-10-23|2026-10-23]]
 
 **Security controls** are safeguards designed to reduce specific security risks. They are used together with [[Security Frameworks|frameworks]] to establish a strong security posture.
 
@@ -35,6 +35,21 @@ tags:
 
 > [!TIP] For audits
 > The three categories above (administrative/managerial, technical, physical) are the ones you **review during a [[Security Audits|security audit]]**.
+
+---
+
+## 🧩 Course 5 Framing — control types by focus
+
+Safeguards reduce specific security risks before, during, and after an event. A common way to group them:
+
+| Control type | Focus | Examples |
+| :--- | :--- | :--- |
+| **Technical** | Systems & technology | Encryption, MFA, firewalls, access control lists (ACLs) |
+| **Operational** | Day-to-day operations | Security awareness training, routine audits, incident response drills |
+| **Managerial** (administrative) | Strategy & governance | Security policies (e.g. AUP), compliance benchmarks, SOPs |
+
+> [!NOTE] Two naming schemes
+> The *physical / technical / administrative* split is what audits review; the *technical / operational / managerial* split describes **who or what carries out** the control.
 
 ---
 

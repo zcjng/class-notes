@@ -41,4 +41,10 @@ Core cybersecurity knowledge and skills: how operating systems, data languages, 
 
 - [[Security Tools]]
 - [[Operating Systems]]
+- [[Linux Package Managers]]
+- [[Linux File System]]
+- [[Linux Commands]]
+- [[Linux Filtering]]
+- [[Databases]]
+- [[SQL Basics]]
 - [[Security Analyst Roles & Skills]]

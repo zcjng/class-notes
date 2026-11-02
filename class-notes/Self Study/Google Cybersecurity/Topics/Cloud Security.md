@@ -8,7 +8,7 @@ tags:
 
 # 🔐 Cloud Security
 
-[[Google Cybersecurity|← Back to Course Hub]] · [[2026-10-18|Related day: 2026-10-18]]
+[[Google Cybersecurity|← Back to Course Hub]] · [[2026-10-18|2026-10-18]] · [[2026-10-23|Related day: 2026-10-23]]
 
 While [[Cloud Computing|cloud computing]] delivers speed, cost savings, and scalability, it introduces distinct architectural and security complexities.
 
@@ -66,6 +66,18 @@ An explicit boundary defining where the **provider's** security tasks end and th
 
 > [!CAUTION] The assumptions trap
 > Breaches frequently happen when organizations assume a CSP is securing an asset that actually falls under the **customer's** jurisdiction — e.g. leaving a database publicly exposed due to default setup oversight.
+
+---
+
+## 🚨 Key Cloud Security Challenges
+
+1. **Misconfiguration** — the **primary threat vector**: default "out-of-the-box" settings leaving public read/write permissions enabled (e.g. exposed storage buckets).
+2. **Cloud-native breaches** — exploits targeting **misconfigured IAM roles**, API gateways, and cloud service metadata endpoints.
+3. **Visibility & access monitoring** — distributed workloads make unified log ingestion and behavioral auditing hard across hybrid/multi-cloud setups.
+4. **Regulatory & compliance demands** — auditing cross-border data residency and privacy mandates (**GDPR**, **HIPAA**, **PCI DSS**) in multi-tenant environments.
+
+> [!NOTE] Three states of data
+> Protect data **in use** (actively accessed), **in transit** (moving between points), and **at rest** (stored on a device). → [[Data Governance]]
 
 ---
 

@@ -357,3 +357,7 @@ Preventing and Securing Access
 Detecting and Responding to Exfiltration
 - Network monitoring and SIEM tools detect unusual data collection indicators, including large internal transfers, external uploads, and unexpected file writes.
 - Security teams investigate generated alerts and stop the attack by taking containment actions, such as blocking malicious IP addresses with firewall rules.
+
+
+
+

@@ -65,3 +65,107 @@ For security analysts, PCAP files serve as an evidentiary source to:
 - Detect Indicators of Compromise (IoCs): Identify unencrypted credentials, malicious command-and-control (C2) traffic, anomalous beacons, and port scans.
 - Reconstruct Event Timelines: Walk step-by-step through an attack chain to establish exactly what an attacker accessed or exfiltrated.
 - Filter Targeted Artifacts: Narrow down millions of frames to specific communications using filter expressions (e.g., filtering by IP, port, or protocol).
+
+
+
+**Internet Protocol (IP)** includes a set of standards used for routing and addressing data packets as they travel between devices on a network.
+
+### **IPv4**
+
+- **Version**: This field indicates the IP version. For an IPv4 header, IPv4 is used. 
+    
+- **Internet Header Length (IHL)**: This field specifies the length of the IPv4 header including any Options.
+    
+- **Type of Service (ToS)**: This field provides information about packet priority for delivery.
+    
+- **Total Length**: This field specifies the total length of the entire IP packet including the header and the data.
+    
+- **Identification**: Packets that are too large to send are fragmented into smaller pieces. This field specifies a unique identifier for fragments of an original IP packet so that they can be reassembled once they reach their destination.
+    
+- **Flags**: This field provides information about packet fragmentation including whether the original packet has been fragmented and if there are more fragments in transit.
+    
+- **Fragment Offset**: This field is used to identify the correct sequence of fragments.
+    
+- **Time to Live (TTL)**: This field limits how long a packet can be circulated in a network, preventing packets from being forwarded by routers indefinitely.
+    
+- **Protocol**: This field specifies the protocol used for the data portion of the packet.
+    
+- **Header Checksum**: This field specifies a checksum value which is used for error-checking the header.
+    
+- **Source Address**: This field specifies the source address of the sender.
+    
+- **Destination Address**: This field specifies the destination address of the receiver.
+    
+- **Options**: This field is optional and can be used to apply security options to a packet.
+
+### **IPv6**
+
+IPv6 adoption has been increasing because of its large address space. There are eight fields in the header:
+
+- **Version**: This field indicates the IP version. For an IPv6 header, IPv6 is used.
+    
+- **Traffic Class**: This field is similar to the IPv4 Type of Service field. The Traffic Class field provides information about the packet's priority or class to help with packet delivery.
+    
+- **Flow Label**: This field identifies the packets of a flow. A flow is the sequence of packets sent from a specific source. 
+    
+- **Payload Length**: This field specifies the length of the data portion of the packet.
+    
+- **Next Header**: This field indicates the type of header that follows the IPv6 header such as TCP.
+    
+- **Hop Limit**: This field is similar to the IPv4 Time to Live field. The Hop Limit limits how long a packet can travel in a network before being discarded.
+    
+- **Source Address**: This field specifies the source address of the sender.
+    
+- **Destination Address**: This field specifies the destination address of the receiver.
+
+## Wireshark
+
+**Wireshark** is an open-source network protocol analyzer. It uses a graphical user interface (GUI), which makes it easier to visualize network communications for packet analysis purposes. Wireshark has many features to explore that are beyond the scope of this course. You'll focus on how to use basic filtering to isolate network packets so that you can find what you need.
+
+![Wireshark's interface.](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/SrU-DA-pR1eTtgJe4lBOjQ_c841a1d648aa40069fe7e47e84ea79f1_CS_R-125_Wireshark-homepage.png?expiry=1793924164772&hmac=wDPVZfVcIgH1pe2Ht8Z_QPecvRo29Rq9ULDg3fQ-iCM)
+
+### Display filters
+
+Wireshark's display filters let you apply filters to packet capture files. You can filter packets based on information such as protocols, IP addresses, ports, and virtually any other property found in a packet. Here, you'll focus on display filtering syntax and filtering for protocols, IP addresses, and ports.
+
+### Comparison operators
+
+You can use different comparison operators to locate specific header fields and values. Comparison operators can be expressed using either abbreviations or symbols. For example, this filter using the == equal symbol in this filter ip.src == 8.8.8.8 is identical to using the eq abbreviation in this filter ip.src eq 8.8.8.8.
+
+
+|**Operator type**|**Symbol**|**Abbreviation**|
+|---|---|---|
+|Equal|==|eq|
+|Not equal|!=|ne|
+|Greater than|>|gt|
+|Less than|<|lt|
+|Greater than or equal to|>=|ge|
+|Less than or equal to|<=|le|
+
+You can combine comparison operators with Boolean logical operators like and and or
+
+### Contains operator
+
+The contains operator is used to filter packets that contain an exact match of a string of text. 
+
+### Matches operator
+
+The matches operator is used to filter packets based on the regular expression (regex) that's specified.
+
+### **Filter for protocols**
+
+Protocol filtering is one of the simplest ways you can use display filters. You can simply enter the name of the protocol to filter. For example, to filter for DNS packets simply type dns in the filter toolbar. Here is a list of some protocols you can filter for:
+
+- dns
+    
+- http
+    
+- ftp
+    
+- ssh
+    
+- arp
+    
+- telnet
+    
+- icmp

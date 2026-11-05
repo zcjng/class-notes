@@ -1,4 +1,4 @@
-C6M2
+2C6M2
 
 Here is a cleaned-up, well-structured version of your study notes. Redundancies have been merged, tone made consistent, and technical concepts organized logically.
 

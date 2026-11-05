@@ -157,15 +157,15 @@ The matches operator is used to filter packets based on the regular expression (
 Protocol filtering is one of the simplest ways you can use display filters. You can simply enter the name of the protocol to filter. For example, to filter for DNS packets simply type dns in the filter toolbar. Here is a list of some protocols you can filter for:
 
 - dns
-    
 - http
-    
 - ftp
-    
 - ssh
-    
 - arp
-    
 - telnet
-    
 - icmp
+
+## Follow streams
+
+Wireshark provides a feature that lets you filter for packets specific to a protocol and view streams. A stream or conversation is the exchange of data between devices using a protocol. Wireshark reassembles the data that was transferred in the stream in a way that's simple to read.
+
+![A Wireshark follow stream dialog box displays stream content of an HTTP conversation.](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/qGiuzTybTNyYJXCUSuSStA_2353ba616b0c404d9b3d6df3af1fdef1_CS_R-125_dialog-box.png?expiry=1793924164772&hmac=DNdTn7gTR-kGni4dA-XyyMO9a_jta4omXCmXR4IzkRI)

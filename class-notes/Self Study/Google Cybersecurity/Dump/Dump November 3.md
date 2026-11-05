@@ -359,3 +359,6 @@ Detecting and Responding to Exfiltration
 - Security teams investigate generated alerts and stop the attack by taking containment actions, such as blocking malicious IP addresses with firewall rules.
 
 
+
+
+c.  

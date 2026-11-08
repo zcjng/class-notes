@@ -204,3 +204,7 @@ AND **one** of the following:
 - Learn incident detection and Python scripting for automation
 - Build **portfolio projects**
 - Can connect you with **200+ employers**
+
+## 📚 COMPTIA Security+
+
+**Claim your 30% discount on the CompTIA Security+ Certification exam**, the industry-leading certification for cybersecurity roles. Log into the [CompTIA Store](https://www.comptia.org/en-us/certifications/) and use the code **GGL30OFF30** at checkout for 30% off the cost of both [the exam](https://store.comptia.org/comptia-security-sy0-701-voucher/p/SEC-701-TSTV-23-C) and [CertMaster practice](https://store.comptia.org/comptia-certmaster-practice-for-security-plus-individual-license/p/SEC-601-CMPI-20-C?utm_source=gwg&utm_medium=email&utm_campaign=cyber-comptia2__geo--US&utm_content=program-message). When you pass the exam, you’ll also earn a new co-skilled badge to post on LinkedIn and other social networks! (_Note: you will need to be logged into the CompTIA Store before applying the code, or it may show up as expired or invalid._)

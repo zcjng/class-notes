@@ -28,6 +28,8 @@ The analogy: a home sensor that pings your phone detects an intrusion; a system 
 
 Many tools do both IDS and IPS: **Snort**, **Zeek**, **Suricata**, **Sagan**, **Kismet**.
 
+For a full walkthrough of one of them — signature anatomy, config files and log outputs — see [[Suricata]].
+
 ---
 
 ## 🚨 Four Detection Outcomes
@@ -86,6 +88,7 @@ Detected events are written as **IDS logs**, then forwarded to a central reposit
 ## 🔗 Related
 
 - [[Security Tools]]
+- [[Suricata]]
 - [[Network Traffic Analysis]]
 - [[Threat Hunting & Intelligence]]
 - [[Logs & SIEM]]

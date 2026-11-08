@@ -58,7 +58,12 @@ becomes paired fields: `host = server`, `process = sshd`, `source_user = nuhara`
 > [!NOTE] Correlation
 > Part of analysis is **correlation** — comparing multiple log events to find common patterns that signal a threat. A single failed login is noise; 400 from twelve countries in two minutes is an incident.
 
-For formats, retention and overlogging, see [[Log Management & Formats]].
+> [!IMPORTANT] Indexing
+> Between normalization and analysis, the SIEM **indexes** the data. That's what makes searching huge volumes of history fast — and why a vague query still feels slow.
+
+**Now write a query:** [[SIEM Queries]] covers Splunk's SPL and Chronicle's UDM search.
+
+For formats, retention, ingestion and overlogging, see [[Log Management & Formats]].
 
 ### Hosting Options
 
@@ -95,6 +100,8 @@ For formats, retention and overlogging, see [[Log Management & Formats]].
 - [[Linux, SQL & Python]]
 - [[Common Vulnerabilities]]
 - [[Log Management & Formats]]
+- [[SIEM Queries]]
+- [[Suricata]]
 - [[IDS & IPS]]
 - [[Threat Hunting & Intelligence]]
 - [[Incident Triage]]

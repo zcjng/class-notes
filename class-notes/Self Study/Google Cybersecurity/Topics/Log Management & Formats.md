@@ -16,12 +16,27 @@ Logs record **what, where and when** events happen, letting analysts build timel
 
 ---
 
-## 📥 Collection
+## 📥 Collection, Ingestion & Indexing
+
+The pipeline is **collect → normalize → index**, and each stage has a job:
 
 - **Log forwarders** automatically collect data from multiple sources and forward it to a central repository.
 - **SIEM tools** aggregate, normalize and process large volumes of diverse formats in real time.
 - **Common sources** — network devices, operating systems, applications, security tools (IDS/IPS), authentication systems.
 - **Key entry fields** — action taken (e.g. `ALLOW`), source IP, timestamp.
+
+### Log ingestion
+
+**Ingestion** is the first phase: copying and storing event data — authentication attempts, network activity — from the generating source directly into the SIEM.
+
+> [!IMPORTANT] Copy, don't consume
+> Ingestion makes a **copy** of the event data. The original source logs stay preserved and unmodified, which matters both for investigation and for evidence handling.
+
+Why forwarders instead of manual collection: pulling logs by hand across a large network doesn't scale. Forwarders can be **native to the OS**, **third-party software**, or **proprietary tools integrated with the SIEM** — all automating delivery for normalization and search.
+
+### Indexing
+
+After normalization the data is **indexed**, which is what makes fast searching possible over huge volumes of historical data. Poor query specificity against a large index is the usual cause of slow investigations — see [[SIEM Queries]].
 
 ---
 

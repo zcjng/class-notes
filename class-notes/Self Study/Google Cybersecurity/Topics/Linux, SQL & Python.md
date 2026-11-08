@@ -34,6 +34,7 @@ Core cybersecurity knowledge and skills: how operating systems, data languages, 
 ## 🐍 Python
 
 - **Function:** a versatile programming language that security professionals use to **automate repetitive and time-consuming tasks** requiring precision.
+- **Regex with `re`** — pattern-matching for log parsing and text extraction: see [[Regular Expressions]].
 
 ---
 
@@ -47,4 +48,6 @@ Core cybersecurity knowledge and skills: how operating systems, data languages, 
 - [[Linux Filtering]]
 - [[Databases]]
 - [[SQL Basics]]
+- [[Regular Expressions]]
+- [[SIEM Queries]]
 - [[Security Analyst Roles & Skills]]

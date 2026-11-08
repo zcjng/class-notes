@@ -30,6 +30,7 @@ Central index for the **Coursera Google Cybersecurity Professional Certificate**
 - [[2026-11-03]] — Tuesday · *Sound the Alarm* M1–M2 — IR lifecycle, CSIRT & SOC, IDS/IPS/EDR, SIEM/SOAR, network monitoring
 - [[2026-11-04]] — Wednesday · *Sound the Alarm* M2 — packet anatomy, IPv4/IPv6 headers, PCAP, Wireshark filters
 - [[2026-11-05]] — Thursday · *Sound the Alarm* M2–M4 — tcpdump, threat hunting, IoCs, triage, containment, logs
+- [[2026-11-08]] — Sunday · *Sound the Alarm* M4 finish — Suricata signatures & logs, SIEM queries (Splunk/Chronicle) + Python regex
 
 ---
 
@@ -154,7 +155,13 @@ Central index for the **Coursera Google Cybersecurity Professional Certificate**
 - [[Packet Analysis]] — packet anatomy, IPv4/IPv6 headers, capture modes, PCAP libraries
 - [[Wireshark]] — display filters, operators, protocol filters, follow-stream
 - [[tcpdump]] — syntax, flags, filter expressions
-- [[Log Management & Formats]] — forwarders, overlogging, retention, JSON/Syslog/XML/CSV/CEF
+- [[Log Management & Formats]] — forwarders, ingestion, indexing, overlogging, retention, JSON/Syslog/XML/CSV/CEF
+- [[Suricata]] — signature anatomy (action/header/options), rule files, `eve.json` vs `fast.log`
+- [[SIEM Queries]] — Splunk SPL, Chronicle UDM vs. raw log search, YARA-L
+
+### Python (Course 7 — partial)
+
+- [[Regular Expressions]] — `re.findall()`, character classes, quantifiers, analyst use cases
 
 ---
 
@@ -169,6 +176,9 @@ Central index for the **Coursera Google Cybersecurity Professional Certificate**
 7. [Automate Cybersecurity Tasks with Python](https://www.coursera.org/learn/automate-cybersecurity-tasks-with-python/home/week/1)
 8. [Put It to Work: Prepare for Cybersecurity Jobs](https://www.coursera.org/learn/prepare-for-cybersecurity-jobs/home/week/1)
 9. [Accelerate Your Job Search with AI](https://www.coursera.org/learn/accelerate-your-job-search-with-ai/home/module/1)
+
+> [!SUCCESS] Progress
+> **Courses 1–6 — complete.** Course 7 (*Automate Cybersecurity Tasks with Python*) — only the regex module, since Python was already familiar. Course 8 (*Put It to Work*) — skipped as unnecessary.
 
 ---
 

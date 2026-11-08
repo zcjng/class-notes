@@ -26,6 +26,10 @@ Central index for the **Coursera Google Cybersecurity Professional Certificate**
 - [[2026-10-21]] — Wednesday · *Tools of the Trade* — inside the OS, virtualization, package managers, Linux file system & filtering (merged Oct 19 session)
 - [[2026-10-22]] — Thursday · *Tools of the Trade* M4 — databases & SQL queries
 - [[2026-10-23]] — Friday · *Assets, Threats, and Vulnerabilities* M1–M2 — risk planning, assets, NIST CSF tiers, privacy, data governance, cryptography
+- [[2026-11-01]] — Sunday · *Assets, Threats, and Vulnerabilities* M2–M4 — PKI & hashing, AAA/IAM, CI/CD, CVE & OWASP, pen testing, malware, threat modeling
+- [[2026-11-03]] — Tuesday · *Sound the Alarm* M1–M2 — IR lifecycle, CSIRT & SOC, IDS/IPS/EDR, SIEM/SOAR, network monitoring
+- [[2026-11-04]] — Wednesday · *Sound the Alarm* M2 — packet anatomy, IPv4/IPv6 headers, PCAP, Wireshark filters
+- [[2026-11-05]] — Thursday · *Sound the Alarm* M2–M4 — tcpdump, threat hunting, IoCs, triage, containment, logs
 
 ---
 
@@ -112,6 +116,45 @@ Central index for the **Coursera Google Cybersecurity Professional Certificate**
 - [[Information Privacy]] — right to choose, principle of least privilege, privacy vs. security, audits vs. assessments
 - [[Data Governance]] — lifecycle, owner/custodian/steward, PII/SPII/PHI, three states of data
 - [[Cryptography]] — plaintext/ciphertext, ciphers, Caesar cipher, brute force, key management
+
+### Cryptography, Hashing & Access (Course 5)
+
+- [[Encryption & PKI]] — symmetric vs. asymmetric, 3DES/AES/RSA/DSA, Kerckhoff's principle, certificates & CAs
+- [[Hashing & Password Storage]] — one-way digests, MD5/SHA, collisions, rainbow tables, salting
+- [[Access Control & AAA]] — authentication factors, SSO/LDAP/SAML, MFA, MAC/DAC/RBAC, sessions, IAM
+
+### Vulnerabilities & Application Security (Course 5)
+
+- [[Vulnerability Management]] — vulnerability vs. exposure vs. exploit, CVE/CNA/NVD/CVSS, scanners, patching, EOL
+- [[OWASP Top 10]] — the ten most-targeted web vulnerability categories
+- [[Penetration Testing]] — red/blue/purple teams, open/closed/partial knowledge, bug bounties
+- [[Threat Modeling]] — risk treatment, PASTA's 7 stages, STRIDE, Trike, VAST
+- [[Web Exploits & Injection]] — reflected/stored/DOM XSS, SQLi categories, prepared statements
+- [[Defense in Depth]] — the castle approach, five layers, attack surfaces, hardening
+- [[CICD Security]] — CI/CD stages, DevSecOps, SAST/DAST/SCA, pipeline vulnerabilities
+
+### Threats & Malware (Course 5)
+
+- [[Malware Types & Behaviors]] — virus, worm, trojan, ransomware, spyware, PUA, fileless, rootkits, botnets
+
+### Detection & Response (Course 6)
+
+- [[Incident Response Lifecycle]] — the four NIST phases, event vs. incident, the 5 W's, IR plans
+- [[CSIRT & SOC Teams]] — CSIRT roles, command/control/communication, SOC tiers L1–L3
+- [[Incident Triage]] — assess, prioritize, collect, escalate
+- [[Business Continuity]] — containment/eradication/recovery, BCP vs. DRP, hot/warm/cold sites
+- [[Post-Incident Activity]] — final report, lessons learned, chain of custody
+- [[IDS & IPS]] — IDS vs. IPS vs. EDR, true/false positives, HIDS vs. NIDS, signature vs. anomaly
+- [[Threat Hunting & Intelligence]] — proactive hunting, TTPs, TIPs, OSINT, honeypots
+- [[Indicators of Compromise]] — IoC vs. IoA, the Pyramid of Pain, CI/CD IoCs
+
+### Network Forensics & Logs (Course 6)
+
+- [[Network Traffic Analysis]] — baselines, flow/payload/temporal monitoring, exfiltration, SOC vs. NOC
+- [[Packet Analysis]] — packet anatomy, IPv4/IPv6 headers, capture modes, PCAP libraries
+- [[Wireshark]] — display filters, operators, protocol filters, follow-stream
+- [[tcpdump]] — syntax, flags, filter expressions
+- [[Log Management & Formats]] — forwarders, overlogging, retention, JSON/Syslog/XML/CSV/CEF
 
 ---
 

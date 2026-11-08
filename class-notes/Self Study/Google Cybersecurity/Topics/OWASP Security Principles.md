@@ -63,6 +63,10 @@ Additional InfoSec design principles covered alongside OWASP:
 
 ## 🔗 Related
 
+- [[OWASP Top 10]]
+- [[Defense in Depth]]
+- [[Threat Modeling]]
+- [[Web Exploits & Injection]]
 - [[Security Controls]]
 - [[CIA Triad]]
 - [[CISSP Eight Domains]]

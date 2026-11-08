@@ -100,8 +100,20 @@ IP Spoofing ──────┼──► Replay Attack (delaying or repeating 
 
 A **brute force attack** is a trial-and-error process to discover private credentials — tedious manually, but attackers scale it with automated tools.
 
-- **Simple brute force** — guess login credentials by entering username/password combinations until one works.
-- **Dictionary attacks** — use a pre-compiled list of commonly used passwords and stolen credentials from previous breaches. *Historical note: named because they used literal dictionary word lists before complex password rules became standard.*
+| Variant | How it works |
+| :--- | :--- |
+| **Simple brute force** | Guess login credentials by entering username/password combinations until one works |
+| **Dictionary attack** | Use a pre-compiled list of commonly used passwords and credentials from previous breaches. *Named for the literal dictionary word lists used before complex password rules became standard* |
+| **Reverse brute force** | Start with a **single credential** and try it against many systems until a match is found |
+| **Credential stuffing** | Reuse stolen credentials from earlier breaches to access accounts at another organization |
+| **Pass the hash** | A specialised credential-stuffing variant: reuse a stolen, **unsalted hash** to trick an authentication system into creating a new authenticated session |
+
+> [!NOTE] Exhaustive key search
+> Encrypted data can also be brute-forced when the key space is small — but this is rarely worth an attacker's time versus simply stealing credentials.
+
+**Common tooling:** Aircrack-ng, Hashcat, John the Ripper, Ophcrack, THC Hydra.
+
+**Defences:** hashing + salting, MFA, CAPTCHA, password policies — see [[Vulnerability Assessment]] and [[Hashing & Password Storage]].
 
 ---
 

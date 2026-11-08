@@ -36,6 +36,30 @@ A **Security Information and Event Management (SIEM)** tool is an application th
 > [!TIP] TLDR
 > SIEM tools are being further enhanced to improve automation and availability, which means they are mostly cloud-based.
 
+> [!EXAMPLE] The dashboard analogy
+> A SIEM is like a car's dashboard warning lights: it doesn't fix the engine, it consolidates thousands of internal signals into a few lights the driver can act on.
+
+### ⚙️ The SIEM Process
+
+| Step | What happens |
+| :--- | :--- |
+| **1. Collect & aggregate** | Pull event data (logs) from firewalls, servers, routers, IDS/IPS, apps and authentication systems into one centralized location. **Parsing** maps raw text into fields and values as it arrives |
+| **2. Normalize** | Convert every source's format into a single standard, structured format so it's searchable and comparable |
+| **3. Analyze** | Apply detection logic — rules and conditions — to the normalized data. Any match generates an alert |
+
+**Parsing example** — this raw line:
+
+```
+April 3 11:01:21 server sshd[1088]: Failed password for user nuhara from 218.124.14.105 port 5023
+```
+
+becomes paired fields: `host = server`, `process = sshd`, `source_user = nuhara`, `source_ip = 218.124.14.105`, `source_port = 5023`.
+
+> [!NOTE] Correlation
+> Part of analysis is **correlation** — comparing multiple log events to find common patterns that signal a threat. A single failed login is noise; 400 from twelve countries in two minutes is an incident.
+
+For formats, retention and overlogging, see [[Log Management & Formats]].
+
 ### Hosting Options
 
 - **Self-hosted** — the organization installs, operates, and maintains the tool on its own physical infrastructure; ideal for organizations needing physical control over confidential data.
@@ -70,3 +94,7 @@ A **Security Information and Event Management (SIEM)** tool is an application th
 - [[Playbooks & Incident Response]]
 - [[Linux, SQL & Python]]
 - [[Common Vulnerabilities]]
+- [[Log Management & Formats]]
+- [[IDS & IPS]]
+- [[Threat Hunting & Intelligence]]
+- [[Incident Triage]]

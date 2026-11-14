@@ -58,3 +58,9 @@ redis-cli -h {HOSTNAME}      # connects to the Redis database
 >SMEMBERS {key}        # Read a 'set' key 
 >ZRANGE {key} 0 -1     # Read a 'zset' (sorted set) key
 ```
+
+
+
+
+
+

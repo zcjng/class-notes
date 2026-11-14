@@ -39,3 +39,17 @@ DESCRIBE {TABLE};             -- shows a table's columns and types
 SELECT * FROM {TABLE};        -- returns every row in a table
 SELECT * FROM {TABLE} WHERE {COLUMN} = 'value';   -- filters rows
 ```
+
+
+# Crocodile
+
+-> uses ftp (port 21) and gobuster
+```bash
+ftp -a {HOST_MACHINE}   # use 
+```
+
+
+```bash
+# With file extensions
+gobuster dir -u https://example.com -w wordlist.txt -x php,html,js,txt
+```

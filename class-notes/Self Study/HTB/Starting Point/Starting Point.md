@@ -4,6 +4,11 @@
 ```bash
 sudo nmap -sC -sV --version -oA path/to/dir {MACHINE_IP} 
 ```
+-> uses default scripts, to enumerate services inspects what 1000 default ports are running 
+```bash
+sudo nmap -p- --min-rate 1000 -T4 {MACHINE_IP}
+```
+-> forces 1000 packets/sec with aggresize timing (T4) scans all open ports 65535 TCP ports
 
 # Meow
 
@@ -35,3 +40,11 @@ smbclient //10.129.209.120/{Available Shares} | -> connect to the host
 
 -> after connecting, we can traverse the directory, and use **get** and **more** to look and download the flag.
 
+
+# Redeemer
+
+-> uses redis (port 6379), default 1000 tcp scans wont work, so scan all 65535
+
+```bash
+redis-cli
+```

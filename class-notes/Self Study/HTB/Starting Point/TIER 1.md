@@ -101,7 +101,7 @@ sudo vi /etc/hosts
 ```
 
 -> Responder utility tool
-
+- Capture credentials and perform Adversary-in-the-Middle (AiTM) attacks on local networks
 
 
 -> Net-NTLMv2 is the challenge-response authentication protocol used by Windows to verify a user's identity over a network (such as SMB, HTTP, or LDAP) without sending the actual password in plaintext.

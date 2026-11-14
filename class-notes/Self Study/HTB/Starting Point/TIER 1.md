@@ -21,3 +21,7 @@ kali stores its wordlists in
 ```bash
 /usr/share/wordlists
 ```
+
+# Sequel
+
+-> uses mysql (port 3306)

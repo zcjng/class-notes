@@ -69,9 +69,21 @@ http://10.129.1.15/dashboard/index.php
 
 # Responder
 
-->
+-> http (port 80) | unika.htb
 
-```bash
+run it through:
 
+```curl
+└─$ curl -s 10.129.210.220
+<meta http-equiv="refresh" content="0;url=http://unika.htb/">              
 ```
 
+-> you get the hostname
+
+```bash
+sudo vi /etc/hosts 
+
+{HOSTNAME_IP} unika.htb  # put the web address into etc hosts file for access
+```
+
+-> put it to /etc/hosts

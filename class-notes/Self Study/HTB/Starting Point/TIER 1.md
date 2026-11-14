@@ -113,3 +113,7 @@ sudo responder -I tun0
 -> Net-NTLMv2 is the challenge-response authentication protocol used by Windows to verify a user's identity over a network (such as SMB, HTTP, or LDAP) without sending the actual password in plaintext.
 - **john the ripper**: takes that Net-NTLMv2 challenge-response then tries millions of passwords to check for collisions
 
+
+-> after getting the password credentials, since we have discovered using a full port scan, the box runs wsman (port 5985),
+
+- 

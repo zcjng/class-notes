@@ -29,5 +29,9 @@ ftp -a {MACHINE_IP} | -> login
 -> uses smb | server message block (port 445)
 
 ```bash
-smbclient
+smbclient -L 10.129.209.120 | -> List all of the shares available on the host
+smbclient //10.129.209.120/{Available Shares} | -> connect to the host
 ```
+
+-> after connecting, we can traverse the directory, and use **get** and **more** to look and download the flag.
+

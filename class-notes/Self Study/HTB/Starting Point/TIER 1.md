@@ -114,6 +114,13 @@ sudo responder -I tun0
 - **john the ripper**: takes that Net-NTLMv2 challenge-response then tries millions of passwords to check for collisions
 
 
--> after getting the password credentials, since we have discovered using a full port scan, the box runs wsman (port 5985),
+-> after getting the password credentials, since we have discovered using a full port scan, the box runs wsman (port 5985) for HTTP, (port 5986) for HTTPS
 
-- 
+- we can utilize : evil-winrm
+
+```bash
+evil-winrm -i {TARGET_IP} -u {USERNAME} -p '{PASSWORD}' # to ssh in, -S for secure or to give you an interactive winRM / powershell session
+```
+
+-> after getting the winRM / powershell session, navigate to flag.txt
+

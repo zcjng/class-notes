@@ -45,11 +45,33 @@ SELECT * FROM {TABLE} WHERE {COLUMN} = 'value';   -- filters rows
 
 -> uses ftp (port 21) and gobuster
 ```bash
-ftp -a {HOST_MACHINE}   # use 
+ftp -a {HOST_MACHINE}   # uses anonymous login or you can use normal connection and use "anonymous as the username"
+
+# after looking through the dir
+>get allowed.userlist 
+>get allowed.userlist.passwd
+>bye
 ```
 
 
+```
 ```bash
 # With file extensions
 gobuster dir -u https://example.com -w wordlist.txt -x php,html,js,txt
 ```
+
+-> use gobuster enumerate through file extensions to get the directory to login.php through 
+```python
+http://10.129.1.15/dashboard/index.php
+```
+
+
+
+# Responder
+
+->
+
+```bash
+
+```
+

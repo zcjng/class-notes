@@ -46,5 +46,11 @@ smbclient //10.129.209.120/{Available Shares} | -> connect to the host
 -> uses redis (port 6379), default 1000 tcp scans wont work, so scan all 65535
 
 ```bash
-redis-cli
+redis-cli -h {HOSTNAME}      | -> connects to the database
+>INFO                  | -> outputs all the information about the redis server
+>SELECT {database}     | -> selects the key:value database
+>KEYS *                | outputs all the keys in a flat format
+>SCAN 0                | first returns the offset for next scan '0' if all done in one go, the next returns all the keys from that scan
+>GET {key}             | prints out the value for the existing key
+>TYPE {key}            | Check the data type before reading it
 ```

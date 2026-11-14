@@ -24,4 +24,6 @@ ftp -a {MACHINE_IP} | -> login
 >ftp get            | -> downloads file to current path before ftp
 ```
 
-#
+# Dancing
+
+-> uses smb | server message block (port 445)

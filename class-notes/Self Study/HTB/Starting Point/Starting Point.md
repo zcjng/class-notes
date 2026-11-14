@@ -27,3 +27,7 @@ ftp -a {MACHINE_IP} | -> login
 # Dancing
 
 -> uses smb | server message block (port 445)
+
+```bash
+smbclient
+```

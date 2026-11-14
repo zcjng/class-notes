@@ -25,3 +25,17 @@ kali stores its wordlists in
 # Sequel
 
 -> uses mysql (port 3306)
+
+```bash
+mysql -h {HOSTNAME} -P 3306 -u {USER/root} -p
+```
+
+-> after successfully logging in:
+```sql
+SHOW DATABASES;               -- lists all databases on the server
+USE {DATABASE};               -- selects a database (not a table)
+SHOW TABLES;                  -- lists tables in the selected database
+DESCRIBE {TABLE};             -- shows a table's columns and types
+SELECT * FROM {TABLE};        -- returns every row in a table
+SELECT * FROM {TABLE} WHERE {COLUMN} = 'value';   -- filters rows
+```

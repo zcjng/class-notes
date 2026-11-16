@@ -112,6 +112,9 @@ sudo responder -I tun0
 
 -> Net-NTLMv2 is the challenge-response authentication protocol used by Windows to verify a user's identity over a network (such as SMB, HTTP, or LDAP) without sending the actual password in plaintext.
 - **john the ripper**: takes that Net-NTLMv2 challenge-response then tries millions of passwords to check for collisions
+```bash
+john --format=netntlmv2 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+```
 
 
 -> after getting the password credentials, since we have discovered using a full port scan, the box runs wsman (port 5985) for HTTP, (port 5986) for HTTPS
@@ -124,3 +127,10 @@ evil-winrm -i {TARGET_IP} -u {USERNAME} -p '{PASSWORD}' # to ssh in, -S for secu
 
 -> after getting the winRM / powershell session, navigate to flag.txt
 
+
+
+# Three
+
+-> uses http (port 80) | ssh (port 22)
+
+after navigating the website, we could find `/action_page.php` indicates PHP backend server, contact section also has an email address `main@thetoppers.htb` which indicates a domain ``

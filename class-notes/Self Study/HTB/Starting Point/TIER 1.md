@@ -133,4 +133,34 @@ evil-winrm -i {TARGET_IP} -u {USERNAME} -p '{PASSWORD}' # to ssh in, -S for secu
 
 -> uses http (port 80) | ssh (port 22)
 
-after navigating the website, we could find `/action_page.php` indicates PHP backend server, contact section also has an email address `main@thetoppers.htb` which indicates a domain ``
+after navigating the website, we could find `/action_page.php` indicates PHP backend server, contact section also has an email address `main@thetoppers.htb` which indicates a domain
+
+-> add `thetoppers.htb` into /etc/hosts, to resolve a hostname into an IP address
+
+(by default this file is queried before the DNS server for hostname resolution)
+
+#### Sub-domain enumeration
+-> enumerate the beginning of a website's domain name, which are commonly used to organize content for a specific function 
+- ex: ctf.hackthebox.com; `ctf` -> subdomain, `com` the top-level domain
+
+subdomains:
+- different IP addresses
+	-> when looking up the subdomain, it gets the address of the server that handles that application
+- one server handle multiple subdomains by: "host-based routing" / "v-host routing"
+	-> the server uses the Host header in the HTTP request to determine which application is meant to handle the request
+
+
+-> we can use gobuster to enumerate subdomains
+```bash
+gobuster vhost -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://thetoppers.htb --append-domain
+```
+
+-> which returns, then we add this to /etc/hosts as well
+```bash
+s3.thetoppers.htb
+```
+
+#### s3
+- wdasd
+	->
+	

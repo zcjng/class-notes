@@ -53,6 +53,13 @@ Shifts each letter of the alphabet by a set number of spaces.
 
 ---
 
+## 📚 Deeper Dives
+
+- [[Encryption & PKI]] — symmetric vs. asymmetric, AES/3DES/RSA/DSA, Kerckhoff's principle, digital certificates
+- [[Hashing & Password Storage]] — one-way functions, MD5/SHA, collisions, rainbow tables, salting
+
+---
+
 ## 🔗 Related
 
 - [[Data Governance]]
@@ -60,3 +67,4 @@ Shifts each letter of the alphabet by a set number of spaces.
 - [[Security Controls]]
 - [[VPNs]]
 - [[Wi-Fi Security]]
+- [[Access Control & AAA]]

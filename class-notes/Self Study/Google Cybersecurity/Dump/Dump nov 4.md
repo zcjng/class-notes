@@ -65,3 +65,5 @@ For security analysts, PCAP files serve as an evidentiary source to:
 - Detect Indicators of Compromise (IoCs): Identify unencrypted credentials, malicious command-and-control (C2) traffic, anomalous beacons, and port scans.
 - Reconstruct Event Timelines: Walk step-by-step through an attack chain to establish exactly what an attacker accessed or exfiltrated.
 - Filter Targeted Artifacts: Narrow down millions of frames to specific communications using filter expressions (e.g., filtering by IP, port, or protocol).
+
+

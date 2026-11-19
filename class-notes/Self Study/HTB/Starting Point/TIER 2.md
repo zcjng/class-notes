@@ -90,4 +90,23 @@ Finally, the flag is in the home directory as root.
 ->1433/tcp ms-sql-s
 -> 5985/tcp http
 
-mpacket is an open-source Python library and toolkit for constructing, parsing, and interacting with network protocols
+Primarily be using **SMB, impackets-mssqlclient**, **evil-winrm**
+
+```bash
+# Retrieve the shares
+smbclient -L {IP} 
+
+```
+
+-> we then get the backups share which included `prod.dtsConfig`, and grab the credentials of id and password, to then log on to mssql using `impacket-mssqlclient`
+
+```bash
+# talk to MS SQL over its native wire protocol TDS, rather than SMB/winRM
+impacket-mssqlclient sql_svc:'M3g4c0rp123'@{IP_ADDRESS} -windows-auth
+
+-windows-auth # auth using windows/NTLM auth rather than SQL servers native SQL auth
+```
+
+
+-> follow the https://www.hackingarticles.in/mssql-for-pentester-command-execution-with-xp_cmdshell/
+

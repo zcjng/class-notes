@@ -79,3 +79,15 @@ User postgres may run the following commands on vaccine:
 ```
 
 Finally, the flag is in the home directory as root.
+
+
+
+# Archetype
+
+-> 135/tcp msrpc
+-> 139/tcp netbios ssn
+-> 445/tcp microsoft-ds
+->1433/tcp ms-sql-s
+-> 5985/tcp http
+
+mpacket is an open-source Python library and toolkit for constructing, parsing, and interacting with network protocols

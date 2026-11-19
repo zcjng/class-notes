@@ -81,6 +81,18 @@ User postgres may run the following commands on vaccine:
 Finally, the flag is in the home directory as root.
 
 
+# Oopsie
+
+-> 22/tcp ssh
+-> 80/tcp http
+
+-> we can access a website and we can take a look at target burpsuite, # Traversing the directory gives us `cdn-cgi/login`
+
+```bash
+
+
+```
+
 
 # Archetype
 

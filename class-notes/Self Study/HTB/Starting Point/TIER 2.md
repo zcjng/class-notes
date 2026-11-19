@@ -178,3 +178,47 @@ You’re using the right interface/IP
 Getting from callback → RCE
 
 A bare LDAP listener (like tcpdump catching the hit, or even a plain nc -lvnp 389) only proves the callback — it can’t actually respond properly to complete the JNDI lookup. To get code execution you need an actual rogue LDAP server that redirects the client to load a malicious Java class from an HTTP server. That’s what tools like the JNDI Exploit Kit / marshalsec do for you.
+
+
+
+The Log4Shell attack flow
+
+1. curl sends the payload to the target's login API. The payload contains a JNDI lookup string.
+
+2. The vulnerable application processes the input. If the relevant Log4j logging path evaluates the lookup, the target initiates an LDAP request to your RogueJndi server.
+
+3. RogueJndi responds to the LDAP lookup. It supplies a JNDI response configured to provide a command-related payload.
+
+4. The target processes the response. If the required Java and application conditions are met, the command executes on the target.
+
+5. The command contains your callback address. It specifies your Kali IP (10.10.14.95) and port (4444).
+
+6. Netcat receives the incoming TCP connection because it's listening on that port.
+Two small corrections
+
+    Base64 is encoding, not hashing. Your command uses Base64 to represent the shell command in a different format.
+
+    The connection isn't redirected through RogueJndi. The target initiates a separate connection directly to your Kali machine.
+
+The most important concept to remember:
+
+RogueJndi delivers the JNDI response. The target executes the command. Netcat receives the resulting connection.
+
+You've now understood the relationship between the three components: curl, RogueJndi and Netcat.
+
+
+vulnurable log4j unifi
+
+For an authorized HTB assessment:
+
+    Application version: Identify the UniFi Network application version.
+
+    Log4j version: Determine which Log4j library version is bundled with the application.
+
+    Affected configuration: Check whether the application uses the vulnerable lookup functionality.
+
+    Request handling: Establish whether the relevant input reaches the application's logging subsystem.
+
+    Evidence: Correlate application logs, LDAP traffic and server responses.
+
+

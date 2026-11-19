@@ -1,6 +1,6 @@
 
 
-# Vaccine
+# Vaccine | SQL Injection, Vi
 
 -> uses primarily ftp (port 20) and http (port 80)
 
@@ -81,7 +81,7 @@ User postgres may run the following commands on vaccine:
 Finally, the flag is in the home directory as root.
 
 
-# Oopsie
+# Oopsie | Web, IDOR, PHP upload, PATH hijacking
 
 -> 22/tcp ssh
 -> 80/tcp http
@@ -160,7 +160,7 @@ export PATH=/tmp:$PATH
 
 -> run `/usr/bin/bugtracker` and become root!
 
-# Archetype
+# Archetype | SMB, MSSQL, WinPEAS, evil-winRM
 
 -> 135/tcp msrpc
 -> 139/tcp netbios ssn
@@ -249,7 +249,7 @@ evil-winrm -i {IP_ADDRESS} -u administrator -p 'MEGACORP_4dm1n!!'
 
 
 
-# Unified
+# Unified | Web, Log4SHELL, LDAP/JNDI, MongoDB, SSH
 
 -> has ports 22/tcp ssh 
 ->6789/tcp   ibm-db2-admin?

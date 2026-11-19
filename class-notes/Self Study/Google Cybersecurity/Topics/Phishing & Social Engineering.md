@@ -6,7 +6,7 @@ tags:
   - cybersecurity
 ---
 
-# 🎣 Phishing & Social Engineering
+# 🎣 d & Social Engineering
 
 [[Google Cybersecurity|← Back to Course Hub]] · [[2026-10-14|2026-10-14]] · [[2026-11-01|Related day: 2026-11-01]]
 

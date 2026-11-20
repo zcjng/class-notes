@@ -5,3 +5,4 @@ PORT     STATE SERVICE
 8443/tcp open  https-alt
 
 
+![[Pasted image 20261121041701.png]]

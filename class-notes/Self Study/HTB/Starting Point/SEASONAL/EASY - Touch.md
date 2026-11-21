@@ -74,3 +74,38 @@ That gives us a crucial separation:
 |`SERVICE_START_NAME`|Which Windows token hosts the service|
 
 The writable `bin` directory is therefore a lead, not a UDF solution. To make it relevant, we need a loading mechanism that actually uses a file from `bin`.
+
+
+The branch is not determined by the word “MySQL.” It is determined by which mechanism’s prerequisites are supported by the evidence.
+
+There are two different situations:
+
+- **UDF branch:** the configured plugin location is writable or otherwise usable, the database account has the relevant privileges, and the server can register and invoke the library.
+- **DLL branch:** a directory used by a privileged process is writable, and there is evidence that the process requests a library in a way that can resolve to that directory.
+
+In the specific evidence set from the prediction, the ordinary UDF placement route is blocked by the non-writable `plugin_dir`, so DLL loading is the better next hypothesis. But it remains a hypothesis because we have not shown the load trigger.
+
+Conversely, if the plugin directory were writable and the database account could register a UDF, the UDF branch would be the more direct investigation—even if `bin` were also writable. The map’s fork means **compare prerequisites**, not “always choose DLL for a writable `bin`.”
+
+
+A DLL and a SQL function live in different naming systems. The UDF declaration creates the bridge between them.
+
+Conceptually:
+
+```
+native library export:     sys_evalSQL-visible function:      sys_eval
+```
+
+The `SONAME` tells MySQL which library contains the implementation. The SQL function name tells MySQL what name a query will use. Later:
+
+```
+SELECT sys_eval('whoami');
+```
+
+asks MySQL to call that registered native entry point inside `mysqld.exe`.
+
+This requires the library to be suitable for MySQL’s expected interface: the expected export must exist, and its calling convention and return type must be compatible. Registering a random DLL does not make every function inside it SQL-callable, and registration does not mean every export executes automatically.
+
+The UDF chain is therefore:
+
+library in usable location→registration→SQL invocation→native code in mysqld.exelibrary in usable location→registration→SQL invocation→native code in mysqld.exe

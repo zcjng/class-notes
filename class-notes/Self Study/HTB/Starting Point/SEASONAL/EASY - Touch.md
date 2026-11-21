@@ -55,3 +55,22 @@ It answers **“where and under what application settings might MySQL load or w
 Those require ACL and process evidence. In other words, `my.ini` identifies a candidate path; it does not certify an exploit.
 
 For the UDF route, this is why `plugin_dir` matters: the library must be placed where MySQL’s UDF loading mechanism expects it. The fact that `mysqld.exe` lives in a `bin` directory does not make `bin` the UDF destination.
+
+
+An ACL answers **who may perform which operation on which object**. It does not answer who runs the service.
+
+For the output shown:
+
+- `BUILTIN\Users:(RX)` on `plugin` means your group can read and traverse that directory, but the output does not grant modification.
+- `BUILTIN\Users:(M)` on `bin` means your group has Modify permission there, subject to the effective ACL and inheritance details.
+
+That gives us a crucial separation:
+
+|Evidence|What it establishes|
+|---|---|
+|`my.ini` points to `plugin`|Where MySQL expects plugins|
+|`(RX)` on `plugin`|You can inspect/traverse it, not simply copy into it|
+|`(M)` on `bin`|You may be able to alter files there|
+|`SERVICE_START_NAME`|Which Windows token hosts the service|
+
+The writable `bin` directory is therefore a lead, not a UDF solution. To make it relevant, we need a loading mechanism that actually uses a file from `bin`.

@@ -109,3 +109,32 @@ This requires the library to be suitable for MySQL’s expected interface: the e
 The UDF chain is therefore:
 
 library in usable location→registration→SQL invocation→native code in mysqld.exelibrary in usable location→registration→SQL invocation→native code in mysqld.exe
+
+
+Your reasoning named all four relevant conditions, but the submitted selection omitted the fourth. The missing distinction is:
+
+- **UDF execution viability:** can MySQL load and invoke the native function?
+- **Privilege-escalation viability:** does the hosting MySQL process have useful Windows privileges?
+
+A UDF can execute successfully while providing no elevation if `mysqld.exe` runs as a low-privileged account. Therefore, for the goal we are studying, all four are required:
+
+1. usable placement;
+2. database permission to register/invoke;
+3. compatible native export;
+4. useful service-account privileges.
+
+The filename is irrelevant except as a search clue.
+
+
+
+The DLL branch is different from the UDF branch.
+
+In the UDF branch, MySQL is explicitly told to load a named library through its SQL/application mechanism.
+
+In the DLL-loading branch, the process itself requests a library—often by a name such as `helper.dll`. The operating-system loader then resolves that request according to the applicable search rules. The reasoning chain is:
+
+process requests a library name→loader searches applicable locations→attacker-controlled copy is selected→code runs inside the requesting processprocess requests a library name→loader searches applicable locations→attacker-controlled copy is selected→code runs inside the requesting process
+
+A writable executable directory matters only if it is one of the locations the loader can select **for that particular request**. The directory does not cause a load, and the filename does not grant privileges.
+
+This is why “`bin` is writable” is weaker evidence than “the privileged process requests `helper.dll` by name, and the loader can resolve that request to the writable `bin` copy.”

@@ -212,3 +212,20 @@ Applied to your HTB write-up:
 - If `plugin_dir` is writable and the database permissions support UDF registration, follow the **UDF branch**.
 - If only the executable directory is writable, do **not** copy a UDF there and assume it works. Investigate the **DLL branch** by proving an actual searched library request.
 - If neither branch has all its prerequisites, classify the result as leads only—not an exploit path.
+
+
+
+You could ask Shift:
+
+- What does this endpoint appear to do?
+    
+- Which parameters are user-controlled?
+    
+- Are there authentication checks?
+    
+- Are there similar endpoints?
+    
+- What security tests would be reasonable here?
+    
+
+Then you investigate those hypotheses yourself.
